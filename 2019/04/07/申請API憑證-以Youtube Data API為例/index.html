@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="申請API憑證-以Youtube Data API為例目的流程概念 申請憑證 將key加入到專案中  申請API Key 使用google帳號，進入Google Cloud Platform(GCP) 從左上漢堡標籤，進入「API和服務&amp;gt;資訊主頁」  點按「啟用API」按鈕  進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)  選擇啟用該API  頁面中提示要先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/申請API憑證-以Youtube Data API為例/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="申請API憑證-以Youtube Data API為例目的流程概念 申請憑證 將key加入到專案中  申請API Key 使用google帳號，進入Google Cloud Platform(GCP) 從左上漢堡標籤，進入「API和服務&amp;gt;資訊主頁」  點按「啟用API」按鈕  進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)  選擇啟用該API  頁面中提示要先">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/XPaCpA4.png">
+<meta property="og:image" content="https://i.imgur.com/s5OVzq2.png">
+<meta property="og:image" content="https://i.imgur.com/HTvKrWU.png">
+<meta property="og:image" content="https://i.imgur.com/lfuctZa.png">
+<meta property="og:image" content="https://i.imgur.com/uZ8UW87.png">
+<meta property="og:image" content="https://i.imgur.com/oVO3o4b.png">
+<meta property="og:image" content="https://i.imgur.com/Fvo8ka1.png">
+<meta property="og:image" content="https://i.imgur.com/Joasr4R.png">
+<meta property="og:image" content="https://i.imgur.com/ehhQGqs.png">
+<meta property="og:updated_time" content="2019-04-07T03:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="申請API憑證-以Youtube Data API為例目的流程概念 申請憑證 將key加入到專案中  申請API Key 使用google帳號，進入Google Cloud Platform(GCP) 從左上漢堡標籤，進入「API和服務&amp;gt;資訊主頁」  點按「啟用API」按鈕  進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)  選擇啟用該API  頁面中提示要先">
+<meta name="twitter:image" content="https://i.imgur.com/XPaCpA4.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-申請API憑證-以Youtube Data API為例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
+  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="申請API憑證-以Youtube-Data-API為例"><a href="#申請API憑證-以Youtube-Data-API為例" class="headerlink" title="申請API憑證-以Youtube Data API為例"></a>申請API憑證-以Youtube Data API為例</h1><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><h3 id="流程概念"><a href="#流程概念" class="headerlink" title="流程概念"></a>流程概念</h3><ol>
+<li>申請憑證</li>
+<li>將key加入到專案中</li>
+</ol>
+<h3 id="申請API-Key"><a href="#申請API-Key" class="headerlink" title="申請API Key"></a>申請API Key</h3><ol>
+<li>使用google帳號，進入<a href="https://console.cloud.google.com/home" target="_blank" rel="noopener">Google Cloud Platform(GCP)</a></li>
+<li><p>從左上漢堡標籤，進入「API和服務&gt;資訊主頁」<br><img src="https://i.imgur.com/XPaCpA4.png" alt></p>
+</li>
+<li><p>點按「啟用API」按鈕<br><img src="https://i.imgur.com/s5OVzq2.png" alt></p>
+</li>
+<li><p>進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)<br><img src="https://i.imgur.com/HTvKrWU.png" alt></p>
+</li>
+<li><p>選擇啟用該API<br><img src="https://i.imgur.com/lfuctZa.png" alt></p>
+</li>
+<li><p>頁面中提示要先「建立憑證」<br><img src="https://i.imgur.com/uZ8UW87.png" alt></p>
+</li>
+<li><p>依照專案需求，填寫表格<br><img src="https://i.imgur.com/oVO3o4b.png" alt></p>
+</li>
+<li><p>依照個人需求、必要，限制金鑰</p>
+</li>
+</ol>
+<ul>
+<li>應用程式限制：若無限制，任何人皆可在任何裝置上使用這組API金鑰；若有限制，則會進行審核，資料符合的使用者才可使用</li>
+<li>API限制：可限制該API僅可用來獲取哪些服務Google服務，避免因使用其他服務導致流量超過配額，或被其他人用來獲取其他服務<br><img src="https://i.imgur.com/Fvo8ka1.png" alt></li>
+</ul>
+<ol start="9">
+<li><p>勾選起該憑證<br><img src="https://i.imgur.com/Joasr4R.png" alt></p>
+</li>
+<li><p>將Key複製到自己的專案中<br><img src="https://i.imgur.com/ehhQGqs.png" alt></p>
+</li>
+</ol>
+<h3 id="將Key加入至專案中"><a href="#將Key加入至專案中" class="headerlink" title="將Key加入至專案中"></a>將Key加入至專案中</h3><p>* </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/07/申請API憑證-以Youtube Data API為例/" data-id="cju86shz900130notlkcv5x1l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/08/使用github page顯示靜態網頁/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/07/API金鑰的使用時機(未完)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JS-使用API串接公開第三方資源何為API?API(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。 網站可以使用Web APIs 銜接第三方軟體，獲得第三方端點(endpoint)中含有JSON格式的資料。 Web APIs透過HTTP協議方法，向第三方的公開URL端點發出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/08/JS-使用API串接公開第三方資源/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JS-使用API串接公開第三方資源何為API?API(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。 網站可以使用Web APIs 銜接第三方軟體，獲得第三方端點(endpoint)中含有JSON格式的資料。 Web APIs透過HTTP協議方法，向第三方的公開URL端點發出">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/ZiuPtc1.png">
+<meta property="og:image" content="https://i.imgur.com/da37OGa.png">
+<meta property="og:updated_time" content="2019-04-08T01:27:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="JS-使用API串接公開第三方資源何為API?API(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。 網站可以使用Web APIs 銜接第三方軟體，獲得第三方端點(endpoint)中含有JSON格式的資料。 Web APIs透過HTTP協議方法，向第三方的公開URL端點發出">
+<meta name="twitter:image" content="https://i.imgur.com/ZiuPtc1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS-使用API串接公開第三方資源" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/08/JS-使用API串接公開第三方資源/" class="article-date">
+  <time datetime="2019-04-08T01:27:02.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS-使用API串接公開第三方資源"><a href="#JS-使用API串接公開第三方資源" class="headerlink" title="JS-使用API串接公開第三方資源"></a>JS-使用API串接公開第三方資源</h1><h3 id="何為API"><a href="#何為API" class="headerlink" title="何為API?"></a>何為API?</h3><p><strong>API</strong>(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。</p>
+<p>網站可以使用<strong>Web APIs</strong> 銜接第三方軟體，獲得第三方端點(endpoint)中含有JSON格式的資料。</p>
+<p><strong>Web APIs</strong>透過HTTP協議方法，向第三方的公開URL端點發出需求。<br><img src="https://i.imgur.com/ZiuPtc1.png" alt></p>
+<h3 id="開始串接一個API"><a href="#開始串接一個API" class="headerlink" title="開始串接一個API"></a>開始串接一個API</h3><ul>
+<li>閱讀API文件：<a href="https://ghibliapi.herokuapp.com/" target="_blank" rel="noopener">Studio Ghibli API documentation </a></li>
+<li>取得API endpoint：<br>在API文件中，滑到films部分，右側會看到GET /films，其中的URL就是<a href="https://ghibliapi.herokuapp.com/films." target="_blank" rel="noopener">API endpoint</a>，點進這個URL會看到一個陣列中包含多個物件，並以JSON格式呈現</li>
+<li><p>使用HTTP請求獲取資料：</p>
+<ol>
+<li>在.js檔案中，創造一個「XMLHttpRequest」物件，並指派給<code>request</code>變數。</li>
+<li>使用<code>open()</code>函式連接，必要的參數包含「請求方法(‘GET’)」及「API端點的URL」</li>
+<li>請求完畢後，我們就有權限進使用<code>onload()</code>函式，進到資料中</li>
+<li>最後，<code>send()</code>正式送出請求<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a request variable and assign a new XMLHttpRequest object to it.</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open a new connection, using the GET request on the URL endpoint</span></span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'https://ghibliapi.herokuapp.com/films'</span>)</span><br><span class="line"></span><br><span class="line">request.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Begin accessing JSON data here</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send request</span></span><br><span class="line">request.send()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>處理HTTP回傳資料：</p>
+<ol>
+<li>回傳值為JSON格式，必須先使用用<code>JSON.parse()</code>將JSON轉換為javascript物件</li>
+<li>接下來就可以對資料做處理了。例：這裡的資料為陣列，所以下方用<code>forEach()</code>一一讀取陣列中的物件，並且印出每個物件的title</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Begin accessing JSON data here</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.response)</span><br><span class="line"></span><br><span class="line">data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Log each movie's title</span></span><br><span class="line">  <span class="built_in">console</span>.log(movie.title)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>處理錯誤error：<br>每次HTTP發出請求，就會回傳status code，常見的錯誤為404(Not found)，成功為200(OK)。判斷<code>request.status</code>，如果成功就執行印出資料，否則就印出error</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Begin accessing JSON data here</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.response)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">400</span>) &#123;</span><br><span class="line">  data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(movie.title)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接續，在頁面上顯示API資料"><a href="#接續，在頁面上顯示API資料" class="headerlink" title="接續，在頁面上顯示API資料"></a>接續，在頁面上顯示API資料</h3><ul>
+<li><p><code>index.html</code>中有一個div容器，設為id=’root’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot; /&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;script src=&quot;scripts.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>script.js</code>取得root元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在網頁左上放一個logo</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logo = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增一個div標籤元素，並且用class定義其css樣式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> container = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">container.setAttribute(<span class="string">'class'</span>, <span class="string">'container'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>將新增的元素放到網頁上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.appendChild(logo)</span><br><span class="line">app.appendChild(container)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>繼續在container中填充回傳值資料</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Create a div with a card class</span></span><br><span class="line">  <span class="keyword">const</span> card = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">  card.setAttribute(<span class="string">'class'</span>, <span class="string">'card'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an h1 and set the text content to the film's title</span></span><br><span class="line">  <span class="keyword">const</span> h1 = <span class="built_in">document</span>.createElement(<span class="string">'h1'</span>)</span><br><span class="line">  h1.textContent = movie.title</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a p and set the text content to the film's description</span></span><br><span class="line">  <span class="keyword">const</span> p = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>)</span><br><span class="line">  movie.description = movie.description.substring(<span class="number">0</span>, <span class="number">300</span>) <span class="comment">// Limit to 300 chars</span></span><br><span class="line">  p.textContent = <span class="string">`<span class="subst">$&#123;movie.description&#125;</span>...`</span> <span class="comment">// End with an ellipses</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Append the cards to the container element</span></span><br><span class="line">  container.appendChild(card)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Each card will contain an h1 and a p</span></span><br><span class="line">  card.appendChild(h1)</span><br><span class="line">  card.appendChild(p)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><ul>
+<li><a href="https://github.com/leahlin912/git-practice/tree/master/project4_mini" target="_blank" rel="noopener">github完整程式碼</a></li>
+<li><a href="https://leahlin912.github.io/git-practice/project4_mini/" target="_blank" rel="noopener">網頁呈現</a></li>
+</ul>
+<p><img src="https://i.imgur.com/da37OGa.png" alt></p>
+<h3 id="參考來源"><a href="#參考來源" class="headerlink" title="參考來源"></a>參考來源</h3><ul>
+<li><a href="https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/" target="_blank" rel="noopener">How to Connect to an API with JavaScript</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/JS-使用API串接公開第三方資源/" data-id="cju86shyz000n0nothzvcvqt2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/08/使用github page顯示靜態網頁/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

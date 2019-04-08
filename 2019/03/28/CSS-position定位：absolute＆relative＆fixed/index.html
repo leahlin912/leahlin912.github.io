@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS-position定位：absolute＆relative＆fixed使用時機當畫面中的元素需要重疊時，建議可以使用position屬性作定位 預設值(static) 在不設定position屬性的情況，瀏覽器的預設值為static   123.box&amp;#123;    position:static;    &amp;#125;  該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/CSS-position定位：absolute＆relative＆fixed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CSS-position定位：absolute＆relative＆fixed使用時機當畫面中的元素需要重疊時，建議可以使用position屬性作定位 預設值(static) 在不設定position屬性的情況，瀏覽器的預設值為static   123.box&amp;#123;    position:static;    &amp;#125;  該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/I9zGxh3.png">
+<meta property="og:image" content="https://i.imgur.com/vWiHVb9.png">
+<meta property="og:image" content="https://i.imgur.com/HfeC0aD.png">
+<meta property="og:image" content="https://i.imgur.com/KGn1CPk.png">
+<meta property="og:image" content="https://i.imgur.com/Ezx4L9i.png">
+<meta property="og:image" content="https://i.imgur.com/YtS9r1U.png">
+<meta property="og:updated_time" content="2019-03-27T22:38:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="CSS-position定位：absolute＆relative＆fixed使用時機當畫面中的元素需要重疊時，建議可以使用position屬性作定位 預設值(static) 在不設定position屬性的情況，瀏覽器的預設值為static   123.box&amp;#123;    position:static;    &amp;#125;  該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置">
+<meta name="twitter:image" content="https://i.imgur.com/I9zGxh3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSS-position定位：absolute＆relative＆fixed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" class="article-date">
+  <time datetime="2019-03-27T22:38:54.000Z" itemprop="datePublished">2019-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-position定位：absolute＆relative＆fixed"><a href="#CSS-position定位：absolute＆relative＆fixed" class="headerlink" title="CSS-position定位：absolute＆relative＆fixed"></a>CSS-position定位：absolute＆relative＆fixed</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當畫面中的元素需要重疊時，建議可以使用<code>position</code>屬性作定位</p>
+<h3 id="預設值-static"><a href="#預設值-static" class="headerlink" title="預設值(static)"></a>預設值(static)</h3><ul>
+<li><p>在不設定position屬性的情況，瀏覽器的預設值為<code>static</code></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:static;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置自動排版在頁面上</p>
+<h3 id="相對定位-relative"><a href="#相對定位-relative" class="headerlink" title="相對定位(relative)"></a>相對定位(relative)</h3></li>
+<li>css語法<ul>
+<li><code>position</code>的值為<code>relative</code></li>
+<li>若’ <strong>沒有</strong> ‘設置其他top、right、bottom、left屬性，則其顯現的位置跟static一樣，會依照瀏覽器預設的配置自動排版在頁面上</li>
+<li>若’ <strong>有</strong> ‘設置top、right、bottom、left屬性 ，該元素會「相對地」調整其原本該出現的所在位置<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="絕對定位-absolute"><a href="#絕對定位-absolute" class="headerlink" title="絕對定位(absolute)"></a>絕對定位(absolute)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>absolute</code></li>
+<li><p><code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>交互搭配使用，數值可以為負值或百分比</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/I9zGxh3.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>==若其外層容器沒有「可以被定位的元素(static以外的元素)」，那麼這個子元素的定位就是相對於該網頁（也就是 <body> 元素），作上、下、左、右位置的絕對定位（即使外層有包一個父元素，例：container）==</body></p>
+<p>  <img src="https://i.imgur.com/vWiHVb9.png" alt></p>
+</li>
+<li><p>==Q: 如何以父元素作為定位空間?==</p>
+<p>  ==A: 定義父元素的<code>position</code>==</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  ==內層absolute的子元素則會被外層父元素受限，並在父元素的空間作絕對定位==</p>
+<p>  <img src="https://i.imgur.com/HfeC0aD.png" alt></p>
+</li>
+</ul>
+<h3 id="固定定位-fixed"><a href="#固定定位-fixed" class="headerlink" title="固定定位(fixed)"></a>固定定位(fixed)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>fixed</code></li>
+<li>使用 top、right、bottom、left屬性來定位，可以為負值。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>該元素會相對於瀏覽器視窗來定位，即便瀏覽頁面捲動，它還是會固定在相同的位置。<br><img src="https://i.imgur.com/KGn1CPk.png" alt></p>
+</li>
+</ul>
+<h3 id="補充：上下疊層-z-index"><a href="#補充：上下疊層-z-index" class="headerlink" title="補充：上下疊層(z-index)"></a>補充：上下疊層(z-index)</h3><ul>
+<li>在未設置<code>z-index</code>屬性的情況之下，疊層會按照程式碼由上而下畫圖，box1畫完才畫box2，所以box2疊在box1之上<br><img src="https://i.imgur.com/Ezx4L9i.png" alt></li>
+<li>若想要自定義疊層前後，則透過<code>z-index</code>屬性，==「數字越大=越後畫=疊在越上層 」==<br><img src="https://i.imgur.com/YtS9r1U.png" alt></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" data-id="cju86shyk00060notiru4lz3p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/28/JS-函式特性(Functions)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/27/html&CSS-插入(背景)圖片的作法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

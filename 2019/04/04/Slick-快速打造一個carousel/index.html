@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Slick-快速打造一個carouselSlick是什麼？提供多種輪播樣式，以多組圖片輪播切換的套件，可應用於更多張圖片的展示。附上原始碼，複製貼上，即可使用現成的sliders樣式。 操作流程 引入slick cdn  CSS搜尋slick cdn，找到slick-carousel cdn資源，將slick.css及slick-theme.css主題樣式複製到&amp;lt;head&amp;gt;中12&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/04/Slick-快速打造一個carousel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Slick-快速打造一個carouselSlick是什麼？提供多種輪播樣式，以多組圖片輪播切換的套件，可應用於更多張圖片的展示。附上原始碼，複製貼上，即可使用現成的sliders樣式。 操作流程 引入slick cdn  CSS搜尋slick cdn，找到slick-carousel cdn資源，將slick.css及slick-theme.css主題樣式複製到&amp;lt;head&amp;gt;中12&amp;lt">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/wib0NFC.png">
+<meta property="og:image" content="https://i.imgur.com/r4ylplk.png">
+<meta property="og:image" content="https://i.imgur.com/ngVROQD.png">
+<meta property="og:image" content="https://i.imgur.com/JzSdhXX.png">
+<meta property="og:updated_time" content="2019-04-04T09:18:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Slick-快速打造一個carouselSlick是什麼？提供多種輪播樣式，以多組圖片輪播切換的套件，可應用於更多張圖片的展示。附上原始碼，複製貼上，即可使用現成的sliders樣式。 操作流程 引入slick cdn  CSS搜尋slick cdn，找到slick-carousel cdn資源，將slick.css及slick-theme.css主題樣式複製到&amp;lt;head&amp;gt;中12&amp;lt">
+<meta name="twitter:image" content="https://i.imgur.com/wib0NFC.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Slick-快速打造一個carousel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/04/Slick-快速打造一個carousel/" class="article-date">
+  <time datetime="2019-04-04T09:18:10.000Z" itemprop="datePublished">2019-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Slick-快速打造一個carousel"><a href="#Slick-快速打造一個carousel" class="headerlink" title="Slick-快速打造一個carousel"></a>Slick-快速打造一個carousel</h1><h3 id="Slick是什麼？"><a href="#Slick是什麼？" class="headerlink" title="Slick是什麼？"></a>Slick是什麼？</h3><p>提供多種輪播樣式，以多組圖片輪播切換的套件，可應用於更多張圖片的展示。附上原始碼，複製貼上，即可使用現成的sliders樣式。<br><img src="https://i.imgur.com/wib0NFC.png" alt></p>
+<h3 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h3><ol>
+<li>引入slick cdn</li>
+</ol>
+<p><strong>CSS</strong><br>搜尋slick cdn，找到<a href="https://cdnjs.com/libraries/slick-carousel" target="_blank" rel="noopener">slick-carousel cdn資源</a>，將slick.css及slick-theme.css主題樣式複製到<code>&lt;head&gt;</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css&quot; /&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>JS</strong><br>再將slick.js複製到<code>&lt;/body&gt;</code>結束前且jquery後<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/r4ylplk.png" alt></p>
+<ol start="2">
+<li>先在html建立好carousel的內容結構，並在外層給予一個class作為標記<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;slider&quot;&gt;</span><br><span class="line">    &lt;div&gt;slide 1&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 2&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 3&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 4&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 5&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">``` </span><br><span class="line">4. 進入[slick](http://kenwheeler.github.io/slick/)，選擇sliders樣式，複製下方的語法到`&lt;body&gt;&lt;script&gt;`中</span><br><span class="line">![](https://i.imgur.com/3VT5R1U.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### optional控制元素</span><br><span class="line">* **arrows**: (boolean值)是否顯示左右箭頭功能</span><br><span class="line">* **dots**:(boolean值)是否顯示下方小圓點功能</span><br><span class="line">* **autoplay**：(boolean值)是否自動播放</span><br><span class="line">* **autoplaySpeed**:(毫秒值)自動播放的速度</span><br><span class="line">* **slidesToShow**:(數量值)一次主要顯現幾個slides</span><br><span class="line">* **slidesToScroll**:(數量值)每次滑動幾張slides</span><br><span class="line">* **fade**:(boolean值)是否採用淡出/淡入效果</span><br><span class="line">* **infinite**：(boolean值)滑到最後一張，是否繼續從回到一開始同向循環(4&gt;1&gt;2&gt;3&gt;...)，或是逆轉向循環(4&gt;3&gt;2&gt;...)</span><br><span class="line">* **centerMode**:(boolean值)是否同時顯現前後兩張slide的部分內容</span><br><span class="line">* **centerPadding**:(px值)搭配`centerMode:true`使用，表示前後兩張slide要顯現多少範圍</span><br><span class="line">* **responsive**:(陣列)針對不同尺寸做額外設定</span><br><span class="line">    * **breakpoint**:(螢幕尺寸)</span><br><span class="line">    * **settings**:(&#123;物件&#125;)包含各種設定</span><br><span class="line">### 實作</span><br><span class="line">```htmlmixed=</span><br><span class="line"> &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;slider&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;slide-1&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-2&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-3&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-4&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"> &lt;script&gt;</span><br><span class="line">    $(&apos;.slider&apos;).slick(&#123;</span><br><span class="line">        centerMode:true,</span><br><span class="line">        centerPadding: &apos;100px&apos;,</span><br><span class="line">        slidesToShow: 1,</span><br><span class="line">        slidesToScroll: 1,</span><br><span class="line">        autoplaySpeed: 2000,  </span><br><span class="line">        dots: true,</span><br><span class="line">        arrows: true,</span><br><span class="line">    &#125;);</span><br><span class="line">            </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/ngVROQD.png" alt></p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/about.html" target="_blank" rel="noopener">My Project-LonelyPlanet-About page</a><br><img src="https://i.imgur.com/JzSdhXX.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/04/Slick-快速打造一個carousel/" data-id="cju86shz0000q0nottkezqlr8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/04/Font Awesome-使用免費icon/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/04/CSS-常見display屬性的值/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

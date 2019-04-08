@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Git基本指令終端機環境系統指令不同的作業系統，指令也會不太一樣。|Windows| MacOs | 說明 ||——–| ——– | ——–|| cd     | cd     | 切換目錄    || cd | cd| 切換目前所在位置 || dir | ls| 列出目前檔案列表 ||mkdir| mkdir | 建立新的目錄||無| touch | 建立檔案||copy| cp | 複製檔案|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/Git基本指令/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Git基本指令終端機環境系統指令不同的作業系統，指令也會不太一樣。|Windows| MacOs | 說明 ||——–| ——– | ——–|| cd     | cd     | 切換目錄    || cd | cd| 切換目前所在位置 || dir | ls| 列出目前檔案列表 ||mkdir| mkdir | 建立新的目錄||無| touch | 建立檔案||copy| cp | 複製檔案|">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/kCJrLTQ.png">
+<meta property="og:updated_time" content="2019-03-27T23:58:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Git基本指令終端機環境系統指令不同的作業系統，指令也會不太一樣。|Windows| MacOs | 說明 ||——–| ——– | ——–|| cd     | cd     | 切換目錄    || cd | cd| 切換目前所在位置 || dir | ls| 列出目前檔案列表 ||mkdir| mkdir | 建立新的目錄||無| touch | 建立檔案||copy| cp | 複製檔案|">
+<meta name="twitter:image" content="https://i.imgur.com/kCJrLTQ.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Git基本指令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/28/Git基本指令/" class="article-date">
+  <time datetime="2019-03-27T23:58:30.000Z" itemprop="datePublished">2019-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git基本指令"><a href="#Git基本指令" class="headerlink" title="Git基本指令"></a>Git基本指令</h1><h3 id="終端機環境系統指令"><a href="#終端機環境系統指令" class="headerlink" title="終端機環境系統指令"></a>終端機環境系統指令</h3><p>不同的作業系統，指令也會不太一樣。<br>|Windows| MacOs | 說明 |<br>|——–| ——– | ——–|<br>| cd     | cd     | 切換目錄    |<br>| cd | cd| 切換目前所在位置 |<br>| dir | ls| 列出目前檔案列表 |<br>|mkdir| mkdir | 建立新的目錄|<br>|無| touch | 建立檔案|<br>|copy| cp | 複製檔案|<br>|move| mv | 移動檔案|<br>|del| rm | 刪除檔案|<br>|cls| clear | 清除畫面上的內容|</p>
+<h3 id="目錄切換及顯示"><a href="#目錄切換及顯示" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切換到/tmp目錄(絕對路徑)</span></span><br><span class="line">$ cd/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到my_project目錄(絕對路徑)</span></span><br><span class="line">$ cd my_project</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到上一層目錄(相對路徑)</span></span><br><span class="line">$ cd ..</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到使用者的home目錄中的project裡的namecards目錄</span></span><br><span class="line"><span class="comment">// "~"這個符號代表home目錄</span></span><br><span class="line">$ cd ~<span class="regexp">/project/</span>namecards</span><br><span class="line"></span><br><span class="line"><span class="comment">//顯示目前所在的目錄</span></span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure>
+<h3 id="檔案列表"><a href="#檔案列表" class="headerlink" title="檔案列表"></a>檔案列表</h3><p><code>ls</code>指令可列出在目前目錄所有的檔案及目錄，後面接的 <code>-al</code> 參數，<code>a</code> 是指連小數點開頭的檔案（例如.gitignore）也會顯示，<code>l</code> 則是完整檔案的權限、擁有者以及建立、修改時間<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄</span></span><br><span class="line">$ ls</span><br><span class="line"></span><br><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄，包含副檔名及檔案權限等資訊</span></span><br><span class="line">$ls -al</span><br></pre></td></tr></table></figure></p>
+<h3 id="目錄切換及顯示-1"><a href="#目錄切換及顯示-1" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><p>開啟終端機(terminal)，並試著操作以下指令，從建立一個全新的目錄開始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd /tmp                  <span class="comment">//切換至 /tmp 目錄</span></span><br><span class="line">$ mkdir git-practice       <span class="comment">//建立 git-practice 目錄</span></span><br><span class="line">$ cd git-practice          <span class="comment">//切換至 git-practice 目錄</span></span><br><span class="line">$ git init                 <span class="comment">//初始化這個目錄，讓 Git 對這個目錄開始進行版控</span></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/leah/git-practice/.git/</span><br></pre></td></tr></table></figure></p>
+<p>:::info<br>小數點開頭的目錄或檔案名稱（例如 .git），在一些作業系統中預設是隱藏的，需要開啟檢視隱藏檔之類的設定才看得到。<br>:::</p>
+<p>:::info<br><code>Shift+Command+ .</code>就可以顯示出隱藏的檔案<br>:::</p>
+<h3 id="把檔案交給Git控管"><a href="#把檔案交給Git控管" class="headerlink" title="把檔案交給Git控管"></a>把檔案交給Git控管</h3><p>先查詢目前目錄的狀態，下面產生的訊息意思是「現在沒東西可以提交（nothing to commit）」。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查詢現在這個目錄的狀態</span></span><br><span class="line">$ git status </span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">nothing to commit (create/copy files and use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
+<p>接下來， 建立一個檔案(也可以用一般的文字編輯器或檔案管理員來完成)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在這個目錄裡透過系統指令建立一個內容為 “hello, git”</span></span><br><span class="line">$echo <span class="string">"Hello,git"</span> &gt; welcome.html</span><br></pre></td></tr></table></figure></p>
+<p>檢查目錄，確實多了一個welcome.html檔案<br><img src="https://i.imgur.com/kCJrLTQ.png" alt></p>
+<p>並且，再次檢查目前目錄的狀態</p>
+<p>welcome.html 檔案目前的狀態是 Untracked files，意思是這個檔案尚未被加到 Git 版控系統裡，還沒開始正式被 Git「追蹤」，它只是剛剛才加入這個目錄而已。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">	welcome.html</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
+<p>把 welcome.html 這個檔案交給 Git，讓 Git 開始「追蹤」它<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//新增檔案讓git追蹤</span><br><span class="line">$ git add welcome.html</span><br></pre></td></tr></table></figure></p>
+<p>最後再檢查一次狀態<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	new file:   welcome.html</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/28/Git基本指令/" data-id="cju86shyx000k0not2rdhdbv7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/28/html-建立第一個Hello world網頁/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/28/html-插入圖片路徑/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

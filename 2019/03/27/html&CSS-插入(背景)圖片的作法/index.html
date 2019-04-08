@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="html&amp;amp;CSS-插入(背景)圖片的作法方法一：使用html的img標籤 html-插入圖片路徑：絕對路徑 or 相對路徑 圖片寬高   直接給予匯入圖片的寬高值，有變形的風險  分別相較於父元素寬高的百分比 ==如果使用百分比的width，而沒有給予height，瀏覽器會固定將圖片寬高比例，避免變形的風險==    用css加上邊框樣式     方法二：從css選擇器中定義背景 先在ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/html&CSS-插入(背景)圖片的作法/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="html&amp;amp;CSS-插入(背景)圖片的作法方法一：使用html的img標籤 html-插入圖片路徑：絕對路徑 or 相對路徑 圖片寬高   直接給予匯入圖片的寬高值，有變形的風險  分別相較於父元素寬高的百分比 ==如果使用百分比的width，而沒有給予height，瀏覽器會固定將圖片寬高比例，避免變形的風險==    用css加上邊框樣式     方法二：從css選擇器中定義背景 先在ht">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/jf9alGL.jpg">
+<meta property="og:image" content="https://i.imgur.com/OfRfNOo.png">
+<meta property="og:image" content="https://i.imgur.com/qCspqSi.png">
+<meta property="og:image" content="https://i.imgur.com/6wtaSof.png">
+<meta property="og:image" content="https://i.imgur.com/qZNc1mo.jpg">
+<meta property="og:image" content="https://i.imgur.com/IDy4evZ.jpg">
+<meta property="og:updated_time" content="2019-03-27T03:28:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="html&amp;amp;CSS-插入(背景)圖片的作法方法一：使用html的img標籤 html-插入圖片路徑：絕對路徑 or 相對路徑 圖片寬高   直接給予匯入圖片的寬高值，有變形的風險  分別相較於父元素寬高的百分比 ==如果使用百分比的width，而沒有給予height，瀏覽器會固定將圖片寬高比例，避免變形的風險==    用css加上邊框樣式     方法二：從css選擇器中定義背景 先在ht">
+<meta name="twitter:image" content="https://i.imgur.com/jf9alGL.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-html&amp;CSS-插入(背景)圖片的作法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/27/html&CSS-插入(背景)圖片的作法/" class="article-date">
+  <time datetime="2019-03-27T03:28:58.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="html-amp-CSS-插入-背景-圖片的作法"><a href="#html-amp-CSS-插入-背景-圖片的作法" class="headerlink" title="html&amp;CSS-插入(背景)圖片的作法"></a>html&amp;CSS-插入(背景)圖片的作法</h1><h3 id="方法一：使用html的img標籤"><a href="#方法一：使用html的img標籤" class="headerlink" title="方法一：使用html的img標籤"></a>方法一：使用html的<code>img</code>標籤</h3><ol>
+<li><a href="https://hackmd.io/4c2-wbCXTb6fHB0JM-CEMg" target="_blank" rel="noopener"><strong>html-插入圖片路徑</strong></a>：絕對路徑 or 相對路徑</li>
+<li><p><strong>圖片寬高</strong> </p>
+<ul>
+<li><p>直接給予匯入圖片的寬高值，有變形的風險<br><img src="https://i.imgur.com/jf9alGL.jpg" alt></p>
+</li>
+<li><p>分別相較於父元素寬高的百分比<br><img src="https://i.imgur.com/OfRfNOo.png" alt></p>
+<p>==如果使用百分比的width，而沒有給予height，瀏覽器會固定將圖片寬高比例，避免變形的風險==</p>
+</li>
+</ul>
+</li>
+<li><p><strong>用css加上邊框樣式</strong></p>
+<p> <img src="https://i.imgur.com/qCspqSi.png" alt></p>
+</li>
+</ol>
+<h3 id="方法二：從css選擇器中定義背景"><a href="#方法二：從css選擇器中定義背景" class="headerlink" title="方法二：從css選擇器中定義背景"></a>方法二：從css選擇器中定義背景</h3><ol>
+<li><p><strong>先在html中提供一個空間</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>開始透過css選擇器，定義該空間的樣式</strong>(為了顯示整個空間，所以先趁一個底色)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">antiquewhite</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>==定義該空間的寬高(注意：不等同於照片的寬高！)==</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:1000px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:600px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定義要匯入的圖片</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-image: url("https://images.unsplash.com/photo-1553451193-d4d44c036555?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1352&amp;q=80");</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>==定義匯入圖片的長寬==</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-size</span><span class="selector-pseudo">:500px</span> 333<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>設定背景圖片不要重複顯示</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-repeat</span>: <span class="selector-tag">no-repeat</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/6wtaSof.png" alt></p>
+<ol start="7">
+<li><p><strong>定義圖片會不會跟著瀏覽器跑動</strong><br>可以將背景圖視為下層，透過<code>background-attachment</code>屬性的定義，可以定義下層的背景圖是否要跟著上層的瀏覽的畫面連動位移</p>
+<ul>
+<li><p><code>background-attachment:scroll</code><br>不論上層的瀏覽頁面如何捲動，其下方的背景圖會牢牢地跟著上下滑動，所以可視的圖片內容都一樣，不會改變<br><img src="https://i.imgur.com/qZNc1mo.jpg" alt></p>
+</li>
+<li><p><code>background-attachment:fixed</code><br>下層的背景圖片會固定在某個位置，當上層的瀏覽頁面捲動，所視畫面會隨位置的不同而看到不同的圖片內容。甚至，當下層的背景圖片不夠長，即看不到圖片了<br><img src="https://i.imgur.com/IDy4evZ.jpg" alt></p>
+</li>
+</ul>
+</li>
+<li><p><strong>定義圖片的位置</strong><br><code>background-position</code> 屬性是用來指定背景圖案的位置。<br>語法：</p>
+<ul>
+<li>兩個字：第一個字為 [top,center,bottom] 中三選一，而第二個字由 [left,center,right] 中三選一。</li>
+<li>兩個百分比：第一個百分比為 x軸的百分比，第二個為 y軸的百分比。</li>
+<li>兩個數目：第一個數目為 x軸的位置，第二個數目為 y軸的位置。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/27/html&CSS-插入(背景)圖片的作法/" data-id="cju86shz2000t0notea6o7fdr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/27/html&CSS-在html環境中插入css檔案/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
