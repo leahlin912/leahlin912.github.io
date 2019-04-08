@@ -2,11 +2,23 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
   
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
 
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -17,71 +29,162 @@
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
+  <link rel="icon" href="/css/images/favicon.ico">
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
 </head>
 </html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body>
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Hexo" rel="home"> Hexo </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
       </div>
-    </div>
   </div>
 </header>
-      <div class="outer">
-        <section id="main">
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main">
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/hello-world/" class="article-date">
-  <time datetime="2019-04-08T09:46:25.900Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
+    <h1 class="thumb" itemprop="name">
       <a class="article-title" href="/2019/04/08/hello-world/">Hello World</a>
     </h1>
   
 
       </header>
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/hello-world/" class="article-date">
+	  <time datetime="2019-04-08T09:46:25.900Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -96,27 +199,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/hello-world/" data-id="cju86bved0000w9ots7ttwi1l" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-使用Hexo，建立blog(上)新增文章" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/" class="article-date">
-  <time datetime="2019-04-08T01:48:12.000Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/" class="article-date">
+	  <time datetime="2019-04-08T01:48:12.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="使用Hexo，建立blog-上-新增文章"><a href="#使用Hexo，建立blog-上-新增文章" class="headerlink" title="使用Hexo，建立blog(上)新增文章"></a>使用Hexo，建立blog(上)新增文章</h1><p>若要更換主題，可以參考下一篇文章<a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">使用Hexo，建立blog(下)自定義主題</a></p>
@@ -161,27 +271,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/使用Hexo，建立blog(上)新增文章/" data-id="cju86shz5000y0nots8tvfzdh" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-使用Hexo，建立blog(下)自定義主題" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/" class="article-date">
-  <time datetime="2019-04-08T01:32:28.000Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/" class="article-date">
+	  <time datetime="2019-04-08T01:32:28.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="使用Hexo，建立blog-下-自定義主題"><a href="#使用Hexo，建立blog-下-自定義主題" class="headerlink" title="使用Hexo，建立blog(下)自定義主題"></a>使用Hexo，建立blog(下)自定義主題</h1><p>接續上一篇文章<a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">使用Hexo，建立blog(上)新增文章</a></p>
@@ -224,27 +341,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/使用Hexo，建立blog(下)自定義主題/" data-id="cju86shz700100notzehenhbl" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-JS-使用API串接公開第三方資源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/JS-使用API串接公開第三方資源/" class="article-date">
-  <time datetime="2019-04-08T01:27:02.000Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/JS-使用API串接公開第三方資源/" class="article-date">
+	  <time datetime="2019-04-08T01:27:02.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="JS-使用API串接公開第三方資源"><a href="#JS-使用API串接公開第三方資源" class="headerlink" title="JS-使用API串接公開第三方資源"></a>JS-使用API串接公開第三方資源</h1><h3 id="何為API"><a href="#何為API" class="headerlink" title="何為API?"></a>何為API?</h3><p><strong>API</strong>(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。</p>
@@ -305,27 +429,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/JS-使用API串接公開第三方資源/" data-id="cju86shyz000n0nothzvcvqt2" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-使用github page顯示靜態網頁" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/使用github page顯示靜態網頁/" class="article-date">
-  <time datetime="2019-04-07T23:29:12.000Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用github page顯示靜態網頁/" class="article-date">
+	  <time datetime="2019-04-07T23:29:12.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="使用github-page顯示靜態網頁"><a href="#使用github-page顯示靜態網頁" class="headerlink" title="使用github page顯示靜態網頁"></a>使用github page顯示靜態網頁</h1><h3 id="設定github綁定金鑰"><a href="#設定github綁定金鑰" class="headerlink" title="設定github綁定金鑰"></a>設定github綁定金鑰</h3><ol>
@@ -356,27 +487,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/使用github page顯示靜態網頁/" data-id="cju86shza00140notuv9n0bpw" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-申請API憑證-以Youtube Data API為例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
-  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">2019-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
+	  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">April 7, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="申請API憑證-以Youtube-Data-API為例"><a href="#申請API憑證-以Youtube-Data-API為例" class="headerlink" title="申請API憑證-以Youtube Data API為例"></a>申請API憑證-以Youtube Data API為例</h1><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><h3 id="流程概念"><a href="#流程概念" class="headerlink" title="流程概念"></a>流程概念</h3><ol>
@@ -414,27 +552,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/07/申請API憑證-以Youtube Data API為例/" data-id="cju86shz900130notlkcv5x1l" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-API金鑰的使用時機(未完)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/07/API金鑰的使用時機(未完)/" class="article-date">
-  <time datetime="2019-04-07T02:19:40.000Z" itemprop="datePublished">2019-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/07/API金鑰的使用時機(未完)/" class="article-date">
+	  <time datetime="2019-04-07T02:19:40.000Z" itemprop="datePublished">April 7, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="API金鑰的使用時機-未完"><a href="#API金鑰的使用時機-未完" class="headerlink" title="API金鑰的使用時機(未完)"></a>API金鑰的使用時機(未完)</h1><h3 id="API金鑰-VS-使用者憑證token"><a href="#API金鑰-VS-使用者憑證token" class="headerlink" title="API金鑰 VS. 使用者憑證token"></a>API金鑰 VS. 使用者憑證token</h3><p>Google Cloud Endpoints 能夠處理 API 金鑰與驗證機制，『API 金鑰用於專案，驗證則是用於使用者』</p>
@@ -458,27 +603,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/07/API金鑰的使用時機(未完)/" data-id="cju86shy500000not4jkwdwc6" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-bootstrap-使用Lightbox影像燈箱" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/04/bootstrap-使用Lightbox影像燈箱/" class="article-date">
-  <time datetime="2019-04-04T11:35:46.000Z" itemprop="datePublished">2019-04-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/bootstrap-使用Lightbox影像燈箱/" class="article-date">
+	  <time datetime="2019-04-04T11:35:46.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="bootstrap-使用Lightbox影像燈箱"><a href="#bootstrap-使用Lightbox影像燈箱" class="headerlink" title="bootstrap-使用Lightbox影像燈箱"></a>bootstrap-使用Lightbox影像燈箱</h1><h3 id="什麼是Lightbox？"><a href="#什麼是Lightbox？" class="headerlink" title="什麼是Lightbox？"></a>什麼是Lightbox？</h3><ul>
@@ -504,27 +656,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/04/bootstrap-使用Lightbox影像燈箱/" data-id="cju86shz0000p0notsa46zxg2" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-Bootstrap-使用輪播幻燈片Carousal" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" class="article-date">
-  <time datetime="2019-04-04T11:35:36.000Z" itemprop="datePublished">2019-04-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" class="article-date">
+	  <time datetime="2019-04-04T11:35:36.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Bootstrap-使用輪播幻燈片Carousal"><a href="#Bootstrap-使用輪播幻燈片Carousal" class="headerlink" title="Bootstrap-使用輪播幻燈片Carousal"></a>Bootstrap-使用輪播幻燈片Carousal</h1><h3 id="元件結構"><a href="#元件結構" class="headerlink" title="元件結構"></a>元件結構</h3><p>carousal由三個小元件組成，controllers跟indicators 可以選擇性的增加</p>
@@ -596,27 +755,34 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" data-id="cju86shye00010notaueb6mk0" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
     <article id="post-建立boiler樣板(下)-引入Font Awesome" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" class="article-date">
-  <time datetime="2019-04-04T10:15:42.000Z" itemprop="datePublished">2019-04-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" class="article-date">
+	  <time datetime="2019-04-04T10:15:42.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="建立boiler樣板-下-引入Font-Awesome"><a href="#建立boiler樣板-下-引入Font-Awesome" class="headerlink" title="建立boiler樣板(下)-引入Font Awesome"></a>建立boiler樣板(下)-引入Font Awesome</h1><h3 id="什麼是Font-Awesome？"><a href="#什麼是Font-Awesome？" class="headerlink" title="什麼是Font Awesome？"></a>什麼是Font Awesome？</h3><ul>
@@ -635,27 +801,220 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" data-id="cju86shz800120noth7xtw107" class="article-share-link">Share</a>
+    <footer class="entry-meta entry-footer">
       
+      
+      
+            
       
     </footer>
   </div>
   
 </article>
 
+<!-- Table of Contents -->
+
+    
 
   
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
-        
           <aside id="sidebar">
+  
+    <div class="widget-wrap" style="margin: 20px 0;">
+	<div id="search-form-wrap">
+
+    <form class="search-form">
+        <label style="width: 75%;">
+            <span class="screen-reader-text">Search for:</span>
+            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value name="s" title="Search for:">
+        </label>
+        <input type="submit" class="search-form-submit" value="Search">
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Connect With Us</h3>
+    <div class="widget widget_athemes_social_icons">
+
+    	<ul class="clearfix widget-social-icons">   
+    	
+          
+     			  <li><a href="https://github.com/iTimeTraveler" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="http://www.yoursite.com" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href title="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+            <li><a href="mailto:?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
+          
+   		
+   		</ul>
+
+
+   		<!--
+   		<ul class="clearfix widget-social-icons">   		
+   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
+		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
+			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
+			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
+			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
+			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
+		</ul> -->
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget_athemes_tabs">
+    <ul id="widget-tab" class="clearfix widget-tab-nav">
+      <li class="active"><a>Recent Posts</a></li>
+    </ul>
+    <div class="widget">
+      <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/08/hello-world/">Hello World</a></h6>
+              <span>April 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a></h6>
+              <span>April 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a></h6>
+              <span>April 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a></h6>
+              <span>April 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a></h6>
+              <span>April 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/07/申請API憑證-以Youtube Data API為例/">(no title)</a></h6>
+              <span>April 7, 2019</span>
+            </div>
+
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
   
     
 
@@ -668,77 +1027,127 @@
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
+
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/04/08/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/08/JS-使用API串接公開第三方資源/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/08/使用github page顯示靜態網頁/">(no title)</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
   
 </aside>
         
       </div>
-      <footer id="footer">
+      <footer id="footer" class="site-footer">
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
   </div>
 </footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
     </div>
-    <nav id="mobile-nav">
+    <!-- <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
-</nav>
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/script.js"></script>
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
 
 
 
   </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
 </body>
 </html>
