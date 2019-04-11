@@ -158,6 +158,97 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-在容器中分配並行空間(flex)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/CSS-在容器中分配並行空間(flex)/">CSS-在容器中分配並行空間(flex)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/CSS-在容器中分配並行空間(flex)/" class="article-date">
+	  <time datetime="2019-03-28T04:46:52.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-在容器中分配並行空間-flex"><a href="#CSS-在容器中分配並行空間-flex" class="headerlink" title="CSS-在容器中分配並行空間(flex)"></a>CSS-在容器中分配並行空間(flex)</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>希望容器之內的物件可以並行接續排列，並且每個物件都有固定比例占據該容器</p>
+<h3 id="CSS語法"><a href="#CSS語法" class="headerlink" title="CSS語法"></a>CSS語法</h3><ul>
+<li><p>外層容器的<code>display</code>屬性為<code>flex</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在內層物件中，各自定義佔據的寬度或剩餘空間的分配比例</p>
+</li>
+<li><p>當 ==外層容器的空間足夠== 的情況：</p>
+<ul>
+<li>box1有設定<code>width</code>，會佔據固定寬度300px</li>
+<li>box2有設定<code>width</code>，會佔據固定寬度200px</li>
+<li><p>box3、box4沒有設定固定寬度，僅設定<code>flex</code>比例，則會依比例分配剩餘的空間</p>
+<p><img src="https://i.imgur.com/vSHoDti.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>為了避免 ==外層容器空間不足== ，可以<code>min-width</code>輔助定義最小的寬度</p>
+<ul>
+<li>box2因為沒有設定<code>min-width</code>，所以被擠壓到完全沒有空間<br><img src="https://i.imgur.com/tnNvHXe.png" alt></li>
+</ul>
+</li>
+</ul>
+<h3 id="定義是否自動換行-flex-wrap"><a href="#定義是否自動換行-flex-wrap" class="headerlink" title="定義是否自動換行(flex-wrap)"></a>定義是否自動換行(flex-wrap)</h3><ul>
+<li><p>定義「<strong>不換行</strong>」（<code>flex-wrap</code>預設值即為<code>no-wrap</code>，可省略不寫），可能會壓縮內層物件的寬度<br>  <img src="https://i.imgur.com/FGsUHnA.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: no-wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定義「<strong>自動換行</strong>」<br>  <img src="https://i.imgur.com/9HxAaMp.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定義「<strong>換行後反轉</strong>」<br>  <img src="https://i.imgur.com/eIxU7tT.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="定義排序方向-flex-direction"><a href="#定義排序方向-flex-direction" class="headerlink" title="定義排序方向(flex-direction)"></a>定義排序方向(flex-direction)</h3><ul>
+<li><p>定義排序方向為「左到右」（<code>flex-direction</code>預設值即為<code>row</code>，可省略不寫）</p>
+<p>  <img src="https://i.imgur.com/LwW8rLV.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定義排序方向為「右到左」<br>  <img src="https://i.imgur.com/tuLg8h1.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定義排序方向為「上到下」<br>  <img src="https://i.imgur.com/1S0YwnR.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定義排序方向為「下到上」<br>  <img src="https://i.imgur.com/82YF3gN.png" alt></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-作品及學習筆記整理" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -756,99 +847,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     
 
   
-    <article id="post-CSS-position定位：absolute＆relative＆fixed" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/">CSS-position定位：absolute＆relative＆fixed</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" class="article-date">
-	  <time datetime="2019-03-27T22:38:54.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-position定位：absolute＆relative＆fixed"><a href="#CSS-position定位：absolute＆relative＆fixed" class="headerlink" title="CSS-position定位：absolute＆relative＆fixed"></a>CSS-position定位：absolute＆relative＆fixed</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當畫面中的元素需要重疊時，建議可以使用<code>position</code>屬性作定位</p>
-<h3 id="預設值-static"><a href="#預設值-static" class="headerlink" title="預設值(static)"></a>預設值(static)</h3><ul>
-<li><p>在不設定position屬性的情況，瀏覽器的預設值為<code>static</code></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:static;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置自動排版在頁面上</p>
-<h3 id="相對定位-relative"><a href="#相對定位-relative" class="headerlink" title="相對定位(relative)"></a>相對定位(relative)</h3></li>
-<li>css語法<ul>
-<li><code>position</code>的值為<code>relative</code></li>
-<li>若’ <strong>沒有</strong> ‘設置其他top、right、bottom、left屬性，則其顯現的位置跟static一樣，會依照瀏覽器預設的配置自動排版在頁面上</li>
-<li>若’ <strong>有</strong> ‘設置top、right、bottom、left屬性 ，該元素會「相對地」調整其原本該出現的所在位置<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="絕對定位-absolute"><a href="#絕對定位-absolute" class="headerlink" title="絕對定位(absolute)"></a>絕對定位(absolute)</h3><ul>
-<li><p>css語法</p>
-<ul>
-<li><code>position</code>的值為<code>absolute</code></li>
-<li><p><code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>交互搭配使用，數值可以為負值或百分比</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/I9zGxh3.png" alt></p>
-</li>
-</ul>
-</li>
-<li><p>==若其外層容器沒有「可以被定位的元素(static以外的元素)」，那麼這個子元素的定位就是相對於該網頁（也就是 <body> 元素），作上、下、左、右位置的絕對定位（即使外層有包一個父元素，例：container）==</body></p>
-<p>  <img src="https://i.imgur.com/vWiHVb9.png" alt></p>
-</li>
-<li><p>==Q: 如何以父元素作為定位空間?==</p>
-<p>  ==A: 定義父元素的<code>position</code>==</p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  ==內層absolute的子元素則會被外層父元素受限，並在父元素的空間作絕對定位==</p>
-<p>  <img src="https://i.imgur.com/HfeC0aD.png" alt></p>
-</li>
-</ul>
-<h3 id="固定定位-fixed"><a href="#固定定位-fixed" class="headerlink" title="固定定位(fixed)"></a>固定定位(fixed)</h3><ul>
-<li><p>css語法</p>
-<ul>
-<li><code>position</code>的值為<code>fixed</code></li>
-<li>使用 top、right、bottom、left屬性來定位，可以為負值。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>該元素會相對於瀏覽器視窗來定位，即便瀏覽頁面捲動，它還是會固定在相同的位置。<br><img src="https://i.imgur.com/KGn1CPk.png" alt></p>
-</li>
-</ul>
-<h3 id="補充：上下疊層-z-index"><a href="#補充：上下疊層-z-index" class="headerlink" title="補充：上下疊層(z-index)"></a>補充：上下疊層(z-index)</h3><ul>
-<li>在未設置<code>z-index</code>屬性的情況之下，疊層會按照程式碼由上而下畫圖，box1畫完才畫box2，所以box2疊在box1之上<br><img src="https://i.imgur.com/Ezx4L9i.png" alt></li>
-<li>若想要自定義疊層前後，則透過<code>z-index</code>屬性，==「數字越大=越後畫=疊在越上層 」==<br><img src="https://i.imgur.com/YtS9r1U.png" alt></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -916,7 +914,7 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">(no title)</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a></h6>
               <span>April 11, 2019</span>
             </div>
 
@@ -928,7 +926,19 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">(no title)</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></h6>
+              <span>April 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(1_3)本地端/">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></h6>
               <span>April 11, 2019</span>
             </div>
 
@@ -970,18 +980,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/JS-使用API串接公開第三方資源/">JS-使用API串接公開第三方資源</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1000,7 +998,7 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
