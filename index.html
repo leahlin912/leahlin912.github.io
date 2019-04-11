@@ -158,6 +158,154 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Hexo-使用靜態生成器，建立blog(3_3)變更主題" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/" class="article-date">
+	  <time datetime="2019-04-11T08:50:43.538Z" itemprop="datePublished">April 11, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hexo-使用靜態生成器，建立blog-3-3-變更主題"><a href="#Hexo-使用靜態生成器，建立blog-3-3-變更主題" class="headerlink" title="Hexo-使用靜態生成器，建立blog(3/3)變更主題"></a>Hexo-使用靜態生成器，建立blog(3/3)變更主題</h1><h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
+<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
+<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
+<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="複製主題到自己的專案"><a href="#複製主題到自己的專案" class="headerlink" title="複製主題到自己的專案"></a>複製主題到自己的專案</h3><img src="https://i.imgur.com/oZKXHqP.png" alt></li>
+</ul>
+<p>將別人的製作好的主題repository clone下來的時候，可能會連.git 一起 clone下來，出現「<strong>Git Submodule</strong>」</p>
+<p>「<strong>Git Submodule</strong>」就是原先的repository中，還內嵌一到多個外部repository</p>
+<ul>
+<li>查看clone下來的repository是否含有.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//進入themes資料夾，查看檔案列表</span><br><span class="line">$ cd themes</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//進入內部主題資料夾，查看其中檔案列表</span><br><span class="line">$ cd hiero</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/qpIENwA.png" alt></p>
+<ul>
+<li>刪除內部主題資料夾中的.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//強制刪除.git（-rf : recursive + force）</span><br><span class="line">$ rm -rf .git</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/j8iRxPp.png" alt></p>
+<ul>
+<li><p>刪除快取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached  themes/hiero -f</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看尚未commit的當案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增檔案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用git管理檔案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m&quot;&lt;commit message&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢視提交紀錄(也可以用soursetree檢視)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/A3bCU0J.png" alt></p>
+<p><img src="https://i.imgur.com/0TScs2K.png" alt></p>
+<ul>
+<li>使用hexo產生靜態網頁<br>hexo 是把產生出來的網站push到github(可以理解為，hexo的deploy指令會先把原始碼變成網站瀏覽器可以閱讀的程式碼 再push到github)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Hexo-使用靜態生成器，建立blog(2_3)推上github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/" class="article-date">
+	  <time datetime="2019-04-11T08:50:37.359Z" itemprop="datePublished">April 11, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hexo-使用靜態生成器，建立blog-2-3-推上github"><a href="#Hexo-使用靜態生成器，建立blog-2-3-推上github" class="headerlink" title="Hexo-使用靜態生成器，建立blog(2/3)推上github"></a>Hexo-使用靜態生成器，建立blog(2/3)推上github</h1><h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
+<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
+<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
+<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="push上github"><a href="#push上github" class="headerlink" title="push上github"></a>push上github</h3></li>
+</ul>
+<ol>
+<li><p>先在github新增一個repository，命名邏輯為</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[github account]</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br><span class="line">例：<span class="selector-tag">leahlin912</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>複製該repository的網址(例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:leahlin912/leahlin912.github.io.git`)</p>
+</li>
+<li><p>用vscode(或其他編譯器)打開_config.yml檔案，並修改<code># Deployment</code>的部分</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">Deployment</span></span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"><span class="selector-tag">deploy</span>:</span><br><span class="line">  <span class="selector-tag">type</span>: <span class="selector-tag">git</span></span><br><span class="line">  repository: git@github.com:leahlin912/leahlin912.github.io.git</span><br><span class="line">  <span class="selector-tag">branch</span>: <span class="selector-tag">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安裝git</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>輸入指令，將網站佈署到伺服器上</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>設定repository的主題<br>在github的該repository頁面，進入「setting」<br><img src="https://i.imgur.com/HKOW9XH.png" alt><br>往下滑，點按「change theme」<br><img src="https://i.imgur.com/BgZoPjj.png" alt></p>
+</li>
+<li><p>在瀏覽器中查看網址，成功！<a href="https://leahlin912.github.io/" target="_blank" rel="noopener">https://leahlin912.github.io/</a></p>
+</li>
+<li><p>若有檔案更新，則重複輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="更換主題"><a href="#更換主題" class="headerlink" title="更換主題"></a>更換主題</h3><ol>
+<li><p>選擇要套用的主題<br>[Themes]<br>(<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">https://hexo.io/themes/index.html</a>)<br><img src="https://i.imgur.com/LC6xzT9.png" alt></p>
+</li>
+<li><p>點進該主題的github頁面<br><img src="https://i.imgur.com/V8NNjOP.png" alt></p>
+</li>
+<li><p>在README.md中，依照install指令複製起來，並在terminal中進入blog資料夾中執行指令完畢<br><img src="https://i.imgur.com/IQz4I6S.png" alt><br><img src="https://i.imgur.com/Zd57Cs3.png" alt></p>
+</li>
+<li><p>用vscode開啟blog資料夾，並進入<code>_config.yml</code>檔案中，修改主題theme(參考readme中開發者定義的theme名稱)<br><img src="https://i.imgur.com/QUikitj.png" alt><br><img src="https://i.imgur.com/zgGjkZE.png" alt></p>
+</li>
+<li><p>因為檔案有更新，所以需要在terminal輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -739,171 +887,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Bootstrap-使用輪播幻燈片Carousal" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/">Bootstrap-使用輪播幻燈片Carousal</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" class="article-date">
-	  <time datetime="2019-04-04T11:35:36.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-使用輪播幻燈片Carousal"><a href="#Bootstrap-使用輪播幻燈片Carousal" class="headerlink" title="Bootstrap-使用輪播幻燈片Carousal"></a>Bootstrap-使用輪播幻燈片Carousal</h1><h3 id="元件結構"><a href="#元件結構" class="headerlink" title="元件結構"></a>元件結構</h3><p>carousal由三個小元件組成，controllers跟indicators 可以選擇性的增加</p>
-<ul>
-<li>sliders</li>
-<li>controls</li>
-<li>indicators<br><img src="https://i.imgur.com/O8tbJO7.png" alt></li>
-</ul>
-<h3 id="sliders"><a href="#sliders" class="headerlink" title="sliders"></a>sliders</h3><ul>
-<li>套用的class分為三層<ul>
-<li>carousal</li>
-<li>carousal-inner</li>
-<li>carousal-item</li>
-</ul>
-</li>
-<li><code>.carousal</code>為一個外層容器，在這一層添加<code>data-ride=&quot;carousel&quot;</code>讓輪播器自動播放。</li>
-<li><code>.carousal-inner</code>主要是讓空間寬度為全版<code>width: 100%;</code></li>
-<li><code>.carousal-item</code>代表一個slide的，裡面可以置放所有文字、圖片內容。在該層添加<code>active</code>代表輪播一開始的畫面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;carousel-inner&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item active&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg1.jpg&quot; alt=&quot;First slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg2.jpg&quot; alt=&quot;Second slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg3.jpg&quot; alt=&quot;Third slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="controls"><a href="#controls" class="headerlink" title="controls"></a>controls</h3><ul>
-<li>程式碼位置，包在<code>carousal</code>中</li>
-<li>左按鈕，套用的class分為兩層<ul>
-<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
-<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-prev-icon</code></li>
-</ul>
-</li>
-<li>右按鈕，套用的class分為兩層<ul>
-<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
-<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-next-icon</code></li>
-</ul>
-</li>
-<li>在<code>&lt;a&gt;</code>層主要是定義按鈕的作用目的位置<ul>
-<li><code>href</code>放上作用caroudal的id(也就是外層carousal的id)</li>
-<li><code>data-slide=&quot;prev&quot;</code>是bootstrap自定義的屬性，用來轉換上一個或下一個項目</li>
-<li>role＝”bottom”用來幫助殘障人士，可以借助閱讀器判斷該元件為按鈕</li>
-</ul>
-</li>
-<li>在<code>&lt;span&gt;</code>層主要就比較純粹定義按鈕的樣式</li>
-<li>每個<code>&lt;a&gt;</code>中包含兩個<code>&lt;span&gt;</code>，一個是給一般使用者看的，另外一個是給身障人士可以透過screen reader讀取辨識的<ul>
-<li><code>aria-hidden=true&quot;</code> 可以讓朗讀軟體讀不到此元件。相反的，<code>sr-only</code> 這個 class 是只有使用朗讀程式才可以讀取到的</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a class=&quot;carousel-control-prev&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;prev&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-prev-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Previous&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    &lt;a class=&quot;carousel-control-next&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;next&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-next-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Next&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="indicators"><a href="#indicators" class="headerlink" title="indicators"></a>indicators</h3><ul>
-<li>程式碼位置，包在<code>carousal</code>中</li>
-<li>使用<code>&lt;ol&gt;</code>及<code>&lt;li&gt;</code>列表結構<ul>
-<li><code>&lt;ol&gt;</code>標籤中，套用<code>carousel-indicators</code></li>
-<li>每一個<code>&lt;li&gt;</code>標籤，就搭配到一個slide，若為預設可視的slide，class則添加active</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol class=&quot;carousel-indicators&quot;&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;2&quot;&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line">  </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
-<p>==Use data attributes to easily control the position of the carousel.  data-slide accepts the keywords prev or next, which alters the slide position relative to its current position. Alternatively, use  data-slide-to to pass a raw slide index to the carousel  data-slide-to=”2”, which shifts the slide position to a particular index beginning with 0.==</p>
-<h3 id="補：改變每一張slide停留的時間"><a href="#補：改變每一張slide停留的時間" class="headerlink" title="補：改變每一張slide停留的時間"></a>補：改變每一張slide停留的時間</h3><p>Bootstrap 預設每張幻燈片停留時間為5000毫秒(5秒)，可以用interval改變停留時間(單位為毫秒)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  interval: 1000</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="補：滑鼠滑入slide，不暫停輪播"><a href="#補：滑鼠滑入slide，不暫停輪播" class="headerlink" title="補：滑鼠滑入slide，不暫停輪播"></a>補：滑鼠滑入slide，不暫停輪播</h3><p>Bootstrap 預設當滑鼠滑入slide時，輪播會暫停<br>，可以修改為<code>pause:false</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  pause: false</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="參考bootstrap部分原始碼"><a href="#參考bootstrap部分原始碼" class="headerlink" title="參考bootstrap部分原始碼"></a>參考bootstrap部分原始碼</h3><ul>
-<li>.carousel-inner<br><img src="https://i.imgur.com/ZyPj6BE.png" alt></li>
-<li>.carousel-item<br><img src="https://i.imgur.com/2x4qEgb.png" alt></li>
-<li>.carousel-item .actice<br><img src="https://i.imgur.com/Zcx0Ted.png" alt></li>
-<li>.carousel-control-prev</li>
-<li>.carousel-control-next<br><img src="https://i.imgur.com/q2WMxvl.png" alt></li>
-<li>.carousel-control-prev-icon</li>
-<li>.carousel-control-next-icon<br><img src="https://i.imgur.com/BldCccB.png" alt></li>
-<li>.carousel-indicators<br><img src="https://i.imgur.com/FuPo3SC.png" alt></li>
-</ul>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/" target="_blank" rel="noopener">My Project-LonelyPlanet-Home page-Header</a><br><img src="https://i.imgur.com/RWdyI1M.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-建立boiler樣板(下)-引入Font Awesome" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/">建立boiler樣板(下)-引入Font Awesome</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" class="article-date">
-	  <time datetime="2019-04-04T10:15:42.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="建立boiler樣板-下-引入Font-Awesome"><a href="#建立boiler樣板-下-引入Font-Awesome" class="headerlink" title="建立boiler樣板(下)-引入Font Awesome"></a>建立boiler樣板(下)-引入Font Awesome</h1><h3 id="什麼是Font-Awesome？"><a href="#什麼是Font-Awesome？" class="headerlink" title="什麼是Font Awesome？"></a>什麼是Font Awesome？</h3><ul>
-<li>用於網頁中加入icon的圖示庫，原理是把圖示icon都製作成文字的字型(fonts)，再透過CSS的去呼叫icon顯示出來。</li>
-<li>相較於載入一張圖片，loading的負擔較低</li>
-<li>可以透過指令放大縮小，不會造成像素失真的問題<h3 id="引入fontawesome"><a href="#引入fontawesome" class="headerlink" title="引入fontawesome"></a>引入fontawesome</h3></li>
-</ul>
-<ol>
-<li>進入<a href="https://fontawesome.com/start" target="_blank" rel="noopener">fontawesome的「start」頁面</a><br><img src="https://i.imgur.com/YKvSPXU.png" alt></li>
-<li>將cdn複製貼上到<code>&lt;head&gt;</code>中</li>
-</ol>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/releases/v5.8.1/css/all.css&quot; integrity=&quot;sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf&quot; crossorigin=&quot;anonymous&quot;&gt;
-</code></pre><ol start="3">
-<li>即可開始使用</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -971,6 +954,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">(no title)</a></h6>
+              <span>April 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">(no title)</a></h6>
+              <span>April 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/08/hello-world/">Hello World</a></h6>
               <span>April 8, 2019</span>
             </div>
@@ -1013,30 +1020,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/使用github page顯示靜態網頁/">使用github page顯示靜態網頁</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/07/申請API憑證-以Youtube Data API為例/">申請API憑證-以Youtube Data API為例</a></h6>
-              <span>April 7, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1055,7 +1038,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 

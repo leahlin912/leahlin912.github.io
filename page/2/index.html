@@ -158,6 +158,171 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Bootstrap-使用輪播幻燈片Carousal" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/">Bootstrap-使用輪播幻燈片Carousal</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" class="article-date">
+	  <time datetime="2019-04-04T11:35:36.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-使用輪播幻燈片Carousal"><a href="#Bootstrap-使用輪播幻燈片Carousal" class="headerlink" title="Bootstrap-使用輪播幻燈片Carousal"></a>Bootstrap-使用輪播幻燈片Carousal</h1><h3 id="元件結構"><a href="#元件結構" class="headerlink" title="元件結構"></a>元件結構</h3><p>carousal由三個小元件組成，controllers跟indicators 可以選擇性的增加</p>
+<ul>
+<li>sliders</li>
+<li>controls</li>
+<li>indicators<br><img src="https://i.imgur.com/O8tbJO7.png" alt></li>
+</ul>
+<h3 id="sliders"><a href="#sliders" class="headerlink" title="sliders"></a>sliders</h3><ul>
+<li>套用的class分為三層<ul>
+<li>carousal</li>
+<li>carousal-inner</li>
+<li>carousal-item</li>
+</ul>
+</li>
+<li><code>.carousal</code>為一個外層容器，在這一層添加<code>data-ride=&quot;carousel&quot;</code>讓輪播器自動播放。</li>
+<li><code>.carousal-inner</code>主要是讓空間寬度為全版<code>width: 100%;</code></li>
+<li><code>.carousal-item</code>代表一個slide的，裡面可以置放所有文字、圖片內容。在該層添加<code>active</code>代表輪播一開始的畫面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;carousel-inner&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item active&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg1.jpg&quot; alt=&quot;First slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg2.jpg&quot; alt=&quot;Second slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg3.jpg&quot; alt=&quot;Third slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="controls"><a href="#controls" class="headerlink" title="controls"></a>controls</h3><ul>
+<li>程式碼位置，包在<code>carousal</code>中</li>
+<li>左按鈕，套用的class分為兩層<ul>
+<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
+<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-prev-icon</code></li>
+</ul>
+</li>
+<li>右按鈕，套用的class分為兩層<ul>
+<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
+<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-next-icon</code></li>
+</ul>
+</li>
+<li>在<code>&lt;a&gt;</code>層主要是定義按鈕的作用目的位置<ul>
+<li><code>href</code>放上作用caroudal的id(也就是外層carousal的id)</li>
+<li><code>data-slide=&quot;prev&quot;</code>是bootstrap自定義的屬性，用來轉換上一個或下一個項目</li>
+<li>role＝”bottom”用來幫助殘障人士，可以借助閱讀器判斷該元件為按鈕</li>
+</ul>
+</li>
+<li>在<code>&lt;span&gt;</code>層主要就比較純粹定義按鈕的樣式</li>
+<li>每個<code>&lt;a&gt;</code>中包含兩個<code>&lt;span&gt;</code>，一個是給一般使用者看的，另外一個是給身障人士可以透過screen reader讀取辨識的<ul>
+<li><code>aria-hidden=true&quot;</code> 可以讓朗讀軟體讀不到此元件。相反的，<code>sr-only</code> 這個 class 是只有使用朗讀程式才可以讀取到的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a class=&quot;carousel-control-prev&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;prev&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-prev-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Previous&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    &lt;a class=&quot;carousel-control-next&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;next&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-next-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Next&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="indicators"><a href="#indicators" class="headerlink" title="indicators"></a>indicators</h3><ul>
+<li>程式碼位置，包在<code>carousal</code>中</li>
+<li>使用<code>&lt;ol&gt;</code>及<code>&lt;li&gt;</code>列表結構<ul>
+<li><code>&lt;ol&gt;</code>標籤中，套用<code>carousel-indicators</code></li>
+<li>每一個<code>&lt;li&gt;</code>標籤，就搭配到一個slide，若為預設可視的slide，class則添加active</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol class=&quot;carousel-indicators&quot;&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;2&quot;&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line">  </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
+<p>==Use data attributes to easily control the position of the carousel.  data-slide accepts the keywords prev or next, which alters the slide position relative to its current position. Alternatively, use  data-slide-to to pass a raw slide index to the carousel  data-slide-to=”2”, which shifts the slide position to a particular index beginning with 0.==</p>
+<h3 id="補：改變每一張slide停留的時間"><a href="#補：改變每一張slide停留的時間" class="headerlink" title="補：改變每一張slide停留的時間"></a>補：改變每一張slide停留的時間</h3><p>Bootstrap 預設每張幻燈片停留時間為5000毫秒(5秒)，可以用interval改變停留時間(單位為毫秒)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  interval: 1000</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="補：滑鼠滑入slide，不暫停輪播"><a href="#補：滑鼠滑入slide，不暫停輪播" class="headerlink" title="補：滑鼠滑入slide，不暫停輪播"></a>補：滑鼠滑入slide，不暫停輪播</h3><p>Bootstrap 預設當滑鼠滑入slide時，輪播會暫停<br>，可以修改為<code>pause:false</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  pause: false</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="參考bootstrap部分原始碼"><a href="#參考bootstrap部分原始碼" class="headerlink" title="參考bootstrap部分原始碼"></a>參考bootstrap部分原始碼</h3><ul>
+<li>.carousel-inner<br><img src="https://i.imgur.com/ZyPj6BE.png" alt></li>
+<li>.carousel-item<br><img src="https://i.imgur.com/2x4qEgb.png" alt></li>
+<li>.carousel-item .actice<br><img src="https://i.imgur.com/Zcx0Ted.png" alt></li>
+<li>.carousel-control-prev</li>
+<li>.carousel-control-next<br><img src="https://i.imgur.com/q2WMxvl.png" alt></li>
+<li>.carousel-control-prev-icon</li>
+<li>.carousel-control-next-icon<br><img src="https://i.imgur.com/BldCccB.png" alt></li>
+<li>.carousel-indicators<br><img src="https://i.imgur.com/FuPo3SC.png" alt></li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/" target="_blank" rel="noopener">My Project-LonelyPlanet-Home page-Header</a><br><img src="https://i.imgur.com/RWdyI1M.jpg" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-建立boiler樣板(下)-引入Font Awesome" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/">建立boiler樣板(下)-引入Font Awesome</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" class="article-date">
+	  <time datetime="2019-04-04T10:15:42.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="建立boiler樣板-下-引入Font-Awesome"><a href="#建立boiler樣板-下-引入Font-Awesome" class="headerlink" title="建立boiler樣板(下)-引入Font Awesome"></a>建立boiler樣板(下)-引入Font Awesome</h1><h3 id="什麼是Font-Awesome？"><a href="#什麼是Font-Awesome？" class="headerlink" title="什麼是Font Awesome？"></a>什麼是Font Awesome？</h3><ul>
+<li>用於網頁中加入icon的圖示庫，原理是把圖示icon都製作成文字的字型(fonts)，再透過CSS的去呼叫icon顯示出來。</li>
+<li>相較於載入一張圖片，loading的負擔較低</li>
+<li>可以透過指令放大縮小，不會造成像素失真的問題<h3 id="引入fontawesome"><a href="#引入fontawesome" class="headerlink" title="引入fontawesome"></a>引入fontawesome</h3></li>
+</ul>
+<ol>
+<li>進入<a href="https://fontawesome.com/start" target="_blank" rel="noopener">fontawesome的「start」頁面</a><br><img src="https://i.imgur.com/YKvSPXU.png" alt></li>
+<li>將cdn複製貼上到<code>&lt;head&gt;</code>中</li>
+</ol>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/releases/v5.8.1/css/all.css&quot; integrity=&quot;sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf&quot; crossorigin=&quot;anonymous&quot;&gt;
+</code></pre><ol start="3">
+<li>即可開始使用</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-建立boiler樣板(上)-引入Bootstrap" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -654,142 +819,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Bootstrap-自定義重新設定Sass" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/Bootstrap-自定義重新設定Sass/">Bootstrap-自定義重新設定Sass</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/Bootstrap-自定義重新設定Sass/" class="article-date">
-	  <time datetime="2019-04-03T01:39:56.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-自定義重新設定Sass"><a href="#Bootstrap-自定義重新設定Sass" class="headerlink" title="Bootstrap-自定義重新設定Sass"></a>Bootstrap-自定義重新設定Sass</h1><h3 id="用koala設定"><a href="#用koala設定" class="headerlink" title="用koala設定"></a>用koala設定</h3><ol>
-<li><p>在專案資料夾中新增scss資料夾，以及style.scss檔案<br><img src="https://i.imgur.com/XpbaSNb.png" alt></p>
-</li>
-<li><p>進入<a href="https://getbootstrap.com/docs/4.3/getting-started/download/#source-files" target="_blank" rel="noopener">Bootstrap-download</a>，下載Source files<br><img src="https://i.imgur.com/dKRYRWV.png" alt></p>
-</li>
-<li><p>下載解壓縮後，將所有下載的scss資料夾中的所有檔案複製到自己專案的scss資料夾中<br><img src="https://i.imgur.com/oiSapJn.jpg" alt></p>
-</li>
-<li><p>下載<a href="http://koala-app.com/" target="_blank" rel="noopener">koala</a><br><img src="https://i.imgur.com/YZwV3oo.png" alt></p>
-</li>
-<li><p>用koala打開專案資料夾，取消不必被compile的項目<br><img src="https://i.imgur.com/DsYYlIE.png" alt></p>
-</li>
-<li><p>將bootstrap.scss重新輸出路徑到專案的css資料夾中，並且再回到koala執行Compile。Compile之後，就可以看到bootstrap.css出現在專案中</p>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/eE4EkWJ.png" alt></p>
-<p><img src="https://i.imgur.com/oSApxeW.png" alt></p>
-<p><img src="https://i.imgur.com/EIAvDFr.png" alt></p>
-<p><img src="https://i.imgur.com/jXwHc1I.png" alt></p>
-<ol start="7">
-<li><p>style.scss也重複上述動作，輸出路徑可以覆蓋原先css中的style.css檔案，一樣再執行Compile</p>
-</li>
-<li><p>用vscode打開專案，將舊的「bootstrap.css」與「style.css」刪除<br><img src="https://i.imgur.com/DNGMYDq.png" alt></p>
-</li>
-<li><p>在index.html中，重新設定bootstrap的引入設定，指定為專案中的bootstrap.css<br><img src="https://i.imgur.com/H5pp0Bp.png" alt></p>
-</li>
-<li><p>在scss檔案中即可修改設定<br><img src="https://i.imgur.com/LwLetn1.png" alt></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Bootstrap-自適應navbar" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/Bootstrap-自適應navbar/">Bootstrap-自適應navbar</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/Bootstrap-自適應navbar/" class="article-date">
-	  <time datetime="2019-04-02T23:53:46.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-自適應navbar"><a href="#Bootstrap-自適應navbar" class="headerlink" title="Bootstrap-自適應navbar"></a>Bootstrap-自適應navbar</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>透過<code>navbar-expand</code>定義在何種尺寸，menu項目的呈現會改為「漢堡折疊」樣式效果</li>
-<li>使用bootstrap自定義的<code>data-toggle</code>及<code>data-target</code>，決定按鈕點下之後，menu的div要以collapse方式展開<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3></li>
-<li>首先class套用<code>navbar</code>，預設讓它是一個<code>dispaly:flex</code>的彈性盒子，且內部item會水平置中對齊(可以參考bootstrap的原始碼查看css設定)</li>
-<li><code>navbar-expand-sm</code>則是決定當螢幕尺寸小於sm時，會改為以「折疊漢堡」顯示menu項目;若從頭到尾都希望以「折疊漢堡」顯示，則不要在class使用任何navbar-expand</li>
-<li><p>如果希望navbar不會受瀏覽頁面捲動而消失，會一直顯示在最上方，則在class加上<code>fixed-top</code></p>
-</li>
-<li><p>button就是畫面中的「漢堡折疊」，需套用<code>navbar-toggler</code>類。基本上就會被<code>navbar-expand-sm</code>的定義影響在什麼螢幕尺寸顯示，什麼尺寸隱藏(可以參考bootstrap的原始碼查看css設定)</p>
-</li>
-<li><code>data-toggle</code>是bootstrap自訂的屬性<code>data-toggle=&quot;collapse&quot;</code>，意思是當點擊它按鈕時，會觸發了”collapse”事件</li>
-<li><code>data-target</code>也是bootstrap自訂的屬性，當”collapse”事件觸發，它的目標是#navbarCollapse，所以下面的#navbarCollapse這個div就會展開。</li>
-<li>#navbarCollapse這個div的class需套用<code>collapse</code>、<code>navbar-collapse</code>，基本上也就是會被<code>navbar-expand-sm</code>的定義影響在什麼螢幕尺寸顯示，什麼尺寸隱藏。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav id=&quot;main-nav&quot; class=&quot;navbar navbar-expand-sm navbar-dark fixed-top&quot; style=&quot;background-color:#24243c;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;index.html&quot; class=&quot;navbar-brand&quot;&gt;LonelyPlanet&lt;/a&gt;</span><br><span class="line">        &lt;button class=&quot;navbar-toggler&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarCollapse&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;div id=&quot;navbarCollapse&quot; class=&quot;collapse navbar-collapse&quot; &gt;</span><br><span class="line">            &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#home-section&quot; class=&quot;nav-link&quot;&gt;Home&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#explore-head-section&quot; class=&quot;nav-link&quot;&gt;Explore&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#author-head-section&quot; class=&quot;nav-link&quot;&gt;Author&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#mission-head-section&quot; class=&quot;nav-link&quot;&gt;Mission&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="參考bootstrap部分原始碼"><a href="#參考bootstrap部分原始碼" class="headerlink" title="參考bootstrap部分原始碼"></a>參考bootstrap部分原始碼</h3><ul>
-<li>navbar<br><img src="https://i.imgur.com/onqOP6d.png" alt></li>
-<li>navbar-expand-sm<br><img src="https://i.imgur.com/oWafEKy.png" alt></li>
-<li>narvar-collapse</li>
-<li>narvar-toggler<br><img src="https://i.imgur.com/O9nyz1w.png" alt></li>
-</ul>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/" target="_blank" rel="noopener">My Project-LonelyPlanet-Menu</a><br><img src="https://i.imgur.com/PNCjhXU.png" alt></p>
-<p><img src="https://i.imgur.com/EHB0sJq.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -857,6 +886,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">(no title)</a></h6>
+              <span>April 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">(no title)</a></h6>
+              <span>April 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/08/hello-world/">Hello World</a></h6>
               <span>April 8, 2019</span>
             </div>
@@ -899,30 +952,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/使用github page顯示靜態網頁/">使用github page顯示靜態網頁</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/07/申請API憑證-以Youtube Data API為例/">申請API憑證-以Youtube Data API為例</a></h6>
-              <span>April 7, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -941,7 +970,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
