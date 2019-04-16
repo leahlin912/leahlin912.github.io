@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>jquery-事件處理 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="事件處理函式語法結構123$(&amp;apos;選擇器&amp;apos;).on(&amp;apos;事件類型&amp;apos;, function()&amp;#123;    任意處理程序&amp;#125;)  $()函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「jQuery物件」 on()是設定「當某事件發生時，執行某指令」的方法。 第一個參數是「事件類型(Event Type)」：事件觸">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery-事件處理">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/jQuery-事件處理/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="事件處理函式語法結構123$(&amp;apos;選擇器&amp;apos;).on(&amp;apos;事件類型&amp;apos;, function()&amp;#123;    任意處理程序&amp;#125;)  $()函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「jQuery物件」 on()是設定「當某事件發生時，執行某指令」的方法。 第一個參數是「事件類型(Event Type)」：事件觸">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/q7B1WBC.png">
+<meta property="og:updated_time" content="2019-04-16T10:52:57.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery-事件處理">
+<meta name="twitter:description" content="事件處理函式語法結構123$(&amp;apos;選擇器&amp;apos;).on(&amp;apos;事件類型&amp;apos;, function()&amp;#123;    任意處理程序&amp;#125;)  $()函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「jQuery物件」 on()是設定「當某事件發生時，執行某指令」的方法。 第一個參數是「事件類型(Event Type)」：事件觸">
+<meta name="twitter:image" content="https://i.imgur.com/q7B1WBC.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-jQuery-事件處理" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      jQuery-事件處理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/jQuery-事件處理/" class="article-date">
+	  <time datetime="2019-04-16T10:49:25.993Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事件處理函式"><a href="#事件處理函式" class="headerlink" title="事件處理函式"></a>事件處理函式</h2><h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    任意處理程序</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
+<li><code>on()</code>是設定「當某<strong>事件</strong>發生時，執行某<strong>指令</strong>」的方法。<ul>
+<li>第一個參數是「事件類型(Event Type)」：事件觸發的條件</li>
+<li>第二個參數是「處理程序(Event Handler)」：事件被觸發後，接著要调用的方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
+<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
+<li>針對jQuery物件呼叫<code>on()</code>方法</li>
+<li>在<code>on()</code>方法中傳入兩個參數，定義要被觸發的「事件類型」以及接下來要執行的「處理程序」</li>
+</ol>
+<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><p>當滑鼠移入<code>#typo</code>，接著會執行：透過css樣式修改<code>#typo</code>的顏色</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多個處理程序"><a href="#多個處理程序" class="headerlink" title="多個處理程序"></a>多個處理程序</h2><p>在<code>.on()</code>方法中的第一個參數「事件類型」被觸發之後，第二個參數「處理程序函式」中可以執行數個個別處理的程序</p>
+<h3 id="語法結構-1"><a href="#語法結構-1" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    處理1;</span><br><span class="line">    處理2;</span><br><span class="line">    處理3...;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="簡易範例-1"><a href="#簡易範例-1" class="headerlink" title="簡易範例"></a>簡易範例</h3><ul>
+<li>當滑鼠移入<code>#typo</code>，接著會執行：<ul>
+<li>透過css樣式修改<code>#typo</code>的顏色</li>
+<li>透過css樣式修改<code>header</code>的背景顏色<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>) ;</span><br><span class="line">        $(<span class="string">'header'</span>).css(<span class="string">'background-color'</span>,<span class="string">'#ffffff'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="設定多個事件類型"><a href="#設定多個事件類型" class="headerlink" title="設定多個事件類型"></a>設定多個事件類型</h2><p>一個jQuery物件，可以有多個<code>.on()方法</code>，例如：當A事件(滑鼠移入)時要執行a程序，而當B事件(滑鼠移出)時要執行b程序</p>
+<h3 id="方法鏈串語法"><a href="#方法鏈串語法" class="headerlink" title="方法鏈串語法"></a>方法鏈串語法</h3><p>多個方法如鎖鏈一般串連起來，針對$()產生的同一個jQuery物件作為執行對象，程式會從左到右開始執行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).事件A().事件B().事件C()....</span><br></pre></td></tr></table></figure></p>
+<h3 id="簡易案例"><a href="#簡易案例" class="headerlink" title="簡易案例"></a>簡易案例</h3><ul>
+<li>當滑鼠移入<code>#typo</code>元素時，會改變文字即背景顏色</li>
+<li>當滑鼠移出<code>#typo</code>元素時，會回復為原本的顏色</li>
+</ul>
+<p>多個事件一般寫法(效能差)</p>
+<ul>
+<li>針對同一個物件，寫兩次<code>$()</code>函式，瀏覽器花時間分析HTML並取得目標元素，會造成CPU負擔<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">'#ebc000'</span>,</span><br><span class="line">            backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">''</span>,</span><br><span class="line">            backgroundColor:<span class="string">''</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改為鏈串寫法(效能佳)</p>
+<ul>
+<li>只需要使用一次<code>$()</code>函式，除了簡化程式碼，也提稱程式處理速度<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>)</span><br><span class="line">        .on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">'#ebc000'</span>,</span><br><span class="line">                backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        .on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">''</span>,</span><br><span class="line">                backgroundColor:<span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="主要的事件類型"><a href="#主要的事件類型" class="headerlink" title="主要的事件類型"></a>主要的事件類型</h3><p><img src="https://i.imgur.com/q7B1WBC.png" alt></p>
+<p>jQuery中，大部分的操作都基於HTML DOM，所以必須確定頁面文件已經完全下載好，才能開始執行程式。jQuery 提供下面這個函式來處理 DOM ready事件 </p>
+<p>當DOM載入後，執行ready()方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>也可以這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/16/jQuery-改變CSS樣式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo-使用靜態生成器，建立blog(3/3)變更主題</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件處理函式"><span class="nav-number">1.</span> <span class="nav-text">事件處理函式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#語法結構"><span class="nav-number">1.1.</span> <span class="nav-text">語法結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#語法執行概念"><span class="nav-number">1.2.</span> <span class="nav-text">語法執行概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#簡易範例"><span class="nav-number">1.3.</span> <span class="nav-text">簡易範例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多個處理程序"><span class="nav-number">2.</span> <span class="nav-text">多個處理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#語法結構-1"><span class="nav-number">2.1.</span> <span class="nav-text">語法結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#簡易範例-1"><span class="nav-number">2.2.</span> <span class="nav-text">簡易範例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定多個事件類型"><span class="nav-number">3.</span> <span class="nav-text">設定多個事件類型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法鏈串語法"><span class="nav-number">3.1.</span> <span class="nav-text">方法鏈串語法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#簡易案例"><span class="nav-number">3.2.</span> <span class="nav-text">簡易案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要的事件類型"><span class="nav-number">3.3.</span> <span class="nav-text">主要的事件類型</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

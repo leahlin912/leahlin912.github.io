@@ -158,6 +158,224 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-將footer置底" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/CSS-將footer置底/" class="article-date">
+	  <time datetime="2019-04-16T10:50:13.935Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通常一個頁面中包含三個部分：header、main-content、footer，可是當main-content中的內容不足以撐開整個頁面高度，footer下方就會出現一塊空白區域。這種情況，如果希望footer可以維持底部，整理兩種做法：</p>
+<p>方法1. 設定main-content的最小高度為100%<br>方法2. 在最外部再包一層wrapper，設定期高度為100% ; 且讓footer設定為絕對定位bottom:0</p>
+<p><img src="https://i.imgur.com/1IvdcAV.png" alt></p>
+<h3 id="方法1-設定main-content的最小高度為100"><a href="#方法1-設定main-content的最小高度為100" class="headerlink" title="方法1.設定main-content的最小高度為100%"></a>方法1.設定main-content的最小高度為100%</h3><p><img src="https://i.imgur.com/8acrinG.png" alt></p>
+<p><strong>html, body</strong></p>
+<ul>
+<li>高度為100%<br><strong>main-content</strong></li>
+<li>最小高度為100%</li>
+<li>上、下padding空間，作為放置header、footer的空間</li>
+<li></li>
+</ul>
+<p><strong>header</strong></p>
+<ul>
+<li>使用絕對定位，top為0</li>
+<li>設定z-index確保在最上方</li>
+</ul>
+<p><strong>footer</strong></p>
+<ul>
+<li>使用相對定位，top為自己的高度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">    &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* background-color: azure; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">900</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main-content</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">padding-top</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法2-在最外部再包一層wrapper"><a href="#方法2-在最外部再包一層wrapper" class="headerlink" title="方法2.在最外部再包一層wrapper"></a>方法2.在最外部再包一層wrapper</h3><p><img src="https://i.imgur.com/hJQdVmT.png" alt></p>
+<p><strong>html, body</strong></p>
+<ul>
+<li>高度為100%</li>
+</ul>
+<p><strong>wrapper</strong></p>
+<ul>
+<li>最小高度為100%</li>
+</ul>
+<p><strong>footer</strong></p>
+<ul>
+<li>使用絕對定位，bottom為0</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&apos;wrapper&apos;&gt;</span><br><span class="line">        &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">        &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-jQuery-改變CSS樣式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/jQuery-改變CSS樣式/" class="article-date">
+	  <time datetime="2019-04-16T10:49:34.889Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).css(&apos;屬性&apos;,&apos;值&apos;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
+<li><p><code>css()</code>中所定義的指令是「<strong>jQuery方法</strong>」，意即「jQuery其js中定義了的<code>css()</code>這個函式」</p>
+</li>
+<li><p>選擇器：與CSS相同的選擇器</p>
+</li>
+<li>屬性：CSS的屬性</li>
+<li>值：若為字串，需用單引號或雙引號（<code>&quot;&quot;</code>、<code>&#39;&#39;</code>)括號起來;若值為數值，則不需要。</li>
+</ul>
+<p>補充：jQuery可以修改元素的CSS屬性中的值，但若有使用<code>!important</code>的項目仍會優先套用。</p>
+<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
+<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
+<li>針對jQuery物件呼叫方法，以進行相關操作<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><img src="https://i.imgur.com/RFhWHmz.png" alt></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#556A5B'</span>);</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'transform'</span>,<span class="string">'rotate(10deg)'</span>)</span><br><span class="line">    $(<span class="string">'#typo .inner'</span>).css(<span class="string">'opacity'</span>,<span class="number">0.5</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-jQuery-事件處理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/16/jQuery-事件處理/">jQuery-事件處理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/jQuery-事件處理/" class="article-date">
+	  <time datetime="2019-04-16T10:49:25.993Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事件處理函式"><a href="#事件處理函式" class="headerlink" title="事件處理函式"></a>事件處理函式</h2><h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    任意處理程序</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
+<li><code>on()</code>是設定「當某<strong>事件</strong>發生時，執行某<strong>指令</strong>」的方法。<ul>
+<li>第一個參數是「事件類型(Event Type)」：事件觸發的條件</li>
+<li>第二個參數是「處理程序(Event Handler)」：事件被觸發後，接著要调用的方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
+<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
+<li>針對jQuery物件呼叫<code>on()</code>方法</li>
+<li>在<code>on()</code>方法中傳入兩個參數，定義要被觸發的「事件類型」以及接下來要執行的「處理程序」</li>
+</ol>
+<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><p>當滑鼠移入<code>#typo</code>，接著會執行：透過css樣式修改<code>#typo</code>的顏色</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多個處理程序"><a href="#多個處理程序" class="headerlink" title="多個處理程序"></a>多個處理程序</h2><p>在<code>.on()</code>方法中的第一個參數「事件類型」被觸發之後，第二個參數「處理程序函式」中可以執行數個個別處理的程序</p>
+<h3 id="語法結構-1"><a href="#語法結構-1" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    處理1;</span><br><span class="line">    處理2;</span><br><span class="line">    處理3...;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="簡易範例-1"><a href="#簡易範例-1" class="headerlink" title="簡易範例"></a>簡易範例</h3><ul>
+<li>當滑鼠移入<code>#typo</code>，接著會執行：<ul>
+<li>透過css樣式修改<code>#typo</code>的顏色</li>
+<li>透過css樣式修改<code>header</code>的背景顏色<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>) ;</span><br><span class="line">        $(<span class="string">'header'</span>).css(<span class="string">'background-color'</span>,<span class="string">'#ffffff'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="設定多個事件類型"><a href="#設定多個事件類型" class="headerlink" title="設定多個事件類型"></a>設定多個事件類型</h2><p>一個jQuery物件，可以有多個<code>.on()方法</code>，例如：當A事件(滑鼠移入)時要執行a程序，而當B事件(滑鼠移出)時要執行b程序</p>
+<h3 id="方法鏈串語法"><a href="#方法鏈串語法" class="headerlink" title="方法鏈串語法"></a>方法鏈串語法</h3><p>多個方法如鎖鏈一般串連起來，針對$()產生的同一個jQuery物件作為執行對象，程式會從左到右開始執行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).事件A().事件B().事件C()....</span><br></pre></td></tr></table></figure></p>
+<h3 id="簡易案例"><a href="#簡易案例" class="headerlink" title="簡易案例"></a>簡易案例</h3><ul>
+<li>當滑鼠移入<code>#typo</code>元素時，會改變文字即背景顏色</li>
+<li>當滑鼠移出<code>#typo</code>元素時，會回復為原本的顏色</li>
+</ul>
+<p>多個事件一般寫法(效能差)</p>
+<ul>
+<li>針對同一個物件，寫兩次<code>$()</code>函式，瀏覽器花時間分析HTML並取得目標元素，會造成CPU負擔<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">'#ebc000'</span>,</span><br><span class="line">            backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">''</span>,</span><br><span class="line">            backgroundColor:<span class="string">''</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改為鏈串寫法(效能佳)</p>
+<ul>
+<li>只需要使用一次<code>$()</code>函式，除了簡化程式碼，也提稱程式處理速度<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>)</span><br><span class="line">        .on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">'#ebc000'</span>,</span><br><span class="line">                backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        .on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">''</span>,</span><br><span class="line">                backgroundColor:<span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="主要的事件類型"><a href="#主要的事件類型" class="headerlink" title="主要的事件類型"></a>主要的事件類型</h3><p><img src="https://i.imgur.com/q7B1WBC.png" alt></p>
+<p>jQuery中，大部分的操作都基於HTML DOM，所以必須確定頁面文件已經完全下載好，才能開始執行程式。jQuery 提供下面這個函式來處理 DOM ready事件 </p>
+<p>當DOM載入後，執行ready()方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>也可以這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Hexo-使用靜態生成器，建立blog(3_3)變更主題" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -393,58 +611,6 @@ var themeMenus = {};
 <li><p><strong>新增文章在blog中</strong><br>在blog資料夾的內層中找到_posts資料夾，並將.md檔案拖曳至於其中<br><img src="https://i.imgur.com/wghWRDV.png" alt></p>
 </li>
 </ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/08/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/08/hello-world/" class="article-date">
-	  <time datetime="2019-04-08T09:46:25.900Z" itemprop="datePublished">April 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
     </div>
@@ -792,144 +958,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-申請API憑證-以Youtube Data API為例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/07/申請API憑證-以Youtube Data API為例/">申請API憑證-以Youtube Data API為例</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
-	  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">April 7, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="申請API憑證-以Youtube-Data-API為例"><a href="#申請API憑證-以Youtube-Data-API為例" class="headerlink" title="申請API憑證-以Youtube Data API為例"></a>申請API憑證-以Youtube Data API為例</h1><h3 id="流程概念"><a href="#流程概念" class="headerlink" title="流程概念"></a>流程概念</h3><ol>
-<li>申請憑證</li>
-<li>將key加入到專案中</li>
-</ol>
-<h3 id="申請API-Key"><a href="#申請API-Key" class="headerlink" title="申請API Key"></a>申請API Key</h3><ol>
-<li>使用google帳號，進入<a href="https://console.cloud.google.com/home" target="_blank" rel="noopener">Google Cloud Platform(GCP)</a></li>
-<li><p>從左上漢堡標籤，進入「API和服務&gt;資訊主頁」<br><img src="https://i.imgur.com/XPaCpA4.png" alt></p>
-</li>
-<li><p>點按「啟用API」按鈕<br><img src="https://i.imgur.com/s5OVzq2.png" alt></p>
-</li>
-<li><p>進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)<br><img src="https://i.imgur.com/HTvKrWU.png" alt></p>
-</li>
-<li><p>選擇啟用該API<br><img src="https://i.imgur.com/lfuctZa.png" alt></p>
-</li>
-<li><p>頁面中提示要先「建立憑證」<br><img src="https://i.imgur.com/uZ8UW87.png" alt></p>
-</li>
-<li><p>依照專案需求，填寫表格<br><img src="https://i.imgur.com/oVO3o4b.png" alt></p>
-</li>
-<li><p>依照個人需求、必要，限制金鑰</p>
-</li>
-</ol>
-<ul>
-<li>應用程式限制：若無限制，任何人皆可在任何裝置上使用這組API金鑰；若有限制，則會進行審核，資料符合的使用者才可使用</li>
-<li>API限制：可限制該API僅可用來獲取哪些服務Google服務，避免因使用其他服務導致流量超過配額，或被其他人用來獲取其他服務<br><img src="https://i.imgur.com/Fvo8ka1.png" alt></li>
-</ul>
-<ol start="9">
-<li><p>勾選起該憑證<br><img src="https://i.imgur.com/Joasr4R.png" alt></p>
-</li>
-<li><p>將Key複製到自己的專案中<br><img src="https://i.imgur.com/ehhQGqs.png" alt></p>
-</li>
-</ol>
-<h3 id="將Key加入至專案中"><a href="#將Key加入至專案中" class="headerlink" title="將Key加入至專案中"></a>將Key加入至專案中</h3><ul>
-<li></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-API金鑰的使用時機(未完)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/07/API金鑰的使用時機(未完)/">API金鑰的使用時機(未完)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/07/API金鑰的使用時機(未完)/" class="article-date">
-	  <time datetime="2019-04-07T02:19:40.000Z" itemprop="datePublished">April 7, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="API金鑰的使用時機-未完"><a href="#API金鑰的使用時機-未完" class="headerlink" title="API金鑰的使用時機(未完)"></a>API金鑰的使用時機(未完)</h1><h3 id="API金鑰-VS-使用者憑證token"><a href="#API金鑰-VS-使用者憑證token" class="headerlink" title="API金鑰 VS. 使用者憑證token"></a>API金鑰 VS. 使用者憑證token</h3><p>Google Cloud Endpoints 能夠處理 API 金鑰與驗證機制，『API 金鑰用於專案，驗證則是用於使用者』</p>
-<ul>
-<li><p>API 金鑰：用於識別呼叫的專案 (即應用程式或網站)，以便讓呼叫任務對應至正確的API</p>
-</li>
-<li><p>使用者驗證token：用於辨識使用者，即使用應用程式或網站的使用者</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/vZ8F68B.png" alt></p>
-<h3 id="API金鑰"><a href="#API金鑰" class="headerlink" title="API金鑰"></a>API金鑰</h3><p>API金鑰提供功能</p>
-<ul>
-<li>專案識別：辨識發出API呼叫的應用程式與專案</li>
-<li>專案授權：檢查該應用程式是否已獲得呼叫API的存取權，並且確認應用程式是否已經在專案中開啟API</li>
-</ul>
-<h3 id="使用者憑證token"><a href="#使用者憑證token" class="headerlink" title="使用者憑證token"></a>使用者憑證token</h3><p>使用token驗證機制有兩大目的</p>
-<ul>
-<li>使用者驗證：安全地驗證進行呼叫的使用者是否符合其宣稱的身分</li>
-<li>使用者授權：檢查使用者是否擁有權限發出要求</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -997,6 +1025,42 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a></h6>
+              <span>April 16, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/16/jQuery-改變CSS樣式/">(no title)</a></h6>
+              <span>April 16, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/16/jQuery-事件處理/">jQuery-事件處理</a></h6>
+              <span>April 16, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a></h6>
               <span>April 11, 2019</span>
             </div>
@@ -1027,42 +1091,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/hello-world/">Hello World</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">使用Hexo，建立blog(上)新增文章</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">使用Hexo，建立blog(下)自定義主題</a></h6>
-              <span>April 8, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1081,7 +1109,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
