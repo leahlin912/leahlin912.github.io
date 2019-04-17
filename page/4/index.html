@@ -158,6 +158,63 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-圖片邊框" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/CSS-圖片邊框/">CSS-圖片邊框</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/02/CSS-圖片邊框/" class="article-date">
+	  <time datetime="2019-04-02T01:00:40.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-圖片邊框"><a href="#CSS-圖片邊框" class="headerlink" title="CSS-圖片邊框"></a>CSS-圖片邊框</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>分為兩層div空間</p>
+<ul>
+<li>先定義下方piece空間的邊框角度</li>
+<li>再定義上方piece-photo空間的邊框角度</li>
+<li>最後定義上方piece-photo的背景，用<code>background-imgage</code>屬性引入圖片<br><img src="https://i.imgur.com/8e6DOtw.jpg" alt></li>
+</ul>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>外層：定義外層div空間的寬高、原角邊框等樣式設定<br>內層：</p>
+<ol>
+<li>先定義「內層空間的寬高」、原角邊框</li>
+<li><code>background-image</code>引入圖片之後，要定義「被引入圖片的寬高」、定位等設定</li>
+</ol>
+<p>補充：更多圖片屬性設定參考 <a href="https://hackmd.io/4_9uMgawRKyKkofkszbilA#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%BE%9Ecss%E9%81%B8%E6%93%87%E5%99%A8%E4%B8%AD%E5%AE%9A%E7%BE%A9%E8%83%8C%E6%99%AF" target="_blank" rel="noopener">html&amp;CSS-插入(背景)圖片的作法-從css選擇器中定義背景</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;piece&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.piece</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>:white;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">0.25rem</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.piece-photo</span>&#123;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">0.25rem</span>;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: <span class="number">0.25rem</span>; </span><br><span class="line">    </span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../img/meal1.jpg"</span>);</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background-attachment</span>: scroll;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Education page</a><br><img src="https://i.imgur.com/icbcVjz.jpg" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-設置背景overlay" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -715,56 +772,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-JS-提升(Hoisting)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/JS-提升(Hoisting)/">JS-提升(Hoisting)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/JS-提升(Hoisting)/" class="article-date">
-	  <time datetime="2019-03-27T22:49:40.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JS-提升-Hoisting"><a href="#JS-提升-Hoisting" class="headerlink" title="JS-提升(Hoisting)"></a>JS-提升(Hoisting)</h1><p>javascript的執行環境分為兩階段，在執行程式碼(exection)之前，會經歷創建階段(creation)，在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」。</p>
-<ul>
-<li><h4 id="函式提升"><a href="#函式提升" class="headerlink" title="函式提升"></a>函式提升</h4>在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。</li>
-<li><h4 id="變數提升"><a href="#變數提升" class="headerlink" title="變數提升"></a>變數提升</h4>在創建階段，電腦的記憶體為a空出記憶體，可是他還不知道他的值為何，會先給予一個undefine的值，等到執行階段賦值時，才會將a的值放進記憶體中。也因此下方案例，印出a並不會出錯，只是它的值為undefine。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">b();</span><br><span class="line"><span class="keyword">var</span> num = <span class="number">6</span>; <span class="comment">//只要 num 有被宣告，就不會有錯誤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/z5usW8d.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -832,6 +839,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/17/Vue-(一)課程前言、(二)行前準備/">Vue-(一)課程前言、(二)行前準備</a></h6>
+              <span>April 17, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a></h6>
               <span>April 16, 2019</span>
             </div>
@@ -886,18 +905,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(1_3)本地端/">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></h6>
-              <span>April 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -916,7 +923,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
