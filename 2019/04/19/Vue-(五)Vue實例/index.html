@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(五)vue實例 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="5-1.創建Vue實例  (影片)「實例」為何？* 類別：廣泛的描述、藍圖 * 實例：具體的個體 1234567// 1.先描述Human類別Human;//Human是一種類別// 2.再創立個體，new是把類別產生一個實例的語法const me = new Human(); //me是一個實例const you = new Human(); //you是另外一個實例  創建Vue實例的語法12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(五)Vue實例">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/Vue-(五)Vue實例/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="5-1.創建Vue實例  (影片)「實例」為何？* 類別：廣泛的描述、藍圖 * 實例：具體的個體 1234567// 1.先描述Human類別Human;//Human是一種類別// 2.再創立個體，new是把類別產生一個實例的語法const me = new Human(); //me是一個實例const you = new Human(); //you是另外一個實例  創建Vue實例的語法12">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/YxkGB42.png">
+<meta property="og:image" content="https://i.imgur.com/GUDym8n.png">
+<meta property="og:updated_time" content="2019-04-19T07:43:11.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(五)Vue實例">
+<meta name="twitter:description" content="5-1.創建Vue實例  (影片)「實例」為何？* 類別：廣泛的描述、藍圖 * 實例：具體的個體 1234567// 1.先描述Human類別Human;//Human是一種類別// 2.再創立個體，new是把類別產生一個實例的語法const me = new Human(); //me是一個實例const you = new Human(); //you是另外一個實例  創建Vue實例的語法12">
+<meta name="twitter:image" content="https://i.imgur.com/YxkGB42.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(五)Vue實例" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(五)Vue實例
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(五)Vue實例/" class="article-date">
+	  <time datetime="2019-04-19T07:38:46.934Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="5-1-創建Vue實例-影片"><a href="#5-1-創建Vue實例-影片" class="headerlink" title="5-1.創建Vue實例  (影片)"></a>5-1.創建Vue實例  <a href="https://hiskio.com/courses/145/lectures/5365" target="_blank" rel="noopener">(影片)</a></h2><h3 id="「實例」為何？"><a href="#「實例」為何？" class="headerlink" title="「實例」為何？"></a>「實例」為何？</h3><pre><code>* 類別：廣泛的描述、藍圖
+* 實例：具體的個體
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 1.先描述Human類別</span></span><br><span class="line">Human;<span class="comment">//Human是一種類別</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.再創立個體，new是把類別產生一個實例的語法</span></span><br><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> Human(); <span class="comment">//me是一個實例</span></span><br><span class="line"><span class="keyword">const</span> you = <span class="keyword">new</span> Human(); <span class="comment">//you是另外一個實例</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="創建Vue實例的語法"><a href="#創建Vue實例的語法" class="headerlink" title="創建Vue實例的語法"></a>創建Vue實例的語法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也可以宣告一個變數，並將將new出來的實例，assign給該變數<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="5-2-元素-el-、掛載-mount-、模板-template-影片"><a href="#5-2-元素-el-、掛載-mount-、模板-template-影片" class="headerlink" title="5-2.元素(el)、掛載($mount)、模板(template)  (影片)"></a>5-2.元素(el)、掛載($mount)、模板(template)  <a href="https://hiskio.com/courses/145/lectures/5820" target="_blank" rel="noopener">(影片)</a></h2><h3 id="掛載-mount-？"><a href="#掛載-mount-？" class="headerlink" title="掛載(mount)？"></a>掛載(mount)？</h3><p><strong>掛載(mount)：將「vue實例」與「html元素」做連結</strong></p>
+<h3 id="創建Vue實例之初，在el中用css選擇器，找到元素"><a href="#創建Vue實例之初，在el中用css選擇器，找到元素" class="headerlink" title="創建Vue實例之初，在el中用css選擇器，找到元素"></a>創建Vue實例之初，在el中用<code>css選擇器</code>，找到元素</h3><p>元素通常只有一個，所以通常都用id，而非class<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;aaa&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt; //Hello</span><br><span class="line">&lt;div class=&quot;bbb&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt; //Hi</span><br><span class="line">&lt;div class=&quot;bbb&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt; //&#123;&#123;msg&#125;&#125; （一個vue實例只能掛載到一個元素上，所以這裡會出錯）</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#aaa'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        msg:<span class="string">'Hello'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> b = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'.bbb'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        msg:<span class="string">'Hi'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="創建Vue實例之初，在el中用元素的參照，找到元素"><a href="#創建Vue實例之初，在el中用元素的參照，找到元素" class="headerlink" title="創建Vue實例之初，在el中用元素的參照，找到元素"></a>創建Vue實例之初，在el中用<code>元素的參照</code>，找到元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &#123;&#123;message&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="built_in">document</span>.getElementById(<span class="string">'app'</span>),</span><br><span class="line">  data:&#123;</span><br><span class="line">    message:<span class="string">'Hello!'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上"><a href="#創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上" class="headerlink" title="創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上"></a>創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上</h3><p>宣告一個DOM元素，id命名為app<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &#123;&#123;message&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>先創建Vue實例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    message:<span class="string">'Hello!'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>之後再掛載到元素上</p>
+<ul>
+<li><p>方法1：（css選擇器寫法）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.$mount(<span class="string">'#app'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：（元素參照寫法）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.$mount(<span class="built_in">document</span>.getElementById(<span class="string">'app'</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="用template模板取代html元素？"><a href="#用template模板取代html元素？" class="headerlink" title="用template模板取代html元素？"></a>用template模板取代html元素？</h3><p>template裡面的字串內容被解析之後，會取代html元素中的內容，所以html元素可以是空的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  template:<span class="string">"&lt;div&gt;&lt;h1&gt;&#123;&#123;message&#125;&#125;&#123;&#123;message&#125;&#125;&lt;/h1&gt;&lt;/div&gt;"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    message:<span class="string">'Hello!'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-3-狀態-data-影片"><a href="#5-3-狀態-data-影片" class="headerlink" title="5-3.狀態(data) (影片)"></a>5-3.狀態(data) <a href="https://hiskio.com/courses/145/lectures/5366" target="_blank" rel="noopener">(影片)</a></h2><h3 id="Vue實例中同步宣告data"><a href="#Vue實例中同步宣告data" class="headerlink" title="Vue實例中同步宣告data"></a>Vue實例中同步宣告data</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    x:<span class="number">1</span>,</span><br><span class="line">    y:<span class="number">2</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="先宣告data，再assign到Vue實例中"><a href="#先宣告data，再assign到Vue實例中" class="headerlink" title="先宣告data，再assign到Vue實例中"></a>先宣告data，再assign到Vue實例中</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  x:<span class="number">1</span>,</span><br><span class="line">  y:<span class="number">2</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:data,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>data改為shorthand語法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  x:<span class="number">1</span>,</span><br><span class="line">  y:<span class="number">2</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>此時，vm.x等同於data.x，是同一個參照<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  x:<span class="number">1</span>,</span><br><span class="line">  y:<span class="number">2</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.x = <span class="number">5</span>;<span class="comment">//此時，data.x = 5</span></span><br><span class="line"><span class="built_in">console</span>.log(data.x === vm.x);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(vm.$data === data);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="5-4-方法-methods-影片"><a href="#5-4-方法-methods-影片" class="headerlink" title="5-4.方法(methods) (影片)"></a>5-4.方法(methods) <a href="https://hiskio.com/courses/145/lectures/5367" target="_blank" rel="noopener">(影片)</a></h2><h3 id="Vue實例中宣告方法"><a href="#Vue實例中宣告方法" class="headerlink" title="Vue實例中宣告方法"></a>Vue實例中宣告方法</h3><p><strong>注意：methods裡面不能用箭頭函式，因為箭頭函式中的this等於global或window，會出錯</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;number&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;add&quot;&gt;+Add &#123;&#123;count&#125;&#125;&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    number:<span class="number">0</span>,</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.number += <span class="keyword">this</span>.count;</span><br><span class="line">      <span class="keyword">this</span>.count += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="呼叫methods中的方法"><a href="#呼叫methods中的方法" class="headerlink" title="呼叫methods中的方法"></a>呼叫methods中的方法</h3><p><strong>注意：methods中的函式命名不得與data的屬性命名相同，會出錯</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;number&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button v-on:click=&quot;add2&quot;&gt;+Add &#123;&#123;count&#125;&#125;&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    number:<span class="number">0</span>,</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.number += <span class="keyword">this</span>.count;</span><br><span class="line">      <span class="keyword">this</span>.count += <span class="number">1</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    add2()&#123;</span><br><span class="line">      <span class="keyword">this</span>.add();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-5-計算屬性-computed-影片"><a href="#5-5-計算屬性-computed-影片" class="headerlink" title="5-5.計算屬性(computed) (影片)"></a>5-5.計算屬性(computed) <a href="https://hiskio.com/courses/145/lectures/5368" target="_blank" rel="noopener">(影片)</a></h2><p>computed代表計算之後的屬性，用物件的形式宣告</p>
+<h3 id="computed中的函式，一定要return一個值"><a href="#computed中的函式，一定要return一個值" class="headerlink" title="computed中的函式，一定要return一個值"></a>computed中的函式，一定要return一個值</h3><p>==注意：==<br>    computed裡面不能用箭頭函式，因為箭頭函式中的this等於global或window，會出錯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;number&quot; v-model=&apos;a&apos;&gt;</span><br><span class="line">  +</span><br><span class="line">  &lt;input type=&quot;number&quot; v-model=&apos;b&apos;&gt;</span><br><span class="line">  =</span><br><span class="line">  &lt;span&gt;&#123;&#123;c&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在computed中有一個函式c，其中有使用到a和b，會自動偵聽a與b，當a或b有變動時，會自動重新計算c的返回值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="number">0</span>,</span><br><span class="line">    b:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    c()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a,<span class="number">10</span>)+<span class="built_in">parseInt</span>(<span class="keyword">this</span>.b,<span class="number">10</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="computed中也可以宣告物件，物件中有getter和setter"><a href="#computed中也可以宣告物件，物件中有getter和setter" class="headerlink" title="computed中也可以宣告物件，物件中有getter和setter"></a>computed中也可以宣告物件，物件中有getter和setter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;number&quot; v-model=&apos;a&apos;&gt;</span><br><span class="line">  +</span><br><span class="line">  &lt;input type=&quot;number&quot; v-model=&apos;b&apos;&gt;</span><br><span class="line">  =</span><br><span class="line">  &lt;input type=&quot;number&quot; v-model=&apos;c&apos;&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &#123;&#123;a&#125;&#125; + &#123;&#123;b&#125;&#125; = &#123;&#123;c&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="number">0</span>,</span><br><span class="line">    b:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    c:&#123;</span><br><span class="line">      <span class="keyword">get</span>()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a,<span class="number">10</span>) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.b,<span class="number">10</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span>(value)&#123;</span><br><span class="line">        <span class="keyword">this</span>.b = <span class="built_in">parseInt</span>(value,<span class="number">10</span>) - <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a,<span class="number">10</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-6-偵聽器-watch-影片"><a href="#5-6-偵聽器-watch-影片" class="headerlink" title="5-6.偵聽器(watch) (影片)"></a>5-6.偵聽器(watch) <a href="https://hiskio.com/courses/145/lectures/5369" target="_blank" rel="noopener">(影片)</a></h2><h3 id="watch-可以偵聽-data-與-computed-的屬性或方法變動"><a href="#watch-可以偵聽-data-與-computed-的屬性或方法變動" class="headerlink" title="watch 可以偵聽 data 與 computed 的屬性或方法變動"></a>watch 可以偵聽 data 與 computed 的屬性或方法變動</h3><p>當被偵聽的“data中的屬性”有變動，就會觸發在watch中同名的函式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line"> &lt;input/ type=&quot;number&quot; v-model=&quot;value&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">   value:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    value(val, oldVal)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span>----&gt;<span class="subst">$&#123;val&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>當被偵聽的“computed中的屬性或方法”有變動，就會觸發在watch中同名的函式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="number">0</span>,</span><br><span class="line">    b:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    c()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.a, <span class="number">10</span>) + <span class="built_in">parseInt</span>(<span class="keyword">this</span>.b, <span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    c(val, oldVal)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span>----&gt;<span class="subst">$&#123;val&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="進階用法：將watch中的屬性宣告為物件"><a href="#進階用法：將watch中的屬性宣告為物件" class="headerlink" title="進階用法：將watch中的屬性宣告為物件"></a>進階用法：將watch中的屬性宣告為物件</h3><p>watch中的value被改寫為一個物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    value:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    value:&#123;</span><br><span class="line">      handler(val,oldVal)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span>----&gt;<span class="subst">$&#123;val&#125;</span>`</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>在物件中增加<code>immediate屬性</code>(true or false)<br>true:在Vue實例被創建時，就會跑這個watch</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    value:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    value:&#123;</span><br><span class="line">      handler(val,oldVal)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal&#125;</span>----&gt;<span class="subst">$&#123;val&#125;</span>`</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      immediate:<span class="literal">true</span>,<span class="comment">//所以會馬上console出"undefined----&gt;0"</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在物件中增加<code>deep屬性</code>(true or false)<br>true:當被偵聽的屬性為物件或陣列時，會去偵聽該物件或陣列裡面一層的值是否有被改變</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input/ type=&quot;number&quot; v-model=&quot;value.a&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>被偵聽的value其實沒有改變，被改變的是value物件中的a，因此要新增<code>deep屬性</code>去偵聽value物件內層的a值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    value:&#123;</span><br><span class="line">      a:<span class="number">0</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch:&#123;</span><br><span class="line">    value:&#123;</span><br><span class="line">      handler(val,oldVal)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;oldVal.a&#125;</span>----&gt;<span class="subst">$&#123;val.a&#125;</span>`</span>);<span class="comment">//"1----&gt;1"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      deep:<span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="5-7-生命週期-影片"><a href="#5-7-生命週期-影片" class="headerlink" title="5-7.生命週期 (影片)"></a>5-7.生命週期 <a href="https://hiskio.com/courses/145/lectures/5370" target="_blank" rel="noopener">(影片)</a></h2><p>Vue實例從創建、更新、消滅的過程中，中間過程會去執行生命週期函式(lifecycle hooks function)<br><img src="https://i.imgur.com/YxkGB42.png" alt></p>
+<p><strong>主要四個步驟：</strong><br><strong>1.建立—&gt; 2.掛載—&gt; 3.更新—&gt; 4.消滅</strong></p>
+<ol>
+<li>建立（唯二兩個在server side rendering）<ul>
+<li>beforeCreate()：Vue建立之前</li>
+<li>created()：Vue建立之後，data與computed中的屬性放到Vue實例中，此時用this.拿得到data與computed中的屬性</li>
+</ul>
+</li>
+<li><p>掛載 </p>
+<ul>
+<li>beforeMount()：掛載之前</li>
+<li>mounted()：掛載之後，經常用ajax取得資料 並且把資料塞進 data<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">   list:[],</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    $.getJSON(<span class="string">'...'</span>,(data)=&gt;&#123;</span><br><span class="line">      <span class="keyword">this</span>.list = data;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>更新</p>
+<ul>
+<li>beforeUpdate()：更新之前</li>
+<li>updated()：更新之後</li>
+</ul>
+</li>
+<li>消滅<ul>
+<li>beforeDestroy():消滅之前</li>
+<li>destroyed()：消滅之後</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-8-實作「密碼強度檢查」-影片"><a href="#5-8-實作「密碼強度檢查」-影片" class="headerlink" title="5-8.實作「密碼強度檢查」 (影片)"></a>5-8.實作「密碼強度檢查」 <a href="https://hiskio.com/courses/145/lectures/5472" target="_blank" rel="noopener">(影片)</a></h2><ul>
+<li><a href="https://codepen.io/leah-lin/pen/pYyXzY" target="_blank" rel="noopener">codepen實作結果</a><br><img src="https://i.imgur.com/GUDym8n.png" alt><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line"> &lt;input id=&quot;inputBox&quot; v-bind:type=&quot;showType&quot; v-model=&quot;password&quot; placeholder=&quot;請輸入密碼&quot;/&gt;</span><br><span class="line">  &lt;button id=&quot;statusBtn&quot; v-on:click=&quot;changeStatus&quot;&gt;&#123;&#123;statusBtn&#125;&#125;&lt;/button&gt;</span><br><span class="line">  &lt;button&gt;確定送出&lt;/button&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;span&gt;密碼強度:&#123;&#123;strength&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    password:<span class="string">''</span>,</span><br><span class="line">    show:<span class="literal">false</span>,</span><br><span class="line">    statusBtn:<span class="string">'顯示密碼'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    changeStatus()&#123;</span><br><span class="line">        <span class="keyword">this</span>.show = !<span class="keyword">this</span>.show;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    showType()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.show) &#123;</span><br><span class="line">        <span class="keyword">this</span>.statusBtn = <span class="string">'隱藏密碼'</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'text'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.statusBtn = <span class="string">'顯示密碼'</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'password'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    strength()&#123;</span><br><span class="line">      <span class="keyword">let</span> score = <span class="keyword">this</span>.password.length; </span><br><span class="line">      <span class="keyword">if</span>(<span class="regexp">/[A-Z]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="regexp">/[a-z]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="regexp">/[0-9]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="regexp">/[^A-Za-z0-9]/</span>.test(<span class="keyword">this</span>.password)) score *= <span class="number">1.25</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">if</span>(score&gt;<span class="number">40</span>) <span class="keyword">return</span> <span class="string">"Perfect"</span>;</span><br><span class="line">      <span class="keyword">if</span>(score&gt;<span class="number">30</span>) <span class="keyword">return</span> <span class="string">"Great"</span>;</span><br><span class="line">      <span class="keyword">if</span>(score&gt;<span class="number">20</span>) <span class="keyword">return</span> <span class="string">"Good"</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Weak"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="5-9-片尾彩蛋：你聽過Single-source-of-truth嗎？-影片"><a href="#5-9-片尾彩蛋：你聽過Single-source-of-truth嗎？-影片" class="headerlink" title="5-9.片尾彩蛋：你聽過Single source of truth嗎？ (影片)"></a>5-9.片尾彩蛋：你聽過Single source of truth嗎？ <a href="https://hiskio.com/courses/145/lectures/5466" target="_blank" rel="noopener">(影片)</a></h2><ul>
+<li>以下這種寫法，要找到有‘被選擇的項目’，有兩個data參照來源<ol>
+<li>a,b,c各自的值</li>
+<li>selected陣列<br>有兩種參照來源就不符合single source原則<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; :check=&apos;a&apos; @change=&quot;changeStatus(&apos;a&apos;)&quot;&gt;A:&#123;&#123;a&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; :check=&quot;b&quot; @change=&quot;changeStatus(&apos;b&apos;)&quot;&gt;B:&#123;&#123;b&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; :check=&quot;c&quot; @change=&quot;changeStatus(&apos;c&apos;)&quot;&gt;C:&#123;&#123;c&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;span&gt;Selected：&#123;&#123;selected&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="literal">false</span>,</span><br><span class="line">    b:<span class="literal">false</span>,</span><br><span class="line">    c:<span class="literal">false</span>,</span><br><span class="line">    selected:[],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    changeStatus(item)&#123;</span><br><span class="line">      <span class="keyword">const</span> index = <span class="keyword">this</span>.selected.indexOf(item);</span><br><span class="line">      <span class="keyword">if</span>(index == <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.selected.push(item);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.selected.splice(index, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>[item] = !<span class="keyword">this</span>[item] ;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>為了符合single source原則，將selected改寫為computed，確保‘被選擇的項目’資料單一一致</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="literal">false</span>,</span><br><span class="line">    b:<span class="literal">false</span>,</span><br><span class="line">    c:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    changeStatus(item)&#123;</span><br><span class="line">      <span class="keyword">this</span>[item] = !<span class="keyword">this</span>[item] ;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    selected()&#123;</span><br><span class="line">      <span class="keyword">const</span> result = [];</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.a) result.push(<span class="string">'A'</span>);</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.b) result.push(<span class="string">'B'</span>);</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.c) result.push(<span class="string">'C'</span>);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更進一步簡化程式：將input的data改為v-model雙向綁定，且改用filter寫法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&apos;a&apos;&gt;A:&#123;&#123;a&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;b&quot;&gt;B:&#123;&#123;b&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;c&quot;&gt;C:&#123;&#123;c&#125;&#125;&lt;/input&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;span&gt;Selected options:&#123;&#123;selected&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    a:<span class="literal">false</span>,</span><br><span class="line">    b:<span class="literal">false</span>,</span><br><span class="line">    c:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    selected()&#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>].filter(<span class="function"><span class="params">item</span> =&gt;</span> <span class="keyword">this</span>[item])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="學習來源"><a href="#學習來源" class="headerlink" title="學習來源"></a>學習來源</h2><ul>
+<li>Hiskio-姚偉揚老師-<a href="https://hiskio.com/courses/145" target="_blank" rel="noopener">精通 VueJS 前端開發完全指南</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/19/Vue-(四)模板語法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue-(四)模板語法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-創建Vue實例-影片"><span class="nav-number">1.</span> <span class="nav-text">5-1.創建Vue實例  (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#「實例」為何？"><span class="nav-number">1.1.</span> <span class="nav-text">「實例」為何？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#創建Vue實例的語法"><span class="nav-number">1.1.1.</span> <span class="nav-text">創建Vue實例的語法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-元素-el-、掛載-mount-、模板-template-影片"><span class="nav-number">2.</span> <span class="nav-text">5-2.元素(el)、掛載($mount)、模板(template)  (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#掛載-mount-？"><span class="nav-number">2.1.</span> <span class="nav-text">掛載(mount)？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#創建Vue實例之初，在el中用css選擇器，找到元素"><span class="nav-number">2.2.</span> <span class="nav-text">創建Vue實例之初，在el中用css選擇器，找到元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#創建Vue實例之初，在el中用元素的參照，找到元素"><span class="nav-number">2.3.</span> <span class="nav-text">創建Vue實例之初，在el中用元素的參照，找到元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上"><span class="nav-number">2.4.</span> <span class="nav-text">創造Vue實例時先不掛載，之後當需要的時候再掛載到元素上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用template模板取代html元素？"><span class="nav-number">2.5.</span> <span class="nav-text">用template模板取代html元素？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-狀態-data-影片"><span class="nav-number">3.</span> <span class="nav-text">5-3.狀態(data) (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue實例中同步宣告data"><span class="nav-number">3.1.</span> <span class="nav-text">Vue實例中同步宣告data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#先宣告data，再assign到Vue實例中"><span class="nav-number">3.2.</span> <span class="nav-text">先宣告data，再assign到Vue實例中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-方法-methods-影片"><span class="nav-number">4.</span> <span class="nav-text">5-4.方法(methods) (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue實例中宣告方法"><span class="nav-number">4.1.</span> <span class="nav-text">Vue實例中宣告方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#呼叫methods中的方法"><span class="nav-number">4.2.</span> <span class="nav-text">呼叫methods中的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-計算屬性-computed-影片"><span class="nav-number">5.</span> <span class="nav-text">5-5.計算屬性(computed) (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed中的函式，一定要return一個值"><span class="nav-number">5.1.</span> <span class="nav-text">computed中的函式，一定要return一個值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed中也可以宣告物件，物件中有getter和setter"><span class="nav-number">5.2.</span> <span class="nav-text">computed中也可以宣告物件，物件中有getter和setter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-偵聽器-watch-影片"><span class="nav-number">6.</span> <span class="nav-text">5-6.偵聽器(watch) (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#watch-可以偵聽-data-與-computed-的屬性或方法變動"><span class="nav-number">6.1.</span> <span class="nav-text">watch 可以偵聽 data 與 computed 的屬性或方法變動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階用法：將watch中的屬性宣告為物件"><span class="nav-number">6.2.</span> <span class="nav-text">進階用法：將watch中的屬性宣告為物件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-生命週期-影片"><span class="nav-number">7.</span> <span class="nav-text">5-7.生命週期 (影片)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-8-實作「密碼強度檢查」-影片"><span class="nav-number">8.</span> <span class="nav-text">5-8.實作「密碼強度檢查」 (影片)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-9-片尾彩蛋：你聽過Single-source-of-truth嗎？-影片"><span class="nav-number">9.</span> <span class="nav-text">5-9.片尾彩蛋：你聽過Single source of truth嗎？ (影片)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#學習來源"><span class="nav-number">10.</span> <span class="nav-text">學習來源</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
