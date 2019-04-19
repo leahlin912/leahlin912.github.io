@@ -158,6 +158,63 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-Box-sizing屬性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/CSS-Box-sizing屬性/">CSS-Box-sizing屬性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/CSS-Box-sizing屬性/" class="article-date">
+	  <time datetime="2019-03-27T22:50:10.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-Box-sizing屬性"><a href="#CSS-Box-sizing屬性" class="headerlink" title="CSS-Box-sizing屬性"></a>CSS-Box-sizing屬性</h1><h3 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h3><p>在預設的情況<code>box-sizing: content-box</code>，padding的寬高，會被計算到元素的長寬中;<br>如果希望元素的內距(padding)和外框(margin)不會增加元素本身的寬高，則可以使用<code>box-sizing: content-box</code></p>
+<h3 id="before"><a href="#before" class="headerlink" title="before"></a>before</h3><p>瀏覽器預設值，<code>box-sizing</code>屬性，其值為<code>content-box</code></p>
+<ul>
+<li><p>==content-box：元素的實際寬高會再加上padding 和 border==</p>
+<p>  定義box1的寬為300px，高為50px，可是右方用瀏覽器查看元素時，發現尺寸變成330*80，是因為預設的情況，瀏覽將padding與border也算進元素中<br><img src="https://i.imgur.com/ZD7jjVK.png" alt></p>
+</li>
+</ul>
+<h3 id="after"><a href="#after" class="headerlink" title="after"></a>after</h3><p>定義所有元素的<code>box-sizing</code>屬性，其值為<code>border-box</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>==border-box：元素的實際寬高不受padding 和 border影響==</p>
+<p>  padding不會被增加到元素中，而border則算在元素之內，所以元素實際寬高仍保持為300*50<br>  <img src="https://i.imgur.com/Lzr2MWz.png" alt></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-JS-提升(Hoisting)" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -795,6 +852,18 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(三)基本概念/">(no title)</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/17/Vue-(一)課程前言、(二)行前準備/">Vue-(一)課程前言、(二)行前準備</a></h6>
               <span>April 17, 2019</span>
             </div>
@@ -849,18 +918,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></h6>
-              <span>April 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -879,7 +936,7 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

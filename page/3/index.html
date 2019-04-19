@@ -158,6 +158,69 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-常見display屬性的值" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/CSS-常見display屬性的值/">CSS-常見display屬性的值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/CSS-常見display屬性的值/" class="article-date">
+	  <time datetime="2019-04-04T01:15:38.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-常見display屬性的值"><a href="#CSS-常見display屬性的值" class="headerlink" title="CSS-常見display屬性的值"></a>CSS-常見display屬性的值</h1><h3 id="display-none"><a href="#display-none" class="headerlink" title="display: none"></a>display: none</h3><ul>
+<li>display設為none這個東西就不見了，不佔空間。</li>
+<li>補充：<code>visibility:hidden</code>是隱形看不見，不過還是有佔空間。</li>
+</ul>
+<h3 id="display-inline"><a href="#display-inline" class="headerlink" title="display: inline"></a>display: inline</h3><ul>
+<li><code>display : inline</code> 的元素連在一起會在同一行，「<strong>不會換行</strong>」。</li>
+<li>要讓 display : inline 元素水平置中的方式是在此元素的父元素加上 <code>text-align : center</code>。</li>
+<li><code>&lt;a&gt;</code>、<code>&lt;span&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;img&gt;</code>這幾個 HTML 元素預設的 display 屬性是 inline </li>
+<li>可以針對左右做縮排(margin-left 、 margin-right 、 padding-left 、 padding-right「<strong>有效</strong>」)</li>
+<li>上下縮排會失效，且寬高為內容本身寬高，無法自定義寬高。 (margin-top 、 margin-bottom 、 padding-top 、 padding-bottom 、 width 、 height 、 background-image 皆「<strong>無效</strong>」) </li>
+</ul>
+<h3 id="display-block"><a href="#display-block" class="headerlink" title="display: block"></a>display: block</h3><ul>
+<li>不論前後元素為何，<code>display:block</code> 元素會直接「<strong>換行</strong>」開始。</li>
+<li><code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;h1&gt;</code>、<code>&lt;h2&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;img&gt;</code>這幾個 HTML 元素預設的 display 屬性是 block </li>
+<li>可以自定義寬高或縮排(margin 、 padding 、 width 、 height 、 background-image 皆「<strong>有效</strong>」)</li>
+</ul>
+<h3 id="display-inline-block"><a href="#display-inline-block" class="headerlink" title="display: inline-block"></a>display: inline-block</h3><ul>
+<li>內部元素水平排列，而且不需要額外設定clear，也不會讓接著的元素疊上來。</li>
+<li>可以理解為：外面是inline，裡面是block。所以元素「<strong>不會換行</strong>」，但是又可以設定元素的padding-top 、 padding-bottom 、 width 、 height 、 background-image 。</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Bootstrap-排版Grid system" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -714,111 +777,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-CSS-刻出一個timeline" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-刻出一個timeline/">CSS-刻出一個timeline</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-刻出一個timeline/" class="article-date">
-	  <time datetime="2019-04-02T03:57:24.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-刻出一個timeline"><a href="#CSS-刻出一個timeline" class="headerlink" title="CSS-刻出一個timeline"></a>CSS-刻出一個timeline</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>設定一個最外層div空間</li>
-<li>直線：利用偽元素(Pseudo Element)」<code>::after</code>的繼承特性，會繼承原本元素的屬性，畫出一個與空間一樣高的元素。定義該偽元素的邊框，製作出直線的效果。並且運用絕對定位，讓直線可以定位在中間。</li>
-<li>時間文字：在卡片前後各自放上時間開始、結束時間的div空間</li>
-<li>時間圓圈：利用偽元素<code>::before</code>繪製出，以「時間文字」座位定位參考點，使用絕對定位讓兩這位置呈現水平對齊。</li>
-<li>卡片：最後再針對自己的喜好定義卡片的樣式</li>
-<li>若要製作出左右交叉的效果，再使用class分類針對左右交叉的卡片各自做定位定義</li>
-<li>最後在針對小螢幕，使用＠medis定義位置、樣式<br><img src="https://i.imgur.com/0FSXH4M.png" alt></li>
-</ul>
-<h3 id="實現"><a href="#實現" class="headerlink" title="實現"></a>實現</h3><ul>
-<li><p>html佈局：參考要呈現畫面的效果，由上到下規劃好div空間</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;timeline-section&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;container left&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 MAR&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 FEB&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>timeline-section<br>因為最外層的timeline-section空間，將被用來作偽元素timeline的定位基準點，所以切記要定義<code>position</code>屬性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.timeline-section</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#EDEEF0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>timeline</p>
-<ol>
-<li>使用偽元素<code>::after</code>，製作出一個timeline元素</li>
-<li>其定位方式為絕對定位<code>position: absolute</code>，才可以製作出元素重疊的效果(畫面中呈現，<code>timeline::after</code>是重疊在<code>timeline-section</code>上方)</li>
-<li>使用<code>top</code>、<code>left</code>、<code>bottom</code>、<code>right</code>定位</li>
-<li>使用<code>height: 100%</code>，是強制它的高度跟一樣高</li>
-<li>定義border，繪製出線條</li>
-<li>因為我們運用這個偽元素只是要用邊框製造出線條，其中並不會放置內容物，所以<code>content</code>屬性定義為空</li>
-<li>若想製作出實心效果，定義<code>width</code>為0;相反地，如果想要有空心效果，可以定義為其他數值，也可以定義<code>background-color</code>填充中間的色彩<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.timeline</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">3px</span> solid <span class="number">#56332e</span>;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#56332e</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">3px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>time<br>因為time會被內層元素用來做定位，所以切記要定義<code>position</code>屬性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.time</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bolder;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.time</span> <span class="selector-tag">span</span>,&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#56332e</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:-<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>時間圓圈</p>
-<ol>
-<li>使用偽元素<code>::before</code>，製作出一個元素</li>
-<li>其定位方式為絕對定位<code>position: absolute</code>，才可以製作出元素重疊的效果</li>
-<li>為了確保出現在最上層，可以定義z軸</li>
-<li>定義該空間的寬高</li>
-<li>繪製該空間邊框<code>border</code>、圓角<code>border-radius</code></li>
-<li>因為我們運用這個偽元素只是要用邊框製造出線條，其中並不會放置內容物，所以<code>content</code>屬性定義為空<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;   </span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">4px</span> solid <span class="number">#56332e</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: white;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>card<br>依個人喜好，定義好卡片的樣式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">20px</span> <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#56332e</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">1px</span> <span class="number">15px</span> <span class="built_in">rgba</span>(86, 51, 46, 0.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>左右交叉</p>
-</li>
-</ul>
-<ol>
-<li>額外在html中給予<code>right</code>、<code>left</code>類別</li>
-<li>利用css選擇器，針對左右的卡片的內容物，給予不同的定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;timeline-section&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;container left&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 MAR&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 FEB&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;container right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 MAR&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;time&quot;&gt;</span><br><span class="line">            &lt;span&gt;2019 FEB&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> <span class="selector-class">.content</span>&#123;</span><br><span class="line">    <span class="attribute">padding-right</span>:<span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> <span class="selector-class">.time</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">    <span class="attribute">left</span>: -<span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">18px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.right</span> <span class="selector-class">.content</span>&#123;</span><br><span class="line">    <span class="attribute">padding-left</span>:<span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> <span class="selector-class">.time</span>&#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">80px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">left</span>:-<span class="number">92px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/1Ef3bQI.png" alt></p>
-<ul>
-<li>針對小螢幕做調整<br>如果螢幕尺寸低於380px，就套用以下設定</li>
-</ul>
-<p>註：如果針對「(max-width: 576px)」有額外定義，程式碼需寫在上方，數字越大，要先寫<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">380px</span>)&#123;</span><br><span class="line">    <span class="selector-class">.timeline</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">        <span class="attribute">left</span>:<span class="number">60px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.container</span>&#123;</span><br><span class="line">        <span class="attribute">padding-left</span>: <span class="number">10px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.left</span> <span class="selector-class">.content</span>, <span class="selector-id">#timeline-section</span> <span class="selector-class">.right</span> <span class="selector-class">.content</span>&#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">70%</span>;</span><br><span class="line">        <span class="attribute">left</span>:<span class="number">25%</span>;</span><br><span class="line">        <span class="attribute">text-align</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.left</span> <span class="selector-class">.time</span>, <span class="selector-id">#timeline-section</span> <span class="selector-class">.right</span> <span class="selector-class">.time</span>&#123;</span><br><span class="line">        <span class="attribute">left</span>:<span class="number">30px</span>;</span><br><span class="line">        <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">        <span class="attribute">text-align</span>: right;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">15px</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.left</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span>, <span class="selector-id">#timeline-section</span> <span class="selector-class">.right</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">        <span class="attribute">left</span>:-<span class="number">30px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.right</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>,<span class="selector-id">#timeline-section</span> <span class="selector-class">.left</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">        <span class="attribute">text-align</span>: right;</span><br><span class="line">        <span class="attribute">left</span>: <span class="number">40px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-id">#timeline-section</span> <span class="selector-class">.right</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>, <span class="selector-id">#timeline-section</span> <span class="selector-class">.left</span> <span class="selector-class">.time</span> <span class="selector-tag">span</span><span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">        <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: white;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#2B6073</span>;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/Z6Nhssj.png" alt></p>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Programing section</a><br><img src="https://i.imgur.com/HCZh0So.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -886,6 +844,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(三)基本概念/">(no title)</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/17/Vue-(一)課程前言、(二)行前準備/">Vue-(一)課程前言、(二)行前準備</a></h6>
               <span>April 17, 2019</span>
             </div>
@@ -940,18 +910,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></h6>
-              <span>April 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -970,7 +928,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
