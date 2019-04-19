@@ -158,6 +158,88 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vue-(九)事件處理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(九)事件處理/" class="article-date">
+	  <time datetime="2019-04-19T07:49:44.233Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="9-1-處理事件的兩種方式-影片"><a href="#9-1-處理事件的兩種方式-影片" class="headerlink" title="9-1.處理事件的兩種方式 (影片)"></a>9-1.處理事件的兩種方式 <a href="https://hiskio.com/courses/145/lectures/5385" target="_blank" rel="noopener">(影片)</a></h2><h3 id="在methods中定義函式方法"><a href="#在methods中定義函式方法" class="headerlink" title="在methods中定義函式方法"></a>在methods中定義函式方法</h3><p>當執行內容較多時，建議定義為函式方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;add&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="直接改變data中的變數"><a href="#直接改變data中的變數" class="headerlink" title="直接改變data中的變數"></a>直接改變data中的變數</h3><p>當執行內容簡短時，可以直接改變屬性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;count++&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-2-偵聽滑鼠事件-影片"><a href="#9-2-偵聽滑鼠事件-影片" class="headerlink" title="9-2.偵聽滑鼠事件 (影片)"></a>9-2.偵聽滑鼠事件 <a href="https://hiskio.com/courses/145/lectures/5384" target="_blank" rel="noopener">(影片)</a></h2><h3 id="v-on綁定事件"><a href="#v-on綁定事件" class="headerlink" title="v-on綁定事件"></a>v-on綁定事件</h3><p><code>v-on:click=&quot;&quot;</code>簡寫為<code>@:click=&quot;&quot;</code></p>
+<h3 id="其他滑鼠事件"><a href="#其他滑鼠事件" class="headerlink" title="其他滑鼠事件"></a>其他滑鼠事件</h3><ul>
+<li>mouseover：滑鼠經過</li>
+<li>mouseout：滑鼠移出</li>
+<li>mousedown:滑鼠點下</li>
+<li>mouseup:滑鼠點下後‘放開’</li>
+<li>mousemove：滑鼠在其上方移動時</li>
+</ul>
+<hr>
+<h2 id="9-3-偵聽圖片的load事件-影片"><a href="#9-3-偵聽圖片的load事件-影片" class="headerlink" title="9-3.偵聽圖片的load事件 (影片)"></a>9-3.偵聽圖片的load事件 <a href="https://hiskio.com/courses/145/lectures/5386" target="_blank" rel="noopener">(影片)</a></h2><p>偵聽圖片loading前後，回傳不同的class樣式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-if</span>=<span class="string">"loading"</span>&gt;</span>loading<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-else</span>&gt;</span>complete<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> </span></span><br><span class="line"><span class="tag">     <span class="attr">:class</span>=<span class="string">'imgClass'</span></span></span><br><span class="line"><span class="tag">     @<span class="attr">load</span>=<span class="string">"loading=false"</span>  </span></span><br><span class="line"><span class="tag">     <span class="attr">src</span>=<span class="string">"https://loremflickr.com/g/320/240/paris"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.image</span>&#123;</span><br><span class="line">  <span class="attribute">transition</span>: all <span class="number">1s</span>;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.image</span><span class="selector-class">.hide</span>&#123;</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(3) <span class="built_in">rotate</span>(180deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    loading:<span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    imgClass()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.loading)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image hide'</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen"><a href="#示範練習-codepen" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/XGaYpv" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-4-偵聽按鍵事件-影片"><a href="#9-4-偵聽按鍵事件-影片" class="headerlink" title="9-4.偵聽按鍵事件 (影片)"></a>9-4.偵聽按鍵事件 <a href="https://hiskio.com/courses/145/lectures/5915" target="_blank" rel="noopener">(影片)</a></h2><h3 id="鍵盤事件"><a href="#鍵盤事件" class="headerlink" title="鍵盤事件"></a>鍵盤事件</h3><ul>
+<li>keydown：按鍵被‘按下’時</li>
+<li>keyup：按鍵被按下後‘彈起’時<h3 id="修飾符-定義按鍵"><a href="#修飾符-定義按鍵" class="headerlink" title="修飾符 定義按鍵"></a>修飾符 定義按鍵</h3></li>
+<li>v-on:keydown.enter<br>(當「enter」按鍵被按下時)<h3 id="修飾符-防止按鍵內容被輸入"><a href="#修飾符-防止按鍵內容被輸入" class="headerlink" title="修飾符 防止按鍵內容被輸入"></a>修飾符 防止按鍵內容被輸入</h3></li>
+<li>v-on:keydown.a.prevent<br>(當「a」按鍵被按下時，但a的內容不會被放入input中)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input v-model=&quot;input&quot; v-on:keyup.enter=&quot;add&quot;/&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in todo&quot;&gt;&#123;&#123;item&#125;&#125;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">  input:<span class="string">''</span>,</span><br><span class="line">  todo:[],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.todo.push(<span class="keyword">this</span>.input);</span><br><span class="line">      <span class="keyword">this</span>.input = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen-1"><a href="#示範練習-codepen-1" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/moBXmR" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-5-便利的修飾符語法-影片"><a href="#9-5-便利的修飾符語法-影片" class="headerlink" title="9-5.便利的修飾符語法 (影片)"></a>9-5.便利的修飾符語法 <a href="https://hiskio.com/courses/145/lectures/5387" target="_blank" rel="noopener">(影片)</a></h2><h3 id="prevent：不執行預設效果"><a href="#prevent：不執行預設效果" class="headerlink" title=".prevent：不執行預設效果"></a>.prevent：不執行預設效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick(event)&#123;</span><br><span class="line">      event.preventDefault();</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.prevent</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click.prevent=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick()&#123;</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="stop：不讓event傳到外層"><a href="#stop：不讓event傳到外層" class="headerlink" title=".stop：不讓event傳到外層"></a>.stop：不讓event傳到外層</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click=&quot;clickA&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click=&quot;clickB&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click=&quot;clickC&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">2px</span> solid blue;</span><br><span class="line">  <span class="attribute">min-width</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">min-height</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">'null'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    clickA(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'A'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickB(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'B'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickC(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'C'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.stop</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="self：只執行自己發出的event"><a href="#self：只執行自己發出的event" class="headerlink" title=".self：只執行自己發出的event"></a>.self：只執行自己發出的event</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="once：只執行一次"><a href="#once：只執行一次" class="headerlink" title=".once：只執行一次"></a>.once：只執行一次</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;num&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click.once=&quot;num+=1&quot;&gt;+Add &lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    num:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="更多修飾符，參考-Vue文件"><a href="#更多修飾符，參考-Vue文件" class="headerlink" title="更多修飾符，參考(Vue文件)"></a>更多修飾符，參考<a href="https://vuejs.org/v2/api/#v-on" target="_blank" rel="noopener">(Vue文件)</a></h3><p><img src="https://i.imgur.com/u6Cz86Y.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Vue-(八)列表渲染" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1053,95 +1135,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-jQuery-事件處理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/16/jQuery-事件處理/">jQuery-事件處理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/16/jQuery-事件處理/" class="article-date">
-	  <time datetime="2019-04-16T10:49:25.993Z" itemprop="datePublished">April 16, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="事件處理函式"><a href="#事件處理函式" class="headerlink" title="事件處理函式"></a>事件處理函式</h2><h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    任意處理程序</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
-<li><code>on()</code>是設定「當某<strong>事件</strong>發生時，執行某<strong>指令</strong>」的方法。<ul>
-<li>第一個參數是「事件類型(Event Type)」：事件觸發的條件</li>
-<li>第二個參數是「處理程序(Event Handler)」：事件被觸發後，接著要调用的方法。</li>
-</ul>
-</li>
-</ul>
-<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
-<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
-<li>針對jQuery物件呼叫<code>on()</code>方法</li>
-<li>在<code>on()</code>方法中傳入兩個參數，定義要被觸發的「事件類型」以及接下來要執行的「處理程序」</li>
-</ol>
-<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><p>當滑鼠移入<code>#typo</code>，接著會執行：透過css樣式修改<code>#typo</code>的顏色</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多個處理程序"><a href="#多個處理程序" class="headerlink" title="多個處理程序"></a>多個處理程序</h2><p>在<code>.on()</code>方法中的第一個參數「事件類型」被觸發之後，第二個參數「處理程序函式」中可以執行數個個別處理的程序</p>
-<h3 id="語法結構-1"><a href="#語法結構-1" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    處理1;</span><br><span class="line">    處理2;</span><br><span class="line">    處理3...;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="簡易範例-1"><a href="#簡易範例-1" class="headerlink" title="簡易範例"></a>簡易範例</h3><ul>
-<li>當滑鼠移入<code>#typo</code>，接著會執行：<ul>
-<li>透過css樣式修改<code>#typo</code>的顏色</li>
-<li>透過css樣式修改<code>header</code>的背景顏色<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>) ;</span><br><span class="line">        $(<span class="string">'header'</span>).css(<span class="string">'background-color'</span>,<span class="string">'#ffffff'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="設定多個事件類型"><a href="#設定多個事件類型" class="headerlink" title="設定多個事件類型"></a>設定多個事件類型</h2><p>一個jQuery物件，可以有多個<code>.on()方法</code>，例如：當A事件(滑鼠移入)時要執行a程序，而當B事件(滑鼠移出)時要執行b程序</p>
-<h3 id="方法鏈串語法"><a href="#方法鏈串語法" class="headerlink" title="方法鏈串語法"></a>方法鏈串語法</h3><p>多個方法如鎖鏈一般串連起來，針對$()產生的同一個jQuery物件作為執行對象，程式會從左到右開始執行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).事件A().事件B().事件C()....</span><br></pre></td></tr></table></figure></p>
-<h3 id="簡易案例"><a href="#簡易案例" class="headerlink" title="簡易案例"></a>簡易案例</h3><ul>
-<li>當滑鼠移入<code>#typo</code>元素時，會改變文字即背景顏色</li>
-<li>當滑鼠移出<code>#typo</code>元素時，會回復為原本的顏色</li>
-</ul>
-<p>多個事件一般寫法(效能差)</p>
-<ul>
-<li>針對同一個物件，寫兩次<code>$()</code>函式，瀏覽器花時間分析HTML並取得目標元素，會造成CPU負擔<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">'#ebc000'</span>,</span><br><span class="line">            backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">''</span>,</span><br><span class="line">            backgroundColor:<span class="string">''</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>修改為鏈串寫法(效能佳)</p>
-<ul>
-<li>只需要使用一次<code>$()</code>函式，除了簡化程式碼，也提稱程式處理速度<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>)</span><br><span class="line">        .on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">'#ebc000'</span>,</span><br><span class="line">                backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        .on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">''</span>,</span><br><span class="line">                backgroundColor:<span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="主要的事件類型"><a href="#主要的事件類型" class="headerlink" title="主要的事件類型"></a>主要的事件類型</h3><p><img src="https://i.imgur.com/q7B1WBC.png" alt></p>
-<p>jQuery中，大部分的操作都基於HTML DOM，所以必須確定頁面文件已經完全下載好，才能開始執行程式。jQuery 提供下面這個函式來處理 DOM ready事件 </p>
-<p>當DOM載入後，執行ready()方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>也可以這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1209,6 +1202,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(八)列表渲染/">Vue-(八)列表渲染</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -1263,18 +1268,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(三)基本概念/">Vue-(三)基本概念</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1293,7 +1286,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

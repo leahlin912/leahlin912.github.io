@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(九)事件處理 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="9-1.處理事件的兩種方式 (影片)在methods中定義函式方法當執行內容較多時，建議定義為函式方法1234&amp;lt;div id=&amp;apos;app&amp;apos;&amp;gt;  &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;count&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;button @click=&amp;quot;add&amp;quot;&amp;gt;Add&amp;lt;/button&amp;gt;&amp;lt;/d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(九)事件處理">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/Vue-(九)事件處理/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="9-1.處理事件的兩種方式 (影片)在methods中定義函式方法當執行內容較多時，建議定義為函式方法1234&amp;lt;div id=&amp;apos;app&amp;apos;&amp;gt;  &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;count&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;button @click=&amp;quot;add&amp;quot;&amp;gt;Add&amp;lt;/button&amp;gt;&amp;lt;/d">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/u6Cz86Y.png">
+<meta property="og:updated_time" content="2019-04-19T07:51:20.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(九)事件處理">
+<meta name="twitter:description" content="9-1.處理事件的兩種方式 (影片)在methods中定義函式方法當執行內容較多時，建議定義為函式方法1234&amp;lt;div id=&amp;apos;app&amp;apos;&amp;gt;  &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;count&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;button @click=&amp;quot;add&amp;quot;&amp;gt;Add&amp;lt;/button&amp;gt;&amp;lt;/d">
+<meta name="twitter:image" content="https://i.imgur.com/u6Cz86Y.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(九)事件處理" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(九)事件處理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(九)事件處理/" class="article-date">
+	  <time datetime="2019-04-19T07:49:44.233Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="9-1-處理事件的兩種方式-影片"><a href="#9-1-處理事件的兩種方式-影片" class="headerlink" title="9-1.處理事件的兩種方式 (影片)"></a>9-1.處理事件的兩種方式 <a href="https://hiskio.com/courses/145/lectures/5385" target="_blank" rel="noopener">(影片)</a></h2><h3 id="在methods中定義函式方法"><a href="#在methods中定義函式方法" class="headerlink" title="在methods中定義函式方法"></a>在methods中定義函式方法</h3><p>當執行內容較多時，建議定義為函式方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;add&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="直接改變data中的變數"><a href="#直接改變data中的變數" class="headerlink" title="直接改變data中的變數"></a>直接改變data中的變數</h3><p>當執行內容簡短時，可以直接改變屬性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;count++&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-2-偵聽滑鼠事件-影片"><a href="#9-2-偵聽滑鼠事件-影片" class="headerlink" title="9-2.偵聽滑鼠事件 (影片)"></a>9-2.偵聽滑鼠事件 <a href="https://hiskio.com/courses/145/lectures/5384" target="_blank" rel="noopener">(影片)</a></h2><h3 id="v-on綁定事件"><a href="#v-on綁定事件" class="headerlink" title="v-on綁定事件"></a>v-on綁定事件</h3><p><code>v-on:click=&quot;&quot;</code>簡寫為<code>@:click=&quot;&quot;</code></p>
+<h3 id="其他滑鼠事件"><a href="#其他滑鼠事件" class="headerlink" title="其他滑鼠事件"></a>其他滑鼠事件</h3><ul>
+<li>mouseover：滑鼠經過</li>
+<li>mouseout：滑鼠移出</li>
+<li>mousedown:滑鼠點下</li>
+<li>mouseup:滑鼠點下後‘放開’</li>
+<li>mousemove：滑鼠在其上方移動時</li>
+</ul>
+<hr>
+<h2 id="9-3-偵聽圖片的load事件-影片"><a href="#9-3-偵聽圖片的load事件-影片" class="headerlink" title="9-3.偵聽圖片的load事件 (影片)"></a>9-3.偵聽圖片的load事件 <a href="https://hiskio.com/courses/145/lectures/5386" target="_blank" rel="noopener">(影片)</a></h2><p>偵聽圖片loading前後，回傳不同的class樣式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-if</span>=<span class="string">"loading"</span>&gt;</span>loading<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-else</span>&gt;</span>complete<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> </span></span><br><span class="line"><span class="tag">     <span class="attr">:class</span>=<span class="string">'imgClass'</span></span></span><br><span class="line"><span class="tag">     @<span class="attr">load</span>=<span class="string">"loading=false"</span>  </span></span><br><span class="line"><span class="tag">     <span class="attr">src</span>=<span class="string">"https://loremflickr.com/g/320/240/paris"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.image</span>&#123;</span><br><span class="line">  <span class="attribute">transition</span>: all <span class="number">1s</span>;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.image</span><span class="selector-class">.hide</span>&#123;</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(3) <span class="built_in">rotate</span>(180deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    loading:<span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    imgClass()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.loading)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image hide'</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen"><a href="#示範練習-codepen" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/XGaYpv" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-4-偵聽按鍵事件-影片"><a href="#9-4-偵聽按鍵事件-影片" class="headerlink" title="9-4.偵聽按鍵事件 (影片)"></a>9-4.偵聽按鍵事件 <a href="https://hiskio.com/courses/145/lectures/5915" target="_blank" rel="noopener">(影片)</a></h2><h3 id="鍵盤事件"><a href="#鍵盤事件" class="headerlink" title="鍵盤事件"></a>鍵盤事件</h3><ul>
+<li>keydown：按鍵被‘按下’時</li>
+<li>keyup：按鍵被按下後‘彈起’時<h3 id="修飾符-定義按鍵"><a href="#修飾符-定義按鍵" class="headerlink" title="修飾符 定義按鍵"></a>修飾符 定義按鍵</h3></li>
+<li>v-on:keydown.enter<br>(當「enter」按鍵被按下時)<h3 id="修飾符-防止按鍵內容被輸入"><a href="#修飾符-防止按鍵內容被輸入" class="headerlink" title="修飾符 防止按鍵內容被輸入"></a>修飾符 防止按鍵內容被輸入</h3></li>
+<li>v-on:keydown.a.prevent<br>(當「a」按鍵被按下時，但a的內容不會被放入input中)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input v-model=&quot;input&quot; v-on:keyup.enter=&quot;add&quot;/&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in todo&quot;&gt;&#123;&#123;item&#125;&#125;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">  input:<span class="string">''</span>,</span><br><span class="line">  todo:[],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.todo.push(<span class="keyword">this</span>.input);</span><br><span class="line">      <span class="keyword">this</span>.input = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen-1"><a href="#示範練習-codepen-1" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/moBXmR" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-5-便利的修飾符語法-影片"><a href="#9-5-便利的修飾符語法-影片" class="headerlink" title="9-5.便利的修飾符語法 (影片)"></a>9-5.便利的修飾符語法 <a href="https://hiskio.com/courses/145/lectures/5387" target="_blank" rel="noopener">(影片)</a></h2><h3 id="prevent：不執行預設效果"><a href="#prevent：不執行預設效果" class="headerlink" title=".prevent：不執行預設效果"></a>.prevent：不執行預設效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick(event)&#123;</span><br><span class="line">      event.preventDefault();</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.prevent</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click.prevent=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick()&#123;</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="stop：不讓event傳到外層"><a href="#stop：不讓event傳到外層" class="headerlink" title=".stop：不讓event傳到外層"></a>.stop：不讓event傳到外層</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click=&quot;clickA&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click=&quot;clickB&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click=&quot;clickC&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">2px</span> solid blue;</span><br><span class="line">  <span class="attribute">min-width</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">min-height</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">'null'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    clickA(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'A'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickB(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'B'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickC(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'C'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.stop</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="self：只執行自己發出的event"><a href="#self：只執行自己發出的event" class="headerlink" title=".self：只執行自己發出的event"></a>.self：只執行自己發出的event</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="once：只執行一次"><a href="#once：只執行一次" class="headerlink" title=".once：只執行一次"></a>.once：只執行一次</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;num&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click.once=&quot;num+=1&quot;&gt;+Add &lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    num:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="更多修飾符，參考-Vue文件"><a href="#更多修飾符，參考-Vue文件" class="headerlink" title="更多修飾符，參考(Vue文件)"></a>更多修飾符，參考<a href="https://vuejs.org/v2/api/#v-on" target="_blank" rel="noopener">(Vue文件)</a></h3><p><img src="https://i.imgur.com/u6Cz86Y.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/19/Vue-(八)列表渲染/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue-(八)列表渲染</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-處理事件的兩種方式-影片"><span class="nav-number">1.</span> <span class="nav-text">9-1.處理事件的兩種方式 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在methods中定義函式方法"><span class="nav-number">1.1.</span> <span class="nav-text">在methods中定義函式方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接改變data中的變數"><span class="nav-number">1.2.</span> <span class="nav-text">直接改變data中的變數</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-偵聽滑鼠事件-影片"><span class="nav-number">2.</span> <span class="nav-text">9-2.偵聽滑鼠事件 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-on綁定事件"><span class="nav-number">2.1.</span> <span class="nav-text">v-on綁定事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他滑鼠事件"><span class="nav-number">2.2.</span> <span class="nav-text">其他滑鼠事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-偵聽圖片的load事件-影片"><span class="nav-number">3.</span> <span class="nav-text">9-3.偵聽圖片的load事件 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示範練習-codepen"><span class="nav-number">3.1.</span> <span class="nav-text">示範練習 (codepen)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-偵聽按鍵事件-影片"><span class="nav-number">4.</span> <span class="nav-text">9-4.偵聽按鍵事件 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#鍵盤事件"><span class="nav-number">4.1.</span> <span class="nav-text">鍵盤事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修飾符-定義按鍵"><span class="nav-number">4.2.</span> <span class="nav-text">修飾符 定義按鍵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修飾符-防止按鍵內容被輸入"><span class="nav-number">4.3.</span> <span class="nav-text">修飾符 防止按鍵內容被輸入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示範練習-codepen-1"><span class="nav-number">4.4.</span> <span class="nav-text">示範練習 (codepen)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-便利的修飾符語法-影片"><span class="nav-number">5.</span> <span class="nav-text">9-5.便利的修飾符語法 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prevent：不執行預設效果"><span class="nav-number">5.1.</span> <span class="nav-text">.prevent：不執行預設效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stop：不讓event傳到外層"><span class="nav-number">5.2.</span> <span class="nav-text">.stop：不讓event傳到外層</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self：只執行自己發出的event"><span class="nav-number">5.3.</span> <span class="nav-text">.self：只執行自己發出的event</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#once：只執行一次"><span class="nav-number">5.4.</span> <span class="nav-text">.once：只執行一次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多修飾符，參考-Vue文件"><span class="nav-number">5.5.</span> <span class="nav-text">更多修飾符，參考(Vue文件)</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
