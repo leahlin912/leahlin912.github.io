@@ -158,6 +158,65 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vue-(七)條件判斷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(七)條件判斷/">Vue筆記-(七)條件判斷</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(七)條件判斷/" class="article-date">
+	  <time datetime="2019-04-19T07:45:07.200Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="7-1-v-if-影片"><a href="#7-1-v-if-影片" class="headerlink" title="7-1.v-if  (影片)"></a>7-1.v-if  <a href="https://hiskio.com/courses/145/lectures/5374" target="_blank" rel="noopener">(影片)</a></h2><p><strong>補充:</strong><br><strong><templete></templete>本身並非元素，只是用來包著許多元素的模板</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;show&quot;/&gt;勾選秀出內容</span><br><span class="line">  &lt;templete v-if=&quot;show&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/h3&gt;</span><br><span class="line">  &lt;/templete&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    message:<span class="string">'跳樓大拍賣'</span>,</span><br><span class="line">    show:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-2-v-else-影片"><a href="#7-2-v-else-影片" class="headerlink" title="7-2.v-else  (影片)"></a>7-2.v-else  <a href="https://hiskio.com/courses/145/lectures/5375" target="_blank" rel="noopener">(影片)</a></h2><p><code>v-else</code>一定要依附在<code>v-if</code>之後，且是同一層的東西<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;show&quot;/&gt;</span><br><span class="line">  &lt;span v-if=&apos;show&apos;&gt;隱藏內容&lt;/span&gt;</span><br><span class="line">  &lt;span v-else&gt;秀出內容&lt;/span&gt;</span><br><span class="line">  &lt;templete v-if=&quot;show&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/h3&gt;</span><br><span class="line">  &lt;/templete&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>==如果中間有其他東西，<code>v-else</code>會無效<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"checkbox"</span> v-model=<span class="string">"show"</span>/&gt;</span><br><span class="line">  &lt;span v-<span class="keyword">if</span>=<span class="string">'show'</span>&gt;隱藏內容&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;br/</span>&gt;<span class="comment">//錯誤：不得再v-if/v-else插入其他東西，會出錯</span></span><br><span class="line">  &lt;span v-<span class="keyword">else</span>&gt;秀出內容&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;templete v-if="show"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/</span>h3&gt;</span><br><span class="line">  &lt;<span class="regexp">/templete&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="7-3-v-else-if-影片"><a href="#7-3-v-else-if-影片" class="headerlink" title="7-3.v-else-if  (影片)"></a>7-3.v-else-if  <a href="https://hiskio.com/courses/145/lectures/5468" target="_blank" rel="noopener">(影片)</a></h2><p><code>v-if</code>若有成立，就不會render下面的<code>v-else-if</code>與<code>v-else</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showRed&quot;/&gt;red</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showGreen&quot;/&gt;green</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showBlue&quot;/&gt;blue</span><br><span class="line">  &lt;h1 v-if=&quot;showRed&quot;&gt;I&apos;m Red.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else-if=&quot;showGreen&quot;&gt;I&apos;m Green.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else-if=&quot;showBlue&quot;&gt;I&apos;m Blue.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else&gt;Non&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">   showRed:<span class="literal">false</span>,</span><br><span class="line">    showGreen:<span class="literal">false</span>,</span><br><span class="line">    showBlue:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-4-v-show-影片"><a href="#7-4-v-show-影片" class="headerlink" title="7-4.v-show  (影片)"></a>7-4.v-show  <a href="https://hiskio.com/courses/145/lectures/5376" target="_blank" rel="noopener">(影片)</a></h2><ul>
+<li><code>v-if</code>是讓程式判斷是否被render出來</li>
+<li><code>v-show</code>是用css控制是否在畫面中顯示(意即套用display: none)，所以該元素在原始碼中有被render出來，只是不在畫面顯示</li>
+</ul>
+<ul>
+<li><templete>可以搭配<code>v-if</code>使用，代表<templete>裡面的東西是否render出來;但是不能用<code>v-show</code>，因為<templete>本身並非一個元素，只是一個模板，無法被顯示處理</templete></templete></templete></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Vue-(六)HTML元素的屬性綁定" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1030,90 +1089,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Hexo-使用靜態生成器，建立blog(2_3)推上github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/" class="article-date">
-	  <time datetime="2019-04-11T08:50:37.359Z" itemprop="datePublished">April 11, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
-<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
-<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
-<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="push上github"><a href="#push上github" class="headerlink" title="push上github"></a>push上github</h3></li>
-</ul>
-<ol>
-<li><p>先在github新增一個repository，命名邏輯為</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[github account]</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br><span class="line">例：<span class="selector-tag">leahlin912</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>複製該repository的網址(例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:leahlin912/leahlin912.github.io.git`)</p>
-</li>
-<li><p>用vscode(或其他編譯器)打開_config.yml檔案，並修改<code># Deployment</code>的部分</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">Deployment</span></span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"><span class="selector-tag">deploy</span>:</span><br><span class="line">  <span class="selector-tag">type</span>: <span class="selector-tag">git</span></span><br><span class="line">  repository: git@github.com:leahlin912/leahlin912.github.io.git</span><br><span class="line">  <span class="selector-tag">branch</span>: <span class="selector-tag">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安裝git</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>輸入指令，將網站佈署到伺服器上</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>設定repository的主題<br>在github的該repository頁面，進入「setting」<br><img src="https://i.imgur.com/HKOW9XH.png" alt><br>往下滑，點按「change theme」<br><img src="https://i.imgur.com/BgZoPjj.png" alt></p>
-</li>
-<li><p>在瀏覽器中查看網址，成功！<a href="https://leahlin912.github.io/" target="_blank" rel="noopener">https://leahlin912.github.io/</a></p>
-</li>
-<li><p>若有檔案更新，則重複輸入指令</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="更換主題"><a href="#更換主題" class="headerlink" title="更換主題"></a>更換主題</h3><ol>
-<li><p>選擇要套用的主題<br>[Themes]<br>(<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">https://hexo.io/themes/index.html</a>)<br><img src="https://i.imgur.com/LC6xzT9.png" alt></p>
-</li>
-<li><p>點進該主題的github頁面<br><img src="https://i.imgur.com/V8NNjOP.png" alt></p>
-</li>
-<li><p>在README.md中，依照install指令複製起來，並在terminal中進入blog資料夾中執行指令完畢<br><img src="https://i.imgur.com/IQz4I6S.png" alt><br><img src="https://i.imgur.com/Zd57Cs3.png" alt></p>
-</li>
-<li><p>用vscode開啟blog資料夾，並進入<code>_config.yml</code>檔案中，修改主題theme(參考readme中開發者定義的theme名稱)<br><img src="https://i.imgur.com/QUikitj.png" alt><br><img src="https://i.imgur.com/zgGjkZE.png" alt></p>
-</li>
-<li><p>因為檔案有更新，所以需要在terminal輸入指令</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1181,6 +1156,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(七)條件判斷/">Vue筆記-(七)條件判斷</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/">Vue-(六)HTML元素的屬性綁定</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -1235,18 +1222,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a></h6>
-              <span>April 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1265,7 +1240,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">38</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

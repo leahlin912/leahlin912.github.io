@@ -158,6 +158,62 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Git基本指令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/Git基本指令/">Git基本指令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/Git基本指令/" class="article-date">
+	  <time datetime="2019-03-27T23:58:30.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git基本指令"><a href="#Git基本指令" class="headerlink" title="Git基本指令"></a>Git基本指令</h1><h3 id="終端機環境系統指令"><a href="#終端機環境系統指令" class="headerlink" title="終端機環境系統指令"></a>終端機環境系統指令</h3><p>不同的作業系統，指令也會不太一樣。<br>|Windows| MacOs | 說明 |<br>|——–| ——– | ——–|<br>| cd     | cd     | 切換目錄    |<br>| cd | cd| 切換目前所在位置 |<br>| dir | ls| 列出目前檔案列表 |<br>|mkdir| mkdir | 建立新的目錄|<br>|無| touch | 建立檔案|<br>|copy| cp | 複製檔案|<br>|move| mv | 移動檔案|<br>|del| rm | 刪除檔案|<br>|cls| clear | 清除畫面上的內容|</p>
+<h3 id="目錄切換及顯示"><a href="#目錄切換及顯示" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切換到/tmp目錄(絕對路徑)</span></span><br><span class="line">$ cd/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到my_project目錄(絕對路徑)</span></span><br><span class="line">$ cd my_project</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到上一層目錄(相對路徑)</span></span><br><span class="line">$ cd ..</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到使用者的home目錄中的project裡的namecards目錄</span></span><br><span class="line"><span class="comment">// "~"這個符號代表home目錄</span></span><br><span class="line">$ cd ~<span class="regexp">/project/</span>namecards</span><br><span class="line"></span><br><span class="line"><span class="comment">//顯示目前所在的目錄</span></span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure>
+<h3 id="檔案列表"><a href="#檔案列表" class="headerlink" title="檔案列表"></a>檔案列表</h3><p><code>ls</code>指令可列出在目前目錄所有的檔案及目錄，後面接的 <code>-al</code> 參數，<code>a</code> 是指連小數點開頭的檔案（例如.gitignore）也會顯示，<code>l</code> 則是完整檔案的權限、擁有者以及建立、修改時間<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄</span></span><br><span class="line">$ ls</span><br><span class="line"></span><br><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄，包含副檔名及檔案權限等資訊</span></span><br><span class="line">$ls -al</span><br></pre></td></tr></table></figure></p>
+<h3 id="目錄切換及顯示-1"><a href="#目錄切換及顯示-1" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><p>開啟終端機(terminal)，並試著操作以下指令，從建立一個全新的目錄開始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd /tmp                  <span class="comment">//切換至 /tmp 目錄</span></span><br><span class="line">$ mkdir git-practice       <span class="comment">//建立 git-practice 目錄</span></span><br><span class="line">$ cd git-practice          <span class="comment">//切換至 git-practice 目錄</span></span><br><span class="line">$ git init                 <span class="comment">//初始化這個目錄，讓 Git 對這個目錄開始進行版控</span></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/leah/git-practice/.git/</span><br></pre></td></tr></table></figure></p>
+<p>:::info<br>小數點開頭的目錄或檔案名稱（例如 .git），在一些作業系統中預設是隱藏的，需要開啟檢視隱藏檔之類的設定才看得到。<br>:::</p>
+<p>:::info<br><code>Shift+Command+ .</code>就可以顯示出隱藏的檔案<br>:::</p>
+<h3 id="把檔案交給Git控管"><a href="#把檔案交給Git控管" class="headerlink" title="把檔案交給Git控管"></a>把檔案交給Git控管</h3><p>先查詢目前目錄的狀態，下面產生的訊息意思是「現在沒東西可以提交（nothing to commit）」。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查詢現在這個目錄的狀態</span></span><br><span class="line">$ git status </span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">nothing to commit (create/copy files and use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
+<p>接下來， 建立一個檔案(也可以用一般的文字編輯器或檔案管理員來完成)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在這個目錄裡透過系統指令建立一個內容為 “hello, git”</span></span><br><span class="line">$echo <span class="string">"Hello,git"</span> &gt; welcome.html</span><br></pre></td></tr></table></figure></p>
+<p>檢查目錄，確實多了一個welcome.html檔案<br><img src="https://i.imgur.com/kCJrLTQ.png" alt></p>
+<p>並且，再次檢查目前目錄的狀態</p>
+<p>welcome.html 檔案目前的狀態是 Untracked files，意思是這個檔案尚未被加到 Git 版控系統裡，還沒開始正式被 Git「追蹤」，它只是剛剛才加入這個目錄而已。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">	welcome.html</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
+<p>把 welcome.html 這個檔案交給 Git，讓 Git 開始「追蹤」它<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//新增檔案讓git追蹤</span><br><span class="line">$ git add welcome.html</span><br></pre></td></tr></table></figure></p>
+<p>最後再檢查一次狀態<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	new file:   welcome.html</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-html-插入圖片路徑" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -802,61 +858,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     
 
   
-    <article id="post-html-建立html環境" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/27/html-建立html環境/">html-建立html環境</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/27/html-建立html環境/" class="article-date">
-	  <time datetime="2019-03-26T23:19:58.000Z" itemprop="datePublished">March 27, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="html-建立html環境"><a href="#html-建立html環境" class="headerlink" title="html-建立html環境"></a>html-建立html環境</h1><h3 id="基本環境架構"><a href="#基本環境架構" class="headerlink" title="基本環境架構"></a>基本環境架構</h3><ul>
-<li><p>定義網頁的格式<br>因為html的時代悠久，有許多不同的html版本格式，因此若使用<code>html5</code>格式，需在第一行新增一行定義</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所有撰寫內容，都先用<code>html</code>包起來，裡面有裡面有兩個標籤： <code>head</code>、<code>body</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="head"><a href="#head" class="headerlink" title="head:"></a>head:</h3><p>放置網頁的相關資訊，例：網頁名稱、支援中文編碼模式、載入的css版本、載入的JS版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My first web&lt;/title&gt;//網頁名稱</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;//支援中文編碼模式</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<p>該網頁的頁籤變更為「My first web」<br><img src="https://i.imgur.com/gd9x0j6.png" alt></p>
-<h3 id="body"><a href="#body" class="headerlink" title="body:"></a>body:</h3><p>所有關於html的程式碼(網頁內容)，都放在<code>body</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My first web&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;標題&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;這是文字內容...這是文字內容...這是文字內容...這是文字內容...&lt;/p&gt;</span><br><span class="line">        &lt;a href=&quot;https://www.google.com/&quot;&gt;連結&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/6aPg2lg.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -924,6 +925,18 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(七)條件判斷/">Vue筆記-(七)條件判斷</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/">Vue-(六)HTML元素的屬性綁定</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -978,18 +991,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a></h6>
-              <span>April 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1008,7 +1009,7 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">38</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
