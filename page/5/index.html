@@ -158,6 +158,65 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-html-插入圖片路徑" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/html-插入圖片路徑/">html-插入圖片路徑&lt;img&gt;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/html-插入圖片路徑/" class="article-date">
+	  <time datetime="2019-03-27T23:51:58.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="html-插入圖片路徑-lt-img-gt"><a href="#html-插入圖片路徑-lt-img-gt" class="headerlink" title="html-插入圖片路徑&lt;img&gt;"></a>html-插入圖片路徑<code>&lt;img&gt;</code></h1><p>在html中的圖片標籤為<code>img</code>，而其一的屬性<code>src</code>則要放入圖片檔案的位置，位置分為兩種</p>
+<ul>
+<li>絕對路徑：放上圖片的url位置</li>
+<li>相對路徑：相較於目前檔案的位置，找到圖片檔案的儲存位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="方法一：絕對路徑"><a href="#方法一：絕對路徑" class="headerlink" title="方法一：絕對路徑"></a>方法一：絕對路徑</h3><ol>
+<li>取得圖片的url位置：在圖片上方，點右鍵選取「複製圖片位址」<br><img src="https://i.imgur.com/16ldWBW.jpg" alt></li>
+<li>將url貼在<code>src</code>屬性中，並儲存<br><img src="https://i.imgur.com/bXyk0JX.png" alt></li>
+<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/1kjnHdy.jpg" alt></li>
+</ol>
+<h3 id="方法二：相對路徑"><a href="#方法二：相對路徑" class="headerlink" title="方法二：相對路徑"></a>方法二：相對路徑</h3><ol>
+<li>在專案中，先建立「img」資料夾，並在其中放入圖片檔案<br><img src="https://i.imgur.com/Gfp9bAg.png" alt></li>
+<li>在<code>src</code>屬性中，輸入圖片檔案的相對位置，並儲存<br><img src="https://i.imgur.com/5ReQgXX.png" alt></li>
+<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/QE1cs4U.jpg" alt></li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Sketch to CSS" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -798,69 +857,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     
 
   
-    <article id="post-CSS-浮動定位(float)、清除浮動(clear)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/26/CSS-浮動定位(float)、清除浮動(clear)/">CSS-浮動定位(float)、清除浮動(clear)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/26/CSS-浮動定位(float)、清除浮動(clear)/" class="article-date">
-	  <time datetime="2019-03-25T23:18:34.000Z" itemprop="datePublished">March 26, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-浮動定位-float-、清除浮動-clear"><a href="#CSS-浮動定位-float-、清除浮動-clear" class="headerlink" title="CSS-浮動定位(float)、清除浮動(clear)"></a>CSS-浮動定位(float)、清除浮動(clear)</h1><h2 id="浮動定位-float"><a href="#浮動定位-float" class="headerlink" title="浮動定位(float)"></a>浮動定位(float)</h2><h3 id="float使用時機"><a href="#float使用時機" class="headerlink" title="float使用時機"></a>float使用時機</h3><p><code>&lt;div&gt;</code>本身是區塊元素(block)，即使元素本身長度短於頁面行寬，仍會自動換行<br><img src="https://i.imgur.com/m29PJkm.png" alt></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若希望<code>&lt;div&gt;</code>元素可以並行排列，則需要使用<code>float屬性</code><br><img src="https://i.imgur.com/6afBCHP.png" alt></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="css語法解釋"><a href="#css語法解釋" class="headerlink" title="css語法解釋"></a>css語法解釋</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float: 浮動方向;</span><br></pre></td></tr></table></figure>
-<p>浮動方向可以用的值有</p>
-<ul>
-<li>left（靠左浮動）</li>
-<li>right（靠右浮動）</li>
-<li>none（預設值，也就是不浮動）</li>
-<li>inherit（繼承自父層的屬性）</li>
-</ul>
-<p><img src="https://i.imgur.com/eJIxovX.png" alt><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="換行狀況"><a href="#換行狀況" class="headerlink" title="換行狀況"></a>換行狀況</h3><p>即使使用<code>float</code>定位，當排列元素的累積寬度已經超過頁面行寬，就會自動換行<br><img src="https://i.imgur.com/D6Nscru.png" alt></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="清除浮動-clear"><a href="#清除浮動-clear" class="headerlink" title="清除浮動(clear)"></a>清除浮動(clear)</h2><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當前面的元素為浮動元素，後續的區塊元素會從父階層容器開始的地方堆疊起<br><img src="https://i.imgur.com/f6IGqQG.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box3&quot;&gt;box3&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#AEB6B8</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>當後面的元素不想要有float的浮動效果時，為了避免重疊狀況，必須在最後一個浮動元素後方，增加一個元素，並使用<code>clear屬性</code><br><img src="https://i.imgur.com/AbCXO41.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;clearFloat&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box3&quot;&gt;box3&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearFloat</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -928,6 +924,18 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/">Vue-(六)HTML元素的屬性綁定</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(五)Vue實例/">Vue-(五)Vue實例</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -982,18 +990,6 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/16/jQuery-改變CSS樣式/">jQuery-改變CSS樣式</a></h6>
-              <span>April 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1012,7 +1008,7 @@ step1.讓所有程式碼開始執行，此時呼叫`do()`不會出錯
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

@@ -158,6 +158,70 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-文字向左右對齊，並垂直置中" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/CSS-文字向左右對齊，並垂直置中/">CSS-文字向左右對齊，並垂直置中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/02/CSS-文字向左右對齊，並垂直置中/" class="article-date">
+	  <time datetime="2019-04-02T08:50:02.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-文字向左右對齊，並垂直置中"><a href="#CSS-文字向左右對齊，並垂直置中" class="headerlink" title="CSS-文字向左右對齊，並垂直置中"></a>CSS-文字向左右對齊，並垂直置中</h1><h3 id="目標效果"><a href="#目標效果" class="headerlink" title="目標效果"></a>目標效果</h3><p><img src="https://i.imgur.com/qTTxZhP.png" alt></p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ul>
+<li>將外層容器定義為<code>flex</code>容器，且其中的items向容器中間對齊</li>
+<li>定義外層容器中的item與item之間保持相同的空間距離</li>
+</ul>
+<h3 id="實作方法一"><a href="#實作方法一" class="headerlink" title="實作方法一"></a>實作方法一</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div  class=&quot;left&quot;&gt;</span><br><span class="line">         我是左邊文字</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;right&quot;&gt;</span><br><span class="line">        我是右邊文字內容</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/H2imQIq.png" alt><br>補充：當定義元素為彈性容器，而它的子元素們就會變成彈性項目。</p>
+<ul>
+<li>flex 值會讓彈性容器變成塊級元素（block-level element）</li>
+<li>inline-flex 則會讓彈性容器成為單一的行內元素（atomic inline-level element）。</li>
+</ul>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ul>
+<li>定義外層容器為彈性容器</li>
+<li>定義內層item的寬度佔比為1:1填滿整個容器</li>
+<li>內層item的文字各自靠左及靠右<h3 id="實作方法二"><a href="#實作方法二" class="headerlink" title="實作方法二"></a>實作方法二</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/NSclIDU.png" alt></p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Projects page</a></p>
+<p><img src="https://i.imgur.com/r0P8ubM.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-由左到右、由右到左，利用direction-reserve排版" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -734,65 +798,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-html-插入圖片路徑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/html-插入圖片路徑/">html-插入圖片路徑&lt;img&gt;</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/html-插入圖片路徑/" class="article-date">
-	  <time datetime="2019-03-27T23:51:58.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="html-插入圖片路徑-lt-img-gt"><a href="#html-插入圖片路徑-lt-img-gt" class="headerlink" title="html-插入圖片路徑&lt;img&gt;"></a>html-插入圖片路徑<code>&lt;img&gt;</code></h1><p>在html中的圖片標籤為<code>img</code>，而其一的屬性<code>src</code>則要放入圖片檔案的位置，位置分為兩種</p>
-<ul>
-<li>絕對路徑：放上圖片的url位置</li>
-<li>相對路徑：相較於目前檔案的位置，找到圖片檔案的儲存位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="方法一：絕對路徑"><a href="#方法一：絕對路徑" class="headerlink" title="方法一：絕對路徑"></a>方法一：絕對路徑</h3><ol>
-<li>取得圖片的url位置：在圖片上方，點右鍵選取「複製圖片位址」<br><img src="https://i.imgur.com/16ldWBW.jpg" alt></li>
-<li>將url貼在<code>src</code>屬性中，並儲存<br><img src="https://i.imgur.com/bXyk0JX.png" alt></li>
-<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/1kjnHdy.jpg" alt></li>
-</ol>
-<h3 id="方法二：相對路徑"><a href="#方法二：相對路徑" class="headerlink" title="方法二：相對路徑"></a>方法二：相對路徑</h3><ol>
-<li>在專案中，先建立「img」資料夾，並在其中放入圖片檔案<br><img src="https://i.imgur.com/Gfp9bAg.png" alt></li>
-<li>在<code>src</code>屬性中，輸入圖片檔案的相對位置，並儲存<br><img src="https://i.imgur.com/5ReQgXX.png" alt></li>
-<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/QE1cs4U.jpg" alt></li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -860,6 +865,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/">Vue-(六)HTML元素的屬性綁定</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(五)Vue實例/">Vue-(五)Vue實例</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -914,18 +931,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/16/jQuery-改變CSS樣式/">jQuery-改變CSS樣式</a></h6>
-              <span>April 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -944,7 +949,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

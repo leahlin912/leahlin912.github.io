@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(六)html元素的屬性綁定 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="6-1.綁定資料為一個元素的class  (影片)以下寫法：會綁定css中命名為btnEnter的樣式1&amp;lt;button class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/button&amp;gt; 以下v-bind寫法：會綁定JS中的屬性btnEnter的回傳值(可以是字串、物件、陣列)1&amp;lt;button v-bind:class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/bu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(六)HTML元素的屬性綁定">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/Vue-(六)HTML元素的屬性綁定/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="6-1.綁定資料為一個元素的class  (影片)以下寫法：會綁定css中命名為btnEnter的樣式1&amp;lt;button class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/button&amp;gt; 以下v-bind寫法：會綁定JS中的屬性btnEnter的回傳值(可以是字串、物件、陣列)1&amp;lt;button v-bind:class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/bu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-19T07:44:48.247Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(六)HTML元素的屬性綁定">
+<meta name="twitter:description" content="6-1.綁定資料為一個元素的class  (影片)以下寫法：會綁定css中命名為btnEnter的樣式1&amp;lt;button class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/button&amp;gt; 以下v-bind寫法：會綁定JS中的屬性btnEnter的回傳值(可以是字串、物件、陣列)1&amp;lt;button v-bind:class=&quot;btnEnter&quot;&amp;gt;Enter&amp;lt;/bu">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(六)HTML元素的屬性綁定" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(六)HTML元素的屬性綁定
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/" class="article-date">
+	  <time datetime="2019-04-19T07:43:32.669Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="6-1-綁定資料為一個元素的class-影片"><a href="#6-1-綁定資料為一個元素的class-影片" class="headerlink" title="6-1.綁定資料為一個元素的class  (影片)"></a>6-1.綁定資料為一個元素的class  <a href="https://hiskio.com/courses/145/lectures/5371" target="_blank" rel="noopener">(影片)</a></h2><p>以下寫法：會綁定css中命名為btnEnter的樣式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btnEnter"</span>&gt;Enter&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以下<code>v-bind</code>寫法：會綁定JS中的屬性btnEnter的回傳值(可以是字串、物件、陣列)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"btnEnter"</span>&gt;Enter&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="完整案例示範-綁定回傳值：字串"><a href="#完整案例示範-綁定回傳值：字串" class="headerlink" title="完整案例示範-綁定回傳值：字串"></a>完整案例示範-綁定回傳值：字串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; v-model=&apos;text&apos;/&gt;</span><br><span class="line">  &lt;button v-bind:class=&apos;btnEnter&apos;&gt;Enter&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span>&#123;</span><br><span class="line">  <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.enter</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>:green;</span><br><span class="line">  <span class="attribute">color</span>:white;</span><br><span class="line">  <span class="attribute">border</span>:none;</span><br><span class="line">  <span class="attribute">border-radius</span>:<span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">9px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.enter</span><span class="selector-class">.disable</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>:grey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">      text:<span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    btnEnter()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.text.length === <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'btnEnter disable'</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'btnEnter'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="改寫-綁定回傳值：物件"><a href="#改寫-綁定回傳值：物件" class="headerlink" title="改寫-綁定回傳值：物件"></a>改寫-綁定回傳值：物件</h3><ul>
+<li>btnEnter:true —&gt;render出來的class會含有btnEnter</li>
+<li>disabled:true —&gt;render出來的class會含有disabled</li>
+<li>disabled:false —&gt;render出來的class不會含有disabled<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">      text:<span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    btnEnter()&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'111'</span>);</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.text.length === <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          btnEnter:<span class="literal">true</span>,</span><br><span class="line">          disabled:<span class="literal">true</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          btnEnter:<span class="literal">true</span>,</span><br><span class="line">          disabled:<span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>簡化寫法，只有在<code>條件式成立</code>為true時，class才會含有disable這個屬性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    btnEnter()&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        btnEnter:<span class="literal">true</span>,</span><br><span class="line">        disabled:<span class="keyword">this</span>.text.length === <span class="number">0</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="改寫-綁定回傳值：陣列"><a href="#改寫-綁定回傳值：陣列" class="headerlink" title="改寫-綁定回傳值：陣列"></a>改寫-綁定回傳值：陣列</h3><p>陣列中可以放入多個字串，代表含有這些css樣式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">      text:<span class="string">''</span>,</span><br><span class="line">      btnEnterAble:[<span class="string">'btnEnter'</span>],</span><br><span class="line">      btnEnterDisabled:[<span class="string">'btnEnter'</span>,<span class="string">'disabled'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    btnEnter()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.text.length === <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.btnEnterDisabled;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.btnEnterAble;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="6-2-綁定資料為一個元素的style-影片"><a href="#6-2-綁定資料為一個元素的style-影片" class="headerlink" title="6-2.綁定資料為一個元素的style  (影片)"></a>6-2.綁定資料為一個元素的style  <a href="https://hiskio.com/courses/145/lectures/5372" target="_blank" rel="noopener">(影片)</a></h2><p>以下寫法：在css定義樣式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;Hello&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.h1</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下寫法：直接在元素中定義style<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&apos;color:red&apos;&gt;Hello&lt;/h1&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以下<code>v-bind</code>寫法：動態綁定在Vue實例中的屬性字串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-bind:style=&quot;h1Style&quot;&gt;Hello&lt;/h1&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="完整案例示範-綁定回傳值：字串-1"><a href="#完整案例示範-綁定回傳值：字串-1" class="headerlink" title="完整案例示範-綁定回傳值：字串"></a>完整案例示範-綁定回傳值：字串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot; :style=&quot;textCenter&quot;&gt;</span><br><span class="line">  &lt;h1 :style=&quot;h1Style&quot;&gt;Hello&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    textCenter:<span class="string">'text-align:center'</span>,</span><br><span class="line">    h1Style:<span class="string">"color:red"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="改寫-綁定回傳值：物件-1"><a href="#改寫-綁定回傳值：物件-1" class="headerlink" title="改寫-綁定回傳值：物件"></a>改寫-綁定回傳值：物件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    h1Style:&#123;</span><br><span class="line">      color:<span class="string">'white'</span>,</span><br><span class="line">      fontSize:<span class="string">'20px'</span>,</span><br><span class="line">      backgroundColor:<span class="string">'gray'</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="改寫-綁定回傳值：陣列-1"><a href="#改寫-綁定回傳值：陣列-1" class="headerlink" title="改寫-綁定回傳值：陣列"></a>改寫-綁定回傳值：陣列</h3><p>陣列中放物件，會依序套用陣列中的物件所定義的樣式<br><strong>補充：樣式的定義中，key要用駝峰式命名，例：”font-size”要寫為”fontSize”</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> commonStyle = &#123;</span><br><span class="line">  fontSize:<span class="string">'20px'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> whiteWord = &#123;</span><br><span class="line">  color:<span class="string">'white'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> grayBackground = &#123;</span><br><span class="line">  backgroundColor:<span class="string">'gray'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    h1Style:[commonStyle,whiteWord,grayBackground]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="實作練習："><a href="#實作練習：" class="headerlink" title="實作練習："></a>實作練習：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1 :style=&quot;h1Style&quot;&gt;Hello&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;shrink&quot;&gt;縮小&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    h1Style:&#123;</span><br><span class="line">      color:<span class="string">'green'</span>,</span><br><span class="line">      fontSize:<span class="string">'30px'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    shrink()&#123;</span><br><span class="line">      <span class="keyword">const</span> size = <span class="built_in">parseInt</span>(<span class="keyword">this</span>.h1Style.fontSize.replace(<span class="string">'px'</span>),<span class="number">10</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(size);</span><br><span class="line">      <span class="keyword">this</span>.h1Style.fontSize = <span class="string">`<span class="subst">$&#123;size<span class="number">-1</span>&#125;</span>px`</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改寫為更精簡化<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    size: <span class="number">40</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    h1Style()&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        color:<span class="string">'green'</span>,</span><br><span class="line">        fontSize:<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.size&#125;</span>px`</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    shrink()&#123;</span><br><span class="line">      <span class="keyword">this</span>.size--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/19/Vue-(五)Vue實例/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue-(五)Vue實例</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-綁定資料為一個元素的class-影片"><span class="nav-number">1.</span> <span class="nav-text">6-1.綁定資料為一個元素的class  (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完整案例示範-綁定回傳值：字串"><span class="nav-number">1.1.</span> <span class="nav-text">完整案例示範-綁定回傳值：字串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改寫-綁定回傳值：物件"><span class="nav-number">1.2.</span> <span class="nav-text">改寫-綁定回傳值：物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改寫-綁定回傳值：陣列"><span class="nav-number">1.3.</span> <span class="nav-text">改寫-綁定回傳值：陣列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-綁定資料為一個元素的style-影片"><span class="nav-number">2.</span> <span class="nav-text">6-2.綁定資料為一個元素的style  (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完整案例示範-綁定回傳值：字串-1"><span class="nav-number">2.1.</span> <span class="nav-text">完整案例示範-綁定回傳值：字串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改寫-綁定回傳值：物件-1"><span class="nav-number">2.2.</span> <span class="nav-text">改寫-綁定回傳值：物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改寫-綁定回傳值：陣列-1"><span class="nav-number">2.3.</span> <span class="nav-text">改寫-綁定回傳值：陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#實作練習："><span class="nav-number">2.4.</span> <span class="nav-text">實作練習：</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
