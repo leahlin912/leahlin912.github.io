@@ -158,6 +158,99 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-position定位：absolute＆relative＆fixed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/">CSS-position定位：absolute＆relative＆fixed</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" class="article-date">
+	  <time datetime="2019-03-27T22:38:54.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-position定位：absolute＆relative＆fixed"><a href="#CSS-position定位：absolute＆relative＆fixed" class="headerlink" title="CSS-position定位：absolute＆relative＆fixed"></a>CSS-position定位：absolute＆relative＆fixed</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當畫面中的元素需要重疊時，建議可以使用<code>position</code>屬性作定位</p>
+<h3 id="預設值-static"><a href="#預設值-static" class="headerlink" title="預設值(static)"></a>預設值(static)</h3><ul>
+<li><p>在不設定position屬性的情況，瀏覽器的預設值為<code>static</code></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:static;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置自動排版在頁面上</p>
+<h3 id="相對定位-relative"><a href="#相對定位-relative" class="headerlink" title="相對定位(relative)"></a>相對定位(relative)</h3></li>
+<li>css語法<ul>
+<li><code>position</code>的值為<code>relative</code></li>
+<li>若’ <strong>沒有</strong> ‘設置其他top、right、bottom、left屬性，則其顯現的位置跟static一樣，會依照瀏覽器預設的配置自動排版在頁面上</li>
+<li>若’ <strong>有</strong> ‘設置top、right、bottom、left屬性 ，該元素會「相對地」調整其原本該出現的所在位置<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="絕對定位-absolute"><a href="#絕對定位-absolute" class="headerlink" title="絕對定位(absolute)"></a>絕對定位(absolute)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>absolute</code></li>
+<li><p><code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>交互搭配使用，數值可以為負值或百分比</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/I9zGxh3.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>==若其外層容器沒有「可以被定位的元素(static以外的元素)」，那麼這個子元素的定位就是相對於該網頁（也就是 <body> 元素），作上、下、左、右位置的絕對定位（即使外層有包一個父元素，例：container）==</body></p>
+<p>  <img src="https://i.imgur.com/vWiHVb9.png" alt></p>
+</li>
+<li><p>==Q: 如何以父元素作為定位空間?==</p>
+<p>  ==A: 定義父元素的<code>position</code>==</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  ==內層absolute的子元素則會被外層父元素受限，並在父元素的空間作絕對定位==</p>
+<p>  <img src="https://i.imgur.com/HfeC0aD.png" alt></p>
+</li>
+</ul>
+<h3 id="固定定位-fixed"><a href="#固定定位-fixed" class="headerlink" title="固定定位(fixed)"></a>固定定位(fixed)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>fixed</code></li>
+<li>使用 top、right、bottom、left屬性來定位，可以為負值。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>該元素會相對於瀏覽器視窗來定位，即便瀏覽頁面捲動，它還是會固定在相同的位置。<br><img src="https://i.imgur.com/KGn1CPk.png" alt></p>
+</li>
+</ul>
+<h3 id="補充：上下疊層-z-index"><a href="#補充：上下疊層-z-index" class="headerlink" title="補充：上下疊層(z-index)"></a>補充：上下疊層(z-index)</h3><ul>
+<li>在未設置<code>z-index</code>屬性的情況之下，疊層會按照程式碼由上而下畫圖，box1畫完才畫box2，所以box2疊在box1之上<br><img src="https://i.imgur.com/Ezx4L9i.png" alt></li>
+<li>若想要自定義疊層前後，則透過<code>z-index</code>屬性，==「數字越大=越後畫=疊在越上層 」==<br><img src="https://i.imgur.com/YtS9r1U.png" alt></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-html&amp;CSS-插入(背景)圖片的作法" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -554,6 +647,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -608,18 +713,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(四)模板語法/">Vue-(四)模板語法</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -638,7 +731,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">41</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

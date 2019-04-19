@@ -158,6 +158,65 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-jQuery-改變CSS樣式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/16/jQuery-改變CSS樣式/">jQuery-改變CSS樣式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/jQuery-改變CSS樣式/" class="article-date">
+	  <time datetime="2019-04-16T10:49:34.889Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).css(&apos;屬性&apos;,&apos;值&apos;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
+<li><p><code>css()</code>中所定義的指令是「<strong>jQuery方法</strong>」，意即「jQuery其js中定義了的<code>css()</code>這個函式」</p>
+</li>
+<li><p>選擇器：與CSS相同的選擇器</p>
+</li>
+<li>屬性：CSS的屬性</li>
+<li>值：若為字串，需用單引號或雙引號（<code>&quot;&quot;</code>、<code>&#39;&#39;</code>)括號起來;若值為數值，則不需要。</li>
+</ul>
+<p>補充：jQuery可以修改元素的CSS屬性中的值，但若有使用<code>!important</code>的項目仍會優先套用。</p>
+<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
+<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
+<li>針對jQuery物件呼叫方法，以進行相關操作<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><img src="https://i.imgur.com/RFhWHmz.png" alt></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#556A5B'</span>);</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'transform'</span>,<span class="string">'rotate(10deg)'</span>)</span><br><span class="line">    $(<span class="string">'#typo .inner'</span>).css(<span class="string">'opacity'</span>,<span class="number">0.5</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-jQuery-事件處理" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -906,67 +965,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-API金鑰的使用時機(未完)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/07/API金鑰的使用時機(未完)/">API金鑰的使用時機(未完)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/07/API金鑰的使用時機(未完)/" class="article-date">
-	  <time datetime="2019-04-07T02:19:40.000Z" itemprop="datePublished">April 7, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="API金鑰的使用時機-未完"><a href="#API金鑰的使用時機-未完" class="headerlink" title="API金鑰的使用時機(未完)"></a>API金鑰的使用時機(未完)</h1><h3 id="API金鑰-VS-使用者憑證token"><a href="#API金鑰-VS-使用者憑證token" class="headerlink" title="API金鑰 VS. 使用者憑證token"></a>API金鑰 VS. 使用者憑證token</h3><p>Google Cloud Endpoints 能夠處理 API 金鑰與驗證機制，『API 金鑰用於專案，驗證則是用於使用者』</p>
-<ul>
-<li><p>API 金鑰：用於識別呼叫的專案 (即應用程式或網站)，以便讓呼叫任務對應至正確的API</p>
-</li>
-<li><p>使用者驗證token：用於辨識使用者，即使用應用程式或網站的使用者</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/vZ8F68B.png" alt></p>
-<h3 id="API金鑰"><a href="#API金鑰" class="headerlink" title="API金鑰"></a>API金鑰</h3><p>API金鑰提供功能</p>
-<ul>
-<li>專案識別：辨識發出API呼叫的應用程式與專案</li>
-<li>專案授權：檢查該應用程式是否已獲得呼叫API的存取權，並且確認應用程式是否已經在專案中開啟API</li>
-</ul>
-<h3 id="使用者憑證token"><a href="#使用者憑證token" class="headerlink" title="使用者憑證token"></a>使用者憑證token</h3><p>使用token驗證機制有兩大目的</p>
-<ul>
-<li>使用者驗證：安全地驗證進行呼叫的使用者是否符合其宣稱的身分</li>
-<li>使用者授權：檢查使用者是否擁有權限發出要求</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1034,6 +1032,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -1088,18 +1098,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(四)模板語法/">Vue-(四)模板語法</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1118,7 +1116,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">40</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">41</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
