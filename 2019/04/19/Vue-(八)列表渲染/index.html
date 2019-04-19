@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(八)列表渲染 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="8-1.用v-for把陣列轉換為一組元素 (影片)v-for項目基本語法12345&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;ol&amp;gt;    &amp;lt;li v-for=&amp;quot;item in colors&amp;quot;&amp;gt;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&amp;lt;/li&amp;gt;  &amp;lt;/ol&amp;gt;&amp;lt;/div&amp;gt; 12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(八)列表渲染">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/Vue-(八)列表渲染/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="8-1.用v-for把陣列轉換為一組元素 (影片)v-for項目基本語法12345&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;ol&amp;gt;    &amp;lt;li v-for=&amp;quot;item in colors&amp;quot;&amp;gt;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&amp;lt;/li&amp;gt;  &amp;lt;/ol&amp;gt;&amp;lt;/div&amp;gt; 12345">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/IfM76Fr.png">
+<meta property="og:image" content="https://i.imgur.com/BFdJWYF.jpg">
+<meta property="og:image" content="https://i.imgur.com/U7NQhXd.png">
+<meta property="og:image" content="https://i.imgur.com/UlK7Fmv.png">
+<meta property="og:image" content="https://i.imgur.com/89hAJ0R.png">
+<meta property="og:image" content="https://i.imgur.com/bODDGqY.png">
+<meta property="og:updated_time" content="2019-04-19T07:49:19.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(八)列表渲染">
+<meta name="twitter:description" content="8-1.用v-for把陣列轉換為一組元素 (影片)v-for項目基本語法12345&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;  &amp;lt;ol&amp;gt;    &amp;lt;li v-for=&amp;quot;item in colors&amp;quot;&amp;gt;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&amp;lt;/li&amp;gt;  &amp;lt;/ol&amp;gt;&amp;lt;/div&amp;gt; 12345">
+<meta name="twitter:image" content="https://i.imgur.com/IfM76Fr.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(八)列表渲染" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(八)列表渲染
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(八)列表渲染/" class="article-date">
+	  <time datetime="2019-04-19T07:46:29.651Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="8-1-用v-for把陣列轉換為一組元素-影片"><a href="#8-1-用v-for把陣列轉換為一組元素-影片" class="headerlink" title="8-1.用v-for把陣列轉換為一組元素 (影片)"></a>8-1.用v-for把陣列轉換為一組元素 <a href="https://hiskio.com/courses/145/lectures/5377" target="_blank" rel="noopener">(影片)</a></h2><h3 id="v-for項目基本語法"><a href="#v-for項目基本語法" class="headerlink" title="v-for項目基本語法"></a>v-for項目基本語法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in colors&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;  </span><br><span class="line">    colors:[<span class="string">'學習javascrip'</span>,<span class="string">'學會vue框架'</span>,<span class="string">'做作品'</span>,<span class="string">'準備面試'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>補充：HTML ul 與 ol 差異==</strong><br><img src="https://i.imgur.com/IfM76Fr.png" alt></p>
+<h3 id="將item拿出來當作屬性"><a href="#將item拿出來當作屬性" class="headerlink" title="將item拿出來當作屬性"></a>將item拿出來當作屬性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in todo&quot; v-bind:class=&apos;item.key&apos;&gt;</span><br><span class="line">      &#123;&#123;item.date&#125;&#125; &#123;&#123;item.content&#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.first</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.second</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;  </span><br><span class="line">    todo:[&#123;<span class="attr">key</span>:<span class="string">'first'</span>,<span class="attr">date</span>:<span class="string">'3/9'</span>,<span class="attr">content</span>:<span class="string">'學習javascrip'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/10'</span>,<span class="attr">content</span>:<span class="string">'學會vue框架'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/11'</span>,<span class="attr">content</span>:<span class="string">'做作品'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/12'</span>,<span class="attr">content</span>:<span class="string">'準備面試'</span>&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="用index綁定value"><a href="#用index綁定value" class="headerlink" title="用index綁定value"></a>用index綁定value</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;select &gt;</span><br><span class="line">    &lt;option v-for=&quot;(item,index) in monthes&quot; :value=&quot;index&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123; </span><br><span class="line">    monthes:[<span class="string">'1月'</span>,<span class="string">'2月'</span>,<span class="string">'3月'</span>,<span class="string">'4月'</span>,<span class="string">'5月'</span>,<span class="string">'6月'</span>,<span class="string">'7月'</span>,<span class="string">'8月'</span>,<span class="string">'9月'</span>,<span class="string">'10月'</span>,<span class="string">'11月'</span>,<span class="string">'12月'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-2-用v-for把物件轉換為一組元素-影片"><a href="#8-2-用v-for把物件轉換為一組元素-影片" class="headerlink" title="8-2.用v-for把物件轉換為一組元素 (影片)"></a>8-2.用v-for把物件轉換為一組元素 <a href="https://hiskio.com/courses/145/lectures/5378" target="_blank" rel="noopener">(影片)</a></h2><p><strong>注意</strong><br><strong><code>v-for</code>render出來的順序不一定會跟物件中的順序一樣，所以如果是需要遵從順序的情況，盡可能使用陣列</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;span v-for=&quot;(value,key) in me&quot;&gt;&#123;&#123;key&#125;&#125;-&#123;&#123;value&#125;&#125;&lt;br/&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    me:&#123;</span><br><span class="line">      name:<span class="string">'Leah'</span>,</span><br><span class="line">      age:<span class="number">26</span>,</span><br><span class="line">      gender:<span class="string">"Female"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-3-修改陣列或物件的注意事項-影片"><a href="#8-3-修改陣列或物件的注意事項-影片" class="headerlink" title="8-3.修改陣列或物件的注意事項 (影片)"></a>8-3.修改陣列或物件的注意事項 <a href="https://hiskio.com/courses/145/lectures/5379" target="_blank" rel="noopener">(影片)</a></h2><h3 id="陣列新增、刪減、排列基本語法"><a href="#陣列新增、刪減、排列基本語法" class="headerlink" title="陣列新增、刪減、排列基本語法"></a>陣列新增、刪減、排列基本語法</h3><ul>
+<li><code>push(ew item)</code>從陣列後面新增</li>
+<li><code>pop()</code>從陣列後面刪減</li>
+<li><code>unshift(new item)</code>從陣列前面新增</li>
+<li><code>shift()</code>從陣列前面刪減</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in steps&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;button @click=&quot;push&quot;&gt;Push&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;pop&quot;&gt;Pop&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;shift&quot;&gt;Shift&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;unshift&quot;&gt;Unshift&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    steps:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    push()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.push(<span class="keyword">this</span>.steps.length+<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    pop()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.pop();</span><br><span class="line">    &#125;,</span><br><span class="line">    shift()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.shift();</span><br><span class="line">    &#125;,</span><br><span class="line">    unshift()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.unshift(<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>splice(index,length)</code>從陣列中切割<br>第一個參數index代表陣列中要開始被切割的元素索引，第二個length參數代表要被切割掉的長度(元素數量)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">splice()&#123;<span class="comment">//切除陣列中倒數第二個元素</span></span><br><span class="line">  <span class="keyword">this</span>.steps.splice(<span class="keyword">this</span>.steps.length<span class="number">-2</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>splice(index,length,...)</code>從陣列中切除，並添加新的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">splice()&#123;<span class="comment">//從steps[1]開始切除0個，並從該位置添加元素'new1','new2','new3'</span></span><br><span class="line">      <span class="keyword">this</span>.steps.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="string">'new1'</span>,<span class="string">'new2'</span>,<span class="string">'new3'</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>slice(from,to)</code>從陣列中取出部分元素，並重組出一個新的陣列<br>==slice()不會改變原先的陣列，會產出一個新的陣列==</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">slice()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps = <span class="keyword">this</span>.steps.slice(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">* `</span>sort()<span class="string">`從陣列中的元素從小到大排列</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript=</span><br><span class="line">sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.sort();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>reverse()</code>從陣列中的元素反過來從後面到前面排列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reverse()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.reverse();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>filter()</code>從陣列中的過濾符合條件的元素，並重組出一個陣列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//將steps中的每個元素一個個檢查</span></span><br><span class="line"><span class="comment">//若符合(item%2===0)，則會被放入新陣列中</span></span><br><span class="line"><span class="comment">//最後將新的陣列作為filter()的回傳值</span></span><br><span class="line"><span class="comment">//並重新assign給this.steps</span></span><br><span class="line">filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps = <span class="keyword">this</span>.steps.filter(<span class="function"><span class="params">item</span> =&gt;</span> item%<span class="number">2</span> === <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意！！！！</strong></p>
+<ul>
+<li>this.steps[0]=10, 不會修改陣列元素的值，應用<code>splice()</code>達到此目的</li>
+<li>this.steps.length=0, 沒辦法清空陣列中的元素，應用<code>splice()</code>，或是<code>slice()</code>達到此目的。</li>
+<li>this.obj.z=30, 沒有辦法達到新增物件屬性的功能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h4 v-for=&quot;(value,key) in obj&quot;&gt;&#123;&#123;key&#125;&#125;=&#123;&#123;value&#125;&#125;&lt;/h4&gt;</span><br><span class="line">  &lt;button @click=&quot;addZ&quot;&gt;Add Z&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>this代表Vue實例，Vue實例中有個方法$set()，第一個參數是設定的目標物件，第二個參數代表新增的key，第三個參數代表新增的value<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">addZ()&#123;</span><br><span class="line">  <span class="comment">// this.obj.z = 300;//無效</span></span><br><span class="line">  <span class="keyword">this</span>.$<span class="keyword">set</span>(this.obj,'z',300);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>或是，這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">addZ()&#123;</span><br><span class="line">  Vue.set(<span class="keyword">this</span>.obj,<span class="string">'z'</span>,<span class="number">300</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong><br><strong><code>this.$set()</code>與<code>Vue.set()</code>用於物件原先沒有該屬性的情況;若情況是要修改物件本來就存在的屬性值，直接改寫就可以</strong></p>
+<hr>
+<h2 id="8-4-列表的過濾與排序-影片"><a href="#8-4-列表的過濾與排序-影片" class="headerlink" title="8-4.列表的過濾與排序 (影片)"></a>8-4.列表的過濾與排序 <a href="https://hiskio.com/courses/145/lectures/5380" target="_blank" rel="noopener">(影片)</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in nums&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;button @click=&quot;initiate&quot;&gt;Initiate&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;filter&quot;&gt;Filter&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;sort&quot;&gt;Sort&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>sort()會改變原先的this.num陣列;又因為data中nums=orgNums，所以最外面的orgNums也被改變了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> orgNums = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">9</span>];</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    nums:orgNums,</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    initiate()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = orgNums;</span><br><span class="line">    &#125;,</span><br><span class="line">    filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.filter(<span class="function"><span class="params">item</span> =&gt;</span>item%<span class="number">2</span>===<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums.sort();</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>因此，若要避免原先的陣列被改動而喚不回初始值，可以利用<code>slice()</code>語法，先複製一個新的陣列<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> orgNums = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">9</span>];</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    nums:orgNums,</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    initiate()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = orgNums;</span><br><span class="line">    &#125;,</span><br><span class="line">    filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.filter(<span class="function"><span class="params">item</span> =&gt;</span>item%<span class="number">2</span>===<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.slice().sort();</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="8-5-用v-for渲染templete-影片"><a href="#8-5-用v-for渲染templete-影片" class="headerlink" title="8-5.用v-for渲染templete [(影片)]"></a>8-5.用v-for渲染templete [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5382" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5382</a>)</p>
+<ul>
+<li>每次迴圈需要被render出來的不只一個元素，而是包含多個標籤元素，可以使用<code>&lt;templete&gt;&lt;/templete&gt;</code>，並將<code>v-for</code>指令放在templete標籤中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;template v-for=&apos;item in header&apos;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;item&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;hr/&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    header:[<span class="string">'Home'</span>,<span class="string">'About'</span>,<span class="string">'Product'</span>,<span class="string">'Contact'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-6-實作：從JSON資料渲染課程列表-影片"><a href="#8-6-實作：從JSON資料渲染課程列表-影片" class="headerlink" title="8-6.實作：從JSON資料渲染課程列表 [(影片)]"></a>8-6.實作：從JSON資料渲染課程列表 [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5383" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5383</a>)</p>
+<h3 id="在mounted-階段引入JSON格式資料"><a href="#在mounted-階段引入JSON格式資料" class="headerlink" title="在mounted()階段引入JSON格式資料"></a>在<code>mounted()</code>階段引入JSON格式資料</h3><ul>
+<li><p>用原生的<code>fetch()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">    fetch(<span class="string">'./data.json'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">    .then(<span class="function"><span class="params">lessons</span> =&gt;</span> <span class="keyword">this</span>.lessons = lessons);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入<code>jquery</code>寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(<span class="string">'./data.json'</span>)</span><br><span class="line">            .then(<span class="function"><span class="params">lessons</span> =&gt;</span> <span class="keyword">this</span>.lessons = lessons);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>axios</code>寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'./data.json'</span>).then(<span class="function"><span class="params">res</span> =&gt;</span><span class="keyword">this</span>.lessons = res.data);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="結果呈現"><a href="#結果呈現" class="headerlink" title="結果呈現"></a>結果呈現</h3><ul>
+<li><a href="https://github.com/lehlin912/practice_vue_JSONdata_0311" target="_blank" rel="noopener">github完整程式碼</a><br><img src="https://i.imgur.com/BFdJWYF.jpg" alt></li>
+</ul>
+<p><strong>補充</strong><br>vscode 擴充套件 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener">Live Server</a>：可以快速地建造一個本地端的server</p>
+<h2 id="8-7-片尾彩蛋：認識JSON格式-影片"><a href="#8-7-片尾彩蛋：認識JSON格式-影片" class="headerlink" title="8-7.片尾彩蛋：認識JSON格式 [(影片)]"></a>8-7.片尾彩蛋：認識JSON格式 [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5470" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5470</a>)</p>
+<h3 id="「JSON格式」本身是一個「字串」"><a href="#「JSON格式」本身是一個「字串」" class="headerlink" title="「JSON格式」本身是一個「字串」"></a>「JSON格式」本身是一個「字串」</h3><h3 id="JSON格式的限制"><a href="#JSON格式的限制" class="headerlink" title="JSON格式的限制"></a>JSON格式的限制</h3><ul>
+<li>JSON格式的key一定要有雙引號””</li>
+<li>最後一個value不能有,結尾</li>
+<li>value不能是函式（不過可以把它存成字串，之後再轉為函式執行）<h3 id="格式轉換"><a href="#格式轉換" class="headerlink" title="格式轉換"></a>格式轉換</h3></li>
+<li>javascript物件轉為JSON格式：<code>JSON.stringify();</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  name:<span class="string">"point"</span>,</span><br><span class="line">  x:<span class="number">100</span>,</span><br><span class="line">  y:<span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure>
+<p>印出結果，用“”代表是一個字串(JSON格式字串)<br><img src="https://i.imgur.com/U7NQhXd.png" alt></p>
+<ul>
+<li>JSON格式轉為javascript物件：<code>JSON.parse()</code>;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataObj = <span class="built_in">JSON</span>.parse(dataJSON);</span><br><span class="line"><span class="built_in">console</span>.log(dataObj);</span><br></pre></td></tr></table></figure>
+<p>印出結果，是一個物件<br><img src="https://i.imgur.com/UlK7Fmv.png" alt></p>
+<h3 id="replacer-重建JSON資料"><a href="#replacer-重建JSON資料" class="headerlink" title="replacer:重建JSON資料"></a>replacer:重建JSON資料</h3><p>將物件轉換為JSON格式時，只取其中部分的key值。<br>作法：在stringify()的第二個參數放上key字串組成的陣列[‘x’,’y’];若放null，則代表曲全部的資料<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  name:<span class="string">"point"</span>,</span><br><span class="line">  x:<span class="number">100</span>,</span><br><span class="line">  y:<span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data,[<span class="string">'x'</span>,<span class="string">'y'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure></p>
+<p>印出結果，產出的JSON格式資料中，只有出’x’,’y’<br><img src="https://i.imgur.com/89hAJ0R.png" alt></p>
+<h3 id="提高JSON格式易讀性"><a href="#提高JSON格式易讀性" class="headerlink" title="提高JSON格式易讀性"></a>提高JSON格式易讀性</h3><p>為了易讀性，讓JSON格式排列整齊，每個key值前面補上空格<br>作法：在stringify()的第三個參數空格數量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data,<span class="literal">null</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/bODDGqY.png" alt></p>
+<h3 id="格式JSON搭配try-catch"><a href="#格式JSON搭配try-catch" class="headerlink" title="格式JSON搭配try,catch()"></a>格式JSON搭配try,catch()</h3><p>因為不能保證每次能成功將JSON格式轉換為物件，為了避免城市卡住，通常會搭配try,catch(err)處理錯誤<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(dataJSON);</span><br><span class="line">&#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">  <span class="keyword">const</span> data = &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/19/Vue-(七)條件判斷/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue筆記-(七)條件判斷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-用v-for把陣列轉換為一組元素-影片"><span class="nav-number">1.</span> <span class="nav-text">8-1.用v-for把陣列轉換為一組元素 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for項目基本語法"><span class="nav-number">1.1.</span> <span class="nav-text">v-for項目基本語法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將item拿出來當作屬性"><span class="nav-number">1.2.</span> <span class="nav-text">將item拿出來當作屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用index綁定value"><span class="nav-number">1.3.</span> <span class="nav-text">用index綁定value</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-用v-for把物件轉換為一組元素-影片"><span class="nav-number">2.</span> <span class="nav-text">8-2.用v-for把物件轉換為一組元素 (影片)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-修改陣列或物件的注意事項-影片"><span class="nav-number">3.</span> <span class="nav-text">8-3.修改陣列或物件的注意事項 (影片)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#陣列新增、刪減、排列基本語法"><span class="nav-number">3.1.</span> <span class="nav-text">陣列新增、刪減、排列基本語法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-列表的過濾與排序-影片"><span class="nav-number">4.</span> <span class="nav-text">8-4.列表的過濾與排序 (影片)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-用v-for渲染templete-影片"><span class="nav-number">5.</span> <span class="nav-text">8-5.用v-for渲染templete [(影片)]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-實作：從JSON資料渲染課程列表-影片"><span class="nav-number">6.</span> <span class="nav-text">8-6.實作：從JSON資料渲染課程列表 [(影片)]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在mounted-階段引入JSON格式資料"><span class="nav-number">6.1.</span> <span class="nav-text">在mounted()階段引入JSON格式資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#結果呈現"><span class="nav-number">6.2.</span> <span class="nav-text">結果呈現</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-7-片尾彩蛋：認識JSON格式-影片"><span class="nav-number">7.</span> <span class="nav-text">8-7.片尾彩蛋：認識JSON格式 [(影片)]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#「JSON格式」本身是一個「字串」"><span class="nav-number">7.1.</span> <span class="nav-text">「JSON格式」本身是一個「字串」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON格式的限制"><span class="nav-number">7.2.</span> <span class="nav-text">JSON格式的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式轉換"><span class="nav-number">7.3.</span> <span class="nav-text">格式轉換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replacer-重建JSON資料"><span class="nav-number">7.4.</span> <span class="nav-text">replacer:重建JSON資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提高JSON格式易讀性"><span class="nav-number">7.5.</span> <span class="nav-text">提高JSON格式易讀性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式JSON搭配try-catch"><span class="nav-number">7.6.</span> <span class="nav-text">格式JSON搭配try,catch()</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
