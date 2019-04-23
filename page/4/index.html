@@ -158,6 +158,128 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Bootstrap-排版Grid system" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/Bootstrap-排版Grid system/">Bootstrap-排版Grid system</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-排版Grid system/" class="article-date">
+	  <time datetime="2019-04-03T22:11:56.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-排版Grid-system"><a href="#Bootstrap-排版Grid-system" class="headerlink" title="Bootstrap-排版Grid system"></a>Bootstrap-排版Grid system</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>Bootstrap的排版是使用css flexbox</li>
+<li>結構上要分為兩層：<ul>
+<li>外層為<code>row</code>：</li>
+<li>內層為一到多個<code>col-</code></li>
+</ul>
+</li>
+<li><code>row</code>容器就是一個flexbox</li>
+<li>Bootstrap的概念是將row容器中，一行分成12等分<br><img src="https://i.imgur.com/OSxICZz.png" alt></li>
+<li><code>col-</code>後面接的數字，就是在一行中，佔有幾個「1/12的空間」。例：col-3就代表佔了3/12的寬度空間</li>
+<li>針對不同尺寸螢幕，可以定義各種尺寸的佔有空間。例：<code>col-lg-3, col-sm-6</code>會在lg size時佔有3/12，而在sm size時佔有6/12<br><img src="https://i.imgur.com/6crFqDz.png" alt></li>
+<li>如果一行中有兩欄，其加總空間未滿12/12，可以用offset製造空欄的效果。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-sm-4&quot;&gt;col-lg-3 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-5 col-sm-4&quot;&gt;col-lg-5 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-2 col-lg-offset col-sm-4&quot;&gt;col-lg-2 col-lg-offset col-sm-4&lt;/div&gt;           </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/QeCCJvo.png" alt></p>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><ul>
+<li>Large時，一排四個</li>
+<li>Medium時，一排兩個</li>
+<li>Extra small時，一排一個<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#author-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Author section</a><br><img src="https://i.imgur.com/WVa1q34.png" alt></p>
+<p><img src="https://i.imgur.com/ykYoxBG.png" alt></p>
+<p><img src="https://i.imgur.com/1ksY5GI.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-展開Collapse &amp; Accordion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/Bootstrap-展開Collapse & Accordion/">Bootstrap-展開Collapse &amp; Accordion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/Bootstrap-展開Collapse & Accordion/" class="article-date">
+	  <time datetime="2019-04-03T03:26:30.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-展開Collapse-amp-Accordion"><a href="#Bootstrap-展開Collapse-amp-Accordion" class="headerlink" title="Bootstrap-展開Collapse &amp; Accordion"></a>Bootstrap-展開Collapse &amp; Accordion</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>給予一個button</li>
+<li>在collapse-content(事件作用目標物)上面給予一個id</li>
+<li>在button標籤中，用bootstrap自訂屬性<code>data-toggle</code>定義觸發事件，以及與<code>data-target</code>定義作用的目標物<br><img src="https://i.imgur.com/7IP8oUd.png" alt></li>
+</ul>
+<h3 id="Collapse實作"><a href="#Collapse實作" class="headerlink" title="Collapse實作"></a>Collapse實作</h3><ul>
+<li>預設值為關閉collapse狀態，若要預設為展開開狀態，可以添加<code>show</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;</span><br><span class="line">    &lt;button data-toggle=&quot;collapse&quot; data-target=&quot;#collapse1&quot;&gt; </span><br><span class="line">        Button 1 </span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">    &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;</span><br><span class="line">        Collapse-content-1</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Accordion"><a href="#Accordion" class="headerlink" title="Accordion"></a>Accordion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;accordion&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 1 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse show&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-1</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 2 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse2&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-2</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse3&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 3 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-3</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/0wh298B.png" alt></p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#mission-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Mission section</a><br><img src="https://i.imgur.com/49RS06k.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-用hover選擇器增加滑鼠互動效果" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -697,115 +819,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-CSS-圖片邊框" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-圖片邊框/">CSS-圖片邊框</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-圖片邊框/" class="article-date">
-	  <time datetime="2019-04-02T01:00:40.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-圖片邊框"><a href="#CSS-圖片邊框" class="headerlink" title="CSS-圖片邊框"></a>CSS-圖片邊框</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>分為兩層div空間</p>
-<ul>
-<li>先定義下方piece空間的邊框角度</li>
-<li>再定義上方piece-photo空間的邊框角度</li>
-<li>最後定義上方piece-photo的背景，用<code>background-imgage</code>屬性引入圖片<br><img src="https://i.imgur.com/8e6DOtw.jpg" alt></li>
-</ul>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>外層：定義外層div空間的寬高、原角邊框等樣式設定<br>內層：</p>
-<ol>
-<li>先定義「內層空間的寬高」、原角邊框</li>
-<li><code>background-image</code>引入圖片之後，要定義「被引入圖片的寬高」、定位等設定</li>
-</ol>
-<p>補充：更多圖片屬性設定參考 <a href="https://hackmd.io/4_9uMgawRKyKkofkszbilA#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%BE%9Ecss%E9%81%B8%E6%93%87%E5%99%A8%E4%B8%AD%E5%AE%9A%E7%BE%A9%E8%83%8C%E6%99%AF" target="_blank" rel="noopener">html&amp;CSS-插入(背景)圖片的作法-從css選擇器中定義背景</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;piece&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.piece</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>:white;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">0.25rem</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.piece-photo</span>&#123;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">0.25rem</span>;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: <span class="number">0.25rem</span>; </span><br><span class="line">    </span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../img/meal1.jpg"</span>);</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background-attachment</span>: scroll;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Education page</a><br><img src="https://i.imgur.com/icbcVjz.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-設置背景overlay" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-設置背景overlay/">CSS-設置背景overlay</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-設置背景overlay/" class="article-date">
-	  <time datetime="2019-04-02T00:59:32.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-設置背景overlay"><a href="#CSS-設置背景overlay" class="headerlink" title="CSS-設置背景overlay"></a>CSS-設置背景overlay</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>將「下方圖片」、「上方覆蓋色塊」分為兩層(兩個div)</p>
-<ul>
-<li>外層的背景為一張圖片</li>
-<li>內層的背景為透明色彩</li>
-</ul>
-<p>註：外層div會先畫，因此在畫面會呈現在下方;相反的，內層div會後畫，在畫面中會呈現蓋在上方<br><img src="https://i.imgur.com/XeEJIiF.jpg" alt></p>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>最外層div的背景使用一張圖片(background-image屬性)，內層div的背景使用rgba的透明色彩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div cless=&quot;section&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;white-overlay&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../img/education-bg.jpg"</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat ;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">    <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">1200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.white-overlay</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.3);</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">1200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Notes page</a><br><img src="https://i.imgur.com/gAvdvKQ.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -873,6 +886,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/23/NVM-安裝及控管Node.js的版本/">(no title)</a></h6>
+              <span>April 23, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/04/23/Webpack-(一)基本入門介紹/">Webpack-前端建置工具的發展背景及入門介紹</a></h6>
+              <span>April 23, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -915,30 +952,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(六)HTML元素的屬性綁定/">Vue-(六)HTML元素的屬性綁定</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(五)Vue實例/">Vue-(五)Vue實例</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -957,7 +970,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">41</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
