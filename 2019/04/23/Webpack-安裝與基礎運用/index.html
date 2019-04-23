@@ -17,9 +17,9 @@
   
   
   <meta name="description" content="開發環境Webpack是在Node.js環境下去執行的自動化工具，因此若要使用Webpack，首先電腦中必須安裝有Node.js開發環境  安裝Node.js，請參考文章：NVM-安裝及控管Node.js的版本 專案建立 先新增一個空的資料夾，並使用vsCode編譯器打開該資料夾 在資料夾中新增一個檔案，命名為webpack.config.js  正式安裝Webpack接著正式安裝，可以先到Web">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Webpack-安裝與基礎運用">
-<meta property="og:url" content="http://yoursite.com/Webpack-安裝與基礎運用.html">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/Webpack-安裝與基礎運用/index.html">
 <meta property="og:site_name" content="Leah&#39;s Blog">
 <meta property="og:description" content="開發環境Webpack是在Node.js環境下去執行的自動化工具，因此若要使用Webpack，首先電腦中必須安裝有Node.js開發環境  安裝Node.js，請參考文章：NVM-安裝及控管Node.js的版本 專案建立 先新增一個空的資料夾，並使用vsCode編譯器打開該資料夾 在資料夾中新增一個檔案，命名為webpack.config.js  正式安裝Webpack接著正式安裝，可以先到Web">
 <meta property="og:locale" content="default">
@@ -94,7 +94,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -170,7 +170,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-Webpack-安裝與基礎運用" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -186,8 +186,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/Webpack-安裝與基礎運用.html" class="article-date">
-	  <time datetime="2019-04-23T12:04:41.820Z" itemprop="datePublished">April 23, 2019</time>
+	Posted on <a href="/2019/04/23/Webpack-安裝與基礎運用/" class="article-date">
+	  <time datetime="2019-04-23T12:03:41.032Z" itemprop="datePublished">April 23, 2019</time>
 	</a>
 
       
@@ -312,163 +312,30 @@ var themeMenus = {};
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/23/NVM-安裝及控管Node.js的版本/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NVM-安裝及控管Node.js的版本</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
     
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#開發環境"><span class="nav-number">1.</span> <span class="nav-text">開發環境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#專案建立"><span class="nav-number">2.</span> <span class="nav-text">專案建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正式安裝Webpack"><span class="nav-number">3.</span> <span class="nav-text">正式安裝Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack檔案建置"><span class="nav-number">4.</span> <span class="nav-text">webpack檔案建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟用Webpack"><span class="nav-number">5.</span> <span class="nav-text">啟用Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Babel-loader轉換語法"><span class="nav-number">6.</span> <span class="nav-text">使用Babel-loader轉換語法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在HTML中引入"><span class="nav-number">7.</span> <span class="nav-text">在HTML中引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#執行不同版本的webpack編譯"><span class="nav-number">8.</span> <span class="nav-text">執行不同版本的webpack編譯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考來源"><span class="nav-number">9.</span> <span class="nav-text">參考來源</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="Search">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/23/NVM-安裝及控管Node.js的版本/">NVM-安裝及控管Node.js的版本</a></h6>
-              <span>April 23, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/23/Webpack-(一)基本入門介紹/">Webpack-前端建置工具的發展背景及入門介紹</a></h6>
-              <span>April 23, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(八)列表渲染/">Vue-(八)列表渲染</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(七)條件判斷/">Vue-(七)條件判斷</a></h6>
-              <span>April 19, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">15</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
