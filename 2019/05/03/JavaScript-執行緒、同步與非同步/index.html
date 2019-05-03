@@ -10,7 +10,7 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>js-提升(hoisting) | Leah&#39;s Blog</title>
+  <title>javascript-執行緒、同步與非同步 | Leah&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="JavaScriptJS">
@@ -18,20 +18,22 @@
   
   
   
-  <meta name="description" content="JS-提升(Hoisting)javascript的執行環境分為兩階段，在執行程式碼(exection)之前，會經歷創建階段(creation)，在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」。  函式提升在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。 變數提升在創建階段，電腦">
+  <meta name="description" content="單執行緒(Single Threaded)在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。 同步執行(Synchronous)對程式語言來說，是一次一個，而且照出現順序一行一行執行。 非同步執行(Asynchronous)在同一時間中，不只一個在執行。 JavaScript引擎JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎">
 <meta name="keywords" content="JavaScript,JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS-提升(Hoisting)">
-<meta property="og:url" content="http://yoursite.com/2019/03/28/JS-提升(Hoisting)/index.html">
+<meta property="og:title" content="JavaScript-執行緒、同步與非同步">
+<meta property="og:url" content="http://yoursite.com/2019/05/03/JavaScript-執行緒、同步與非同步/index.html">
 <meta property="og:site_name" content="Leah&#39;s Blog">
-<meta property="og:description" content="JS-提升(Hoisting)javascript的執行環境分為兩階段，在執行程式碼(exection)之前，會經歷創建階段(creation)，在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」。  函式提升在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。 變數提升在創建階段，電腦">
+<meta property="og:description" content="單執行緒(Single Threaded)在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。 同步執行(Synchronous)對程式語言來說，是一次一個，而且照出現順序一行一行執行。 非同步執行(Asynchronous)在同一時間中，不只一個在執行。 JavaScript引擎JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.imgur.com/z5usW8d.png">
-<meta property="og:updated_time" content="2019-04-23T16:07:33.644Z">
+<meta property="og:image" content="https://i.imgur.com/Uy3FgZe.jpg">
+<meta property="og:image" content="https://i.imgur.com/v5ZxPRB.png">
+<meta property="og:image" content="https://i.imgur.com/3u60bpf.png">
+<meta property="og:updated_time" content="2019-05-03T06:22:41.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS-提升(Hoisting)">
-<meta name="twitter:description" content="JS-提升(Hoisting)javascript的執行環境分為兩階段，在執行程式碼(exection)之前，會經歷創建階段(creation)，在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」。  函式提升在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。 變數提升在創建階段，電腦">
-<meta name="twitter:image" content="https://i.imgur.com/z5usW8d.png">
+<meta name="twitter:title" content="JavaScript-執行緒、同步與非同步">
+<meta name="twitter:description" content="單執行緒(Single Threaded)在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。 同步執行(Synchronous)對程式語言來說，是一次一個，而且照出現順序一行一行執行。 非同步執行(Asynchronous)在同一時間中，不只一個在執行。 JavaScript引擎JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎">
+<meta name="twitter:image" content="https://i.imgur.com/Uy3FgZe.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
   
@@ -165,7 +167,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-JS-提升(Hoisting)" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-JavaScript-執行緒、同步與非同步" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -173,7 +175,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" itemprop="name">
-      JS-提升(Hoisting)
+      JavaScript-執行緒、同步與非同步
     </h1>
   
 
@@ -181,8 +183,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/03/28/JS-提升(Hoisting)/" class="article-date">
-	  <time datetime="2019-03-27T22:49:40.000Z" itemprop="datePublished">March 28, 2019</time>
+	Posted on <a href="/2019/05/03/JavaScript-執行緒、同步與非同步/" class="article-date">
+	  <time datetime="2019-05-03T06:16:38.051Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
       
@@ -193,13 +195,19 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JS-提升-Hoisting"><a href="#JS-提升-Hoisting" class="headerlink" title="JS-提升(Hoisting)"></a>JS-提升(Hoisting)</h1><p>javascript的執行環境分為兩階段，在執行程式碼(exection)之前，會經歷創建階段(creation)，在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」。</p>
-<ul>
-<li><h4 id="函式提升"><a href="#函式提升" class="headerlink" title="函式提升"></a>函式提升</h4>在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。</li>
-<li><h4 id="變數提升"><a href="#變數提升" class="headerlink" title="變數提升"></a>變數提升</h4>在創建階段，電腦的記憶體為a空出記憶體，可是他還不知道他的值為何，會先給予一個undefine的值，等到執行階段賦值時，才會將a的值放進記憶體中。也因此下方案例，印出a並不會出錯，只是它的值為undefine。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">b();</span><br><span class="line"><span class="keyword">var</span> num = <span class="number">6</span>; <span class="comment">//只要 num 有被宣告，就不會有錯誤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/z5usW8d.png" alt></p>
+        <h3 id="單執行緒-Single-Threaded"><a href="#單執行緒-Single-Threaded" class="headerlink" title="單執行緒(Single Threaded)"></a>單執行緒(Single Threaded)</h3><p>在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。</p>
+<h3 id="同步執行-Synchronous"><a href="#同步執行-Synchronous" class="headerlink" title="同步執行(Synchronous)"></a>同步執行(Synchronous)</h3><p>對程式語言來說，是一次一個，而且照出現順序一行一行執行。</p>
+<h3 id="非同步執行-Asynchronous"><a href="#非同步執行-Asynchronous" class="headerlink" title="非同步執行(Asynchronous)"></a>非同步執行(Asynchronous)</h3><p>在同一時間中，不只一個在執行。</p>
+<h3 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h3><p>JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎處理別的程式，像是rendering engine會顯示畫面到螢幕中，或是也有負責處理HTTP請求資料的。</p>
+<p>JavaScript引擎外部可以跟其他的引擎相互溝通，而且可以是<strong>非同步</strong>處理，也就是說JavaScript引擎、rendering engine、HTTP請求，這三者可以同時都在進行處理、執行。</p>
+<p>然而，JavaScript引擎本身，是單執行緒和同步執行的。也就是說，在JavaScript引擎裡面，程式碼是一行一行被解讀。</p>
+<p>總結，<strong>JavaScript引擎本身是單執行緒、同步執行，而向外的溝通、請求可以是非同步執行</strong>。</p>
+<p><img src="https://i.imgur.com/Uy3FgZe.jpg" alt></p>
+<h3 id="事件佇列-Event-Queue"><a href="#事件佇列-Event-Queue" class="headerlink" title="事件佇列(Event Queue)"></a>事件佇列(Event Queue)</h3><p>前面提到，JavaScript引擎本身是同步執行，但是當JavaScript引擎接收到從外部來的一個需要處理事件時，在JavaScript引擎中會先被放到等待列，也就是先放進事件佇列(Event Queue)。</p>
+<p><img src="https://i.imgur.com/v5ZxPRB.png" alt></p>
+<p>JavaScript引擎還是會先處理完執行堆處理完，直到b()結束、a()結束、全域結束都從執行堆中pop掉，當執行堆是空的時候，JavaScript才會注意到Event Queue。</p>
+<p><img src="https://i.imgur.com/3u60bpf.png" alt></p>
+<p>首先處理click事件，看到該事件觸發執行clickHandler()，所以就在執行堆中創建一個執行環境給它。當該事件處理完畢，被pop掉之後，執行堆中又被淨空了，才再繼續處理下一個佇列事件。</p>
 
       
     </div>
@@ -245,19 +253,19 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2019/03/28/CSS-Box-sizing屬性/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/03/JavaScript-型別/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CSS-Box-sizing屬性
+          JavaScript-型別
         
       </div>
     </a>
   
   
-    <a href="/2019/03/28/JS-函式特性(Functions)/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/05/03/JavaScript-範圍鏈(scope chain)/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS-函式特性(Functions)</div>
+      <div class="article-nav-title">JavaScript-範圍鏈(scope chain)</div>
     </a>
   
 </nav>
@@ -271,7 +279,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS-提升-Hoisting"><span class="nav-number">1.</span> <span class="nav-text">JS-提升(Hoisting)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函式提升"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">函式提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#變數提升"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">變數提升</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#單執行緒-Single-Threaded"><span class="nav-number">1.</span> <span class="nav-text">單執行緒(Single Threaded)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步執行-Synchronous"><span class="nav-number">2.</span> <span class="nav-text">同步執行(Synchronous)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非同步執行-Asynchronous"><span class="nav-number">3.</span> <span class="nav-text">非同步執行(Asynchronous)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript引擎"><span class="nav-number">4.</span> <span class="nav-text">JavaScript引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件佇列-Event-Queue"><span class="nav-number">5.</span> <span class="nav-text">事件佇列(Event Queue)</span></a></li></ol>
     
     </div>
   </aside>

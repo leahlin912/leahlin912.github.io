@@ -158,6 +158,616 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Bootstrap-排版Grid system" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/Bootstrap-排版Grid system/">Bootstrap-排版Grid system</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-排版Grid system/" class="article-date">
+	  <time datetime="2019-04-03T22:11:56.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-排版Grid-system"><a href="#Bootstrap-排版Grid-system" class="headerlink" title="Bootstrap-排版Grid system"></a>Bootstrap-排版Grid system</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>Bootstrap的排版是使用css flexbox</li>
+<li>結構上要分為兩層：<ul>
+<li>外層為<code>row</code>：</li>
+<li>內層為一到多個<code>col-</code></li>
+</ul>
+</li>
+<li><code>row</code>容器就是一個flexbox</li>
+<li>Bootstrap的概念是將row容器中，一行分成12等分<br><img src="https://i.imgur.com/OSxICZz.png" alt></li>
+<li><code>col-</code>後面接的數字，就是在一行中，佔有幾個「1/12的空間」。例：col-3就代表佔了3/12的寬度空間</li>
+<li>針對不同尺寸螢幕，可以定義各種尺寸的佔有空間。例：<code>col-lg-3, col-sm-6</code>會在lg size時佔有3/12，而在sm size時佔有6/12<br><img src="https://i.imgur.com/6crFqDz.png" alt></li>
+<li>如果一行中有兩欄，其加總空間未滿12/12，可以用offset製造空欄的效果。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-sm-4&quot;&gt;col-lg-3 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-5 col-sm-4&quot;&gt;col-lg-5 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-2 col-lg-offset col-sm-4&quot;&gt;col-lg-2 col-lg-offset col-sm-4&lt;/div&gt;           </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/QeCCJvo.png" alt></p>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><ul>
+<li>Large時，一排四個</li>
+<li>Medium時，一排兩個</li>
+<li>Extra small時，一排一個<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#author-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Author section</a><br><img src="https://i.imgur.com/WVa1q34.png" alt></p>
+<p><img src="https://i.imgur.com/ykYoxBG.png" alt></p>
+<p><img src="https://i.imgur.com/1ksY5GI.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grid/">grid</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-展開Collapse &amp; Accordion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/Bootstrap-展開Collapse & Accordion/">Bootstrap-展開Collapse &amp; Accordion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/Bootstrap-展開Collapse & Accordion/" class="article-date">
+	  <time datetime="2019-04-03T03:26:30.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-展開Collapse-amp-Accordion"><a href="#Bootstrap-展開Collapse-amp-Accordion" class="headerlink" title="Bootstrap-展開Collapse &amp; Accordion"></a>Bootstrap-展開Collapse &amp; Accordion</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>給予一個button</li>
+<li>在collapse-content(事件作用目標物)上面給予一個id</li>
+<li>在button標籤中，用bootstrap自訂屬性<code>data-toggle</code>定義觸發事件，以及與<code>data-target</code>定義作用的目標物<br><img src="https://i.imgur.com/7IP8oUd.png" alt></li>
+</ul>
+<h3 id="Collapse實作"><a href="#Collapse實作" class="headerlink" title="Collapse實作"></a>Collapse實作</h3><ul>
+<li>預設值為關閉collapse狀態，若要預設為展開開狀態，可以添加<code>show</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;</span><br><span class="line">    &lt;button data-toggle=&quot;collapse&quot; data-target=&quot;#collapse1&quot;&gt; </span><br><span class="line">        Button 1 </span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">    &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;</span><br><span class="line">        Collapse-content-1</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Accordion"><a href="#Accordion" class="headerlink" title="Accordion"></a>Accordion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;accordion&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 1 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse show&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-1</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 2 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse2&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-2</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse3&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 3 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-3</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/0wh298B.png" alt></p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#mission-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Mission section</a><br><img src="https://i.imgur.com/49RS06k.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-用hover選擇器增加滑鼠互動效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/CSS-用hover選擇器增加滑鼠互動效果/">CSS-用hover選擇器增加滑鼠互動效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/CSS-用hover選擇器增加滑鼠互動效果/" class="article-date">
+	  <time datetime="2019-04-03T02:52:02.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-用hover選擇器增加滑鼠互動效果"><a href="#CSS-用hover選擇器增加滑鼠互動效果" class="headerlink" title="CSS-用hover選擇器增加滑鼠互動效果"></a>CSS-用hover選擇器增加滑鼠互動效果</h1><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>先設定元件的初始樣式</li>
+<li>再用css選擇器，添加<code>:hover</code>，並定義滑鼠移過的樣式</li>
+</ul>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#6C757D</span> ;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.card</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f2ac34</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#author-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Author section</a><br><img src="https://i.imgur.com/2deu0qu.png" alt></p>
+<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><ul>
+<li><p>hover經常被用在<code>&lt;a&gt;</code>標籤上</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123; </span><br><span class="line">    <span class="attribute">background-color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他<code>a</code>標籤的連結效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>    &#123;<span class="attribute">color</span>:blue;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>:blue;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>   &#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>  &#123;<span class="attribute">color</span>:yellow;&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Html-一頁式網頁使用href滑頁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/Html-一頁式網頁使用href滑頁/">Html-一頁式網頁使用href滑頁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/Html-一頁式網頁使用href滑頁/" class="article-date">
+	  <time datetime="2019-04-03T02:20:16.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Html-一頁式網頁使用href滑頁"><a href="#Html-一頁式網頁使用href滑頁" class="headerlink" title="Html-一頁式網頁使用href滑頁"></a>Html-一頁式網頁使用href滑頁</h1><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>在每個區塊div設定id，讓</li>
+<li>在menu的項目中設定每個項目的href目的位置為區塊div的id</li>
+<li>用jquery增加scroller效果<br><img src="https://i.imgur.com/LOXSn7j.png" alt></li>
+</ul>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><ul>
+<li>menu中的item使用<code>&lt;a&gt;</code>標籤，並將href設定為目標section的#id<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;navbar-nav&quot;&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section1&quot;&gt;item 1&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section2&quot;&gt;item 2&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section3&quot; &gt;item 3&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;section1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;section2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;section3&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在<code>body</code>標籤中新增id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body data-spy=&quot;scroll&quot; data-target=&quot;#main-nav&quot; id=&quot;home&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用jQuery初始化scrollspy</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;body&apos;).scrollspy(&#123; target:&apos;#mail-nav&apos;&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Smooth Scrolling<ul>
+<li>所有在#main-nav中的<code>&lt;a&gt;</code>被click，就會執行函式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#main-nav a&apos;).on(&apos;click&apos;,function(event)&#123;</span><br><span class="line">&lt;!--check for a hash value --&gt;</span><br><span class="line">    if(this.hash !==&quot;&quot;)&#123;</span><br><span class="line">    </span><br><span class="line">&lt;!--    prevent default behavior --&gt;</span><br><span class="line">        event.preventDefault();</span><br><span class="line">        </span><br><span class="line">&lt;!--    Store hash --&gt;</span><br><span class="line">        const hash = this.hash;</span><br><span class="line">        $(&apos;html,body&apos;).animate(&#123;</span><br><span class="line">            scrollTop: $(hash).offset().top</span><br><span class="line">        &#125;, 800, function()&#123;</span><br><span class="line">&lt;!--        Add hush to URL after scroll --&gt;</span><br><span class="line">            window.location.hash = hash;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/" target="_blank" rel="noopener">My Project-LonelyPlanet</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-自定義重新設定Sass" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/Bootstrap-自定義重新設定Sass/">Bootstrap-自定義重新設定Sass</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/Bootstrap-自定義重新設定Sass/" class="article-date">
+	  <time datetime="2019-04-03T01:39:56.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-自定義重新設定Sass"><a href="#Bootstrap-自定義重新設定Sass" class="headerlink" title="Bootstrap-自定義重新設定Sass"></a>Bootstrap-自定義重新設定Sass</h1><h3 id="用koala設定"><a href="#用koala設定" class="headerlink" title="用koala設定"></a>用koala設定</h3><ol>
+<li><p>在專案資料夾中新增scss資料夾，以及style.scss檔案<br><img src="https://i.imgur.com/XpbaSNb.png" alt></p>
+</li>
+<li><p>進入<a href="https://getbootstrap.com/docs/4.3/getting-started/download/#source-files" target="_blank" rel="noopener">Bootstrap-download</a>，下載Source files<br><img src="https://i.imgur.com/dKRYRWV.png" alt></p>
+</li>
+<li><p>下載解壓縮後，將所有下載的scss資料夾中的所有檔案複製到自己專案的scss資料夾中<br><img src="https://i.imgur.com/oiSapJn.jpg" alt></p>
+</li>
+<li><p>下載<a href="http://koala-app.com/" target="_blank" rel="noopener">koala</a><br><img src="https://i.imgur.com/YZwV3oo.png" alt></p>
+</li>
+<li><p>用koala打開專案資料夾，取消不必被compile的項目<br><img src="https://i.imgur.com/DsYYlIE.png" alt></p>
+</li>
+<li><p>將bootstrap.scss重新輸出路徑到專案的css資料夾中，並且再回到koala執行Compile。Compile之後，就可以看到bootstrap.css出現在專案中</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/eE4EkWJ.png" alt></p>
+<p><img src="https://i.imgur.com/oSApxeW.png" alt></p>
+<p><img src="https://i.imgur.com/EIAvDFr.png" alt></p>
+<p><img src="https://i.imgur.com/jXwHc1I.png" alt></p>
+<ol start="7">
+<li><p>style.scss也重複上述動作，輸出路徑可以覆蓋原先css中的style.css檔案，一樣再執行Compile</p>
+</li>
+<li><p>用vscode打開專案，將舊的「bootstrap.css」與「style.css」刪除<br><img src="https://i.imgur.com/DNGMYDq.png" alt></p>
+</li>
+<li><p>在index.html中，重新設定bootstrap的引入設定，指定為專案中的bootstrap.css<br><img src="https://i.imgur.com/H5pp0Bp.png" alt></p>
+</li>
+<li><p>在scss檔案中即可修改設定<br><img src="https://i.imgur.com/LwLetn1.png" alt></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sass/">Sass</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-自適應navbar" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/03/Bootstrap-自適應navbar/">Bootstrap-自適應navbar</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/03/Bootstrap-自適應navbar/" class="article-date">
+	  <time datetime="2019-04-02T23:53:46.000Z" itemprop="datePublished">April 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-自適應navbar"><a href="#Bootstrap-自適應navbar" class="headerlink" title="Bootstrap-自適應navbar"></a>Bootstrap-自適應navbar</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>透過<code>navbar-expand</code>定義在何種尺寸，menu項目的呈現會改為「漢堡折疊」樣式效果</li>
+<li>使用bootstrap自定義的<code>data-toggle</code>及<code>data-target</code>，決定按鈕點下之後，menu的div要以collapse方式展開<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3></li>
+<li>首先class套用<code>navbar</code>，預設讓它是一個<code>dispaly:flex</code>的彈性盒子，且內部item會水平置中對齊(可以參考bootstrap的原始碼查看css設定)</li>
+<li><code>navbar-expand-sm</code>則是決定當螢幕尺寸小於sm時，會改為以「折疊漢堡」顯示menu項目;若從頭到尾都希望以「折疊漢堡」顯示，則不要在class使用任何navbar-expand</li>
+<li><p>如果希望navbar不會受瀏覽頁面捲動而消失，會一直顯示在最上方，則在class加上<code>fixed-top</code></p>
+</li>
+<li><p>button就是畫面中的「漢堡折疊」，需套用<code>navbar-toggler</code>類。基本上就會被<code>navbar-expand-sm</code>的定義影響在什麼螢幕尺寸顯示，什麼尺寸隱藏(可以參考bootstrap的原始碼查看css設定)</p>
+</li>
+<li><code>data-toggle</code>是bootstrap自訂的屬性<code>data-toggle=&quot;collapse&quot;</code>，意思是當點擊它按鈕時，會觸發了”collapse”事件</li>
+<li><code>data-target</code>也是bootstrap自訂的屬性，當”collapse”事件觸發，它的目標是#navbarCollapse，所以下面的#navbarCollapse這個div就會展開。</li>
+<li>#navbarCollapse這個div的class需套用<code>collapse</code>、<code>navbar-collapse</code>，基本上也就是會被<code>navbar-expand-sm</code>的定義影響在什麼螢幕尺寸顯示，什麼尺寸隱藏。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav id=&quot;main-nav&quot; class=&quot;navbar navbar-expand-sm navbar-dark fixed-top&quot; style=&quot;background-color:#24243c;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;index.html&quot; class=&quot;navbar-brand&quot;&gt;LonelyPlanet&lt;/a&gt;</span><br><span class="line">        &lt;button class=&quot;navbar-toggler&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarCollapse&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;div id=&quot;navbarCollapse&quot; class=&quot;collapse navbar-collapse&quot; &gt;</span><br><span class="line">            &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#home-section&quot; class=&quot;nav-link&quot;&gt;Home&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#explore-head-section&quot; class=&quot;nav-link&quot;&gt;Explore&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#author-head-section&quot; class=&quot;nav-link&quot;&gt;Author&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">                    &lt;a href=&quot;#mission-head-section&quot; class=&quot;nav-link&quot;&gt;Mission&lt;/a&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="參考bootstrap部分原始碼"><a href="#參考bootstrap部分原始碼" class="headerlink" title="參考bootstrap部分原始碼"></a>參考bootstrap部分原始碼</h3><ul>
+<li>navbar<br><img src="https://i.imgur.com/onqOP6d.png" alt></li>
+<li>navbar-expand-sm<br><img src="https://i.imgur.com/oWafEKy.png" alt></li>
+<li>narvar-collapse</li>
+<li>narvar-toggler<br><img src="https://i.imgur.com/O9nyz1w.png" alt></li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/" target="_blank" rel="noopener">My Project-LonelyPlanet-Menu</a><br><img src="https://i.imgur.com/PNCjhXU.png" alt></p>
+<p><img src="https://i.imgur.com/EHB0sJq.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/navbar/">navbar</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-文字向左右對齊，並垂直置中" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/CSS-文字向左右對齊，並垂直置中/">CSS-文字向左右對齊，並垂直置中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/02/CSS-文字向左右對齊，並垂直置中/" class="article-date">
+	  <time datetime="2019-04-02T08:50:02.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-文字向左右對齊，並垂直置中"><a href="#CSS-文字向左右對齊，並垂直置中" class="headerlink" title="CSS-文字向左右對齊，並垂直置中"></a>CSS-文字向左右對齊，並垂直置中</h1><h3 id="目標效果"><a href="#目標效果" class="headerlink" title="目標效果"></a>目標效果</h3><p><img src="https://i.imgur.com/qTTxZhP.png" alt></p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ul>
+<li>將外層容器定義為<code>flex</code>容器，且其中的items向容器中間對齊</li>
+<li>定義外層容器中的item與item之間保持相同的空間距離</li>
+</ul>
+<h3 id="實作方法一"><a href="#實作方法一" class="headerlink" title="實作方法一"></a>實作方法一</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div  class=&quot;left&quot;&gt;</span><br><span class="line">         我是左邊文字</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;right&quot;&gt;</span><br><span class="line">        我是右邊文字內容</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/H2imQIq.png" alt><br>補充：當定義元素為彈性容器，而它的子元素們就會變成彈性項目。</p>
+<ul>
+<li>flex 值會讓彈性容器變成塊級元素（block-level element）</li>
+<li>inline-flex 則會讓彈性容器成為單一的行內元素（atomic inline-level element）。</li>
+</ul>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ul>
+<li>定義外層容器為彈性容器</li>
+<li>定義內層item的寬度佔比為1:1填滿整個容器</li>
+<li>內層item的文字各自靠左及靠右<h3 id="實作方法二"><a href="#實作方法二" class="headerlink" title="實作方法二"></a>實作方法二</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/NSclIDU.png" alt></p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Projects page</a></p>
+<p><img src="https://i.imgur.com/r0P8ubM.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layuot/">layuot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-由左到右、由右到左，利用direction-reserve排版" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/CSS-由左到右、由右到左，利用direction-reserve排版/">CSS-由左到右、由右到左，利用direction-reserve排版</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/02/CSS-由左到右、由右到左，利用direction-reserve排版/" class="article-date">
+	  <time datetime="2019-04-02T08:49:50.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-由左到右、由右到左，利用direction-reserve排版"><a href="#CSS-由左到右、由右到左，利用direction-reserve排版" class="headerlink" title="CSS-由左到右、由右到左，利用direction-reserve排版"></a>CSS-由左到右、由右到左，利用direction-reserve排版</h1><p><img src="https://i.imgur.com/DDTYljN.png" alt></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>定義外層容器為一個靈活盒子</li>
+<li>使用<code>flex-direction</code>定義「由右到左」、「由左到右」的兩種排版類別</li>
+<li>兩種排版交互使用<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3></li>
+<li>定義外層容器<code>display: flex</code></li>
+<li><code>flex-direction:row</code>:row方向預設值為「由左到右」</li>
+<li><code>flex-direction:row-reverse</code>:方向反轉則為「由右到左」<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pieces-group&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;piece content-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;piece-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;piece content-left&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;piece-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;piece content-right&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;piece-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.piece</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.content-right</span>&#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>:row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.content-left</span>&#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>:row-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定義小螢幕尺寸時，容器內的items方向為column「由上到下」<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">994px</span>)&#123;</span><br><span class="line">    <span class="selector-id">#projects-section</span> <span class="selector-class">.piece</span>&#123;</span><br><span class="line">            <span class="attribute">flex-direction</span>:column;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Education page</a><br><img src alt="Uploading file..._0x20yjeh0"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-使用Flexbox，垂直置中float元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/CSS-使用Flexbox，垂直置中float元素/">CSS-使用Flexbox，垂直置中float元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/02/CSS-使用Flexbox，垂直置中float元素/" class="article-date">
+	  <time datetime="2019-04-02T06:13:10.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-使用Flexbox，垂直置中float元素"><a href="#CSS-使用Flexbox，垂直置中float元素" class="headerlink" title="CSS-使用Flexbox，垂直置中float元素"></a>CSS-使用Flexbox，垂直置中float元素</h1><h3 id="目標效果"><a href="#目標效果" class="headerlink" title="目標效果"></a>目標效果</h3><p>讓兩個浮動元素，可以垂直對齊<br><img src="https://i.imgur.com/5zhmyFE.png" alt></p>
+<h3 id="原始情況"><a href="#原始情況" class="headerlink" title="原始情況"></a>原始情況</h3><p>放置兩個浮動元素，它們各自都向上靠其所在的容器<br><img src="https://i.imgur.com/TrCZKt5.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.margin</span>&#123;</span><br><span class="line">  <span class="attribute">margin-top</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h3><p>在外層容器中，使用<code>display: flex</code>，並且置中<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">margin-top</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="垂直對齊vertical-align-middle無效"><a href="#垂直對齊vertical-align-middle無效" class="headerlink" title="垂直對齊vertical-align: middle無效"></a>垂直對齊<code>vertical-align: middle</code>無效</h3><p>在css官方文件中說明：“<code>vertical-align</code>屬性，僅能使用於<code>inline</code> 或 <code>table-cell box</code>”，所以flaot元素無法使用此方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-刻出一個timeline" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -269,635 +879,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-CSS-圖片邊框" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-圖片邊框/">CSS-圖片邊框</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-圖片邊框/" class="article-date">
-	  <time datetime="2019-04-02T01:00:40.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-圖片邊框"><a href="#CSS-圖片邊框" class="headerlink" title="CSS-圖片邊框"></a>CSS-圖片邊框</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>分為兩層div空間</p>
-<ul>
-<li>先定義下方piece空間的邊框角度</li>
-<li>再定義上方piece-photo空間的邊框角度</li>
-<li>最後定義上方piece-photo的背景，用<code>background-imgage</code>屬性引入圖片<br><img src="https://i.imgur.com/8e6DOtw.jpg" alt></li>
-</ul>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>外層：定義外層div空間的寬高、原角邊框等樣式設定<br>內層：</p>
-<ol>
-<li>先定義「內層空間的寬高」、原角邊框</li>
-<li><code>background-image</code>引入圖片之後，要定義「被引入圖片的寬高」、定位等設定</li>
-</ol>
-<p>補充：更多圖片屬性設定參考 <a href="https://hackmd.io/4_9uMgawRKyKkofkszbilA#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%BE%9Ecss%E9%81%B8%E6%93%87%E5%99%A8%E4%B8%AD%E5%AE%9A%E7%BE%A9%E8%83%8C%E6%99%AF" target="_blank" rel="noopener">html&amp;CSS-插入(背景)圖片的作法-從css選擇器中定義背景</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;piece&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;piece-photo&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.piece</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>:white;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">0.25rem</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.piece-photo</span>&#123;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">0.25rem</span>;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: <span class="number">0.25rem</span>; </span><br><span class="line">    </span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../img/meal1.jpg"</span>);</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">background-attachment</span>: scroll;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Education page</a><br><img src="https://i.imgur.com/icbcVjz.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-設置背景overlay" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-設置背景overlay/">CSS-設置背景overlay</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-設置背景overlay/" class="article-date">
-	  <time datetime="2019-04-02T00:59:32.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-設置背景overlay"><a href="#CSS-設置背景overlay" class="headerlink" title="CSS-設置背景overlay"></a>CSS-設置背景overlay</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>將「下方圖片」、「上方覆蓋色塊」分為兩層(兩個div)</p>
-<ul>
-<li>外層的背景為一張圖片</li>
-<li>內層的背景為透明色彩</li>
-</ul>
-<p>註：外層div會先畫，因此在畫面會呈現在下方;相反的，內層div會後畫，在畫面中會呈現蓋在上方<br><img src="https://i.imgur.com/XeEJIiF.jpg" alt></p>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>最外層div的背景使用一張圖片(background-image屬性)，內層div的背景使用rgba的透明色彩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div cless=&quot;section&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;white-overlay&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../img/education-bg.jpg"</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat ;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">    <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">1200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.white-overlay</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.3);</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">1200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project3/#" target="_blank" rel="noopener">My Project-Profile-Notes page</a><br><img src="https://i.imgur.com/gAvdvKQ.jpg" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-置中(align-items＆justify-content)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/CSS-置中(align-items＆justify-content)/">CSS-置中(align-items＆justify-content)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/02/CSS-置中(align-items＆justify-content)/" class="article-date">
-	  <time datetime="2019-04-02T00:10:56.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-置中-align-items＆justify-content"><a href="#CSS-置中-align-items＆justify-content" class="headerlink" title="CSS-置中(align-items＆justify-content)"></a>CSS-置中(align-items＆justify-content)</h1><h3 id="用flex完成內容垂直置中"><a href="#用flex完成內容垂直置中" class="headerlink" title="用flex完成內容垂直置中"></a>用flex完成內容垂直置中</h3><ul>
-<li>flex屬性解釋連結：<a href="https://hackmd.io/fWUUy3m8RP2pPUS3efKCIQ" target="_blank" rel="noopener">在容器中分配並行空間(flex)</a></li>
-<li><a href="https://wcc723.github.io/css/2017/07/21/css-flex/" target="_blank" rel="noopener">參考</a><h3 id="置中作法"><a href="#置中作法" class="headerlink" title="置中作法"></a>置中作法</h3></li>
-<li><code>display</code>屬性為<code>flex</code></li>
-<li>透過<code>align-items</code>屬性，控制垂直定位</li>
-<li>透過<code>justify-content</code>，控制水平定位<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/xeBVGAL.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-在容器中分配並行空間(flex)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/CSS-在容器中分配並行空間(flex)/">CSS-在容器中分配並行空間(flex)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/CSS-在容器中分配並行空間(flex)/" class="article-date">
-	  <time datetime="2019-03-28T04:46:52.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-在容器中分配並行空間-flex"><a href="#CSS-在容器中分配並行空間-flex" class="headerlink" title="CSS-在容器中分配並行空間(flex)"></a>CSS-在容器中分配並行空間(flex)</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>希望容器之內的物件可以並行接續排列，並且每個物件都有固定比例占據該容器</p>
-<h3 id="CSS語法"><a href="#CSS語法" class="headerlink" title="CSS語法"></a>CSS語法</h3><ul>
-<li><p>外層容器的<code>display</code>屬性為<code>flex</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在內層物件中，各自定義佔據的寬度或剩餘空間的分配比例</p>
-</li>
-<li><p>當 ==外層容器的空間足夠== 的情況：</p>
-<ul>
-<li>box1有設定<code>width</code>，會佔據固定寬度300px</li>
-<li>box2有設定<code>width</code>，會佔據固定寬度200px</li>
-<li><p>box3、box4沒有設定固定寬度，僅設定<code>flex</code>比例，則會依比例分配剩餘的空間</p>
-<p><img src="https://i.imgur.com/vSHoDti.png" alt></p>
-</li>
-</ul>
-</li>
-<li><p>為了避免 ==外層容器空間不足== ，可以<code>min-width</code>輔助定義最小的寬度</p>
-<ul>
-<li>box2因為沒有設定<code>min-width</code>，所以被擠壓到完全沒有空間<br><img src="https://i.imgur.com/tnNvHXe.png" alt></li>
-</ul>
-</li>
-</ul>
-<h3 id="定義是否自動換行-flex-wrap"><a href="#定義是否自動換行-flex-wrap" class="headerlink" title="定義是否自動換行(flex-wrap)"></a>定義是否自動換行(flex-wrap)</h3><ul>
-<li><p>定義「<strong>不換行</strong>」（<code>flex-wrap</code>預設值即為<code>no-wrap</code>，可省略不寫），可能會壓縮內層物件的寬度<br>  <img src="https://i.imgur.com/FGsUHnA.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: no-wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義「<strong>自動換行</strong>」<br>  <img src="https://i.imgur.com/9HxAaMp.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義「<strong>換行後反轉</strong>」<br>  <img src="https://i.imgur.com/eIxU7tT.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="定義排序方向-flex-direction"><a href="#定義排序方向-flex-direction" class="headerlink" title="定義排序方向(flex-direction)"></a>定義排序方向(flex-direction)</h3><ul>
-<li><p>定義排序方向為「左到右」（<code>flex-direction</code>預設值即為<code>row</code>，可省略不寫）</p>
-<p>  <img src="https://i.imgur.com/LwW8rLV.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義排序方向為「右到左」<br>  <img src="https://i.imgur.com/tuLg8h1.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義排序方向為「上到下」<br>  <img src="https://i.imgur.com/1S0YwnR.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義排序方向為「下到上」<br>  <img src="https://i.imgur.com/82YF3gN.png" alt></p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-html-建立第一個Hello world網頁" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/html-建立第一個Hello world網頁/">html-建立第一個Hello world網頁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/html-建立第一個Hello world網頁/" class="article-date">
-	  <time datetime="2019-03-28T00:07:18.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="html-建立第一個Hello-world網頁"><a href="#html-建立第一個Hello-world網頁" class="headerlink" title="html-建立第一個Hello world網頁"></a>html-建立第一個Hello world網頁</h1><h3 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h3><ul>
-<li>Mac電腦(ios系統)</li>
-<li>VScode編譯器<h3 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h3></li>
-</ul>
-<ol>
-<li>開啟電腦內建的「文字編譯」，新增一個檔案<br><img src="https://i.imgur.com/AUrY9RO.jpg" alt></li>
-<li>暫時先命名為index，並且設定為「純文字格式」<br><img src="https://i.imgur.com/zD8vfL1.jpg" alt></li>
-<li>輸入內容「Hello world!」，並儲存<br><img src="https://i.imgur.com/YPQPYcE.jpg" alt></li>
-<li>更改檔案副檔名「.html」<br><img src="https://i.imgur.com/QQRhpdc.png" alt></li>
-<li>直接點選開檔案，或拖曳到瀏覽器打開檔案，即可看到網頁成功顯示<br><img src="https://i.imgur.com/aa9i2jl.png" alt></li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Git基本指令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/Git基本指令/">Git基本指令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/Git基本指令/" class="article-date">
-	  <time datetime="2019-03-27T23:58:30.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git基本指令"><a href="#Git基本指令" class="headerlink" title="Git基本指令"></a>Git基本指令</h1><h3 id="終端機環境系統指令"><a href="#終端機環境系統指令" class="headerlink" title="終端機環境系統指令"></a>終端機環境系統指令</h3><p>不同的作業系統，指令也會不太一樣。<br>|Windows| MacOs | 說明 |<br>|——–| ——– | ——–|<br>| cd     | cd     | 切換目錄    |<br>| cd | cd| 切換目前所在位置 |<br>| dir | ls| 列出目前檔案列表 |<br>|mkdir| mkdir | 建立新的目錄|<br>|無| touch | 建立檔案|<br>|copy| cp | 複製檔案|<br>|move| mv | 移動檔案|<br>|del| rm | 刪除檔案|<br>|cls| clear | 清除畫面上的內容|</p>
-<h3 id="目錄切換及顯示"><a href="#目錄切換及顯示" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切換到/tmp目錄(絕對路徑)</span></span><br><span class="line">$ cd/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到my_project目錄(絕對路徑)</span></span><br><span class="line">$ cd my_project</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到上一層目錄(相對路徑)</span></span><br><span class="line">$ cd ..</span><br><span class="line"></span><br><span class="line"><span class="comment">//切換到使用者的home目錄中的project裡的namecards目錄</span></span><br><span class="line"><span class="comment">// "~"這個符號代表home目錄</span></span><br><span class="line">$ cd ~<span class="regexp">/project/</span>namecards</span><br><span class="line"></span><br><span class="line"><span class="comment">//顯示目前所在的目錄</span></span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure>
-<h3 id="檔案列表"><a href="#檔案列表" class="headerlink" title="檔案列表"></a>檔案列表</h3><p><code>ls</code>指令可列出在目前目錄所有的檔案及目錄，後面接的 <code>-al</code> 參數，<code>a</code> 是指連小數點開頭的檔案（例如.gitignore）也會顯示，<code>l</code> 則是完整檔案的權限、擁有者以及建立、修改時間<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄</span></span><br><span class="line">$ ls</span><br><span class="line"></span><br><span class="line"><span class="comment">//列出目前所在目錄的所有檔案及目錄，包含副檔名及檔案權限等資訊</span></span><br><span class="line">$ls -al</span><br></pre></td></tr></table></figure></p>
-<h3 id="目錄切換及顯示-1"><a href="#目錄切換及顯示-1" class="headerlink" title="目錄切換及顯示"></a>目錄切換及顯示</h3><p>開啟終端機(terminal)，並試著操作以下指令，從建立一個全新的目錄開始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd /tmp                  <span class="comment">//切換至 /tmp 目錄</span></span><br><span class="line">$ mkdir git-practice       <span class="comment">//建立 git-practice 目錄</span></span><br><span class="line">$ cd git-practice          <span class="comment">//切換至 git-practice 目錄</span></span><br><span class="line">$ git init                 <span class="comment">//初始化這個目錄，讓 Git 對這個目錄開始進行版控</span></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/leah/git-practice/.git/</span><br></pre></td></tr></table></figure></p>
-<p>:::info<br>小數點開頭的目錄或檔案名稱（例如 .git），在一些作業系統中預設是隱藏的，需要開啟檢視隱藏檔之類的設定才看得到。<br>:::</p>
-<p>:::info<br><code>Shift+Command+ .</code>就可以顯示出隱藏的檔案<br>:::</p>
-<h3 id="把檔案交給Git控管"><a href="#把檔案交給Git控管" class="headerlink" title="把檔案交給Git控管"></a>把檔案交給Git控管</h3><p>先查詢目前目錄的狀態，下面產生的訊息意思是「現在沒東西可以提交（nothing to commit）」。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查詢現在這個目錄的狀態</span></span><br><span class="line">$ git status </span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">nothing to commit (create/copy files and use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
-<p>接下來， 建立一個檔案(也可以用一般的文字編輯器或檔案管理員來完成)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在這個目錄裡透過系統指令建立一個內容為 “hello, git”</span></span><br><span class="line">$echo <span class="string">"Hello,git"</span> &gt; welcome.html</span><br></pre></td></tr></table></figure></p>
-<p>檢查目錄，確實多了一個welcome.html檔案<br><img src="https://i.imgur.com/kCJrLTQ.png" alt></p>
-<p>並且，再次檢查目前目錄的狀態</p>
-<p>welcome.html 檔案目前的狀態是 Untracked files，意思是這個檔案尚未被加到 Git 版控系統裡，還沒開始正式被 Git「追蹤」，它只是剛剛才加入這個目錄而已。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">	welcome.html</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
-<p>把 welcome.html 這個檔案交給 Git，讓 Git 開始「追蹤」它<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//新增檔案讓git追蹤</span><br><span class="line">$ git add welcome.html</span><br></pre></td></tr></table></figure></p>
-<p>最後再檢查一次狀態<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	new file:   welcome.html</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Git/">Git</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-html-插入圖片路徑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/html-插入圖片路徑/">html-插入圖片路徑&lt;img&gt;</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/html-插入圖片路徑/" class="article-date">
-	  <time datetime="2019-03-27T23:51:58.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="html-插入圖片路徑-lt-img-gt"><a href="#html-插入圖片路徑-lt-img-gt" class="headerlink" title="html-插入圖片路徑&lt;img&gt;"></a>html-插入圖片路徑<code>&lt;img&gt;</code></h1><p>在html中的圖片標籤為<code>img</code>，而其一的屬性<code>src</code>則要放入圖片檔案的位置，位置分為兩種</p>
-<ul>
-<li>絕對路徑：放上圖片的url位置</li>
-<li>相對路徑：相較於目前檔案的位置，找到圖片檔案的儲存位置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="方法一：絕對路徑"><a href="#方法一：絕對路徑" class="headerlink" title="方法一：絕對路徑"></a>方法一：絕對路徑</h3><ol>
-<li>取得圖片的url位置：在圖片上方，點右鍵選取「複製圖片位址」<br><img src="https://i.imgur.com/16ldWBW.jpg" alt></li>
-<li>將url貼在<code>src</code>屬性中，並儲存<br><img src="https://i.imgur.com/bXyk0JX.png" alt></li>
-<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/1kjnHdy.jpg" alt></li>
-</ol>
-<h3 id="方法二：相對路徑"><a href="#方法二：相對路徑" class="headerlink" title="方法二：相對路徑"></a>方法二：相對路徑</h3><ol>
-<li>在專案中，先建立「img」資料夾，並在其中放入圖片檔案<br><img src="https://i.imgur.com/Gfp9bAg.png" alt></li>
-<li>在<code>src</code>屬性中，輸入圖片檔案的相對位置，並儲存<br><img src="https://i.imgur.com/5ReQgXX.png" alt></li>
-<li>重新整理瀏覽器，網頁成功顯示出圖片<br><img src="https://i.imgur.com/QE1cs4U.jpg" alt></li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Sketch to CSS" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/Sketch to CSS/">Sketch to CSS</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/Sketch to CSS/" class="article-date">
-	  <time datetime="2019-03-27T23:47:32.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Sketch-to-CSS"><a href="#Sketch-to-CSS" class="headerlink" title="Sketch to CSS"></a>Sketch to CSS</h1><h2 id="學習來源"><a href="#學習來源" class="headerlink" title="學習來源"></a>學習來源</h2><ul>
-<li>youtube影片：<a href="https://www.youtube.com/watch?v=ev9bGi_XCqU" target="_blank" rel="noopener">從 Sketch 設計到 CSS 切版</a></li>
-<li>codepen案例：<a href="https://codepen.io/Wcc723/pen/zEYXdN" target="_blank" rel="noopener">0913 demo</a></li>
-</ul>
-<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
-<li><a href="https://www.sketchapp.com/" target="_blank" rel="noopener">Sketch</a>：UI 設計軟體<br>(補充youtube影片：<a href="https://www.youtube.com/watch?v=dxUR0kfidb0&amp;t=18s" target="_blank" rel="noopener">六角學院 - Sketch 介紹</a>)</li>
-<li><a href="https://codepen.io/pen/tour/welcome" target="_blank" rel="noopener">Codepen</a>：線上編譯器</li>
-</ul>
-<h2 id="編譯器初始化設定-Pen-Settings"><a href="#編譯器初始化設定-Pen-Settings" class="headerlink" title="編譯器初始化設定(Pen Settings)"></a>編譯器初始化設定(Pen Settings)</h2><h4 id="step1-CSS設定為SCSS"><a href="#step1-CSS設定為SCSS" class="headerlink" title="step1.CSS設定為SCSS"></a>step1.CSS設定為SCSS</h4><p><img src="https://i.imgur.com/oXcTelN.png" alt></p>
-<h4 id="step2-載入icon服務"><a href="#step2-載入icon服務" class="headerlink" title="step2.載入icon服務"></a>step2.載入icon服務</h4><p>可以手動直接將下方CDN貼到基本設定欄位中。或是透過畫面中內建的搜尋功能，搜尋：<strong>Font-Awesome</strong>，CDN將自動被加入欄位中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/mflf3CE.png" alt></p>
-<h4 id="step3-設定完成-Save-amp-Close"><a href="#step3-設定完成-Save-amp-Close" class="headerlink" title="step3.設定完成(Save&amp;Close)"></a>step3.設定完成(Save&amp;Close)</h4><h2 id="正式開始切版"><a href="#正式開始切版" class="headerlink" title="正式開始切版"></a>正式開始切版</h2><h4 id="切版呈現目標"><a href="#切版呈現目標" class="headerlink" title="切版呈現目標"></a>切版呈現目標</h4><p><img src="https://i.imgur.com/u2QCSVA.png" alt="呈現目標"></p>
-<h4 id="背景色設定"><a href="#背景色設定" class="headerlink" title="背景色設定"></a>背景色設定</h4><p>step1.(SCSS語法)將顏色命名為一個變數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$bg-color1: #FCF4ED;</span><br><span class="line">$bg-color2: #F0C7B2;</span><br></pre></td></tr></table></figure></p>
-<p>step2.設計漸層背景</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100vh</span>;<span class="comment">/*body設定為裝置高度的100%*/</span></span><br><span class="line">  <span class="attribute">background-image</span>:<span class="built_in">linear-gradient</span>(175deg,$bg-color1,$bg-color1 50%,$bg-color2 50%)</span><br><span class="line">  <span class="comment">/*角度175度,開始色,開始色比例,結束色比例*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="中間卡片基本設定"><a href="#中間卡片基本設定" class="headerlink" title="中間卡片基本設定"></a>中間卡片基本設定</h4><p>step1.先在html中給他一個命名，名為<strong>card</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>step2.在css中定義<strong>card</strong>的基本樣式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>:<span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">60vh</span>;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">600px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step3.加入：<strong>box-sizing</strong>屬性</p>
-<p>==當你設定一個元素樣式為 <strong>box-sizing</strong>: border-box;，這個元素的內距和邊框將不會增加元素本身的寬度。==<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或者可以用*{}，代表對所有元素統一做設定<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  box-sizing:border-box;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/iUUsnfc.png" alt></p>
-<p>step4.為<strong>card</strong>添加陰影<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$card-box-shadow: 0 4px 30px #979797;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.card&#123;</span><br><span class="line">  box-shadow:$card-box-shadow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>step5.如何讓<strong>card</strong>置中整個畫面呢？在<strong>body</strong>中加入對齊的設定！<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex;<span class="comment">/*彈性布局*/</span></span><br><span class="line">  <span class="attribute">justify-content</span>:center;<span class="comment">/*//水平置中*/</span></span><br><span class="line">  <span class="attribute">align-items</span>:center;<span class="comment">/*垂直置中*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="卡片內圖片"><a href="#卡片內圖片" class="headerlink" title="卡片內圖片"></a>卡片內圖片</h4><p>step1.先在html中給予一個畫面空間<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;brand-bg&quot;&gt;&lt;/div&gt;&lt;!--新增這個div作為圖片空間 --&gt;</span><br><span class="line">    &lt;h1&gt;About JENDES&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>step2.先將父元素card定位<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step3.再將子元素brand-bg(遮色片)定位<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.brand-bg</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;<span class="comment">/*相較於父元素的定位方式 */</span></span><br><span class="line">  <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">445px</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step4.載入圖片url，並相較於遮色片做定位<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.brand-bg</span>&#123;</span><br><span class="line">  <span class="attribute">background-image</span>:<span class="built_in">url</span>(https://images.unsplash.com/photo-1550939810-cb345b2f4ad7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2632&amp;q=80);</span><br><span class="line">  <span class="attribute">background-size</span>:<span class="number">527px</span> <span class="number">633px</span>;<span class="comment">/*載入圖片的尺寸 */</span></span><br><span class="line">  <span class="attribute">background-position</span>:-<span class="number">41px</span> -<span class="number">10px</span>;<span class="comment">/*相較於遮色片的定位 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step5.遮色片作梯形切割<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.brand-bg</span>&#123;</span><br><span class="line">     <span class="attribute">clip-path</span>:<span class="built_in">polygon</span>(0 0, 339.05px 0,445px 100%,0% 100%); </span><br><span class="line">     <span class="comment">/*四個點的位置依序是 左上,右上,右下,左下*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="卡片內文字"><a href="#卡片內文字" class="headerlink" title="卡片內文字"></a>卡片內文字</h4><p>step1.先在html中給文字一個區塊畫面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;brand-bg&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;card-block&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">      &lt;h1&gt;About JENDES&lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">      &lt;p&gt;粉橘色，一個溫柔又有個性的顏色。</span><br><span class="line">        &lt;br/&gt;柔和色相的背後蘊含著明亮活潑的橘彩，卻同時調入了冷靜灰階。 </span><br><span class="line">        &lt;br/&gt;有如生活中的我們，一人扮演著多種角色，每個角色充滿著層次、彈性，無法輕易僅以黑白雙色定義。</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">      &lt;p&gt;讓每道顏色都能在這找到適合的穿著，舒服展現每一個自己。</span><br><span class="line">        &lt;br/&gt;由裡到外，穿出自信自在。</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">      &lt;p&gt;When style shines from inside, no one can define you.</span><br><span class="line">        &lt;br/&gt;You are just who you are. </span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card-footer&quot;&gt;</span><br><span class="line">      &lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;＋電子報訂閱&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>==p標籤代表文字段落==</p>
-<p>==br標籤代表斷行==</p>
-<p>step2.定位文字區塊相較於card的位置</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-block</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">318px</span>;</span><br><span class="line">  <span class="comment">/*設定右方文字在左方圖層上面 */</span></span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">  <span class="attribute">x-index</span>:<span class="number">3</span>; </span><br><span class="line"></span><br><span class="line">  <span class="comment">/*設定裡面的物件排列為flex*/</span></span><br><span class="line">  <span class="comment">/* flex預設是由左至右，可以調整flex-direction:column，改為由上到下== */</span></span><br><span class="line">  <span class="attribute">display</span>:flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>:column;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>==flex跟position是可以一起使用的，兩個沒有關係;float跟display也沒有關係;flex裡面可以再有flex==</p>
-<p>step3.設定<strong>card-footer</strong>定位在區塊的最下方<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-footer</span>&#123;</span><br><span class="line">  <span class="comment">/*使用auto會自動將空間用空白補滿*/</span></span><br><span class="line">  <span class="attribute">margin-top</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step4.設定<strong>btn</strong>樣式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$btn-color:#D8D8D8;</span><br><span class="line">.btn&#123;</span><br><span class="line">  background-color:$btn-color;</span><br><span class="line">  color:#000000;</span><br><span class="line">  width:292px;</span><br><span class="line">  </span><br><span class="line">  padding-top:0.5rem;</span><br><span class="line">  padding-bottom:0.5rem;</span><br><span class="line">  display:block;/*設定區塊元素 */</span><br><span class="line">  text-decoration:none;</span><br><span class="line">  text-align:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>==display:block - <strong>區塊元素</strong>，元素會以區塊方式呈現。一個區塊元素會讓其內容從新的一行開始顯示，並盡可能的撐滿容器。==</p>
-<p>==display:inline - <strong>行內元素</strong>，所有文字或圖片均不換行，也就是全部都會是同一行的意思。==</p>
-<p>step5.設定<strong>btn</strong>的動態hover樣式變化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  background-color:$btn-color;</span><br><span class="line">  &amp;:hover,&amp;:focus&#123;</span><br><span class="line">    background-color:darken($btn-color,15%);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>step6.設定內文字體<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">  <span class="attribute">font-size</span>:<span class="number">32px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>:bolder;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.card-header</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#AD5E36</span>;</span><br><span class="line">  <span class="attribute">font-family</span>:cursive;</span><br><span class="line">  <span class="attribute">font-weight</span>:bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>:<span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.card-body</span>&#123;</span><br><span class="line">  <span class="attribute">font-family</span>:<span class="string">"STXihei"</span>,<span class="string">"FangSong"</span>,cursive;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#6D7278</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>參考資料：<a href="http://blog.ja-anything.com/2016/11/25/css-%E5%B8%B8%E7%94%A8%E4%B8%AD%E6%96%87%E5%AD%97%E5%9E%8B-traditional-chinese-font-family/" target="_blank" rel="noopener">CSS 常用中文字型 (Traditional Chinese font family)
-</a></p>
-<p>step7.加上簽名圖片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.sign-image&#123;</span><br><span class="line">    margin-left:203px;</span><br><span class="line">    margin-top:16px;</span><br><span class="line">    width:115px;</span><br><span class="line">    height:39px;</span><br><span class="line">    background-image:url(https://www.jendesstudio.com/front/assets/images/jenwu.png);</span><br><span class="line">    background-size:115px 39px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="結果呈現"><a href="#結果呈現" class="headerlink" title="結果呈現"></a>結果呈現</h2><ul>
-<li><a href="https://codepen.io/leah-lin/pen/YgKjdZ" target="_blank" rel="noopener">codepen編譯檔</a></li>
-<li><a href="https://github.com/lehlin912/practice_css_slicingUI_0226-" target="_blank" rel="noopener">github打包檔</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Sketch/">Sketch</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sketch/">Sketch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/切版/">切版</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-Box-sizing屬性" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/28/CSS-Box-sizing屬性/">CSS-Box-sizing屬性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/03/28/CSS-Box-sizing屬性/" class="article-date">
-	  <time datetime="2019-03-27T22:50:10.000Z" itemprop="datePublished">March 28, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-Box-sizing屬性"><a href="#CSS-Box-sizing屬性" class="headerlink" title="CSS-Box-sizing屬性"></a>CSS-Box-sizing屬性</h1><h3 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h3><p>在預設的情況<code>box-sizing: content-box</code>，padding的寬高，會被計算到元素的長寬中;<br>如果希望元素的內距(padding)和外框(margin)不會增加元素本身的寬高，則可以使用<code>box-sizing: content-box</code></p>
-<h3 id="before"><a href="#before" class="headerlink" title="before"></a>before</h3><p>瀏覽器預設值，<code>box-sizing</code>屬性，其值為<code>content-box</code></p>
-<ul>
-<li><p>==content-box：元素的實際寬高會再加上padding 和 border==</p>
-<p>  定義box1的寬為300px，高為50px，可是右方用瀏覽器查看元素時，發現尺寸變成330*80，是因為預設的情況，瀏覽將padding與border也算進元素中<br><img src="https://i.imgur.com/ZD7jjVK.png" alt></p>
-</li>
-</ul>
-<h3 id="after"><a href="#after" class="headerlink" title="after"></a>after</h3><p>定義所有元素的<code>box-sizing</code>屬性，其值為<code>border-box</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>==border-box：元素的實際寬高不受padding 和 border影響==</p>
-<p>  padding不會被增加到元素中，而border則算在元素之內，所以元素實際寬高仍保持為300*50<br>  <img src="https://i.imgur.com/Lzr2MWz.png" alt></p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/margin/">margin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/padding/">padding</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -960,8 +946,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/23/Webpack-安裝與基礎運用/">Webpack-環境安裝與基礎運用</a></h6>
-              <span>April 23, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -972,8 +958,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/23/NVM-安裝及控管Node.js的版本/">NVM-安裝及控管Node.js的版本</a></h6>
-              <span>April 23, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-執行緒、同步與非同步/">JavaScript-執行緒、同步與非同步</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -984,8 +970,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/23/Webpack-基本入門介紹/">Webpack-前端建置工具的發展背景及入門介紹</a></h6>
-              <span>April 23, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-範圍鏈(scope chain)/">JavaScript-範圍鏈(scope chain)</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -996,8 +982,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a></h6>
-              <span>April 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-執行堆/">JavaScript-執行堆</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -1008,8 +994,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a></h6>
-              <span>April 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-undefined vs. not defined/">JavaScript-undefined vs. not defined</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -1020,8 +1006,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/04/19/Vue-(八)列表渲染/">Vue-(八)列表渲染</a></h6>
-              <span>April 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-提升(Hoisting)/">JavaScript-提升(Hoisting)</a></h6>
+              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -1035,7 +1021,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1045,7 +1031,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1055,7 +1041,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 12.22px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 16.67px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.11px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 15.56px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 14.44px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 17.78px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 17.78px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 11.11px;">Webpack</a> <a href="/tags/awesomefont/" style="font-size: 11.11px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 14.44px;">blog</a> <a href="/tags/boiler/" style="font-size: 11.11px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/github/" style="font-size: 12.22px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 11.11px;">jQuery</a> <a href="/tags/layout/" style="font-size: 18.89px;">layout</a> <a href="/tags/layuot/" style="font-size: 11.11px;">layuot</a> <a href="/tags/library/" style="font-size: 11.11px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 15.56px;">實作</a>
+      <a href="/tags/API/" style="font-size: 12px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 16px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/JS/" style="font-size: 19px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 14px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 17px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 17px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 11px;">Webpack</a> <a href="/tags/awesomefont/" style="font-size: 11px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/boiler/" style="font-size: 11px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/github/" style="font-size: 12px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 11px;">jQuery</a> <a href="/tags/layout/" style="font-size: 18px;">layout</a> <a href="/tags/layuot/" style="font-size: 11px;">layuot</a> <a href="/tags/library/" style="font-size: 11px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 15px;">實作</a>
     </div>
   </div>
 
@@ -1065,7 +1051,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">14</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
