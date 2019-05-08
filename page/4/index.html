@@ -158,6 +158,466 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Hexo-使用靜態生成器，建立blog(2_3)推上github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/" class="article-date">
+	  <time datetime="2019-04-11T08:50:37.359Z" itemprop="datePublished">April 11, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
+<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
+<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
+<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="push上github"><a href="#push上github" class="headerlink" title="push上github"></a>push上github</h3></li>
+</ul>
+<ol>
+<li><p>先在github新增一個repository，命名邏輯為</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[github account]</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br><span class="line">例：<span class="selector-tag">leahlin912</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>複製該repository的網址(例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:leahlin912/leahlin912.github.io.git`)</p>
+</li>
+<li><p>用vscode(或其他編譯器)打開_config.yml檔案，並修改<code># Deployment</code>的部分</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">Deployment</span></span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"><span class="selector-tag">deploy</span>:</span><br><span class="line">  <span class="selector-tag">type</span>: <span class="selector-tag">git</span></span><br><span class="line">  repository: git@github.com:leahlin912/leahlin912.github.io.git</span><br><span class="line">  <span class="selector-tag">branch</span>: <span class="selector-tag">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安裝git</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>輸入指令，將網站佈署到伺服器上</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>設定repository的主題<br>在github的該repository頁面，進入「setting」<br><img src="https://i.imgur.com/HKOW9XH.png" alt><br>往下滑，點按「change theme」<br><img src="https://i.imgur.com/BgZoPjj.png" alt></p>
+</li>
+<li><p>在瀏覽器中查看網址，成功！<a href="https://leahlin912.github.io/" target="_blank" rel="noopener">https://leahlin912.github.io/</a></p>
+</li>
+<li><p>若有檔案更新，則重複輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="更換主題"><a href="#更換主題" class="headerlink" title="更換主題"></a>更換主題</h3><ol>
+<li><p>選擇要套用的主題<br>[Themes]<br>(<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">https://hexo.io/themes/index.html</a>)<br><img src="https://i.imgur.com/LC6xzT9.png" alt></p>
+</li>
+<li><p>點進該主題的github頁面<br><img src="https://i.imgur.com/V8NNjOP.png" alt></p>
+</li>
+<li><p>在README.md中，依照install指令複製起來，並在terminal中進入blog資料夾中執行指令完畢<br><img src="https://i.imgur.com/IQz4I6S.png" alt><br><img src="https://i.imgur.com/Zd57Cs3.png" alt></p>
+</li>
+<li><p>用vscode開啟blog資料夾，並進入<code>_config.yml</code>檔案中，修改主題theme(參考readme中開發者定義的theme名稱)<br><img src="https://i.imgur.com/QUikitj.png" alt><br><img src="https://i.imgur.com/zgGjkZE.png" alt></p>
+</li>
+<li><p>因為檔案有更新，所以需要在terminal輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Hexo-使用靜態生成器，建立blog(1_3)本地端" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/11/Hexo-使用靜態生成器，建立blog(1_3)本地端/">Hexo-使用靜態生成器，建立blog(1/3)本地端</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(1_3)本地端/" class="article-date">
+	  <time datetime="2019-04-11T08:50:30.497Z" itemprop="datePublished">April 11, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
+<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
+<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
+<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="環境安裝"><a href="#環境安裝" class="headerlink" title="環境安裝"></a>環境安裝</h3></li>
+</ul>
+<ol>
+<li><strong>先確認電腦已經安裝下列軟體</strong><ul>
+<li>Node.js(補充：檢查電腦是否已經安裝Node.js，可以在terminal中輸入<code>node -v</code>)</li>
+<li>Git</li>
+</ul>
+</li>
+<li><p><strong>Mac需要先關閉系統完整保護(SIP)</strong><br> (當在Mac上嘗試開啟一些第三方軟體的時候，可能會受到SIP的限制而無法正常使用。)</p>
+<ul>
+<li>先查看SIP開啟/關閉狀態<br>在terminal中輸入<code>csrutil status</code><ul>
+<li>如果看到「System Integrity Protection status: enabled」代表SIP開啟</li>
+<li>如果看到「System Integrity Protection status: disabled」，代表 SIP是關閉的。</li>
+</ul>
+</li>
+<li><p>在Mac上關閉SIP</p>
+<p>  <strong>step1.</strong> 重新啟動Mac開機鍵時，同時按Command+R鍵</p>
+<p>  <strong>step2.</strong> 出現彈出視窗後，在螢幕左上方的「工具程式」選單中點按「終端機」。</p>
+<p>  <strong>step3.</strong> 啟動「終端機」視窗後，在「終端機(terminal)」中輸入<code>csrutil disable</code></p>
+<p>  <strong>step4.</strong> 關閉「終端機」視窗，並重新開機。</p>
+<p>  補充： 待整個回合(下載Hexo完畢)結束之後，記得修改SIP狀態為開啟，重複上述動作，在「終端機(terminal)」中輸入<code>csrutil enable</code>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p><strong>正式開始下載Hexo</strong><br>開始透過npm安裝Hexo，在terminal中輸入安裝指令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>初始化資料夾</strong><br>使用指令建立資料夾，在建立的同時給予命名，並自動初始化資料夾內的檔案結構(示範：以’blog’作為資料夾名稱)，請依序執行下方指令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder name&gt;</span><br><span class="line">$ cd &lt;folder name&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p> 建立完成後，專案資料夾會有下列檔案：<br> <img src="https://i.imgur.com/1qkpgwY.png" alt></p>
+</li>
+<li><p><strong>在本地端開啟blog網頁</strong><br>完成上述流程後，在terminal輸入啟用本地端伺服器的指令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p> 本地端伺服器已經啟用<br> <img src="https://i.imgur.com/MPAIlzN.png" alt><br> 即可在瀏覽器中檢視blog畫面<a href="http://localhost:4000" target="_blank" rel="noopener">(http://localhost:4000)</a><br> <img src="https://i.imgur.com/zmYNFuk.jpg" alt></p>
+</li>
+<li><p><strong>新增文章在blog中</strong><br>在blog資料夾的內層中找到_posts資料夾，並將.md檔案拖曳至於其中<br><img src="https://i.imgur.com/wghWRDV.png" alt></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-使用Hexo，建立blog(上)新增文章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/08/使用Hexo，建立blog(上)新增文章/">使用Hexo，建立blog(上)新增文章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用Hexo，建立blog(上)新增文章/" class="article-date">
+	  <time datetime="2019-04-08T01:48:12.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用Hexo，建立blog-上-新增文章"><a href="#使用Hexo，建立blog-上-新增文章" class="headerlink" title="使用Hexo，建立blog(上)新增文章"></a>使用Hexo，建立blog(上)新增文章</h1><p>若要更換主題，可以參考下一篇文章<a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">使用Hexo，建立blog(下)自定義主題</a></p>
+<h3 id="環境安裝"><a href="#環境安裝" class="headerlink" title="環境安裝"></a>環境安裝</h3><ol>
+<li><strong>先確認電腦已經安裝下列軟體</strong><ul>
+<li>Node.js(補充：檢查電腦是否已經安裝Node.js，可以在terminal中輸入<code>node -v</code>)</li>
+<li>Git</li>
+</ul>
+</li>
+<li><p><strong>Mac需要先關閉系統完整保護(SIP)</strong><br> (當在Mac上嘗試開啟一些第三方軟體的時候，可能會受到SIP的限制而無法正常使用。)</p>
+<ul>
+<li>先查看SIP開啟/關閉狀態<br>在terminal中輸入<code>csrutil status</code><ul>
+<li>如果看到「System Integrity Protection status: enabled」代表SIP開啟</li>
+<li>如果看到「System Integrity Protection status: disabled」，代表 SIP是關閉的。</li>
+</ul>
+</li>
+<li><p>在Mac上關閉SIP</p>
+<p>  <strong>step1.</strong> 重新啟動Mac開機鍵時，同時按Command+R鍵</p>
+<p>  <strong>step2.</strong> 出現彈出視窗後，在螢幕左上方的「工具程式」選單中點按「終端機」。</p>
+<p>  <strong>step3.</strong> 啟動「終端機」視窗後，在「終端機(terminal)」中輸入<code>csrutil disable</code></p>
+<p>  <strong>step4.</strong> 關閉「終端機」視窗，並重新開機。</p>
+<p>  補充： 待整個回合(下載Hexo完畢)結束之後，記得修改SIP狀態為開啟，重複上述動作，在「終端機(terminal)」中輸入<code>csrutil enable</code>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p><strong>正式開始下載Hexo</strong><br>開始透過npm安裝Hexo，在terminal中輸入安裝指令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>初始化資料夾</strong><br>使用指令建立資料夾，在建立的同時給予命名，並自動初始化資料夾內的檔案結構(示範：以’blog’作為資料夾名稱)，請依序執行下方指令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder name&gt;</span><br><span class="line">$ cd &lt;folder name&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p> 建立完成後，專案資料夾會有下列檔案：<br> <img src="https://i.imgur.com/1qkpgwY.png" alt></p>
+</li>
+<li><p><strong>在本地端開啟blog網頁</strong><br>完成上述流程後，在terminal輸入啟用本地端伺服器的指令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p> 本地端伺服器已經啟用<br> <img src="https://i.imgur.com/MPAIlzN.png" alt><br> 即可在瀏覽器中檢視blog畫面<a href="http://localhost:4000" target="_blank" rel="noopener">(http://localhost:4000)</a><br> <img src="https://i.imgur.com/zmYNFuk.jpg" alt></p>
+</li>
+<li><p><strong>新增文章在blog中</strong><br>在blog資料夾的內層中找到_posts資料夾，並將.md檔案拖曳至於其中<br><img src="https://i.imgur.com/wghWRDV.png" alt></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/github/">github</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-使用Hexo，建立blog(下)自定義主題" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/">使用Hexo，建立blog(下)自定義主題</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用Hexo，建立blog(下)自定義主題/" class="article-date">
+	  <time datetime="2019-04-08T01:32:28.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用Hexo，建立blog-下-自定義主題"><a href="#使用Hexo，建立blog-下-自定義主題" class="headerlink" title="使用Hexo，建立blog(下)自定義主題"></a>使用Hexo，建立blog(下)自定義主題</h1><p>接續上一篇文章<a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">使用Hexo，建立blog(上)新增文章</a></p>
+<h3 id="push上github"><a href="#push上github" class="headerlink" title="push上github"></a>push上github</h3><ol>
+<li><p>先在github新增一個repository，命名邏輯為</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[github account]</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br><span class="line">例：<span class="selector-tag">leahlin912</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>複製該repository的網址(例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:leahlin912/leahlin912.github.io.git`)</p>
+</li>
+<li><p>用vscode(或其他編譯器)打開_config.yml檔案，並修改<code># Deployment</code>的部分</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">Deployment</span></span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"><span class="selector-tag">deploy</span>:</span><br><span class="line">  <span class="selector-tag">type</span>: <span class="selector-tag">git</span></span><br><span class="line">  repository: git@github.com:leahlin912/leahlin912.github.io.git</span><br><span class="line">  <span class="selector-tag">branch</span>: <span class="selector-tag">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安裝git</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>輸入指令，將網站佈署到伺服器上</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>設定repository的主題<br>在github的該repository頁面，進入「setting」<br><img src="https://i.imgur.com/HKOW9XH.png" alt><br>往下滑，點按「change theme」<br><img src="https://i.imgur.com/BgZoPjj.png" alt></p>
+</li>
+<li><p>在瀏覽器中查看網址，成功！<a href="https://leahlin912.github.io/" target="_blank" rel="noopener">https://leahlin912.github.io/</a></p>
+</li>
+<li><p>若有檔案更新，則重複輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="更換主題"><a href="#更換主題" class="headerlink" title="更換主題"></a>更換主題</h3><ol>
+<li><p>選擇要套用的主題<br>[Themes]<br>(<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">https://hexo.io/themes/index.html</a>)<br><img src="https://i.imgur.com/LC6xzT9.png" alt></p>
+</li>
+<li><p>點進該主題的github頁面<br><img src="https://i.imgur.com/V8NNjOP.png" alt></p>
+</li>
+<li><p>在README.md中，依照install指令複製起來，並在terminal中進入blog資料夾中執行指令完畢<br><img src="https://i.imgur.com/IQz4I6S.png" alt><br><img src="https://i.imgur.com/Zd57Cs3.png" alt></p>
+</li>
+<li><p>用vscode開啟blog資料夾，並進入<code>_config.yml</code>檔案中，修改主題theme(參考readme中開發者定義的theme名稱)<br><img src="https://i.imgur.com/QUikitj.png" alt><br><img src="https://i.imgur.com/zgGjkZE.png" alt></p>
+</li>
+<li><p>因為檔案有更新，所以需要在terminal輸入指令</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/github/">github</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JS-使用API串接公開第三方資源" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/08/JS-使用API串接公開第三方資源/">JavaScript-使用API串接公開第三方資源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/JS-使用API串接公開第三方資源/" class="article-date">
+	  <time datetime="2019-04-08T01:27:02.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="何為API"><a href="#何為API" class="headerlink" title="何為API?"></a>何為API?</h3><p><strong>API</strong>(Application Program Interface)意即應用程式的接口，用於定義軟體與軟體之間銜接所需的溝通方法。換句話說，API是讓軟體與軟體互相串接溝通橋樑。</p>
+<p>網站可以使用<strong>Web APIs</strong> 銜接第三方軟體，獲得第三方端點(endpoint)中含有JSON格式的資料。</p>
+<p><strong>Web APIs</strong>透過HTTP協議方法，向第三方的公開URL端點發出需求。<br><img src="https://i.imgur.com/ZiuPtc1.png" alt></p>
+<h3 id="開始串接一個API"><a href="#開始串接一個API" class="headerlink" title="開始串接一個API"></a>開始串接一個API</h3><ul>
+<li>閱讀API文件：<a href="https://ghibliapi.herokuapp.com/" target="_blank" rel="noopener">Studio Ghibli API documentation </a></li>
+<li>取得API endpoint：<br>在API文件中，滑到films部分，右側會看到GET /films，其中的URL就是<a href="https://ghibliapi.herokuapp.com/films." target="_blank" rel="noopener">API endpoint</a>，點進這個URL會看到一個陣列中包含多個物件，並以JSON格式呈現</li>
+<li><p>使用HTTP請求獲取資料：</p>
+<ol>
+<li>在.js檔案中，創造一個「XMLHttpRequest」物件，並指派給<code>request</code>變數。</li>
+<li>使用<code>open()</code>函式連接，必要的參數包含「請求方法(‘GET’)」及「API端點的URL」</li>
+<li>請求完畢後，我們就有權限進使用<code>onload()</code>函式，進到資料中</li>
+<li>最後，<code>send()</code>正式送出請求<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a request variable and assign a new XMLHttpRequest object to it.</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open a new connection, using the GET request on the URL endpoint</span></span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'https://ghibliapi.herokuapp.com/films'</span>)</span><br><span class="line"></span><br><span class="line">request.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Begin accessing JSON data here</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send request</span></span><br><span class="line">request.send()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>處理HTTP回傳資料：</p>
+<ol>
+<li>回傳值為JSON格式，必須先使用用<code>JSON.parse()</code>將JSON轉換為javascript物件</li>
+<li>接下來就可以對資料做處理了。例：這裡的資料為陣列，所以下方用<code>forEach()</code>一一讀取陣列中的物件，並且印出每個物件的title</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Begin accessing JSON data here</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.response)</span><br><span class="line"></span><br><span class="line">data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Log each movie's title</span></span><br><span class="line">  <span class="built_in">console</span>.log(movie.title)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>處理錯誤error：<br>每次HTTP發出請求，就會回傳status code，常見的錯誤為404(Not found)，成功為200(OK)。判斷<code>request.status</code>，如果成功就執行印出資料，否則就印出error</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Begin accessing JSON data here</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.response)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">400</span>) &#123;</span><br><span class="line">  data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(movie.title)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接續，在頁面上顯示API資料"><a href="#接續，在頁面上顯示API資料" class="headerlink" title="接續，在頁面上顯示API資料"></a>接續，在頁面上顯示API資料</h3><ul>
+<li><p><code>index.html</code>中有一個div容器，設為id=’root’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot; /&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;script src=&quot;scripts.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>script.js</code>取得root元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在網頁左上放一個logo</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logo = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增一個div標籤元素，並且用class定義其css樣式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> container = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">container.setAttribute(<span class="string">'class'</span>, <span class="string">'container'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>將新增的元素放到網頁上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.appendChild(logo)</span><br><span class="line">app.appendChild(container)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>繼續在container中填充回傳值資料</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">data.forEach(<span class="function"><span class="params">movie</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Create a div with a card class</span></span><br><span class="line">  <span class="keyword">const</span> card = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">  card.setAttribute(<span class="string">'class'</span>, <span class="string">'card'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an h1 and set the text content to the film's title</span></span><br><span class="line">  <span class="keyword">const</span> h1 = <span class="built_in">document</span>.createElement(<span class="string">'h1'</span>)</span><br><span class="line">  h1.textContent = movie.title</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a p and set the text content to the film's description</span></span><br><span class="line">  <span class="keyword">const</span> p = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>)</span><br><span class="line">  movie.description = movie.description.substring(<span class="number">0</span>, <span class="number">300</span>) <span class="comment">// Limit to 300 chars</span></span><br><span class="line">  p.textContent = <span class="string">`<span class="subst">$&#123;movie.description&#125;</span>...`</span> <span class="comment">// End with an ellipses</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Append the cards to the container element</span></span><br><span class="line">  container.appendChild(card)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Each card will contain an h1 and a p</span></span><br><span class="line">  card.appendChild(h1)</span><br><span class="line">  card.appendChild(p)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><ul>
+<li><a href="https://github.com/leahlin912/git-practice/tree/master/project4_mini" target="_blank" rel="noopener">github完整程式碼</a></li>
+<li><a href="https://leahlin912.github.io/git-practice/project4_mini/" target="_blank" rel="noopener">網頁呈現</a></li>
+</ul>
+<p><img src="https://i.imgur.com/da37OGa.png" alt></p>
+<h3 id="參考來源"><a href="#參考來源" class="headerlink" title="參考來源"></a>參考來源</h3><ul>
+<li><a href="https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/" target="_blank" rel="noopener">How to Connect to an API with JavaScript</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-使用github page顯示靜態網頁" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -566,346 +1026,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-建立boiler樣板(下)-引入Font Awesome" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/">建立boiler樣板(下)-引入Font Awesome</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/建立boiler樣板(下)-引入Font Awesome/" class="article-date">
-	  <time datetime="2019-04-04T10:15:42.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="建立boiler樣板-下-引入Font-Awesome"><a href="#建立boiler樣板-下-引入Font-Awesome" class="headerlink" title="建立boiler樣板(下)-引入Font Awesome"></a>建立boiler樣板(下)-引入Font Awesome</h1><h3 id="什麼是Font-Awesome？"><a href="#什麼是Font-Awesome？" class="headerlink" title="什麼是Font Awesome？"></a>什麼是Font Awesome？</h3><ul>
-<li>用於網頁中加入icon的圖示庫，原理是把圖示icon都製作成文字的字型(fonts)，再透過CSS的去呼叫icon顯示出來。</li>
-<li>相較於載入一張圖片，loading的負擔較低</li>
-<li>可以透過指令放大縮小，不會造成像素失真的問題<h3 id="引入fontawesome"><a href="#引入fontawesome" class="headerlink" title="引入fontawesome"></a>引入fontawesome</h3></li>
-</ul>
-<ol>
-<li>進入<a href="https://fontawesome.com/start" target="_blank" rel="noopener">fontawesome的「start」頁面</a><br><img src="https://i.imgur.com/YKvSPXU.png" alt></li>
-<li>將cdn複製貼上到<code>&lt;head&gt;</code>中</li>
-</ol>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/releases/v5.8.1/css/all.css&quot; integrity=&quot;sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf&quot; crossorigin=&quot;anonymous&quot;&gt;
-</code></pre><ol start="3">
-<li>即可開始使用</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awesomefont/">awesomefont</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/boiler/">boiler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/library/">library</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-建立boiler樣板(上)-引入Bootstrap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/建立boiler樣板(上)-引入Bootstrap/">建立boiler樣板(上)-引入Bootstrap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/建立boiler樣板(上)-引入Bootstrap/" class="article-date">
-	  <time datetime="2019-04-04T10:15:30.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="建立boiler樣板-上-引入Bootstrap"><a href="#建立boiler樣板-上-引入Bootstrap" class="headerlink" title="建立boiler樣板(上)-引入Bootstrap"></a>建立boiler樣板(上)-引入Bootstrap</h1><h3 id="創建資料夾結構"><a href="#創建資料夾結構" class="headerlink" title="創建資料夾結構"></a>創建資料夾結構</h3><ol>
-<li>先新增一個資料夾</li>
-</ol>
-<p><img src="https://i.imgur.com/xU7tl4g.png" alt></p>
-<ol start="2">
-<li>再用vscode開啟該資料夾，並建立起資料夾結構<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">boiler</span></span><br><span class="line">|_index.html</span><br><span class="line">|_img</span><br><span class="line">|_css</span><br><span class="line">    |_style.css</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/w4yRZJM.png" alt></p>
-<ol start="3">
-<li>將index.html與style.css檔做連結</li>
-</ol>
-<p><img src="https://i.imgur.com/a74nBc9.png" alt></p>
-<h3 id="引入bootstrap"><a href="#引入bootstrap" class="headerlink" title="引入bootstrap"></a>引入bootstrap</h3><p><strong>CSS</strong></p>
-<ol>
-<li>進入<a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/" target="_blank" rel="noopener">bootstrap網站「Get Start」頁面</a>，將CSS stylesheet連結放在<code>&lt;head&gt;</code>的中，放置於所有stylesheet的最上方</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>JS</strong></p>
-<ol start="2">
-<li>進入bootstrap網站「Get Start」頁面，將JS的plugin 放在<code>&lt;/body&gt;</code>結束前<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>jQuery</strong></p>
-<ol start="3">
-<li>進入<a href="http://code.jquery.com/" target="_blank" rel="noopener">jQuery</a>頁面，將最新版本的minified複製放在<code>&lt;/body&gt;</code>結束前</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">script</span></span><br><span class="line">  src="http://code.jquery.com/jquery-3.3.1.min.js"</span><br><span class="line">  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="</span><br><span class="line">  crossorigin="anonymous"&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/telUeZ5.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/boiler/">boiler</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Font Awesome-使用免費icon" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/Font Awesome-使用免費icon/">Font Awesome-使用免費icon</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/Font Awesome-使用免費icon/" class="article-date">
-	  <time datetime="2019-04-04T10:13:54.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Font-Awesome-使用免費icon"><a href="#Font-Awesome-使用免費icon" class="headerlink" title="Font Awesome-使用免費icon"></a>Font Awesome-使用免費icon</h1><h3 id="引入Font-Awesome"><a href="#引入Font-Awesome" class="headerlink" title="引入Font Awesome"></a>引入Font Awesome</h3><ul>
-<li>參考文章：<a href="https://hackmd.io/iF7wYwT3SYGjxRTc9MRYYw?both" target="_blank" rel="noopener">建立boiler樣板-(下)引入Font Awesome</a><h3 id="使用icon"><a href="#使用icon" class="headerlink" title="使用icon"></a>使用icon</h3></li>
-</ul>
-<ol>
-<li><p>在<a href="https://fontawesome.com/icons?d=gallery" target="_blank" rel="noopener">fontawesome的gaooery</a>找到適合的icon<br><img src="https://i.imgur.com/6JnA2Jd.png" alt></p>
-</li>
-<li><p>將<code>&lt;i&gt;</code>整段複製到要使用的html檔中<br><img src="https://i.imgur.com/b0cgcrW.png" alt></p>
-</li>
-<li><p>調整為不同<a href="https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons" target="_blank" rel="noopener">尺寸</a>(optional)</p>
-</li>
-<li><p>調整為不同<a href="https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use#with-your-styling" target="_blank" rel="noopener">顏色</a>(optional)</p>
-</li>
-</ol>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;fas fa-eye&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fas fa-eye-slash&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fas fa-thumbs-up fa-3x&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fas fa-thumbs-down fa-3x&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-gratipay fa-3x&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fas fa-comment fa-3x&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-youtube fa-5x&quot;  style=&quot;color:#FF0000&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-line fa-5x&quot; style=&quot;color:#00c300&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-facebook-square fa-5x&quot; style=&quot;color:#3b5998&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-facebook-messenger fa-5x&quot; style=&quot;color:#0884F9&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;fab fa-instagram fa-5x&quot; style=&quot;color:#BB2C8A&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/uDkOIzp.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/library/">library</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awesomefont/">awesomefont</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Slick-快速打造一個carousel" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/Slick-快速打造一個carousel/">Slick-快速打造一個carousel</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/Slick-快速打造一個carousel/" class="article-date">
-	  <time datetime="2019-04-04T09:18:10.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Slick-快速打造一個carousel"><a href="#Slick-快速打造一個carousel" class="headerlink" title="Slick-快速打造一個carousel"></a>Slick-快速打造一個carousel</h1><h3 id="Slick是什麼？"><a href="#Slick是什麼？" class="headerlink" title="Slick是什麼？"></a>Slick是什麼？</h3><p>提供多種輪播樣式，以多組圖片輪播切換的套件，可應用於更多張圖片的展示。附上原始碼，複製貼上，即可使用現成的sliders樣式。<br><img src="https://i.imgur.com/wib0NFC.png" alt></p>
-<h3 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h3><ol>
-<li>引入slick cdn</li>
-</ol>
-<p><strong>CSS</strong><br>搜尋slick cdn，找到<a href="https://cdnjs.com/libraries/slick-carousel" target="_blank" rel="noopener">slick-carousel cdn資源</a>，將slick.css及slick-theme.css主題樣式複製到<code>&lt;head&gt;</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css&quot; /&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>JS</strong><br>再將slick.js複製到<code>&lt;/body&gt;</code>結束前且jquery後<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/r4ylplk.png" alt></p>
-<ol start="2">
-<li>先在html建立好carousel的內容結構，並在外層給予一個class作為標記<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;slider&quot;&gt;</span><br><span class="line">    &lt;div&gt;slide 1&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 2&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 3&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 4&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;slide 5&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">``` </span><br><span class="line">4. 進入[slick](http://kenwheeler.github.io/slick/)，選擇sliders樣式，複製下方的語法到`&lt;body&gt;&lt;script&gt;`中</span><br><span class="line">![](https://i.imgur.com/3VT5R1U.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### optional控制元素</span><br><span class="line">* **arrows**: (boolean值)是否顯示左右箭頭功能</span><br><span class="line">* **dots**:(boolean值)是否顯示下方小圓點功能</span><br><span class="line">* **autoplay**：(boolean值)是否自動播放</span><br><span class="line">* **autoplaySpeed**:(毫秒值)自動播放的速度</span><br><span class="line">* **slidesToShow**:(數量值)一次主要顯現幾個slides</span><br><span class="line">* **slidesToScroll**:(數量值)每次滑動幾張slides</span><br><span class="line">* **fade**:(boolean值)是否採用淡出/淡入效果</span><br><span class="line">* **infinite**：(boolean值)滑到最後一張，是否繼續從回到一開始同向循環(4&gt;1&gt;2&gt;3&gt;...)，或是逆轉向循環(4&gt;3&gt;2&gt;...)</span><br><span class="line">* **centerMode**:(boolean值)是否同時顯現前後兩張slide的部分內容</span><br><span class="line">* **centerPadding**:(px值)搭配`centerMode:true`使用，表示前後兩張slide要顯現多少範圍</span><br><span class="line">* **responsive**:(陣列)針對不同尺寸做額外設定</span><br><span class="line">    * **breakpoint**:(螢幕尺寸)</span><br><span class="line">    * **settings**:(&#123;物件&#125;)包含各種設定</span><br><span class="line">### 實作</span><br><span class="line">```htmlmixed=</span><br><span class="line"> &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;slider&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;slide-1&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-2&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-3&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;slide-4&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"> &lt;script&gt;</span><br><span class="line">    $(&apos;.slider&apos;).slick(&#123;</span><br><span class="line">        centerMode:true,</span><br><span class="line">        centerPadding: &apos;100px&apos;,</span><br><span class="line">        slidesToShow: 1,</span><br><span class="line">        slidesToScroll: 1,</span><br><span class="line">        autoplaySpeed: 2000,  </span><br><span class="line">        dots: true,</span><br><span class="line">        arrows: true,</span><br><span class="line">    &#125;);</span><br><span class="line">            </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/ngVROQD.png" alt></p>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/about.html" target="_blank" rel="noopener">My Project-LonelyPlanet-About page</a><br><img src="https://i.imgur.com/JzSdhXX.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/library/">library</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slick/">Slick</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/carousel/">carousel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/library/">library</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-常見display屬性的值" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/CSS-常見display屬性的值/">CSS-常見display屬性的值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/CSS-常見display屬性的值/" class="article-date">
-	  <time datetime="2019-04-04T01:15:38.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-常見display屬性的值"><a href="#CSS-常見display屬性的值" class="headerlink" title="CSS-常見display屬性的值"></a>CSS-常見display屬性的值</h1><h3 id="display-none"><a href="#display-none" class="headerlink" title="display: none"></a>display: none</h3><ul>
-<li>display設為none這個東西就不見了，不佔空間。</li>
-<li>補充：<code>visibility:hidden</code>是隱形看不見，不過還是有佔空間。</li>
-</ul>
-<h3 id="display-inline"><a href="#display-inline" class="headerlink" title="display: inline"></a>display: inline</h3><ul>
-<li><code>display : inline</code> 的元素連在一起會在同一行，「<strong>不會換行</strong>」。</li>
-<li>要讓 display : inline 元素水平置中的方式是在此元素的父元素加上 <code>text-align : center</code>。</li>
-<li><code>&lt;a&gt;</code>、<code>&lt;span&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;img&gt;</code>這幾個 HTML 元素預設的 display 屬性是 inline </li>
-<li>可以針對左右做縮排(margin-left 、 margin-right 、 padding-left 、 padding-right「<strong>有效</strong>」)</li>
-<li>上下縮排會失效，且寬高為內容本身寬高，無法自定義寬高。 (margin-top 、 margin-bottom 、 padding-top 、 padding-bottom 、 width 、 height 、 background-image 皆「<strong>無效</strong>」) </li>
-</ul>
-<h3 id="display-block"><a href="#display-block" class="headerlink" title="display: block"></a>display: block</h3><ul>
-<li>不論前後元素為何，<code>display:block</code> 元素會直接「<strong>換行</strong>」開始。</li>
-<li><code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;h1&gt;</code>、<code>&lt;h2&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;img&gt;</code>這幾個 HTML 元素預設的 display 屬性是 block </li>
-<li>可以自定義寬高或縮排(margin 、 padding 、 width 、 height 、 background-image 皆「<strong>有效</strong>」)</li>
-</ul>
-<h3 id="display-inline-block"><a href="#display-inline-block" class="headerlink" title="display: inline-block"></a>display: inline-block</h3><ul>
-<li>內部元素水平排列，而且不需要額外設定clear，也不會讓接著的元素疊上來。</li>
-<li>可以理解為：外面是inline，裡面是block。所以元素「<strong>不會換行</strong>」，但是又可以設定元素的padding-top 、 padding-bottom 、 width 、 height 、 background-image 。</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -968,67 +1093,67 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a></h6>
+              <span>May 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-物件/">JavaScript-物件</a></h6>
+              <span>May 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-偽命名空間/">JavaScript-偽命名空間</a></h6>
+              <span>May 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-創建、取用物件中的屬性/">JavaScript-創建、取用物件中的屬性</a></h6>
+              <span>May 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-函式中的預設值/">JavaScript-函式中的預設值</a></h6>
+              <span>May 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-執行緒、同步與非同步/">JavaScript-執行緒、同步與非同步</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-範圍鏈(scope chain)/">JavaScript-範圍鏈(scope chain)</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-執行堆/">JavaScript-執行堆</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-undefined vs. not defined/">JavaScript-undefined vs. not defined</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-提升(Hoisting)/">JavaScript-提升(Hoisting)</a></h6>
               <span>May 3, 2019</span>
             </div>
 
@@ -1043,7 +1168,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1053,7 +1178,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1063,7 +1188,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 12px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 16px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/JS/" style="font-size: 19px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 14px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 17px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 17px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 11px;">Webpack</a> <a href="/tags/awesomefont/" style="font-size: 11px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/boiler/" style="font-size: 11px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/github/" style="font-size: 12px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 11px;">jQuery</a> <a href="/tags/layout/" style="font-size: 18px;">layout</a> <a href="/tags/layuot/" style="font-size: 11px;">layuot</a> <a href="/tags/library/" style="font-size: 11px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 15px;">實作</a>
+      <a href="/tags/API/" style="font-size: 12px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 16px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 19px;">CSS</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 14px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 17px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 17px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 11px;">Webpack</a> <a href="/tags/awesomefont/" style="font-size: 11px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/boiler/" style="font-size: 11px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/github/" style="font-size: 12px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 11px;">jQuery</a> <a href="/tags/layout/" style="font-size: 18px;">layout</a> <a href="/tags/layuot/" style="font-size: 11px;">layuot</a> <a href="/tags/library/" style="font-size: 11px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 15px;">實作</a>
     </div>
   </div>
 
@@ -1073,7 +1198,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
