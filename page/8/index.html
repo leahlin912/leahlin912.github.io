@@ -158,6 +158,398 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-CSS-position定位：absolute＆relative＆fixed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/">CSS-position定位：absolute＆relative＆fixed</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/28/CSS-position定位：absolute＆relative＆fixed/" class="article-date">
+	  <time datetime="2019-03-27T22:38:54.000Z" itemprop="datePublished">March 28, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-position定位：absolute＆relative＆fixed"><a href="#CSS-position定位：absolute＆relative＆fixed" class="headerlink" title="CSS-position定位：absolute＆relative＆fixed"></a>CSS-position定位：absolute＆relative＆fixed</h1><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當畫面中的元素需要重疊時，建議可以使用<code>position</code>屬性作定位</p>
+<h3 id="預設值-static"><a href="#預設值-static" class="headerlink" title="預設值(static)"></a>預設值(static)</h3><ul>
+<li><p>在不設定position屬性的情況，瀏覽器的預設值為<code>static</code></p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:static;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>該元素「不會被特別定位」在頁面上特定位置，而是照著瀏覽器預設的配置自動排版在頁面上</p>
+<h3 id="相對定位-relative"><a href="#相對定位-relative" class="headerlink" title="相對定位(relative)"></a>相對定位(relative)</h3></li>
+<li>css語法<ul>
+<li><code>position</code>的值為<code>relative</code></li>
+<li>若’ <strong>沒有</strong> ‘設置其他top、right、bottom、left屬性，則其顯現的位置跟static一樣，會依照瀏覽器預設的配置自動排版在頁面上</li>
+<li>若’ <strong>有</strong> ‘設置top、right、bottom、left屬性 ，該元素會「相對地」調整其原本該出現的所在位置<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="絕對定位-absolute"><a href="#絕對定位-absolute" class="headerlink" title="絕對定位(absolute)"></a>絕對定位(absolute)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>absolute</code></li>
+<li><p><code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>交互搭配使用，數值可以為負值或百分比</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/I9zGxh3.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>==若其外層容器沒有「可以被定位的元素(static以外的元素)」，那麼這個子元素的定位就是相對於該網頁（也就是 <body> 元素），作上、下、左、右位置的絕對定位（即使外層有包一個父元素，例：container）==</body></p>
+<p>  <img src="https://i.imgur.com/vWiHVb9.png" alt></p>
+</li>
+<li><p>==Q: 如何以父元素作為定位空間?==</p>
+<p>  ==A: 定義父元素的<code>position</code>==</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  ==內層absolute的子元素則會被外層父元素受限，並在父元素的空間作絕對定位==</p>
+<p>  <img src="https://i.imgur.com/HfeC0aD.png" alt></p>
+</li>
+</ul>
+<h3 id="固定定位-fixed"><a href="#固定定位-fixed" class="headerlink" title="固定定位(fixed)"></a>固定定位(fixed)</h3><ul>
+<li><p>css語法</p>
+<ul>
+<li><code>position</code>的值為<code>fixed</code></li>
+<li>使用 top、right、bottom、left屬性來定位，可以為負值。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inner</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>該元素會相對於瀏覽器視窗來定位，即便瀏覽頁面捲動，它還是會固定在相同的位置。<br><img src="https://i.imgur.com/KGn1CPk.png" alt></p>
+</li>
+</ul>
+<h3 id="補充：上下疊層-z-index"><a href="#補充：上下疊層-z-index" class="headerlink" title="補充：上下疊層(z-index)"></a>補充：上下疊層(z-index)</h3><ul>
+<li>在未設置<code>z-index</code>屬性的情況之下，疊層會按照程式碼由上而下畫圖，box1畫完才畫box2，所以box2疊在box1之上<br><img src="https://i.imgur.com/Ezx4L9i.png" alt></li>
+<li>若想要自定義疊層前後，則透過<code>z-index</code>屬性，==「數字越大=越後畫=疊在越上層 」==<br><img src="https://i.imgur.com/YtS9r1U.png" alt></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-html&amp;CSS-插入(背景)圖片的作法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/27/html&CSS-插入(背景)圖片的作法/">html&amp;CSS-插入(背景)圖片的作法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/27/html&CSS-插入(背景)圖片的作法/" class="article-date">
+	  <time datetime="2019-03-27T03:28:58.000Z" itemprop="datePublished">March 27, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="html-amp-CSS-插入-背景-圖片的作法"><a href="#html-amp-CSS-插入-背景-圖片的作法" class="headerlink" title="html&amp;CSS-插入(背景)圖片的作法"></a>html&amp;CSS-插入(背景)圖片的作法</h1><h3 id="方法一：使用html的img標籤"><a href="#方法一：使用html的img標籤" class="headerlink" title="方法一：使用html的img標籤"></a>方法一：使用html的<code>img</code>標籤</h3><ol>
+<li><a href="https://hackmd.io/4c2-wbCXTb6fHB0JM-CEMg" target="_blank" rel="noopener"><strong>html-插入圖片路徑</strong></a>：絕對路徑 or 相對路徑</li>
+<li><p><strong>圖片寬高</strong> </p>
+<ul>
+<li><p>直接給予匯入圖片的寬高值，有變形的風險<br><img src="https://i.imgur.com/jf9alGL.jpg" alt></p>
+</li>
+<li><p>分別相較於父元素寬高的百分比<br><img src="https://i.imgur.com/OfRfNOo.png" alt></p>
+<p>==如果使用百分比的width，而沒有給予height，瀏覽器會固定將圖片寬高比例，避免變形的風險==</p>
+</li>
+</ul>
+</li>
+<li><p><strong>用css加上邊框樣式</strong></p>
+<p> <img src="https://i.imgur.com/qCspqSi.png" alt></p>
+</li>
+</ol>
+<h3 id="方法二：從css選擇器中定義背景"><a href="#方法二：從css選擇器中定義背景" class="headerlink" title="方法二：從css選擇器中定義背景"></a>方法二：從css選擇器中定義背景</h3><ol>
+<li><p><strong>先在html中提供一個空間</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>開始透過css選擇器，定義該空間的樣式</strong>(為了顯示整個空間，所以先趁一個底色)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">antiquewhite</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>==定義該空間的寬高(注意：不等同於照片的寬高！)==</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:1000px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:600px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定義要匯入的圖片</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-image: url("https://images.unsplash.com/photo-1553451193-d4d44c036555?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1352&amp;q=80");</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>==定義匯入圖片的長寬==</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-size</span><span class="selector-pseudo">:500px</span> 333<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>設定背景圖片不要重複顯示</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-repeat</span>: <span class="selector-tag">no-repeat</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/6wtaSof.png" alt></p>
+<ol start="7">
+<li><p><strong>定義圖片會不會跟著瀏覽器跑動</strong><br>可以將背景圖視為下層，透過<code>background-attachment</code>屬性的定義，可以定義下層的背景圖是否要跟著上層的瀏覽的畫面連動位移</p>
+<ul>
+<li><p><code>background-attachment:scroll</code><br>不論上層的瀏覽頁面如何捲動，其下方的背景圖會牢牢地跟著上下滑動，所以可視的圖片內容都一樣，不會改變<br><img src="https://i.imgur.com/qZNc1mo.jpg" alt></p>
+</li>
+<li><p><code>background-attachment:fixed</code><br>下層的背景圖片會固定在某個位置，當上層的瀏覽頁面捲動，所視畫面會隨位置的不同而看到不同的圖片內容。甚至，當下層的背景圖片不夠長，即看不到圖片了<br><img src="https://i.imgur.com/IDy4evZ.jpg" alt></p>
+</li>
+</ul>
+</li>
+<li><p><strong>定義圖片的位置</strong><br><code>background-position</code> 屬性是用來指定背景圖案的位置。<br>語法：</p>
+<ul>
+<li>兩個字：第一個字為 [top,center,bottom] 中三選一，而第二個字由 [left,center,right] 中三選一。</li>
+<li>兩個百分比：第一個百分比為 x軸的百分比，第二個為 y軸的百分比。</li>
+<li>兩個數目：第一個數目為 x軸的位置，第二個數目為 y軸的位置。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-html&amp;CSS-在html環境中插入css檔案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/27/html&CSS-在html環境中插入css檔案/">html&amp;CSS-在html環境中插入css檔案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/27/html&CSS-在html環境中插入css檔案/" class="article-date">
+	  <time datetime="2019-03-27T01:27:50.000Z" itemprop="datePublished">March 27, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="html-amp-CSS-在html環境中插入css檔案"><a href="#html-amp-CSS-在html環境中插入css檔案" class="headerlink" title="html&amp;CSS-在html環境中插入css檔案"></a>html&amp;CSS-在html環境中插入css檔案</h1><h3 id="先建議一個專案"><a href="#先建議一個專案" class="headerlink" title="先建議一個專案"></a>先建議一個專案</h3><ul>
+<li>專案本身為一個資料夾，先為其命名，例:test-project</li>
+<li>其中有一個<code>index.html</code>檔案</li>
+<li>另外新增一個css資料夾，且其中有一個<code>style.css</code>檔案<br><img src="https://i.imgur.com/s5wfnKT.png" alt></li>
+</ul>
+<h3 id="引入css檔案"><a href="#引入css檔案" class="headerlink" title="引入css檔案"></a>引入css檔案</h3><ol>
+<li>先開啟<code>index.html</code>檔案</li>
+<li>在head中，加入<code>link</code>標籤，並且指向<code>style.css</code>檔案的位置<br><img src="https://i.imgur.com/QAF4bek.png" alt></li>
+<li>成功引入之後，便可以在<code>style.css</code>進行編輯，透過css選擇器定義樣式，去影響<code>index.html</code>的內容<h3 id="css選擇器-簡易示範"><a href="#css選擇器-簡易示範" class="headerlink" title="css選擇器(簡易示範)"></a>css選擇器(簡易示範)</h3></li>
+<li>在<code>style.css</code>定義h1、p的顏色樣式，並存檔<br> <img src="https://i.imgur.com/6Pt0URN.png" alt></li>
+<li>再次刷新瀏覽頁面，可以看到h1、p的樣式確實被改變了<br> <img src="https://i.imgur.com/WpBGByd.png" alt></li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-html-建立html環境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/27/html-建立html環境/">html-建立html環境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/27/html-建立html環境/" class="article-date">
+	  <time datetime="2019-03-26T23:19:58.000Z" itemprop="datePublished">March 27, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="html-建立html環境"><a href="#html-建立html環境" class="headerlink" title="html-建立html環境"></a>html-建立html環境</h1><h3 id="基本環境架構"><a href="#基本環境架構" class="headerlink" title="基本環境架構"></a>基本環境架構</h3><ul>
+<li><p>定義網頁的格式<br>因為html的時代悠久，有許多不同的html版本格式，因此若使用<code>html5</code>格式，需在第一行新增一行定義</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有撰寫內容，都先用<code>html</code>包起來，裡面有裡面有兩個標籤： <code>head</code>、<code>body</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="head"><a href="#head" class="headerlink" title="head:"></a>head:</h3><p>放置網頁的相關資訊，例：網頁名稱、支援中文編碼模式、載入的css版本、載入的JS版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My first web&lt;/title&gt;//網頁名稱</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;//支援中文編碼模式</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>該網頁的頁籤變更為「My first web」<br><img src="https://i.imgur.com/gd9x0j6.png" alt></p>
+<h3 id="body"><a href="#body" class="headerlink" title="body:"></a>body:</h3><p>所有關於html的程式碼(網頁內容)，都放在<code>body</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My first web&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;標題&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;這是文字內容...這是文字內容...這是文字內容...這是文字內容...&lt;/p&gt;</span><br><span class="line">        &lt;a href=&quot;https://www.google.com/&quot;&gt;連結&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/6aPg2lg.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-浮動定位(float)、清除浮動(clear)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/26/CSS-浮動定位(float)、清除浮動(clear)/">CSS-浮動定位(float)、清除浮動(clear)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/26/CSS-浮動定位(float)、清除浮動(clear)/" class="article-date">
+	  <time datetime="2019-03-25T23:18:34.000Z" itemprop="datePublished">March 26, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-浮動定位-float-、清除浮動-clear"><a href="#CSS-浮動定位-float-、清除浮動-clear" class="headerlink" title="CSS-浮動定位(float)、清除浮動(clear)"></a>CSS-浮動定位(float)、清除浮動(clear)</h1><h2 id="浮動定位-float"><a href="#浮動定位-float" class="headerlink" title="浮動定位(float)"></a>浮動定位(float)</h2><h3 id="float使用時機"><a href="#float使用時機" class="headerlink" title="float使用時機"></a>float使用時機</h3><p><code>&lt;div&gt;</code>本身是區塊元素(block)，即使元素本身長度短於頁面行寬，仍會自動換行<br><img src="https://i.imgur.com/m29PJkm.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若希望<code>&lt;div&gt;</code>元素可以並行排列，則需要使用<code>float屬性</code><br><img src="https://i.imgur.com/6afBCHP.png" alt></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="css語法解釋"><a href="#css語法解釋" class="headerlink" title="css語法解釋"></a>css語法解釋</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float: 浮動方向;</span><br></pre></td></tr></table></figure>
+<p>浮動方向可以用的值有</p>
+<ul>
+<li>left（靠左浮動）</li>
+<li>right（靠右浮動）</li>
+<li>none（預設值，也就是不浮動）</li>
+<li>inherit（繼承自父層的屬性）</li>
+</ul>
+<p><img src="https://i.imgur.com/eJIxovX.png" alt><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="換行狀況"><a href="#換行狀況" class="headerlink" title="換行狀況"></a>換行狀況</h3><p>即使使用<code>float</code>定位，當排列元素的累積寬度已經超過頁面行寬，就會自動換行<br><img src="https://i.imgur.com/D6Nscru.png" alt></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="清除浮動-clear"><a href="#清除浮動-clear" class="headerlink" title="清除浮動(clear)"></a>清除浮動(clear)</h2><h3 id="使用時機"><a href="#使用時機" class="headerlink" title="使用時機"></a>使用時機</h3><p>當前面的元素為浮動元素，後續的區塊元素會從父階層容器開始的地方堆疊起<br><img src="https://i.imgur.com/f6IGqQG.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box3&quot;&gt;box3&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0780D</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#AEB6B8</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">float</span>:left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#F0C7B2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>當後面的元素不想要有float的浮動效果時，為了避免重疊狀況，必須在最後一個浮動元素後方，增加一個元素，並使用<code>clear屬性</code><br><img src="https://i.imgur.com/AbCXO41.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box1&quot;&gt;box1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box2&quot;&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;clearFloat&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box3&quot;&gt;box3&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearFloat</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-區塊元素(block)與行內元素(inline)" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -291,68 +683,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-_this_關鍵字/">JavaScript-&#34;this&#34;關鍵字</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-傳值與傳參考/">JavaScript-傳值與傳參考</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-函數陳述式與函數表示式/">JavaScript-函數陳述式與函數表示式</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-函式就是物件/">JavaScript-函式就是物件</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a></h6>
               <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-物件/">JavaScript-物件</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-偽命名空間/">JavaScript-偽命名空間</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-創建、取用物件中的屬性/">JavaScript-創建、取用物件中的屬性</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-函式中的預設值/">JavaScript-函式中的預設值</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a></h6>
-              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -366,7 +758,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -376,7 +768,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -396,7 +788,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

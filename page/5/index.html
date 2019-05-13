@@ -158,6 +158,414 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-使用github page顯示靜態網頁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/08/使用github page顯示靜態網頁/">使用github page顯示靜態網頁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/08/使用github page顯示靜態網頁/" class="article-date">
+	  <time datetime="2019-04-07T23:29:12.000Z" itemprop="datePublished">April 8, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用github-page顯示靜態網頁"><a href="#使用github-page顯示靜態網頁" class="headerlink" title="使用github page顯示靜態網頁"></a>使用github page顯示靜態網頁</h1><h3 id="設定github綁定金鑰"><a href="#設定github綁定金鑰" class="headerlink" title="設定github綁定金鑰"></a>設定github綁定金鑰</h3><ol>
+<li>在本地端新增ssh資料夾</li>
+<li>取得公鑰、私鑰，將公鑰貼上github</li>
+<li>新增ssh完成</li>
+</ol>
+<h3 id="repository推上GitHub"><a href="#repository推上GitHub" class="headerlink" title="repository推上GitHub"></a>repository推上GitHub</h3><ol>
+<li>在github 新增 repository</li>
+<li>git commit</li>
+<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:leahlin912/111.git</li>
+<li>git push -u origin master</li>
+</ol>
+<h3 id="repository推上GitHub-Page"><a href="#repository推上GitHub-Page" class="headerlink" title="repository推上GitHub Page"></a>repository推上GitHub Page</h3><ol>
+<li>建立新的branch: <code>git branch gh-pages</code></li>
+<li>推上github: <code>git push origin gh-pages</code></li>
+<li>需要注意的是首頁要命名為index.html</li>
+<li>到[github name].github.io/[repository name]網址查看，你的網頁已經展示在這個網址。</li>
+</ol>
+<h3 id="補充說明"><a href="#補充說明" class="headerlink" title="補充說明"></a>補充說明</h3><ul>
+<li>切換分支：<code>git checkout &lt;branch name&gt;</code><br>(切換分支的同時，新增分支<code>git checkout -b &lt;branch name&gt;</code>)</li>
+<li>合併分支：<code>git merge &lt;another branch name&gt;</code></li>
+<li><p>更新到伺服器端：<code>git push</code></p>
+</li>
+<li><p>補充-第一次更新到伺服器：<code>git push -u origin master</code>(設定預設的remote為origin ; 設定預設的branch為master)</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/github/">github</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-申請API憑證-以Youtube Data API為例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/07/申請API憑證-以Youtube Data API為例/">申請API憑證-以Youtube Data API為例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
+	  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">April 7, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="申請API憑證-以Youtube-Data-API為例"><a href="#申請API憑證-以Youtube-Data-API為例" class="headerlink" title="申請API憑證-以Youtube Data API為例"></a>申請API憑證-以Youtube Data API為例</h1><h3 id="流程概念"><a href="#流程概念" class="headerlink" title="流程概念"></a>流程概念</h3><ol>
+<li>申請憑證</li>
+<li>將key加入到專案中</li>
+</ol>
+<h3 id="申請API-Key"><a href="#申請API-Key" class="headerlink" title="申請API Key"></a>申請API Key</h3><ol>
+<li>使用google帳號，進入<a href="https://console.cloud.google.com/home" target="_blank" rel="noopener">Google Cloud Platform(GCP)</a></li>
+<li><p>從左上漢堡標籤，進入「API和服務&gt;資訊主頁」<br><img src="https://i.imgur.com/XPaCpA4.png" alt></p>
+</li>
+<li><p>點按「啟用API」按鈕<br><img src="https://i.imgur.com/s5OVzq2.png" alt></p>
+</li>
+<li><p>進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)<br><img src="https://i.imgur.com/HTvKrWU.png" alt></p>
+</li>
+<li><p>選擇啟用該API<br><img src="https://i.imgur.com/lfuctZa.png" alt></p>
+</li>
+<li><p>頁面中提示要先「建立憑證」<br><img src="https://i.imgur.com/uZ8UW87.png" alt></p>
+</li>
+<li><p>依照專案需求，填寫表格<br><img src="https://i.imgur.com/oVO3o4b.png" alt></p>
+</li>
+<li><p>依照個人需求、必要，限制金鑰</p>
+</li>
+</ol>
+<ul>
+<li>應用程式限制：若無限制，任何人皆可在任何裝置上使用這組API金鑰；若有限制，則會進行審核，資料符合的使用者才可使用</li>
+<li>API限制：可限制該API僅可用來獲取哪些服務Google服務，避免因使用其他服務導致流量超過配額，或被其他人用來獲取其他服務<br><img src="https://i.imgur.com/Fvo8ka1.png" alt></li>
+</ul>
+<ol start="9">
+<li><p>勾選起該憑證<br><img src="https://i.imgur.com/Joasr4R.png" alt></p>
+</li>
+<li><p>將Key複製到自己的專案中<br><img src="https://i.imgur.com/ehhQGqs.png" alt></p>
+</li>
+</ol>
+<h3 id="將Key加入至專案中"><a href="#將Key加入至專案中" class="headerlink" title="將Key加入至專案中"></a>將Key加入至專案中</h3><ul>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-API金鑰的使用時機(未完)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/07/API金鑰的使用時機(未完)/">API金鑰的使用時機(未完)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/07/API金鑰的使用時機(未完)/" class="article-date">
+	  <time datetime="2019-04-07T02:19:40.000Z" itemprop="datePublished">April 7, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="API金鑰的使用時機-未完"><a href="#API金鑰的使用時機-未完" class="headerlink" title="API金鑰的使用時機(未完)"></a>API金鑰的使用時機(未完)</h1><h3 id="API金鑰-VS-使用者憑證token"><a href="#API金鑰-VS-使用者憑證token" class="headerlink" title="API金鑰 VS. 使用者憑證token"></a>API金鑰 VS. 使用者憑證token</h3><p>Google Cloud Endpoints 能夠處理 API 金鑰與驗證機制，『API 金鑰用於專案，驗證則是用於使用者』</p>
+<ul>
+<li><p>API 金鑰：用於識別呼叫的專案 (即應用程式或網站)，以便讓呼叫任務對應至正確的API</p>
+</li>
+<li><p>使用者驗證token：用於辨識使用者，即使用應用程式或網站的使用者</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/vZ8F68B.png" alt></p>
+<h3 id="API金鑰"><a href="#API金鑰" class="headerlink" title="API金鑰"></a>API金鑰</h3><p>API金鑰提供功能</p>
+<ul>
+<li>專案識別：辨識發出API呼叫的應用程式與專案</li>
+<li>專案授權：檢查該應用程式是否已獲得呼叫API的存取權，並且確認應用程式是否已經在專案中開啟API</li>
+</ul>
+<h3 id="使用者憑證token"><a href="#使用者憑證token" class="headerlink" title="使用者憑證token"></a>使用者憑證token</h3><p>使用token驗證機制有兩大目的</p>
+<ul>
+<li>使用者驗證：安全地驗證進行呼叫的使用者是否符合其宣稱的身分</li>
+<li>使用者授權：檢查使用者是否擁有權限發出要求</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-使用Lightbox影像燈箱" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/Bootstrap-使用Lightbox影像燈箱/">Bootstrap-使用Lightbox影像燈箱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-使用Lightbox影像燈箱/" class="article-date">
+	  <time datetime="2019-04-04T11:35:46.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="bootstrap-使用Lightbox影像燈箱"><a href="#bootstrap-使用Lightbox影像燈箱" class="headerlink" title="bootstrap-使用Lightbox影像燈箱"></a>bootstrap-使用Lightbox影像燈箱</h1><h3 id="什麼是Lightbox？"><a href="#什麼是Lightbox？" class="headerlink" title="什麼是Lightbox？"></a>什麼是Lightbox？</h3><ul>
+<li>網路上有多種他人設計好的燈箱插件，通常都是響應式jQuery燈箱函式庫，用來快速建立及設計漂亮的彈出式影像燈箱，優化網頁中photo gallery的展示效果。<h3 id="引入Lightbox"><a href="#引入Lightbox" class="headerlink" title="引入Lightbox"></a>引入Lightbox</h3></li>
+<li>參考<a href="http://ashleydw.github.io/lightbox/" target="_blank" rel="noopener">lightbox for bootstrap</a>的指令，首先將<a href="https://cdnjs.com/libraries/ekko-lightbox" target="_blank" rel="noopener">cdn</a>複製到專案中</li>
+</ul>
+<p><strong>CSS</strong><br>放在<code>&lt;head&gt;</code>中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>JS</strong><br>放在<code>&lt;body&gt;</code>結束前<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/BXLSCI9.png" alt></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>主要功能是點選其中一張照片，該張照片會以燈箱方式展開</p>
+<ul>
+<li>結構分為兩層<ul>
+<li>外層<code>&lt;a&gt;</code>定義燈箱展示的照片，以及展示後的大小</li>
+<li>內層<code>&lt;img&gt;</code>定義原始照片</li>
+</ul>
+</li>
+<li>在外層<code>&lt;a&gt;</code>使用bootstrap自定義的<code>data-toggle</code>設定啟用lightbox功能;<code>data-lightbox</code>將多張照片群組起來，在左右切換照片時可以辨識為同一群組的照片</li>
+<li>最後添加jquery程式碼，避免預設效果，而採用引入的lightbox效果展示<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-4&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-2.jpg&quot; </span><br><span class="line">            data-toggle=&quot;lightbox&quot; data-gallery=&quot;img-gallery&quot; data-height=&quot;560&quot; data-width=&quot;560&quot;&gt;</span><br><span class="line">                &lt;img src=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-2.jpg&quot; alt=&quot;&quot; class=&quot;img-fluid&quot;&gt;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;col-4&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-3.jpg&quot; </span><br><span class="line">                    data-toggle=&quot;lightbox&quot; data-gallery=&quot;img-gallery&quot; data-height=&quot;560&quot; data-width=&quot;560&quot;&gt;</span><br><span class="line">                &lt;img src=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-3.jpg&quot; alt=&quot;&quot; class=&quot;img-fluid&quot;&gt;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;col-4&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-7.jpg&quot; </span><br><span class="line">            data-toggle=&quot;lightbox&quot; data-gallery=&quot;img-gallery&quot; data-height=&quot;560&quot; data-width=&quot;560&quot;&gt;</span><br><span class="line">                &lt;img src=&quot;https://mymodernmet.com/wp/wp-content/uploads/2017/12/free-images-national-gallery-of-art-7.jpg&quot; alt=&quot;&quot; class=&quot;img-fluid&quot;&gt;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(document).on(&apos;click&apos;, &apos;[data-toggle=&quot;lightbox&quot;]&apos;, function(event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    $(this).ekkoLightbox();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/collection.html" target="_blank" rel="noopener">My Project-MoMA Museum-Collection page</a><br><img src="https://i.imgur.com/eaKNNUn.jpg" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Bootstrap-使用輪播幻燈片Carousal" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/">Bootstrap-使用輪播幻燈片Carousal</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/04/Bootstrap-使用輪播幻燈片Carousal/" class="article-date">
+	  <time datetime="2019-04-04T11:35:36.000Z" itemprop="datePublished">April 4, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bootstrap-使用輪播幻燈片Carousal"><a href="#Bootstrap-使用輪播幻燈片Carousal" class="headerlink" title="Bootstrap-使用輪播幻燈片Carousal"></a>Bootstrap-使用輪播幻燈片Carousal</h1><h3 id="元件結構"><a href="#元件結構" class="headerlink" title="元件結構"></a>元件結構</h3><p>carousal由三個小元件組成，controllers跟indicators 可以選擇性的增加</p>
+<ul>
+<li>sliders</li>
+<li>controls</li>
+<li>indicators<br><img src="https://i.imgur.com/O8tbJO7.png" alt></li>
+</ul>
+<h3 id="sliders"><a href="#sliders" class="headerlink" title="sliders"></a>sliders</h3><ul>
+<li>套用的class分為三層<ul>
+<li>carousal</li>
+<li>carousal-inner</li>
+<li>carousal-item</li>
+</ul>
+</li>
+<li><code>.carousal</code>為一個外層容器，在這一層添加<code>data-ride=&quot;carousel&quot;</code>讓輪播器自動播放。</li>
+<li><code>.carousal-inner</code>主要是讓空間寬度為全版<code>width: 100%;</code></li>
+<li><code>.carousal-item</code>代表一個slide的，裡面可以置放所有文字、圖片內容。在該層添加<code>active</code>代表輪播一開始的畫面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;carousel-inner&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item active&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg1.jpg&quot; alt=&quot;First slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg2.jpg&quot; alt=&quot;Second slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;carousel-item&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;d-block w-100&quot; src=&quot;img/bg3.jpg&quot; alt=&quot;Third slide&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="controls"><a href="#controls" class="headerlink" title="controls"></a>controls</h3><ul>
+<li>程式碼位置，包在<code>carousal</code>中</li>
+<li>左按鈕，套用的class分為兩層<ul>
+<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
+<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-prev-icon</code></li>
+</ul>
+</li>
+<li>右按鈕，套用的class分為兩層<ul>
+<li><code>&lt;a&gt;</code>標籤中，套用<code>carousel-control-prev</code></li>
+<li><code>&lt;span&gt;</code>標籤中，套用<code>carousel-control-next-icon</code></li>
+</ul>
+</li>
+<li>在<code>&lt;a&gt;</code>層主要是定義按鈕的作用目的位置<ul>
+<li><code>href</code>放上作用caroudal的id(也就是外層carousal的id)</li>
+<li><code>data-slide=&quot;prev&quot;</code>是bootstrap自定義的屬性，用來轉換上一個或下一個項目</li>
+<li>role＝”bottom”用來幫助殘障人士，可以借助閱讀器判斷該元件為按鈕</li>
+</ul>
+</li>
+<li>在<code>&lt;span&gt;</code>層主要就比較純粹定義按鈕的樣式</li>
+<li>每個<code>&lt;a&gt;</code>中包含兩個<code>&lt;span&gt;</code>，一個是給一般使用者看的，另外一個是給身障人士可以透過screen reader讀取辨識的<ul>
+<li><code>aria-hidden=true&quot;</code> 可以讓朗讀軟體讀不到此元件。相反的，<code>sr-only</code> 這個 class 是只有使用朗讀程式才可以讀取到的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a class=&quot;carousel-control-prev&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;prev&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-prev-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Previous&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    &lt;a class=&quot;carousel-control-next&quot; href=&quot;#carouselExample&quot; role=&quot;button&quot; data-slide=&quot;next&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;carousel-control-next-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;sr-only&quot;&gt;Next&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="indicators"><a href="#indicators" class="headerlink" title="indicators"></a>indicators</h3><ul>
+<li>程式碼位置，包在<code>carousal</code>中</li>
+<li>使用<code>&lt;ol&gt;</code>及<code>&lt;li&gt;</code>列表結構<ul>
+<li><code>&lt;ol&gt;</code>標籤中，套用<code>carousel-indicators</code></li>
+<li>每一個<code>&lt;li&gt;</code>標籤，就搭配到一個slide，若為預設可視的slide，class則添加active</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &lt;div id=&quot;carouselExample&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt; --&gt;</span><br><span class="line">&lt;!-- 位置放在carousal中 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol class=&quot;carousel-indicators&quot;&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li data-target=&quot;#carouselExample&quot; data-slide-to=&quot;2&quot;&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line">  </span><br><span class="line">&lt;!-- &lt;/div&gt; --&gt;</span><br></pre></td></tr></table></figure>
+<p>==Use data attributes to easily control the position of the carousel.  data-slide accepts the keywords prev or next, which alters the slide position relative to its current position. Alternatively, use  data-slide-to to pass a raw slide index to the carousel  data-slide-to=”2”, which shifts the slide position to a particular index beginning with 0.==</p>
+<h3 id="補：改變每一張slide停留的時間"><a href="#補：改變每一張slide停留的時間" class="headerlink" title="補：改變每一張slide停留的時間"></a>補：改變每一張slide停留的時間</h3><p>Bootstrap 預設每張幻燈片停留時間為5000毫秒(5秒)，可以用interval改變停留時間(單位為毫秒)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  interval: 1000</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="補：滑鼠滑入slide，不暫停輪播"><a href="#補：滑鼠滑入slide，不暫停輪播" class="headerlink" title="補：滑鼠滑入slide，不暫停輪播"></a>補：滑鼠滑入slide，不暫停輪播</h3><p>Bootstrap 預設當滑鼠滑入slide時，輪播會暫停<br>，可以修改為<code>pause:false</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.carousel&apos;).carousel(&#123;</span><br><span class="line">  pause: false</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="參考bootstrap部分原始碼"><a href="#參考bootstrap部分原始碼" class="headerlink" title="參考bootstrap部分原始碼"></a>參考bootstrap部分原始碼</h3><ul>
+<li>.carousel-inner<br><img src="https://i.imgur.com/ZyPj6BE.png" alt></li>
+<li>.carousel-item<br><img src="https://i.imgur.com/2x4qEgb.png" alt></li>
+<li>.carousel-item .actice<br><img src="https://i.imgur.com/Zcx0Ted.png" alt></li>
+<li>.carousel-control-prev</li>
+<li>.carousel-control-next<br><img src="https://i.imgur.com/q2WMxvl.png" alt></li>
+<li>.carousel-control-prev-icon</li>
+<li>.carousel-control-next-icon<br><img src="https://i.imgur.com/BldCccB.png" alt></li>
+<li>.carousel-indicators<br><img src="https://i.imgur.com/FuPo3SC.png" alt></li>
+</ul>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project2/" target="_blank" rel="noopener">My Project-LonelyPlanet-Home page-Header</a><br><img src="https://i.imgur.com/RWdyI1M.jpg" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/carousal/">carousal</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-建立boiler樣板(下)-引入Font Awesome" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -493,354 +901,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Bootstrap-排版Grid system" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/04/Bootstrap-排版Grid system/">Bootstrap-排版Grid system</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/04/Bootstrap-排版Grid system/" class="article-date">
-	  <time datetime="2019-04-03T22:11:56.000Z" itemprop="datePublished">April 4, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-排版Grid-system"><a href="#Bootstrap-排版Grid-system" class="headerlink" title="Bootstrap-排版Grid system"></a>Bootstrap-排版Grid system</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>Bootstrap的排版是使用css flexbox</li>
-<li>結構上要分為兩層：<ul>
-<li>外層為<code>row</code>：</li>
-<li>內層為一到多個<code>col-</code></li>
-</ul>
-</li>
-<li><code>row</code>容器就是一個flexbox</li>
-<li>Bootstrap的概念是將row容器中，一行分成12等分<br><img src="https://i.imgur.com/OSxICZz.png" alt></li>
-<li><code>col-</code>後面接的數字，就是在一行中，佔有幾個「1/12的空間」。例：col-3就代表佔了3/12的寬度空間</li>
-<li>針對不同尺寸螢幕，可以定義各種尺寸的佔有空間。例：<code>col-lg-3, col-sm-6</code>會在lg size時佔有3/12，而在sm size時佔有6/12<br><img src="https://i.imgur.com/6crFqDz.png" alt></li>
-<li>如果一行中有兩欄，其加總空間未滿12/12，可以用offset製造空欄的效果。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-sm-4&quot;&gt;col-lg-3 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-5 col-sm-4&quot;&gt;col-lg-5 col-sm-4&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-2 col-lg-offset col-sm-4&quot;&gt;col-lg-2 col-lg-offset col-sm-4&lt;/div&gt;           </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/QeCCJvo.png" alt></p>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><ul>
-<li>Large時，一排四個</li>
-<li>Medium時，一排兩個</li>
-<li>Extra small時，一排一個<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-lg-3 col-md-6&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#author-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Author section</a><br><img src="https://i.imgur.com/WVa1q34.png" alt></p>
-<p><img src="https://i.imgur.com/ykYoxBG.png" alt></p>
-<p><img src="https://i.imgur.com/1ksY5GI.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grid/">grid</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Bootstrap-展開Collapse &amp; Accordion" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/Bootstrap-展開Collapse & Accordion/">Bootstrap-展開Collapse &amp; Accordion</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/Bootstrap-展開Collapse & Accordion/" class="article-date">
-	  <time datetime="2019-04-03T03:26:30.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-展開Collapse-amp-Accordion"><a href="#Bootstrap-展開Collapse-amp-Accordion" class="headerlink" title="Bootstrap-展開Collapse &amp; Accordion"></a>Bootstrap-展開Collapse &amp; Accordion</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>給予一個button</li>
-<li>在collapse-content(事件作用目標物)上面給予一個id</li>
-<li>在button標籤中，用bootstrap自訂屬性<code>data-toggle</code>定義觸發事件，以及與<code>data-target</code>定義作用的目標物<br><img src="https://i.imgur.com/7IP8oUd.png" alt></li>
-</ul>
-<h3 id="Collapse實作"><a href="#Collapse實作" class="headerlink" title="Collapse實作"></a>Collapse實作</h3><ul>
-<li>預設值為關閉collapse狀態，若要預設為展開開狀態，可以添加<code>show</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;card&quot;&gt;</span><br><span class="line">    &lt;button data-toggle=&quot;collapse&quot; data-target=&quot;#collapse1&quot;&gt; </span><br><span class="line">        Button 1 </span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">    &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;</span><br><span class="line">        Collapse-content-1</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="Accordion"><a href="#Accordion" class="headerlink" title="Accordion"></a>Accordion</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;accordion&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 1 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse show&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-1</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse1&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 2 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse2&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-2</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;card&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-header&quot;&gt;</span><br><span class="line">            &lt;div href=&apos;#collapse3&apos; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;</span><br><span class="line">                  Button 3 </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;collapse1&quot; class=&quot;collapse&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;card-body&quot;&gt;</span><br><span class="line">                Collapse-content-3</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/0wh298B.png" alt></p>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#mission-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Mission section</a><br><img src="https://i.imgur.com/49RS06k.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-CSS-用hover選擇器增加滑鼠互動效果" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/CSS-用hover選擇器增加滑鼠互動效果/">CSS-用hover選擇器增加滑鼠互動效果</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/CSS-用hover選擇器增加滑鼠互動效果/" class="article-date">
-	  <time datetime="2019-04-03T02:52:02.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS-用hover選擇器增加滑鼠互動效果"><a href="#CSS-用hover選擇器增加滑鼠互動效果" class="headerlink" title="CSS-用hover選擇器增加滑鼠互動效果"></a>CSS-用hover選擇器增加滑鼠互動效果</h1><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
-<li>先設定元件的初始樣式</li>
-<li>再用css選擇器，添加<code>:hover</code>，並定義滑鼠移過的樣式</li>
-</ul>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#6C757D</span> ;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.card</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f2ac34</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/#author-head-section" target="_blank" rel="noopener">My Project-LonelyPlanet-Author section</a><br><img src="https://i.imgur.com/2deu0qu.png" alt></p>
-<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><ul>
-<li><p>hover經常被用在<code>&lt;a&gt;</code>標籤上</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123; </span><br><span class="line">    <span class="attribute">background-color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>其他<code>a</code>標籤的連結效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>    &#123;<span class="attribute">color</span>:blue;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>:blue;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>   &#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>  &#123;<span class="attribute">color</span>:yellow;&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Html-一頁式網頁使用href滑頁" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/Html-一頁式網頁使用href滑頁/">Html-一頁式網頁使用href滑頁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/Html-一頁式網頁使用href滑頁/" class="article-date">
-	  <time datetime="2019-04-03T02:20:16.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Html-一頁式網頁使用href滑頁"><a href="#Html-一頁式網頁使用href滑頁" class="headerlink" title="Html-一頁式網頁使用href滑頁"></a>Html-一頁式網頁使用href滑頁</h1><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
-<li>在每個區塊div設定id，讓</li>
-<li>在menu的項目中設定每個項目的href目的位置為區塊div的id</li>
-<li>用jquery增加scroller效果<br><img src="https://i.imgur.com/LOXSn7j.png" alt></li>
-</ul>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><ul>
-<li>menu中的item使用<code>&lt;a&gt;</code>標籤，並將href設定為目標section的#id<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;navbar-nav&quot;&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section1&quot;&gt;item 1&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section2&quot;&gt;item 2&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">        &lt;a href=&quot;#section3&quot; &gt;item 3&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;section1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;section2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;section3&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在<code>body</code>標籤中新增id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body data-spy=&quot;scroll&quot; data-target=&quot;#main-nav&quot; id=&quot;home&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jQuery初始化scrollspy</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;body&apos;).scrollspy(&#123; target:&apos;#mail-nav&apos;&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Smooth Scrolling<ul>
-<li>所有在#main-nav中的<code>&lt;a&gt;</code>被click，就會執行函式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#main-nav a&apos;).on(&apos;click&apos;,function(event)&#123;</span><br><span class="line">&lt;!--check for a hash value --&gt;</span><br><span class="line">    if(this.hash !==&quot;&quot;)&#123;</span><br><span class="line">    </span><br><span class="line">&lt;!--    prevent default behavior --&gt;</span><br><span class="line">        event.preventDefault();</span><br><span class="line">        </span><br><span class="line">&lt;!--    Store hash --&gt;</span><br><span class="line">        const hash = this.hash;</span><br><span class="line">        $(&apos;html,body&apos;).animate(&#123;</span><br><span class="line">            scrollTop: $(hash).offset().top</span><br><span class="line">        &#125;, 800, function()&#123;</span><br><span class="line">&lt;!--        Add hush to URL after scroll --&gt;</span><br><span class="line">            window.location.hash = hash;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p><a href="https://leahlin912.github.io/git-practice/project1/" target="_blank" rel="noopener">My Project-LonelyPlanet</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/實作/">實作</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Bootstrap-自定義重新設定Sass" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/03/Bootstrap-自定義重新設定Sass/">Bootstrap-自定義重新設定Sass</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/03/Bootstrap-自定義重新設定Sass/" class="article-date">
-	  <time datetime="2019-04-03T01:39:56.000Z" itemprop="datePublished">April 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bootstrap-自定義重新設定Sass"><a href="#Bootstrap-自定義重新設定Sass" class="headerlink" title="Bootstrap-自定義重新設定Sass"></a>Bootstrap-自定義重新設定Sass</h1><h3 id="用koala設定"><a href="#用koala設定" class="headerlink" title="用koala設定"></a>用koala設定</h3><ol>
-<li><p>在專案資料夾中新增scss資料夾，以及style.scss檔案<br><img src="https://i.imgur.com/XpbaSNb.png" alt></p>
-</li>
-<li><p>進入<a href="https://getbootstrap.com/docs/4.3/getting-started/download/#source-files" target="_blank" rel="noopener">Bootstrap-download</a>，下載Source files<br><img src="https://i.imgur.com/dKRYRWV.png" alt></p>
-</li>
-<li><p>下載解壓縮後，將所有下載的scss資料夾中的所有檔案複製到自己專案的scss資料夾中<br><img src="https://i.imgur.com/oiSapJn.jpg" alt></p>
-</li>
-<li><p>下載<a href="http://koala-app.com/" target="_blank" rel="noopener">koala</a><br><img src="https://i.imgur.com/YZwV3oo.png" alt></p>
-</li>
-<li><p>用koala打開專案資料夾，取消不必被compile的項目<br><img src="https://i.imgur.com/DsYYlIE.png" alt></p>
-</li>
-<li><p>將bootstrap.scss重新輸出路徑到專案的css資料夾中，並且再回到koala執行Compile。Compile之後，就可以看到bootstrap.css出現在專案中</p>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/eE4EkWJ.png" alt></p>
-<p><img src="https://i.imgur.com/oSApxeW.png" alt></p>
-<p><img src="https://i.imgur.com/EIAvDFr.png" alt></p>
-<p><img src="https://i.imgur.com/jXwHc1I.png" alt></p>
-<ol start="7">
-<li><p>style.scss也重複上述動作，輸出路徑可以覆蓋原先css中的style.css檔案，一樣再執行Compile</p>
-</li>
-<li><p>用vscode打開專案，將舊的「bootstrap.css」與「style.css」刪除<br><img src="https://i.imgur.com/DNGMYDq.png" alt></p>
-</li>
-<li><p>在index.html中，重新設定bootstrap的引入設定，指定為專案中的bootstrap.css<br><img src="https://i.imgur.com/H5pp0Bp.png" alt></p>
-</li>
-<li><p>在scss檔案中即可修改設定<br><img src="https://i.imgur.com/LwLetn1.png" alt></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sass/">Sass</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -908,68 +968,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-_this_關鍵字/">JavaScript-&#34;this&#34;關鍵字</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-傳值與傳參考/">JavaScript-傳值與傳參考</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-函數陳述式與函數表示式/">JavaScript-函數陳述式與函數表示式</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-函式就是物件/">JavaScript-函式就是物件</a></h6>
+              <span>May 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a></h6>
               <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-物件/">JavaScript-物件</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-偽命名空間/">JavaScript-偽命名空間</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-創建、取用物件中的屬性/">JavaScript-創建、取用物件中的屬性</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-函式中的預設值/">JavaScript-函式中的預設值</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a></h6>
-              <span>May 3, 2019</span>
             </div>
 
           </li>
@@ -983,7 +1043,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -993,7 +1053,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1013,7 +1073,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

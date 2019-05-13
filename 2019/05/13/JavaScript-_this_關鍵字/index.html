@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>javascript-&#34;this&#34;關鍵字 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScriptJS">
+  
+  
+  
+  
+  <meta name="description" content="全域this在全域環境中取用this，會指向全域物件。1console.log(this); 而在瀏覽器中執行，瀏覽器的全域物件為window物件。 函式中的this每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。 下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代">
+<meta name="keywords" content="JavaScript,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-&quot;this&quot;關鍵字">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/JavaScript-_this_關鍵字/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="全域this在全域環境中取用this，會指向全域物件。1console.log(this); 而在瀏覽器中執行，瀏覽器的全域物件為window物件。 函式中的this每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。 下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/gep8H4i.png">
+<meta property="og:image" content="https://i.imgur.com/NuOwXaL.png">
+<meta property="og:image" content="https://i.imgur.com/wTE9q2F.png">
+<meta property="og:image" content="https://i.imgur.com/5rRjEzJ.png">
+<meta property="og:image" content="https://i.imgur.com/mzbz5Tu.png">
+<meta property="og:image" content="https://i.imgur.com/P84OH5Y.png">
+<meta property="og:image" content="https://i.imgur.com/UbQJURB.png">
+<meta property="og:image" content="https://i.imgur.com/YRJBgrT.png">
+<meta property="og:image" content="https://i.imgur.com/gDjk5HV.png">
+<meta property="og:updated_time" content="2019-05-13T10:10:02.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-&quot;this&quot;關鍵字">
+<meta name="twitter:description" content="全域this在全域環境中取用this，會指向全域物件。1console.log(this); 而在瀏覽器中執行，瀏覽器的全域物件為window物件。 函式中的this每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。 下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代">
+<meta name="twitter:image" content="https://i.imgur.com/gep8H4i.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-JavaScript-_this_關鍵字" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      JavaScript-&#34;this&#34;關鍵字
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-_this_關鍵字/" class="article-date">
+	  <time datetime="2019-05-13T10:07:41.964Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="全域this"><a href="#全域this" class="headerlink" title="全域this"></a>全域this</h3><p>在全域環境中取用this，會指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p>而在瀏覽器中執行，瀏覽器的全域物件為window物件。<br><img src="https://i.imgur.com/gep8H4i.png" alt></p>
+<h3 id="函式中的this"><a href="#函式中的this" class="headerlink" title="函式中的this"></a>函式中的this</h3><p>每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。</p>
+<p>下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代表執行該函式的程式屬性(code)，也就是函式中的全部程式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure></p>
+<p>實行結果，在a函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/NuOwXaL.png" alt><br>下述另一個案例，使用函式表示式來設定一個物件函式，再將之assign給變數b。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，在b函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/wTE9q2F.png" alt></p>
+<h3 id="函式中創建全域物件"><a href="#函式中創建全域物件" class="headerlink" title="函式中創建全域物件"></a>函式中創建全域物件</h3><p>下述程式碼統整目前的案例，有三個執行環境被產生：</p>
+<ol>
+<li>全域環境</li>
+<li>呼叫函式a，產生的區域環境</li>
+<li>呼叫函式b，產生的區域環境</li>
+</ol>
+<p>在每個執行環境中，分別產生三個不同的this變數，可是三個this都指向同一個位址(同一個全域物件window)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p>小結，在函式中呼叫this，會指向全域變數，而非函式本身。</p>
+<p>在下述程式碼中，在a函式中的this代表全域物件Window，所以宣告this.newVar代表宣告一個全域變數。<br>也因此，直接在全域log出變數newVar不會出錯，因為它確實在執行a函式時，就已經被宣告出來了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.newVar = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(newVar);</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，會將newVar印出值為’hello’，且若點開Window物件中，也可以看到確實有一個變數為newVar。<br><img src="https://i.imgur.com/5rRjEzJ.png" alt></p>
+<h3 id="物件中的this"><a href="#物件中的this" class="headerlink" title="物件中的this"></a>物件中的this</h3><p>宣告一個物件c，在其中有屬性name，也有方法log，接著用c.log()執行物件c中的方法log。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，在物件c的方法log中的this，代表物件c。<br><img src="https://i.imgur.com/mzbz5Tu.png" alt></p>
+<p>小結，當函式是物件的方法時，在其中呼叫的this變數會指向該物件本身。換句話說，this變數會指向包含它的物件。</p>
+<h3 id="在物件方法中修改物件的屬性"><a href="#在物件方法中修改物件的屬性" class="headerlink" title="在物件方法中修改物件的屬性"></a>在物件方法中修改物件的屬性</h3><p>物件c的log方法中，因為this代表物件c本身，所以用this.name代表物件c的屬性，藉此更改其值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update c obj'</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，可以看到物件c的屬性name確實被修改了。<br><img src="https://i.imgur.com/P84OH5Y.png" alt></p>
+<h3 id="self宣告模式，解決JS的不完美"><a href="#self宣告模式，解決JS的不完美" class="headerlink" title="self宣告模式，解決JS的不完美"></a>self宣告模式，解決JS的不完美</h3><p>在物件d的方法log中，宣告一個函式物件setName，在其中的this變數並不會指向物件d，而是指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = &#123;</span><br><span class="line">    name: <span class="string">'The d obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update d obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/UbQJURB.png" alt></p>
+<p><img src="https://i.imgur.com/YRJBgrT.png" alt></p>
+<p>許多人會認為這是JavaScript本身的bug，但是事實上他就是這麼運作，因此若要避免產生錯誤，業界有一套常用的模式來應付這種狀況。</p>
+<p>通常會在物件方法的第一行，宣告一個新的變數self，並且讓this指派給他，因為物件的assign是call by reference，因此self會指向this同一個位置，確保兩者指向同一物件e。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = &#123;</span><br><span class="line">    name: <span class="string">'The e obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        self.name = <span class="string">'update e obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            self.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update e again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">e.log();</span><br></pre></td></tr></table></figure></p>
+<p>當有了一個變數self，之後修改或呼叫，就直接用self以確保是指向物件e。<br><img src="https://i.imgur.com/gDjk5HV.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/13/JavaScript-陣列/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript-陣列
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/13/JavaScript-傳值與傳參考/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript-傳值與傳參考</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全域this"><span class="nav-number">1.</span> <span class="nav-text">全域this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函式中的this"><span class="nav-number">2.</span> <span class="nav-text">函式中的this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函式中創建全域物件"><span class="nav-number">3.</span> <span class="nav-text">函式中創建全域物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物件中的this"><span class="nav-number">4.</span> <span class="nav-text">物件中的this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在物件方法中修改物件的屬性"><span class="nav-number">5.</span> <span class="nav-text">在物件方法中修改物件的屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self宣告模式，解決JS的不完美"><span class="nav-number">6.</span> <span class="nav-text">self宣告模式，解決JS的不完美</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
