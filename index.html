@@ -158,6 +158,136 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-JavaScript-參數(argument)與其餘參數(spread)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/18/JavaScript-參數(argument)與其餘參數(spread)/">JavaScript-參數(argument)與其餘參數(spread)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/18/JavaScript-參數(argument)與其餘參數(spread)/" class="article-date">
+	  <time datetime="2019-05-18T14:12:28.773Z" itemprop="datePublished">May 18, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函式執行時的參數變數"><a href="#函式執行時的參數變數" class="headerlink" title="函式執行時的參數變數"></a>函式執行時的參數變數</h3><p>重新複習一下，當函式被呼叫執行時，會創建一個新的執行環境，而在創建階段的同時，JavaScript引擎會設定幾個東西：</p>
+<ul>
+<li>「變數環境」用來包住變數</li>
+<li>給範圍鍊(Scope Chain)的「外部參考環境」</li>
+<li>特殊關鍵字「this」</li>
+<li><strong>另一個特殊關鍵字「arguments」</strong></li>
+</ul>
+<p><img src="https://i.imgur.com/O0bb21G.jpg" alt></p>
+<p>即使我沒有在函式中宣告過arguments這個變數，當我在執行環境中直接呼叫arguments這個關鍵字，會印出有傳入值的所有參數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName,lastName,language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'En'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>印出的東西會是由斜體中括號 <em>[]</em> 呈現，有點像陣列，可是不太一樣，我們稱作為array-like，只有部分陣列的功能。</p>
+<p><img src="https://i.imgur.com/XK2WQSr.png" alt></p>
+<h3 id="預設參數為undefined"><a href="#預設參數為undefined" class="headerlink" title="預設參數為undefined"></a>預設參數為undefined</h3><p>在JavaScript中，可以呼叫函式卻不傳入任何參數。因為當函式被呼叫執行時，在創建階段就會先在記憶體空間設定好這些值為undefined，所以並不會出錯。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>當我執行印出函式中的參數時，因為未傳入、賦予值給參數，所以就會印出預設值為undefined。<br><img src alt="Uploading file..._zdbxuzz93"></p>
+<h3 id="由左到右傳入參數值"><a href="#由左到右傳入參數值" class="headerlink" title="由左到右傳入參數值"></a>由左到右傳入參數值</h3><p>JavaScript可以處理為傳入參數的函式，也可以處理只傳入部分參述的函式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'--------------'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>);</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>);</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'English'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>也就是說，當我宣告一個函式時，函式中的參數有三個，而當我呼叫執行時，我<strong>可以選擇不傳入值，也可以選擇只傳入一個或兩個</strong>，當然也可以傳入三個，可是要記得，一定是由<strong>左至右</strong>傳入設定做處理。</p>
+<p><img src="https://i.imgur.com/wbl7Bl7.png" alt></p>
+<h3 id="ES6語法-預設參數"><a href="#ES6語法-預設參數" class="headerlink" title="ES6語法:預設參數"></a>ES6語法:預設參數</h3><p>當不確定每次函式被呼叫時，會傳入幾個參數，卻不希望未被設定的參數值為undefined，在ES6版本中，可以自定義為參數設定預設值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language=<span class="string">'English'</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>也就是當呼叫函式時，若沒有給予language這個參數的值，則會在函式中賦值’language’給該參數。<br><img src="https://i.imgur.com/1GNuRIV.png" alt></p>
+<p>不過因為這種ES6語法只適用於部分瀏覽器，所以下述寫法，也可以達成相同的目的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>當呼叫greet()卻沒有傳入language參數的值，執行到上述第三行程式碼時，則會判斷出language為undefined，所以賦予值為’English’。</p>
+<p>下方獨立解析這行「自定義參數預設值」程式碼意思。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language = language||<span class="string">'English'</span></span><br></pre></td></tr></table></figure></p>
+<p>其中看到兩個運算子，分別是’=’以及’||’，因為’||’的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">優先權</a>較高，所以會先執行這個部分，接著才去執行’=’。</p>
+<p>首先，執行’||’左邊的程式碼，若language為undefined，會被強制轉型為falese，而繼續執行’||’右邊的程式碼，獲得’English’的這個值。</p>
+<p>接著，執行’=’的動作，就會將’English’賦值給變數language。<br><img src="https://i.imgur.com/0ZN2hzG.png" alt></p>
+<h3 id="其餘參數-spread-parameter"><a href="#其餘參數-spread-parameter" class="headerlink" title="其餘參數(spread parameter)"></a>其餘參數(spread parameter)</h3><p>其餘參數是arguments被傳入函式時，還沒有被指定變數名稱的引數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, ...otherP</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(otherP);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'female'</span>,<span class="string">'English'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>其餘參數的變數名稱可以自定義，範例中使用otherP代表其餘參數。<br>所以剩餘沒有被直接寫出來的參數，就會被包進這個otherP陣列中。<br><img src="https://i.imgur.com/Vhgr4fo.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-「沒有」重載函式(function overloading)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/18/JavaScript-「沒有」重載函式(function overloading)/">JavaScript-「沒有」重載函式(function overloading)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/18/JavaScript-「沒有」重載函式(function overloading)/" class="article-date">
+	  <time datetime="2019-05-18T14:12:23.932Z" itemprop="datePublished">May 18, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，先了解其他程式語言有的重載函式(function overloading)特性，在C#、C++、Java中，都有重載函式的概念。</p>
+<h3 id="重載函式"><a href="#重載函式" class="headerlink" title="重載函式"></a>重載函式</h3><p>多個函式可以<strong>重複使用同一個函式的名稱</strong>，只要有不同數量的參數，就會被判斷為不同個函式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這裡僅用JS的語法表示其他程式語言的重載函式，但在JS中，無法正常執行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">height,weight,age</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(height);</span><br><span class="line">    <span class="built_in">console</span>.log(weight);</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//呼叫函式時，帶入不同數量的參數</span></span><br><span class="line"><span class="comment">//就會自動判斷是呼叫哪一個函式</span></span><br><span class="line">greet();</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'20'</span>);</span><br><span class="line">greet(<span class="string">'70'</span>,<span class="string">'180'</span>,<span class="string">'male'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="JS「沒有」重載函式"><a href="#JS「沒有」重載函式" class="headerlink" title="JS「沒有」重載函式"></a>JS「沒有」重載函式</h3><p>在JavaScript中，函式就是物件，一個變數名稱只能代表一個物件，若用同一個名稱宣告多個函式，後方宣告的函式內容就會覆蓋前方的，所以JavaScript沒有處理重載函式的功能。</p>
+<h3 id="通用模式處理"><a href="#通用模式處理" class="headerlink" title="通用模式處理"></a>通用模式處理</h3><p>在一般的狀況，若參數值得狀況很多樣，並且要讓函式判別遇到不同參數，需要做出不同的處理過程，可以針對傳入參數做判斷。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'English'</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hi!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'Spanish'</span>)&#123;</span><br><span class="line">        cosole.log(<span class="string">'Hola!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'English'</span>);</span><br><span class="line">greet(<span class="string">'John'</span>,<span class="string">'Chen'</span>,<span class="string">'Spanish'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>不過，為了簡化呼叫時的傳入資訊，可以改寫為下方常見的模式寫法。<br>額外新增兩個函式，在其中去執行呼叫不同傳入參數的函式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'English'</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hi!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'Spanish'</span>)&#123;</span><br><span class="line">        cosole.log(<span class="string">'Hola!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greetEnglish</span>(<span class="params">firstName, lastName</span>)</span>&#123;</span><br><span class="line">    greet(firstName, lastName, <span class="string">'English'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greetSpanish</span>(<span class="params">firstName, lastName</span>)</span>&#123;</span><br><span class="line">    greet(firstName, lastName, <span class="string">'Spanish'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greetEnglish(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>);</span><br><span class="line">greetSpanish(<span class="string">'John'</span>,<span class="string">'Chen'</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-JavaScript-陣列" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -652,123 +782,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-JavaScript-創建、取用物件中的屬性" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-創建、取用物件中的屬性/">JavaScript-創建、取用物件中的屬性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-創建、取用物件中的屬性/" class="article-date">
-	  <time datetime="2019-05-08T11:46:49.691Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line">person[<span class="string">'firstName'</span>]=<span class="string">'Tony'</span>;</span><br><span class="line">person[<span class="string">'lastName'</span>]=<span class="string">'Alicea'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNameProperty = <span class="string">'firstName'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person);</span><br></pre></td></tr></table></figure>
-<p>上述結果會印出person物件，如下圖所示<br><img src="https://i.imgur.com/0CoWNux.png" alt></p>
-<p>若要取出物件中特定屬性的值，可以使用”[]”運算子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person[firstNameProperty])<span class="comment">//Tony</span></span><br></pre></td></tr></table></figure></p>
-<p>簡化程式碼的寫法，可以使用”.”運算子，會自動理解”.”後述的為屬性名稱，並將該屬性名稱傳入物件中做參照查找，取出它的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.firstName);<span class="comment">//Tony</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以用”.”去設定值。<br>下述程式碼，會先去address中查找country、city屬性，若找不到則會自動建立這個屬性，並且賦值給它。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">person.address = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">persone.address.country = <span class="string">'Taiwan'</span></span><br><span class="line">persone.address.city = <span class="string">'Taipei'</span></span><br></pre></td></tr></table></figure></p>
-<p>若要取值，可以用”.”也可以用”[]”去取出屬性的值，兩種寫法做的事情都一樣。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.address.country);<span class="comment">//Taiwan</span></span><br><span class="line"><span class="built_in">console</span>.log(person.address.city);<span class="comment">//Taipei</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">'address'</span>][<span class="string">'country'</span>];<span class="comment">//Taiwan</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">'address'</span>][<span class="string">'city'</span>];<span class="comment">//Taipei</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-函式中的預設值" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-函式中的預設值/">JavaScript-函式中的預設值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-函式中的預設值/" class="article-date">
-	  <time datetime="2019-05-08T11:46:38.932Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在JavaScript的函式中，每當一個函式被呼叫，就會創建一個執行環境，在這個執行環境(execution context)被創造的同時，會同步先在記憶體中創建引數中的變數，預設值為undefined。<br>如果在呼叫函示時沒有帶入參數，並不會出錯，因為會被當作引數為undefined值做帶入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>+name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet();<span class="comment">//Hello undefined;</span></span><br></pre></td></tr></table></figure></p>
-<p>上方的例子，在程式執行時，新的執行環境建立，而在其中也會宣告出一個變數name，在變數倍賦值之前，預設值為undefined。</p>
-<h3 id="建立預設值"><a href="#建立預設值" class="headerlink" title="建立預設值"></a>建立預設值</h3><p>當沒有參數傳入時，如果希望自訂預設值，可以使用||(or運算子)來完成預設值設定。</p>
-<p>當變數name為undefined時就會是false，接著就會繼續讀取”||”右邊的字串，並回傳該字串的值assign變數name。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = name||<span class="string">'&lt;default name here&gt;'</span></span><br></pre></td></tr></table></figure></p>
-<p>查看<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">Operator precedence(運算子 先後順序)</a>，因為”||”相較於”=”有更高的precedence，所以會先執行”||”，並且由左至右執行。</p>
-<p><img src="https://i.imgur.com/qn4e1G4.png" alt></p>
-<p>當”||”左邊是true的時候，若讀取到true，會直接回傳true；但若讀取到false，就會繼續判斷”||”右邊，當右邊是一個字串時，它會判斷是true，並回傳字串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    name = name || <span class="string">'&lt;default name here&gt;'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>+name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(Tony);<span class="comment">// Hello Tony;</span></span><br><span class="line">greet();<span class="comment">// Hello &lt;default name here&gt;;</span></span><br><span class="line">greet(<span class="number">0</span>);<span class="comment">// Hello &lt;default name here&gt;;</span></span><br></pre></td></tr></table></figure>
-<p>但是這個寫法要注意，傳入參數的值不能為0，因為0會被當成false，所以會繼續執行判斷”||”右邊。</p>
-<h3 id="避免library重複，設定預設值"><a href="#避免library重複，設定預設值" class="headerlink" title="避免library重複，設定預設值"></a>避免library重複，設定預設值</h3><p>假設在同一個檔案中，引入三個library，lib1跟lib2的變數名可能會重複，程式碼會依照library引入的順序，由上而下執行，若變數有重複，後者會覆蓋前者變數的值。<br><img src="https://i.imgur.com/NcUYHm1.png" alt></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lib1.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib1'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//lib2.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.js中</span></span><br><span class="line"><span class="built_in">console</span>.log(libraryName);<span class="comment">//lib2</span></span><br></pre></td></tr></table></figure>
-<p>為了解決變數重複，在使用之前可以先檢查該變數是非已經從存在於全域執行環境中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.libraryName = <span class="built_in">window</span>.libraryName || <span class="string">"lib2"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上述程式碼，會先檢查”||”左邊的值，若已經有被定義賦值，則會被判斷為true，並將字串assign給window.libraryName；若尚未被賦值則會判斷為false，並將”||”右邊的字串回傳assign給window.libraryName。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lib1.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib1'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//lib2.js中</span></span><br><span class="line"><span class="built_in">window</span>.libraryName = <span class="built_in">window</span>.libraryName || <span class="string">"lib2"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.js中</span></span><br><span class="line"><span class="built_in">console</span>.log(libraryName);<span class="comment">//lib1</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -836,6 +849,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/05/18/JavaScript-參數(argument)與其餘參數(spread)/">JavaScript-參數(argument)與其餘參數(spread)</a></h6>
+              <span>May 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/18/JavaScript-「沒有」重載函式(function overloading)/">JavaScript-「沒有」重載函式(function overloading)</a></h6>
+              <span>May 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a></h6>
               <span>May 13, 2019</span>
             </div>
@@ -878,30 +915,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/13/JavaScript-函式就是物件/">JavaScript-函式就是物件</a></h6>
-              <span>May 13, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -911,7 +924,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -921,7 +934,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -941,7 +954,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
