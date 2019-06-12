@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>websocket-簡易app應用 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="WebSocket">
+  
+  
+  
+  
+  <meta name="description" content="完整 Demo:參考github 程式碼 安裝 nodemon持續監視程式碼，一旦我們做了修改並儲存，nodemon 就會自動重新啟動 Node.js 程式，這樣刷新瀏覽器就能看到變更。 1npm install -g nodemon 安裝完畢之後，輸入指令，就會啟用「自動偵聽並重啟」的功能： 1nodemon index.js  nodemon 啟動之後，以可以看到提示字元，如果想要人工手動重">
+<meta name="keywords" content="WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket-簡易APP應用">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/WebSocket-簡易APP應用/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="完整 Demo:參考github 程式碼 安裝 nodemon持續監視程式碼，一旦我們做了修改並儲存，nodemon 就會自動重新啟動 Node.js 程式，這樣刷新瀏覽器就能看到變更。 1npm install -g nodemon 安裝完畢之後，輸入指令，就會啟用「自動偵聽並重啟」的功能： 1nodemon index.js  nodemon 啟動之後，以可以看到提示字元，如果想要人工手動重">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/GI6v8jF.png">
+<meta property="og:image" content="https://i.imgur.com/wrE8iOL.png">
+<meta property="og:image" content="https://i.imgur.com/Mr6b7Jk.png">
+<meta property="og:updated_time" content="2019-06-12T02:48:20.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket-簡易APP應用">
+<meta name="twitter:description" content="完整 Demo:參考github 程式碼 安裝 nodemon持續監視程式碼，一旦我們做了修改並儲存，nodemon 就會自動重新啟動 Node.js 程式，這樣刷新瀏覽器就能看到變更。 1npm install -g nodemon 安裝完畢之後，輸入指令，就會啟用「自動偵聽並重啟」的功能： 1nodemon index.js  nodemon 啟動之後，以可以看到提示字元，如果想要人工手動重">
+<meta name="twitter:image" content="https://i.imgur.com/GI6v8jF.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-WebSocket-簡易APP應用" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      WebSocket-簡易APP應用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/WebSocket-簡易APP應用/" class="article-date">
+	  <time datetime="2019-06-12T02:40:53.017Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.imgur.com/GI6v8jF.png" alt></p>
+<p>完整 Demo:參考<a href="https://github.com/leahlin912/SimpleChat" target="_blank" rel="noopener">github 程式碼</a></p>
+<h3 id="安裝-nodemon"><a href="#安裝-nodemon" class="headerlink" title="安裝 nodemon"></a>安裝 nodemon</h3><p>持續監視程式碼，一旦我們做了修改並儲存，nodemon 就會自動重新啟動 Node.js 程式，這樣刷新瀏覽器就能看到變更。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nodemon</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/wrE8iOL.png" alt><br>安裝完畢之後，輸入指令，就會啟用「自動偵聽並重啟」的功能：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon index.js</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Mr6b7Jk.png" alt></p>
+<p>nodemon 啟動之後，以可以看到提示字元，如果想要人工手動重啟，也可以輸入<code>rs</code>指令。</p>
+<h3 id="前端頁面功能"><a href="#前端頁面功能" class="headerlink" title="前端頁面功能"></a>前端頁面功能</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個WebSocket實體，建立完成自動連線到server</span></span><br><span class="line"><span class="keyword">var</span> sock = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:5001'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定義完成連線時的回呼函式</span></span><br><span class="line">sock.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'status'</span>).setAttribute(<span class="string">'class'</span>, <span class="string">'status_connected'</span>);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'status'</span>).innerHTML = <span class="string">'&lt;b&gt;Connected&lt;/b&gt;'</span>;</span><br><span class="line">  &#125;, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//設定按鈕監控click事件</span></span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> data = &#123;</span><br><span class="line">      user: <span class="built_in">document</span>.getElementById(<span class="string">'user'</span>).value,</span><br><span class="line">      msg: <span class="built_in">document</span>.getElementById(<span class="string">'inputBox'</span>).value,</span><br><span class="line">      time: date.getTime(),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//傳送訊之前要先將物件轉為JSON格式</span></span><br><span class="line">    sock.send(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'inputBox'</span>).value = <span class="string">''</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//定義收到訊息時的回呼函式</span></span><br><span class="line">  sock.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將JSON格式先轉為物件</span></span><br><span class="line">    <span class="keyword">var</span> newEvent = <span class="built_in">JSON</span>.parse(event.data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判斷資料並分類做處理</span></span><br><span class="line">    <span class="keyword">switch</span> (newEvent.type) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'request'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> logArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='logArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        logArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'response'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> resArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='resArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        resArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'notify'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> resArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='resArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        resArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div id=&apos;status&apos; class=&quot;status_disconnected&quot;&gt;&lt;b style=&quot;color: white&quot;&gt;Disconected&lt;/b&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&apos;content&apos;&gt;</span><br><span class="line">        &lt;span&gt;User:&lt;/span&gt;</span><br><span class="line">        &lt;select id=&apos;user&apos;&gt;</span><br><span class="line">            &lt;option&gt;Amy&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;Bora&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;Cherry&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br/&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;textarea id=&apos;inputBox&apos; type=&apos;text&apos; placeholder=&quot;Input message here&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;button&gt;Send&lt;/button&gt;</span><br><span class="line">    &lt;div id=&apos;chatArea&apos;&gt;</span><br><span class="line">    &lt;!--     在這裡面處理appendChild() --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#chatArea</span> &#123;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">3px</span> solid white;</span><br><span class="line">  <span class="comment">/* margin-top:10px; */</span></span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f1f1f1</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#logArea</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">3px</span> solid white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#resArea</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">3px</span> solid white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="後端處理"><a href="#後端處理" class="headerlink" title="後端處理"></a>後端處理</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立server實體</span></span><br><span class="line"><span class="keyword">var</span> webSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> webSocketServer(&#123; <span class="attr">port</span>: <span class="number">5001</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//設計一個計數器，計算當前連線數量</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定義每當一個連線建立的執行動作</span></span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> user = <span class="string">''</span>;</span><br><span class="line">  count++;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Curent clients:'</span> + count);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'[Server] connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當某個建立連線的ws發送出message，會執行的動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//將JSON格式先轉為物件</span></span><br><span class="line">    <span class="keyword">var</span> newData = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`[Server] received <span class="subst">$&#123;data&#125;</span>`</span>);</span><br><span class="line">    user = newData.user;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將訊息同步傳給「所有」的用戶端瀏覽器，達成訊息同步</span></span><br><span class="line">    wss.clients.forEach(<span class="function">(<span class="params">client</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//判斷用戶端是否為發出訊息的自己，而做不同的處理</span></span><br><span class="line">      <span class="keyword">if</span> (client == ws) &#123;</span><br><span class="line">        newData.type = <span class="string">'request'</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        newData.type = <span class="string">'response'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      client.send(<span class="built_in">JSON</span>.stringify(newData), (err) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">`[Server] error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當某個用戶端斷線，所執行的動作</span></span><br><span class="line">  ws.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    count--;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[Server] Lost a client.'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Online clients:'</span> + count);</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    newData = &#123;</span><br><span class="line">      type: <span class="string">'notify'</span>,</span><br><span class="line">      user: user,</span><br><span class="line">      msg: <span class="string">'[Left chat room]'</span>,</span><br><span class="line">      time: date.getTime(),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將斷線訊息同步給所有其他用戶</span></span><br><span class="line">    wss.clients.forEach(<span class="function">(<span class="params">client</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (client != ws) &#123;</span><br><span class="line">        client.send(<span class="built_in">JSON</span>.stringify(newData), (err) =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`[Server] error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WebSocket/">WebSocket</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/12/JavaScript-BOM與DOM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript-BOM與DOM
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/12/WebSocket-簡易server端實作/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WebSocket-簡易server端實作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-nodemon"><span class="nav-number">1.</span> <span class="nav-text">安裝 nodemon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端頁面功能"><span class="nav-number">2.</span> <span class="nav-text">前端頁面功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後端處理"><span class="nav-number">3.</span> <span class="nav-text">後端處理</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

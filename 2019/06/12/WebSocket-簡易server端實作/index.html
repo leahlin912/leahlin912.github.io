@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>websocket-簡易server端實作 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="WebSocket">
+  
+  
+  
+  
+  <meta name="description" content="server 端環境建置首先，創立一個簡易的 WebSocket 資料夾專案，裡面有一個 index.js 檔案，以及一個 server 資料夾 123WebSocket|--index.html|--server（forder） 啟用 terminal，進入 WebSocket 專案資料夾中做初始化設定： 1npm init 接著，系統執行過程中，會被要求輸入幾個欄位(可以直接按 enter 略">
+<meta name="keywords" content="WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket-簡易server端實作">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/WebSocket-簡易server端實作/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="server 端環境建置首先，創立一個簡易的 WebSocket 資料夾專案，裡面有一個 index.js 檔案，以及一個 server 資料夾 123WebSocket|--index.html|--server（forder） 啟用 terminal，進入 WebSocket 專案資料夾中做初始化設定： 1npm init 接著，系統執行過程中，會被要求輸入幾個欄位(可以直接按 enter 略">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/FGCHpqi.png">
+<meta property="og:image" content="https://i.imgur.com/N6TfdsE.png">
+<meta property="og:image" content="https://i.imgur.com/T6Ll0bd.png">
+<meta property="og:image" content="https://i.imgur.com/Lgrc7E2.png">
+<meta property="og:image" content="https://i.imgur.com/HISdDTV.png">
+<meta property="og:image" content="https://i.imgur.com/GK09ig1.png">
+<meta property="og:image" content="https://i.imgur.com/BUhZfhm.png">
+<meta property="og:image" content="https://i.imgur.com/B3u7osC.png">
+<meta property="og:updated_time" content="2019-06-12T02:48:41.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket-簡易server端實作">
+<meta name="twitter:description" content="server 端環境建置首先，創立一個簡易的 WebSocket 資料夾專案，裡面有一個 index.js 檔案，以及一個 server 資料夾 123WebSocket|--index.html|--server（forder） 啟用 terminal，進入 WebSocket 專案資料夾中做初始化設定： 1npm init 接著，系統執行過程中，會被要求輸入幾個欄位(可以直接按 enter 略">
+<meta name="twitter:image" content="https://i.imgur.com/FGCHpqi.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-WebSocket-簡易server端實作" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      WebSocket-簡易server端實作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/WebSocket-簡易server端實作/" class="article-date">
+	  <time datetime="2019-06-12T02:40:41.700Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="server-端環境建置"><a href="#server-端環境建置" class="headerlink" title="server 端環境建置"></a>server 端環境建置</h3><p>首先，創立一個簡易的 WebSocket 資料夾專案，裡面有一個 index.js 檔案，以及一個 server 資料夾</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebSocket</span><br><span class="line">|--index.html</span><br><span class="line">|--server（forder）</span><br></pre></td></tr></table></figure>
+<p>啟用 terminal，進入 WebSocket 專案資料夾中做初始化設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>接著，系統執行過程中，會被要求輸入幾個欄位(可以直接按 enter 略過到下一個欄位)</p>
+<ul>
+<li>package name: 你這個 Project 要叫什麼名字</li>
+<li>version: 你決定這個 Project 現在該是第幾版</li>
+<li>description: Project 基本介紹</li>
+<li>entry point: 進入點，如果要跑你的 Project 應該要執行哪個檔案</li>
+<li>test command:</li>
+<li>git repository:</li>
+<li>keywords:</li>
+<li>author: 作者(自己)</li>
+<li>license: 你這個 Project 是採用什麼授權的</li>
+</ul>
+<p><img src="https://i.imgur.com/FGCHpqi.png" alt></p>
+<p>結束後，可以看到 server 這個資料夾底下，自動產生了一個 Package.json<br><img src="https://i.imgur.com/N6TfdsE.png" alt></p>
+<p>接著，在 server 資料夾中，手動新增 index.js 檔案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WebSocket</span><br><span class="line">|--index.html</span><br><span class="line">|--server（forder）</span><br><span class="line">    |-package.json</span><br><span class="line">    |-index.js</span><br></pre></td></tr></table></figure>
+<p>資料架構建置完，接著要在其中安裝 WebSocket:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ws</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/T6Ll0bd.png" alt><br>安裝完畢後，專案結構中會多出幾個檔案及資料夾，package-lock.json 中紀錄安裝套件相容的版本。<br><img src="https://i.imgur.com/Lgrc7E2.png" alt></p>
+<p>到目前為止，基本的環境建置完成。</p>
+<h3 id="建置後端-server"><a href="#建置後端-server" class="headerlink" title="建置後端 server"></a>建置後端 server</h3><p>這裡示範模擬 server，以本機端 5001 埠，作為配置 server 的接口。<br>在資料夾中的 index.js 檔案中，寫入以下程式碼：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//導入WebSocket模組</span></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">'ws'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用Server類</span></span><br><span class="line"><span class="keyword">var</span> WebSocketServer = WebSocket.Server;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立實體(實例化)</span></span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123;</span><br><span class="line">  port: <span class="number">5001</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>也可以將上述三行程式碼，簡易化為下述兩行寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123;</span><br><span class="line">  port: <span class="number">5001</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="啟用-Server"><a href="#啟用-Server" class="headerlink" title="啟用 Server"></a>啟用 Server</h3><p>「control + ` 」快捷鍵開啟 vscode 中的終端機。在終端機可以先確認當前位置，用下述指令進入 server 資料夾中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd server</span><br></pre></td></tr></table></figure>
+<p>在 server 中，輸入下述指令，<strong>啟用 server</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+<p>這樣的狀態就代表 server 正在運轉啟用中<br><img src="https://i.imgur.com/HISdDTV.png" alt></p>
+<p>為了確認 server 為啟動狀態，可以由前端測試是否可以連接上後端。<br>在專案中的 index.html 檔案代表前端(用戶端)，在其中輸入指令，透過 server 端的 <code>port:5001</code> 接口，讓前端與後端建立連結：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sock = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:5001'</span>);</span><br><span class="line">sock.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//當為連結狀態，執行下述動作</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected successfully!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//製造ㄧ秒時間差，再傳送訊息給server</span></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    sock.send(<span class="string">'Hey there'</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>啟用瀏覽器 locolhost:，查看開發工具 network，可以看到順利連結上 server，並執行從瀏覽器傳送訊息給 server 端。<br><img src="https://i.imgur.com/GK09ig1.png" alt></p>
+<h3 id="server-端偵聽事件"><a href="#server-端偵聽事件" class="headerlink" title="server 端偵聽事件"></a>server 端偵聽事件</h3><p>首先建立 WebSocket 的 server 實體，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先引用Server類</span></span><br><span class="line"><span class="comment">//再new出實體，並asign給wss變數</span></span><br><span class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123; <span class="attr">port</span>: <span class="number">5001</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//當偵聽到連結建立時，執行動作</span></span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當偵測收到訊息時，執行動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Receieve:'</span> + message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>用 vsCode 打開 terminal 查看 sever 端的 log 訊息，可以檢查看到確實有執行動作。<br><img src="https://i.imgur.com/BUhZfhm.png" alt></p>
+<h3 id="Server-端回傳訊息給前端"><a href="#Server-端回傳訊息給前端" class="headerlink" title="Server 端回傳訊息給前端"></a>Server 端回傳訊息給前端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當偵測收到訊息時，執行動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Receieve:'</span> + message);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (message == <span class="string">'Hello'</span>) &#123;</span><br><span class="line">      <span class="comment">//從server回送訊息給前端</span></span><br><span class="line">      ws.send(<span class="string">'Hey there from the server'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ws.send(<span class="string">'what did you say?'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>從瀏覽器的開發工具 NetWork&gt;WS 可以檢查到前、後端訊息傳遞的狀況。<br><img src="https://i.imgur.com/B3u7osC.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WebSocket/">WebSocket</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/12/WebSocket-簡易APP應用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WebSocket-簡易APP應用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/12/WebSocket-基礎介紹與實體物件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WebSocket-基礎介紹與實體物件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#server-端環境建置"><span class="nav-number">1.</span> <span class="nav-text">server 端環境建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建置後端-server"><span class="nav-number">2.</span> <span class="nav-text">建置後端 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟用-Server"><span class="nav-number">3.</span> <span class="nav-text">啟用 Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-端偵聽事件"><span class="nav-number">4.</span> <span class="nav-text">server 端偵聽事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server-端回傳訊息給前端"><span class="nav-number">5.</span> <span class="nav-text">Server 端回傳訊息給前端</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

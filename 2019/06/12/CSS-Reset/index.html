@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>css-reset | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSS">
+  
+  
+  
+  
+  <meta name="description" content="在每一個瀏覽器，都會有瀏覽器自帶的 CSS 樣式檔案，用以呈現各個瀏覽器特有的預設外觀。雖然有預設樣式的好處是，當開發者沒有特別定義樣式時，至少會有基礎的排版、樣式效果；可是壞處是，當開發者自定義樣式時，經常會因此而出現不可預期的狀況。所以通常在做網頁切版時，都會用 CSS Reset，將瀏覽器預設的樣式通通歸零，包含行距離、字距、margin、padding⋯ 等。 Reset 版本最普遍常用的">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-Reset">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/CSS-Reset/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="在每一個瀏覽器，都會有瀏覽器自帶的 CSS 樣式檔案，用以呈現各個瀏覽器特有的預設外觀。雖然有預設樣式的好處是，當開發者沒有特別定義樣式時，至少會有基礎的排版、樣式效果；可是壞處是，當開發者自定義樣式時，經常會因此而出現不可預期的狀況。所以通常在做網頁切版時，都會用 CSS Reset，將瀏覽器預設的樣式通通歸零，包含行距離、字距、margin、padding⋯ 等。 Reset 版本最普遍常用的">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/demmH1A.jpg">
+<meta property="og:updated_time" content="2019-06-12T02:49:29.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS-Reset">
+<meta name="twitter:description" content="在每一個瀏覽器，都會有瀏覽器自帶的 CSS 樣式檔案，用以呈現各個瀏覽器特有的預設外觀。雖然有預設樣式的好處是，當開發者沒有特別定義樣式時，至少會有基礎的排版、樣式效果；可是壞處是，當開發者自定義樣式時，經常會因此而出現不可預期的狀況。所以通常在做網頁切版時，都會用 CSS Reset，將瀏覽器預設的樣式通通歸零，包含行距離、字距、margin、padding⋯ 等。 Reset 版本最普遍常用的">
+<meta name="twitter:image" content="https://i.imgur.com/demmH1A.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CSS-Reset" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      CSS-Reset
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/CSS-Reset/" class="article-date">
+	  <time datetime="2019-06-12T02:42:10.358Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在每一個瀏覽器，都會有瀏覽器自帶的 CSS 樣式檔案，用以呈現各個瀏覽器特有的預設外觀。雖然有預設樣式的好處是，當開發者沒有特別定義樣式時，至少會有基礎的排版、樣式效果；可是壞處是，當開發者自定義樣式時，經常會因此而出現不可預期的狀況。<br>所以通常在做網頁切版時，都會用 CSS Reset，將瀏覽器預設的樣式通通歸零，包含行距離、字距、margin、padding⋯ 等。<br><img src="https://i.imgur.com/demmH1A.jpg" alt></p>
+<h3 id="Reset-版本"><a href="#Reset-版本" class="headerlink" title="Reset 版本"></a>Reset 版本</h3><p>最普遍常用的 CSS-Reset 為 <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">Eric Meyer 版本 </a>，下方也以此版本說明。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* http://meyerweb.com/eric/tools/css/reset/ </span></span><br><span class="line"><span class="comment">   v2.0 | 20110126</span></span><br><span class="line"><span class="comment">   License: none (public domain)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span>,</span><br><span class="line"><span class="selector-tag">body</span>,</span><br><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">span</span>,</span><br><span class="line"><span class="selector-tag">applet</span>,</span><br><span class="line"><span class="selector-tag">object</span>,</span><br><span class="line"><span class="selector-tag">iframe</span>,</span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span>,</span><br><span class="line"><span class="selector-tag">h3</span>,</span><br><span class="line"><span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-tag">h5</span>,</span><br><span class="line"><span class="selector-tag">h6</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">pre</span>,</span><br><span class="line"><span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">abbr</span>,</span><br><span class="line"><span class="selector-tag">acronym</span>,</span><br><span class="line"><span class="selector-tag">address</span>,</span><br><span class="line"><span class="selector-tag">big</span>,</span><br><span class="line"><span class="selector-tag">cite</span>,</span><br><span class="line"><span class="selector-tag">code</span>,</span><br><span class="line"><span class="selector-tag">del</span>,</span><br><span class="line"><span class="selector-tag">dfn</span>,</span><br><span class="line"><span class="selector-tag">em</span>,</span><br><span class="line"><span class="selector-tag">img</span>,</span><br><span class="line"><span class="selector-tag">ins</span>,</span><br><span class="line"><span class="selector-tag">kbd</span>,</span><br><span class="line"><span class="selector-tag">q</span>,</span><br><span class="line"><span class="selector-tag">s</span>,</span><br><span class="line"><span class="selector-tag">samp</span>,</span><br><span class="line"><span class="selector-tag">small</span>,</span><br><span class="line"><span class="selector-tag">strike</span>,</span><br><span class="line"><span class="selector-tag">strong</span>,</span><br><span class="line"><span class="selector-tag">sub</span>,</span><br><span class="line"><span class="selector-tag">sup</span>,</span><br><span class="line"><span class="selector-tag">tt</span>,</span><br><span class="line"><span class="selector-tag">var</span>,</span><br><span class="line"><span class="selector-tag">b</span>,</span><br><span class="line"><span class="selector-tag">u</span>,</span><br><span class="line"><span class="selector-tag">i</span>,</span><br><span class="line"><span class="selector-tag">center</span>,</span><br><span class="line"><span class="selector-tag">dl</span>,</span><br><span class="line"><span class="selector-tag">dt</span>,</span><br><span class="line"><span class="selector-tag">dd</span>,</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">ul</span>,</span><br><span class="line"><span class="selector-tag">li</span>,</span><br><span class="line"><span class="selector-tag">fieldset</span>,</span><br><span class="line"><span class="selector-tag">form</span>,</span><br><span class="line"><span class="selector-tag">label</span>,</span><br><span class="line"><span class="selector-tag">legend</span>,</span><br><span class="line"><span class="selector-tag">table</span>,</span><br><span class="line"><span class="selector-tag">caption</span>,</span><br><span class="line"><span class="selector-tag">tbody</span>,</span><br><span class="line"><span class="selector-tag">tfoot</span>,</span><br><span class="line"><span class="selector-tag">thead</span>,</span><br><span class="line"><span class="selector-tag">tr</span>,</span><br><span class="line"><span class="selector-tag">th</span>,</span><br><span class="line"><span class="selector-tag">td</span>,</span><br><span class="line"><span class="selector-tag">article</span>,</span><br><span class="line"><span class="selector-tag">aside</span>,</span><br><span class="line"><span class="selector-tag">canvas</span>,</span><br><span class="line"><span class="selector-tag">details</span>,</span><br><span class="line"><span class="selector-tag">embed</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,</span><br><span class="line"><span class="selector-tag">figcaption</span>,</span><br><span class="line"><span class="selector-tag">footer</span>,</span><br><span class="line"><span class="selector-tag">header</span>,</span><br><span class="line"><span class="selector-tag">hgroup</span>,</span><br><span class="line"><span class="selector-tag">menu</span>,</span><br><span class="line"><span class="selector-tag">nav</span>,</span><br><span class="line"><span class="selector-tag">output</span>,</span><br><span class="line"><span class="selector-tag">ruby</span>,</span><br><span class="line"><span class="selector-tag">section</span>,</span><br><span class="line"><span class="selector-tag">summary</span>,</span><br><span class="line"><span class="selector-tag">time</span>,</span><br><span class="line"><span class="selector-tag">mark</span>,</span><br><span class="line"><span class="selector-tag">audio</span>,</span><br><span class="line"><span class="selector-tag">video</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">font</span>: inherit;</span><br><span class="line">  <span class="attribute">vertical-align</span>: baseline;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* HTML5 display-role reset for older browsers */</span></span><br><span class="line"><span class="selector-tag">article</span>,</span><br><span class="line"><span class="selector-tag">aside</span>,</span><br><span class="line"><span class="selector-tag">details</span>,</span><br><span class="line"><span class="selector-tag">figcaption</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,</span><br><span class="line"><span class="selector-tag">footer</span>,</span><br><span class="line"><span class="selector-tag">header</span>,</span><br><span class="line"><span class="selector-tag">hgroup</span>,</span><br><span class="line"><span class="selector-tag">menu</span>,</span><br><span class="line"><span class="selector-tag">nav</span>,</span><br><span class="line"><span class="selector-tag">section</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">q</span> &#123;</span><br><span class="line">  <span class="attribute">quotes</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">blockquote</span><span class="selector-pseudo">:before</span>,</span><br><span class="line"><span class="selector-tag">blockquote</span><span class="selector-pseudo">:after</span>,</span><br><span class="line"><span class="selector-tag">q</span><span class="selector-pseudo">:before</span>,</span><br><span class="line"><span class="selector-tag">q</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">content</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">  <span class="attribute">border-spacing</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到內容即為將很多樣式都歸零，如此一來，不論使用者的瀏覽器版本，在 CSS Reset 之後，都是統一無樣式的版本。而開發過程中，也不會因為 各個瀏覽器各自的預設值，而影響到開發者重新自定義的樣式，進而發生不可預知的狀況。</p>
+<h3 id="如何-Reset？"><a href="#如何-Reset？" class="headerlink" title="如何 Reset？"></a>如何 Reset？</h3><p>將 <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">Eric Meyer 版本 </a>寫好的程式碼內容，全部複製一份到個人專案中的一個 CSS 檔案中，可以命名為 reset.css 接著在專案中的每個 html 都引入 reset.css ，這樣就可以確定每個頁面在一開始的樣式都被歸零。</p>
+<h3 id="重點提醒！"><a href="#重點提醒！" class="headerlink" title="重點提醒！"></a>重點提醒！</h3><p>一定要在一開始就引入 CSS Reset，避免 CSS Reset 反而蓋掉開發者自行定義的樣式。</p>
+<h3 id="資料來源"><a href="#資料來源" class="headerlink" title="資料來源"></a>資料來源</h3><p><a href="https://www.youtube.com/watch?v=WtjXBIyxhw8&amp;t=11s" target="_blank" rel="noopener">金魚都能懂網頁設計入門 : CSS Reset </a></p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10196528" target="_blank" rel="noopener">小事之 CSS Reset 與 CSS normalize</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/12/JavaScript-嚴格模式_use strict_/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript-嚴格模式&#34;use strict&#34;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/12/JavaScript-BOM與DOM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript-BOM與DOM</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reset-版本"><span class="nav-number">1.</span> <span class="nav-text">Reset 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何-Reset？"><span class="nav-number">2.</span> <span class="nav-text">如何 Reset？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重點提醒！"><span class="nav-number">3.</span> <span class="nav-text">重點提醒！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#資料來源"><span class="nav-number">4.</span> <span class="nav-text">資料來源</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

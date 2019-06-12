@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>javascript-bom與dom | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScriptJS">
+  
+  
+  
+  
+  <meta name="description" content="檔案物件模型（Document Object Model, DOM）是瀏覽器的執行規範，提供了結構化的標準方法，將網頁的程式碼及其他程式語言結合起來。開發人員即可以通過文件中物件的屬性、方法和事件來掌控、操縱和建立動態的網頁元素。 DOM(Document Object Model)每個 DOM 的基礎建置在一個(D)文件上（也就是以 document 作為根基），而由 document 中的每個">
+<meta name="keywords" content="JavaScript,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-BOM與DOM">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/JavaScript-BOM與DOM/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="檔案物件模型（Document Object Model, DOM）是瀏覽器的執行規範，提供了結構化的標準方法，將網頁的程式碼及其他程式語言結合起來。開發人員即可以通過文件中物件的屬性、方法和事件來掌控、操縱和建立動態的網頁元素。 DOM(Document Object Model)每個 DOM 的基礎建置在一個(D)文件上（也就是以 document 作為根基），而由 document 中的每個">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/01xXBTU.jpg">
+<meta property="og:image" content="https://i.imgur.com/y6ohu8g.png">
+<meta property="og:updated_time" content="2019-06-12T02:48:58.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-BOM與DOM">
+<meta name="twitter:description" content="檔案物件模型（Document Object Model, DOM）是瀏覽器的執行規範，提供了結構化的標準方法，將網頁的程式碼及其他程式語言結合起來。開發人員即可以通過文件中物件的屬性、方法和事件來掌控、操縱和建立動態的網頁元素。 DOM(Document Object Model)每個 DOM 的基礎建置在一個(D)文件上（也就是以 document 作為根基），而由 document 中的每個">
+<meta name="twitter:image" content="https://i.imgur.com/01xXBTU.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-JavaScript-BOM與DOM" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      JavaScript-BOM與DOM
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/JavaScript-BOM與DOM/" class="article-date">
+	  <time datetime="2019-06-12T02:41:03.679Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>檔案物件模型（Document Object Model, DOM）是瀏覽器的執行規範，提供了結構化的標準方法，將網頁的程式碼及其他程式語言結合起來。開發人員即可以通過文件中物件的屬性、方法和事件來掌控、操縱和建立動態的網頁元素。</p>
+<h3 id="DOM-Document-Object-Model"><a href="#DOM-Document-Object-Model" class="headerlink" title="DOM(Document Object Model)"></a>DOM(Document Object Model)</h3><p>每個 DOM 的基礎建置在一個(D)文件上（也就是以 document 作為根基），而由 document 中的每個(O)物件作為出一個個節點，最後由這一個個節點，組成為一個 DOM Tree。</p>
+<ul>
+<li>D：（文件）瀏覽器當前載入的 document</li>
+<li>O：（物件）將 document 中的所有元素視為物件，可以調用其屬性、方法</li>
+<li>M：（模型）所有的物件在該結構中都是節點，這些眾多節點組成一個<strong>樹狀結構</strong></li>
+</ul>
+<p>將 HTML 分解為 DOM:<br><img src="https://i.imgur.com/01xXBTU.jpg" alt></p>
+<p>DOM 節點有:</p>
+<ol>
+<li>元素節點：上圖中<code>&lt;html&gt;</code>、<code>&lt;body&gt;</code>、<code>&lt;p&gt;</code>標籤皆是元素節點。</li>
+<li>文本節點:向用户展示的内容，如<code>&lt;li&gt;...&lt;/li&gt;</code>中的 JavaScript、DOM、CSS 等文本。</li>
+<li>屬性節點:標籤中的屬性，如<code>&lt;a&gt;</code>標籤中的連結屬性<code>href=&quot;http://www.baidu.com&quot;</code>。</li>
+</ol>
+<h3 id="查找節點的方法"><a href="#查找節點的方法" class="headerlink" title="查找節點的方法"></a>查找節點的方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getElementById()</td>
+<td style="text-align:center">獲取特定 ID 元素的節點</td>
+</tr>
+<tr>
+<td>getElementsByTagName()</td>
+<td style="text-align:center">獲取相同元素的節點列表</td>
+</tr>
+<tr>
+<td>getElementsByName</td>
+<td style="text-align:center">獲取相同名稱的節點列表</td>
+</tr>
+<tr>
+<td>getAttribute()</td>
+<td style="text-align:center">獲得特定元素節點屬性的值</td>
+</tr>
+<tr>
+<td>setAttribute()</td>
+<td style="text-align:center">設置特定元素節點屬性的值</td>
+</tr>
+<tr>
+<td>removeAttribute()</td>
+<td style="text-align:center">移除特定元素節點的属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="節點的屬性"><a href="#節點的屬性" class="headerlink" title="節點的屬性"></a>節點的屬性</h3><table>
+<thead>
+<tr>
+<th>屬性</th>
+<th style="text-align:center">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nodeName</td>
+<td style="text-align:center">返回一个字串，其内容是節點的名字</td>
+</tr>
+<tr>
+<td>nodeType</td>
+<td style="text-align:center">返回一个整數，這個數值代表给定節點的類型</td>
+</tr>
+<tr>
+<td>nodeValue</td>
+<td style="text-align:center">返回給定節點的當前值</td>
+</tr>
+<tr>
+<td>tagName</td>
+<td style="text-align:center">獲取元素節點的標籤名</td>
+</tr>
+<tr>
+<td>innerHTML</td>
+<td style="text-align:center">獲取元素節點的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h3><p>用 DOM API 可以輕鬆地删除、添加和替換節點。<br>| DOM 操作 |说明 |<br>| ————- |:————-:|<br>|creatElement(element) |創建一个新的元素節點|<br>|creatTextNode() |創建一个包含給定文本的新文本節點|<br>|appendChild() |指定節點的最後一個節點列表後添加一个新的子節點|<br>|insertBefore() |將一個給定節點节点插入到一个給定元素節點的給定子節點的前面|<br>|removeChild() |从一个给定元素中删除子节点|<br>|replaceChild() |把一个给定父元素里的一个子节点替换为另外一个节点|</p>
+<h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><p>瀏覽器物件模型（Browser Object Model,BOM）是瀏覽器提供的附加對象，用於處理 document 以外的所有内容，主要處理瀏覽器窗口和框架，不过通常瀏覽器特定的 JavaScript 也會被看作 BOM 的一部分。</p>
+<p>區別：BOM 描述了與瀏覽器進行交互的方法和接口，DOM 描述了處理網頁内容的方法和接口。</p>
+<ul>
+<li><p>window 物件包含属性：document、navigator、frames、history、location、screen</p>
+</li>
+<li><p>document 根節點包含子節點：forms、location、anchors、images、links</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/y6ohu8g.png" alt></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://segmentfault.com/a/1190000000654274" target="_blank" rel="noopener">JavaScript 学习总结（三）BOM 和 DOM 详解</a><br><a href="https://zhuanlan.zhihu.com/p/33672055" target="_blank" rel="noopener">知乎-BOM 和 DOM</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/12/CSS-Reset/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS-Reset
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/12/WebSocket-簡易APP應用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WebSocket-簡易APP應用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-Document-Object-Model"><span class="nav-number">1.</span> <span class="nav-text">DOM(Document Object Model)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找節點的方法"><span class="nav-number">2.</span> <span class="nav-text">查找節點的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#節點的屬性"><span class="nav-number">3.</span> <span class="nav-text">節點的屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-操作"><span class="nav-number">4.</span> <span class="nav-text">DOM 操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BOM"><span class="nav-number">5.</span> <span class="nav-text">BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考資料"><span class="nav-number">6.</span> <span class="nav-text">參考資料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

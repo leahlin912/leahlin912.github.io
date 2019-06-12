@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>webpack-引入模組運用 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Webpack">
+  
+  
+  
+  
+  <meta name="description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+<meta name="keywords" content="Webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack-引入模組運用">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/Webpack-引入模組運用/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/w65GXIx.png">
+<meta property="og:image" content="https://i.imgur.com/dyK46YO.png">
+<meta property="og:image" content="https://i.imgur.com/NAE9SND.png">
+<meta property="og:updated_time" content="2019-06-12T02:50:09.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack-引入模組運用">
+<meta name="twitter:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+<meta name="twitter:image" content="https://i.imgur.com/w65GXIx.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Webpack-引入模組運用" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Webpack-引入模組運用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/Webpack-引入模組運用/" class="article-date">
+	  <time datetime="2019-06-12T02:42:47.852Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h2><p><strong>1. 首先在專案中加入 npm</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>or 加上<code>-y</code>可以快速建立，略過中間自定義中間自定義的項目輸入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>完畢之後，會看到多了一個 <code>package.json</code> 檔案，並產生一些基本的內容</p>
+<p><strong>2. 安裝「開發環境」套件(視需求安裝)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli babel-loader babel-core css-loader vue-loader vue-template-compiler -D</span><br></pre></td></tr></table></figure>
+<p>指令後方加上<code>-D</code> 是<code>--save-dev</code>的縮寫，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>devDependencies</code></p>
+<ul>
+<li>webpack:轉換並打包程式碼</li>
+<li>webpack-cli:用以執行 Webpack 命令</li>
+<li>babel-loader:將 ES6 語法轉換為 ES5<ul>
+<li>@babel/core &amp; @babel/preset-enccczzzssaddxxxccbbb:</li>
+</ul>
+</li>
+<li>css-loader:</li>
+<li>vue-loader:將 vue 檔案轉換為 JavsSript</li>
+<li>vue-template-compiler:將 vue 檔案轉換為 JavsSript</li>
+</ul>
+<p><strong>3. 安裝「生產環境」套件，例：vue(視需求安裝)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -P</span><br></pre></td></tr></table></figure>
+<p>指令後方加上<code>-P</code> 是預設值可以不加，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>dependencies</code></p>
+<p>or 在指令後方加上<code>-S</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -S</span><br></pre></td></tr></table></figure>
+<p>指令後方加上<code>-S</code> 是<code>--save</code>的縮寫，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>dependencies</code></p>
+<ul>
+<li>vue: JS 前端框架</li>
+</ul>
+<h2 id="Webpack-概念說明"><a href="#Webpack-概念說明" class="headerlink" title="Webpack 概念說明"></a>Webpack 概念說明</h2><p><img src="https://i.imgur.com/w65GXIx.png" alt></p>
+<p>首先定義一個入口 js 檔案，而讓其他所有的 js 檔案都通過這個入口檔案，去執行底下的腳本。</p>
+<p>而 Webpack 的執行入口也就是這個入口檔案，通過打包之後，最終會產生出 bundle 後的檔案。</p>
+<p>最後，在 <code>html</code>中 <code>script</code> 讀取的檔案，則是打包後的檔案。</p>
+<h2 id="專案結構建置"><a href="#專案結構建置" class="headerlink" title="專案結構建置"></a>專案結構建置</h2><p>創建一個 src 資料夾，代表其中的文件為 sourse 來源，在其中有一個主要的 index.js 檔案（命名不限，通常是 main.js 或 index.js)，另外，有個 components 資料夾，裡面放著各種可以重複被利用的模組、函式 js 檔案。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">|_index.js</span><br><span class="line">|_components</span><br><span class="line">  |_add.js</span><br><span class="line">  |_minus.js</span><br><span class="line">  |_ ...其他模組.js</span><br></pre></td></tr></table></figure>
+<p>完整的專案結構應該會長得像下方這張圖：<br><img src="https://i.imgur.com/dyK46YO.png" alt></p>
+<h3 id="流程說明"><a href="#流程說明" class="headerlink" title="流程說明"></a>流程說明</h3><p>接下來會依序修改幾個檔案：</p>
+<ul>
+<li>index.html</li>
+<li>index.js</li>
+<li>add.js</li>
+<li>webpack.config.js</li>
+<li>package.json</li>
+</ul>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>在<code>&lt;/body&gt;</code>前引入打包後的 js 檔案，路徑參考實際專案中的資料夾結構</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./dist/index.bundle.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><p>寫入一些內容，其中 <code>import</code> 是 ES6 語法，透過 <code>import</code> 將其他 component 引入使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">'./components/add'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="add-js"><a href="#add-js" class="headerlink" title="add.js"></a>add.js</h3><p>透過 export 導出函式內容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="webpack-config-js（Webpack-配置重點）"><a href="#webpack-config-js（Webpack-配置重點）" class="headerlink" title="webpack.config.js（Webpack 配置重點）"></a>webpack.config.js（Webpack 配置重點）</h3><ul>
+<li>首先要有一個入口檔案，在第 2 行的 entry 屬性中，定義入口檔案的路徑</li>
+<li>第 3 行是打包後的轉出文件，在 filename 中定義轉出後的檔案名稱</li>
+<li>第 6 行，watch 屬性是定義是否實時自動偵聽，可以省去每次修改都重新手動打包的手續</li>
+<li>第 7 行，是定義打包出來的內容是否要壓縮</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'index.bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上述案例，執行 Webpack 打包，會自動新增一個 dist 資料夾，並將編譯後的檔案存於其中。</p>
+<h3 id="webpack-config-js-自定義轉出路徑"><a href="#webpack-config-js-自定義轉出路徑" class="headerlink" title="webpack.config.js-自定義轉出路徑"></a>webpack.config.js-自定義轉出路徑</h3><p>若想自定義轉出路徑，可以新增 <code>path</code>，改寫如下：</p>
+<ul>
+<li>第 6 行的意思，<ul>
+<li>__dirname:在當前的資料夾</li>
+<li>resolve:搜尋</li>
+<li>build:名稱為 build 的資料夾</li>
+</ul>
+</li>
+<li>第 7 行的意思，<ul>
+<li>filename:打包後的檔案命名為’index.bundle.js’,</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>); <span class="comment">// &lt;---- 引入path</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'build'</span>), <span class="comment">// &lt;---- 自定義資料夾路徑</span></span><br><span class="line">    filename: <span class="string">'index.bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="webpack-config-js-打包多個入口檔案"><a href="#webpack-config-js-打包多個入口檔案" class="headerlink" title="webpack.config.js-打包多個入口檔案"></a>webpack.config.js-打包多個入口檔案</h3><ul>
+<li>第 4 行的入口，改為物件寫法，多個”key/value” pairs，</li>
+<li>第 10 行，轉出檔案的命名以原檔案的命名[name]去做自動命名，方便辨識</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    index2: <span class="string">'./src/index2.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'build'</span>), <span class="comment">// &lt;---- 自定義資料夾路徑</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>在 script 屬性中新增 build 及 dev，並且定義指令訊息內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">   &quot;build&quot;: &quot;webpack  --mode production&quot;,</span><br><span class="line">   &quot;dev&quot;: &quot;webpack --mode development&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="執行指令"><a href="#執行指令" class="headerlink" title="執行指令"></a>執行指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>或是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/.bin/webpack</span><br></pre></td></tr></table></figure>
+<h3 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h3><p><img src="https://i.imgur.com/NAE9SND.png" alt></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://blog.yowko.com/webpack-vue-file/" target="_blank" rel="noopener">使用 Webpack 來編譯 Vue.js Single File Components (.vue)</a></li>
+<li><a href="https://www.bilibili.com/video/av15680564/?spm_id_from=333.788.videocard.2" target="_blank" rel="noopener">老黑 vue2+webpack+es6 技术入门教程（3）</a></li>
+<li><a href="https://www.bilibili.com/video/av22421176/?spm_id_from=333.788.videocard.4" target="_blank" rel="noopener">老黑 vue2+webpack+es6 技术入门教程（5）配置文件</a></li>
+<li><a href="https://www.freecodecamp.org/news/how-to-create-a-vue-js-app-using-single-file-components-without-the-cli-7e73e5b8244f/" target="_blank" rel="noopener">How to create a Vue.js app using Single-File Components, without the CLI.</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/">Webpack</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/12/JavaScript-嚴格模式_use strict_/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript-嚴格模式&#34;use strict&#34;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#環境建置"><span class="nav-number">1.</span> <span class="nav-text">環境建置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack-概念說明"><span class="nav-number">2.</span> <span class="nav-text">Webpack 概念說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#專案結構建置"><span class="nav-number">3.</span> <span class="nav-text">專案結構建置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程說明"><span class="nav-number">3.1.</span> <span class="nav-text">流程說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">3.2.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index-js"><span class="nav-number">3.3.</span> <span class="nav-text">index.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add-js"><span class="nav-number">3.4.</span> <span class="nav-text">add.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-config-js（Webpack-配置重點）"><span class="nav-number">3.5.</span> <span class="nav-text">webpack.config.js（Webpack 配置重點）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-config-js-自定義轉出路徑"><span class="nav-number">3.6.</span> <span class="nav-text">webpack.config.js-自定義轉出路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-config-js-打包多個入口檔案"><span class="nav-number">3.7.</span> <span class="nav-text">webpack.config.js-打包多個入口檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">3.8.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#執行指令"><span class="nav-number">3.9.</span> <span class="nav-text">執行指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#執行結果"><span class="nav-number">3.10.</span> <span class="nav-text">執行結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
