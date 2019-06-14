@@ -18,21 +18,21 @@
   
   
   
-  <meta name="description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+  <meta name="description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件依賴(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-l">
 <meta name="keywords" content="Webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack-引入模組運用">
-<meta property="og:url" content="http://yoursite.com/2019/06/12/Webpack-引入模組運用/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/06/14/Webpack-引入模組運用/index.html">
 <meta property="og:site_name" content="Leah&#39;s Blog">
-<meta property="og:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+<meta property="og:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件依賴(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-l">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/w65GXIx.png">
 <meta property="og:image" content="https://i.imgur.com/dyK46YO.png">
 <meta property="og:image" content="https://i.imgur.com/NAE9SND.png">
-<meta property="og:updated_time" content="2019-06-12T02:50:09.871Z">
+<meta property="og:updated_time" content="2019-06-14T07:40:17.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack-引入模組運用">
-<meta name="twitter:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-loa">
+<meta name="twitter:description" content="環境建置1. 首先在專案中加入 npm 1npm init or 加上-y可以快速建立，略過中間自定義中間自定義的項目輸入 1npm init -y 完畢之後，會看到多了一個 package.json 檔案，並產生一些基本的內容 2. 安裝「開發環境」套件依賴(視需求安裝) 1npm install webpack webpack-cli babel-loader babel-core css-l">
 <meta name="twitter:image" content="https://i.imgur.com/w65GXIx.png">
   
     <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
@@ -183,8 +183,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/06/12/Webpack-引入模組運用/" class="article-date">
-	  <time datetime="2019-06-12T02:42:47.852Z" itemprop="datePublished">June 12, 2019</time>
+	Posted on <a href="/2019/06/14/Webpack-引入模組運用/" class="article-date">
+	  <time datetime="2019-06-14T07:37:26.021Z" itemprop="datePublished">June 14, 2019</time>
 	</a>
 
       
@@ -200,21 +200,21 @@ var themeMenus = {};
 <p>or 加上<code>-y</code>可以快速建立，略過中間自定義中間自定義的項目輸入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
 <p>完畢之後，會看到多了一個 <code>package.json</code> 檔案，並產生一些基本的內容</p>
-<p><strong>2. 安裝「開發環境」套件(視需求安裝)</strong></p>
+<p><strong>2. 安裝「開發環境」套件依賴(視需求安裝)</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli babel-loader babel-core css-loader vue-loader vue-template-compiler -D</span><br></pre></td></tr></table></figure>
 <p>指令後方加上<code>-D</code> 是<code>--save-dev</code>的縮寫，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>devDependencies</code></p>
 <ul>
 <li>webpack:轉換並打包程式碼</li>
 <li>webpack-cli:用以執行 Webpack 命令</li>
-<li>babel-loader:將 ES6 語法轉換為 ES5<ul>
-<li>@babel/core &amp; @babel/preset-enccczzzssaddxxxccbbb:</li>
+<li>babel-loader:將 ES6 語法轉換為 ES5 需要搭配下面兩個插件依賴使用）<ul>
+<li>@babel/core &amp; @babel/preset: Babel-loader 本身無法作用，必須搭配這兩個插件才能將 ES6 語法轉換為 ES5</li>
 </ul>
 </li>
-<li>css-loader:</li>
+<li>css-loader:將撰寫的 css 檔，使用 imports 和 url(…) 來回傳到 JavaScript 檔案中，通常都還會搭配 style-loader 作解析的動作。</li>
 <li>vue-loader:將 vue 檔案轉換為 JavsSript</li>
 <li>vue-template-compiler:將 vue 檔案轉換為 JavsSript</li>
 </ul>
-<p><strong>3. 安裝「生產環境」套件，例：vue(視需求安裝)</strong></p>
+<p><strong>3. 安裝「生產環境」套件依賴，例：vue(視需求安裝)</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -P</span><br></pre></td></tr></table></figure>
 <p>指令後方加上<code>-P</code> 是預設值可以不加，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>dependencies</code></p>
 <p>or 在指令後方加上<code>-S</code></p>
@@ -328,19 +328,19 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2019/06/12/Vue-單一元件檔(Single-file components)/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/14/Webpack- Single-file components(Vue.)/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Vue-單一元件檔(Single-file components)
+          Webpack- Single-file components(Vue.)
         
       </div>
     </a>
   
   
-    <a href="/2019/06/12/JavaScript-嚴格模式_use strict_/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/06/12/Vue-單一元件檔(Single-file components)/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JavaScript-嚴格模式&#34;use strict&#34;</div>
+      <div class="article-nav-title">Vue-單一元件檔(Single-file components)</div>
     </a>
   
 </nav>

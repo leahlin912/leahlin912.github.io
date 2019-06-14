@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>webpack- single-file components(vue.) | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="WebpackVue.js">
+  
+  
+  
+  
+  <meta name="description" content="在 Webpack 4 之後的版本，將 Webpack 及 Webpack-cli 拆開了，因此在載用 webpack 時，也要安裝 webpack-cli。 在搭建(scaffold)一個專案時，最推薦使用框架的命令行介面(command lin interface, CLI)，提供一個入口檔案及配置文件，這個鷹架(scaffolding)會透過開發建置流程，最終將檔案打包出一個生產版本。 一般">
+<meta name="keywords" content="Webpack,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack- Single-file components(Vue.)">
+<meta property="og:url" content="http://yoursite.com/2019/06/14/Webpack- Single-file components(Vue.)/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="在 Webpack 4 之後的版本，將 Webpack 及 Webpack-cli 拆開了，因此在載用 webpack 時，也要安裝 webpack-cli。 在搭建(scaffold)一個專案時，最推薦使用框架的命令行介面(command lin interface, CLI)，提供一個入口檔案及配置文件，這個鷹架(scaffolding)會透過開發建置流程，最終將檔案打包出一個生產版本。 一般">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/C7zlF6f.png">
+<meta property="og:image" content="https://i.imgur.com/LIu97Tb.png">
+<meta property="og:image" content="https://i.imgur.com/TDHS3mk.png">
+<meta property="og:image" content="https://i.imgur.com/Tk6y4MI.png">
+<meta property="og:image" content="https://i.imgur.com/GbjN3lF.png">
+<meta property="og:image" content="https://i.imgur.com/2qlueIu.png">
+<meta property="og:image" content="https://i.imgur.com/RjIjkgT.png">
+<meta property="og:image" content="https://i.imgur.com/zg17LGA.png">
+<meta property="og:updated_time" content="2019-06-14T07:39:53.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack- Single-file components(Vue.)">
+<meta name="twitter:description" content="在 Webpack 4 之後的版本，將 Webpack 及 Webpack-cli 拆開了，因此在載用 webpack 時，也要安裝 webpack-cli。 在搭建(scaffold)一個專案時，最推薦使用框架的命令行介面(command lin interface, CLI)，提供一個入口檔案及配置文件，這個鷹架(scaffolding)會透過開發建置流程，最終將檔案打包出一個生產版本。 一般">
+<meta name="twitter:image" content="https://i.imgur.com/C7zlF6f.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Webpack- Single-file components(Vue.)" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Webpack- Single-file components(Vue.)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/14/Webpack- Single-file components(Vue.)/" class="article-date">
+	  <time datetime="2019-06-14T07:37:29.968Z" itemprop="datePublished">June 14, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 Webpack 4 之後的版本，將 Webpack 及 Webpack-cli 拆開了，因此在載用 webpack 時，也要安裝 webpack-cli。</p>
+<p>在搭建(scaffold)一個專案時，最推薦使用框架的命令行介面(command lin interface, CLI)，提供一個入口檔案及配置文件，這個鷹架(scaffolding)會透過開發建置流程，最終將檔案打包出一個生產版本。</p>
+<p>一般使用 Vue.js 僅需要用<code>&lt;script&gt;</code>標籤引入 CDN，不需要開發建置過程，專案中即可使用 Vue.js。但是，如果要使用 <strong>Vue single-page components(SFCs)</strong>，就一定要使用開發建置工具，將<code>.vue</code>檔案轉換為瀏覽器可以解讀的 HTML、CSS、JavaScript。</p>
+<p>Vue-cli 提供預設好的開發建置流程，但是，如果想要自己定義，則可以使用 Webpack 來搭建(scaffold)專案。</p>
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>Webpack 是一個模組打包工具，他可以將多個檔案中的程式碼合併成一個。在 Webpack 出現之前，必須要透過<code>&lt;script&gt;</code>標籤將多個 JavaScript 引入到一個檔案中。</p>
+<p>此外，Webpack 也透過 loader 和 plugin 來轉換程式碼，例如將 ES6+ 轉換為 ES5，或是將 SCSS 轉為 CSS。</p>
+<h2 id="用-SPC-實作一個-Vue-專案"><a href="#用-SPC-實作一個-Vue-專案" class="headerlink" title="用 SPC 實作一個 Vue 專案"></a>用 SPC 實作一個 Vue 專案</h2><h3 id="Step-1-專案結構建置"><a href="#Step-1-專案結構建置" class="headerlink" title="Step 1.專案結構建置"></a>Step 1.專案結構建置</h3><p>最基本的專案應當要有一個 HTML、一個 JavaScript、一個 Vue 檔案(<code>.vue</code>)，通常會將這些檔案放置在 src 的資料夾中，用以區分這些是我們寫的程式碼，避免跟 Webpack 打包建置後的檔案搞混。</p>
+<p>我們會使用到 Webpack ，因此需要一個 Webpack 的配置檔案，通常命名為 <code>webpack.config.js</code></p>
+<p>此外，我們會需要 Babel 將 ES6 編譯為 ES5，Babel 本身也是 Webpack 的附加插件，因此需要一個 Babel 的配置檔案，命名為<code>.babelrc.js</code></p>
+<p>所以先依照上述說明建置如下專案結構：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src(forder)</span><br><span class="line">  |_myApp2.vue</span><br><span class="line">  |_index.html</span><br><span class="line">  |_main.js</span><br><span class="line">webpack.config.js</span><br><span class="line">.babelrc.js</span><br></pre></td></tr></table></figure>
+<p>接著，我們會使用 NPM 來做依賴(dependencies)管理，需要透過指令將專案初始化，並跟著 terminal 視窗中的提示問題完成創建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>初始化之後，會發現專案中自動多出了一個 <code>package.json</code> 檔案。所以目前應該會看起來像這樣：<br><img src="https://i.imgur.com/C7zlF6f.png" alt></p>
+<h3 id="Step-2-安裝套件依賴"><a href="#Step-2-安裝套件依賴" class="headerlink" title="Step 2.安裝套件依賴"></a>Step 2.安裝套件依賴</h3><p>以下是幾個我們目前會使用到到的套件依賴：</p>
+<ul>
+<li>vue: JS 前端框架</li>
+<li>vue-loader &amp; vue-template-compiler:將 vue 檔案轉換為 JavsSript</li>
+<li>webpack:轉換並打包程式碼</li>
+<li>webpack-cli:用以執行 Webpack 命令</li>
+<li>webpack-dev-server:雖然在這裡示範的小專案不會用到 HTTP request，但使我們會需要開發伺服器來服務這個專案</li>
+<li>babel-loader:將 ES6 語法轉換為 ES5（需要搭配下面兩個插件依賴使用）</li>
+<li>@babel/core &amp; @babel/preset: Babel-loader 本身無法作用，必須搭配這兩個插件才能將 ES6 語法轉換為 ES5</li>
+<li>css-loader:會將<code>.vue</code>檔案中的 CSS 或是任何引入的 CSS，載入到 JavaScript 檔案中，並且解析路徑。</li>
+<li>vue-style-loader:從 css-loader 取得 CSS 之後，會再透過 vue-style-loader 引入到 HTML 中，會在 HTML 的 head 中，自動生成出一個<code>&lt;style&gt;</code> 標籤。簡單來說，css-loader 是單純將 css 作載入 js;style-loader 則是作解析的動作，讓頁面能讀懂 css，所以它們倆合體就可以達成目的了。</li>
+<li>html-webpack-plugin:將 index.html 還有打包後的 js 引入到<code>&lt;head&gt;</code>，並且複製到 dist 資料夾中。</li>
+<li>rimraf:讓我們可以從命令行中刪除檔案</li>
+</ul>
+<p>接著就在命令行中輸入指令，開始安裝依賴：分開發依賴(指令添加<code>-S</code>)、生產依賴(指令添加<code>-D</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-loader vue-template-compiler webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env css-loader vue-style-loader html-webpack-plugin rimraf -D</span><br></pre></td></tr></table></figure>
+<p>安裝完畢之後，可以在 package.json 中查看，另外，專案中也會自動產生一個 node_modules 的資料夾，目前專案看起來會像這樣:</p>
+<p><img src="https://i.imgur.com/LIu97Tb.png" alt></p>
+<h3 id="Step-3-檔案創建"><a href="#Step-3-檔案創建" class="headerlink" title="Step 3.檔案創建"></a>Step 3.檔案創建</h3><h4 id="myApp-vue"><a href="#myApp-vue" class="headerlink" title="myApp.vue"></a><code>myApp.vue</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123; message &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      message: &apos;Hello World&apos;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-size: 18px;</span><br><span class="line">  font-family: &apos;Roboto&apos;, sans-serif;</span><br><span class="line">  color: blue;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a><code>index.html</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Vue Hello World&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a><code>main.js</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> myApp <span class="keyword">from</span> <span class="string">'./myApp.vue'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  render: <span class="function">(<span class="params">h</span>) =&gt;</span> h(myApp),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>解釋一下第 6 行程式碼<code>render: h =&gt; h(myApp)</code>的縮寫流程：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 完整原始程式碼</span></span><br><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(myApp);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 簡化</span></span><br><span class="line">render(createElement)&#123;</span><br><span class="line">    <span class="keyword">return</span> createElement(myApp);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 再簡化</span></span><br><span class="line">render(h)&#123;</span><br><span class="line">    <span class="keyword">return</span> h(myApp);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 最終簡化</span></span><br><span class="line">render(h) =&gt; h(myApp);</span><br><span class="line"></span><br><span class="line"><span class="comment">// createElement函式是用來生成HTML DOM元素</span></span><br><span class="line"><span class="comment">// 也就是生成HTML結構中的 script 腳笨</span></span><br><span class="line"><span class="comment">// 所以用Hyperscript取h作為程式碼中createElement的簡寫。</span></span><br></pre></td></tr></table></figure>
+<h4 id="babelrc-js"><a href="#babelrc-js" class="headerlink" title="babelrc.js"></a><code>babelrc.js</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  presets: [<span class="string">'@babel/preset-env'</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Step-4-配置-Webpack"><a href="#Step-4-配置-Webpack" class="headerlink" title="Step 4.配置 Webpack"></a>Step 4.配置 Webpack</h3><p>到目前為止，Webpack 需要訪問的檔案都備齊了，接著剩下最後兩件事情：告訴 Webpack 做什麼，並且執行 Webpack。</p>
+<h4 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a><code>webpack.config.js</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> VueLoaderPlugin = <span class="built_in">require</span>(<span class="string">'vue-loader/lib/plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line">  entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.js$/</span>, <span class="attr">use</span>: <span class="string">'babel-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.vue$/</span>, <span class="attr">use</span>: <span class="string">'vue-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>] &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'.src/index.html'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> VueLoaderPlugin(),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 1、2 行，import 下面會用到的 plugin。注意！loader 不需要 import！（不過在這個案例中，第 9 行的 vue-loader 會需要用到第 17 行的 plugin 才能運作，但是像 babel-loader 就不需要。）</li>
+<li>第 4 行，將配置(configuration)以物件的型態 export，這也是執行 Webpack 命令的入口。</li>
+<li>第 5 行，這是入口模組(在 Webpack 中，每個檔案都可視為一個模組)，Webpack 需要一個起始點，所以 Webpack 會從<code>main.js</code>開始查找去梳理所有的程式碼。</li>
+<li>第 7 行，用<code>rules</code>陣列來告訴 Webpack 在梳理程式碼時要遵循的規則。</li>
+<li>第 8 行，這條規則指示 Webpack 當遇到以<code>.js</code>結尾的檔案時，要使用<code>babel-loader</code>去轉換程式碼。</li>
+<li>第 9 行，這條規則指示 Webpack 當遇到以<code>.vue</code>結尾的檔案時，要使用<code>vue-loader</code>(需要搭配地 17 行的插件)去轉緩程式碼。</li>
+<li>第 10 行，這條規則是指示 Webpack:先用<code>css-loader</code>從<code>.vue</code>檔案中拿出 CSS，再用<code>vue-style-loader</code>轉以<code>&lt;style&gt;</code>tag 的形式放進 HTML 中。(有些檔案會需要兩個 loader 去執行，在 Webpack 中的處理流程有點違反直覺，通常都是從左到右，但是 Webpack 是從右到左。)</li>
+<li>第 13 行，用<code>plugins</code>陣列，放入我們需要用到的 plugin</li>
+<li>第 14 行，<code>HtmlWebpackPlugin</code>這個 plugin 會獲取<code>index.html</code>檔案的位置，並且將打包後的 JavaScript 檔案以<code>&lt;script&gt;</code>標籤放入其中。此外，這個 plugin 也會複製 HTML 檔案到 build 後的資料夾中。</li>
+<li>第 17 行，<code>VueLoaderPlugin</code>這個 plugin 會搭配第 9 行的<code>vue-loader</code>解析<code>.vue</code>檔案。</li>
+</ul>
+<p>HtmlWebpackPlugin 獲取 index.html 文件的位置，並通過腳本標記將捆綁的 JavaScript 文件添加到其中。</p>
+<h3 id="Step-5-執行-Webpack"><a href="#Step-5-執行-Webpack" class="headerlink" title="Step 5.執行 Webpack"></a>Step 5.執行 Webpack</h3><p>上述所有的配置都完成之後，最後只要設定好<code>package.json</code>檔，就可以執行 Webpack 了。在理想的情況下，當我們修改內容，會希望瀏覽器自動更新，因此我們需要<code>webpack-dev-server</code>。</p>
+<p><code>webpack-dev-server</code>的功能簡而言之，就是當檔案有修改儲存，重新 bundle 之後，開發人員不需要按下重整按鈕，就會通知瀏覽器執行畫面重整。但是要注意，<code>webpack-dev-server</code>僅適用於開發階段，它產生出的<code>bundle.js</code>並不會出現在我們專案中的 dist 資料夾，而是暫存在記憶體中，所以如果要上正式發布環境，請參考 Step7。</p>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a><code>package.json</code></h4><ul>
+<li>在第 7 行<code>scripts</code>的地方刪掉原先預設的<code>test</code>，改以<code>serve</code>取代之。（命名為 serve 並非一定，可以自己隨心改變）</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"vue-single-file-components"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"webpack.config.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"serve"</span>: <span class="string">"webpack-dev-server --mode development"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"vue"</span>: <span class="string">"^2.6.10"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"@babel/core"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="attr">"@babel/preset-env"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^8.0.6"</span>,</span><br><span class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">    <span class="attr">"html-webpack-plugin"</span>: <span class="string">"^3.2.0"</span>,</span><br><span class="line">    <span class="attr">"rimraf"</span>: <span class="string">"^2.6.3"</span>,</span><br><span class="line">    <span class="attr">"vue-loader"</span>: <span class="string">"^15.7.0"</span>,</span><br><span class="line">    <span class="attr">"vue-style-loader"</span>: <span class="string">"^4.1.2"</span>,</span><br><span class="line">    <span class="attr">"vue-template-compiler"</span>: <span class="string">"^2.6.10"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.34.0"</span>,</span><br><span class="line">    <span class="attr">"webpack-cli"</span>: <span class="string">"^3.3.4"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^3.7.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著就可以在 terminal 或 command line 裡面輸入指令啟用 Webpack:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+<p>或是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack-dev-serve --mode development</span><br></pre></td></tr></table></figure>
+<p>如果一切正確無誤，會看到「Compiled successfully」的字樣：<br><img src="https://i.imgur.com/TDHS3mk.png" alt></p>
+<p>接著使用瀏覽器打開<code>http://localhost:8080</code>，可以看到畫面正確顯示：<br><img src="https://i.imgur.com/Tk6y4MI.png" alt></p>
+<h3 id="Step-6-熱加載"><a href="#Step-6-熱加載" class="headerlink" title="Step 6.熱加載"></a>Step 6.熱加載</h3><p>有個狀況是，當我們在瀏覽器輸入資料後，又編輯檔案並存檔，此時瀏覽器中會重新刷新，剛剛輸入的資料都消失，所以我們需要使用 Webpack 內建的 Hot Module Replacement。</p>
+<p>先修改<code>myApp.vue</code>模擬這個狀況：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;myApp&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; v-model=&quot;message&quot; placeholder=&apos;Enter here&apos;&gt;&lt;/input&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; message &#125;&#125;</span><br><span class="line">    &lt;/h1&gt;</span><br><span class="line">    &lt;h3&gt;this is h4&lt;/h3&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        message: &apos;Hello&apos;,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  #myApp &#123;</span><br><span class="line">    font-size: 18px;</span><br><span class="line">    color: brown;</span><br><span class="line">    background-color: antiquewhite;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>其實截至目前為止，在配置文件中我們都尚未引入 Webpack 物件，所以我現在們要來引入它，這樣我們才能 access 它的 plugin。</p>
+<h4 id="webpack-config-js-1"><a href="#webpack-config-js-1" class="headerlink" title="webpack.config.js"></a><code>webpack.config.js</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> VueLoaderPlugin = <span class="built_in">require</span>(<span class="string">'vue-loader/lib/plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.js$/</span>, <span class="attr">use</span>: <span class="string">'babel-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.vue$/</span>, <span class="attr">use</span>: <span class="string">'vue-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>] &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    hor: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'./src/index.html'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> VueLoaderPlugin(),</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 3 行，引入 webpack</li>
+<li>第 23 行，因為我們在第 3 行引入了 webpack，所以可以使用<code>webpack.HotModuleReplacementPlugin</code>這個插件達到熱加載的功能</li>
+<li>第 14 行，sevServer 這是額外丟給 webpack 的 option。</li>
+<li>第 15 行，設定<code>hot</code>為<code>true</code></li>
+<li>第 16 行，設定<code>open</code>為<code>true</code>，當我們執行 nom run serve 時，會自動打開瀏覽器視窗</li>
+</ul>
+<p>接著輸入執行指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+<p>可以看到瀏覽器視窗自動打開了，且 console 的地方可以看到「Hot Module Replacement enabled」熱加載的功能已被成功啟用，此時編輯檔案中的內容再儲存，瀏覽器並不需要重新刷新，內容就會相對被更新。<br><img src="https://i.imgur.com/GbjN3lF.png" alt></p>
+<h3 id="Step-7-打包建置專案"><a href="#Step-7-打包建置專案" class="headerlink" title="Step 7.打包建置專案"></a>Step 7.打包建置專案</h3><p>前面 Step 5.提到在開發階段可以使用<code>webpack-dev-server</code>讓專案打包後可以在瀏覽器上被檢視，可是 bundle 後的檔案僅暫存於記憶體中，如果需要將專案打包壓縮後發布，則還是需要改用 <code>webpack</code> 指令。</p>
+<p>所以進入 <code>package.json</code> 檔案中，在 <code>scripts</code> 中我們要新增幾個指令：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">   <span class="string">"clean"</span>: <span class="string">"rimraf dist"</span>,</span><br><span class="line">   <span class="string">"build"</span>: <span class="string">"npm run clean &amp;&amp; webpack --mode production"</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>因為每次執行 webpack 時，都會創造出 dist 資料夾以及其中的檔案，如果每次都要手動刪除 dist 資料夾在執行很麻煩，因此我們這邊使用 rimraf 的指令設定。</p>
+<ul>
+<li>第 2 行，前面專案中已經安裝 rimraf 依賴，在這邊可以使用它的指令，因此當我們在命令列輸入 <code>npm run clean</code> ，會獨立執行刪除的動作，<code>rimraf dist</code>告訴命令列刪除 dist</li>
+<li>第 3 行，這裡實際上有兩個指令用 &amp;&amp; 分隔出來，會先執行<code>npm run clean</code>接著再執行<code>webpack --mode production</code>，是告訴 Webpack：先執行刪除動作，接著跑 webpack 建置(production 模式)動作</li>
+</ul>
+<p>完整的<code>package.json</code>會長得像這樣：<br><img src="https://i.imgur.com/2qlueIu.png" alt></p>
+<p>接著，輸入建置指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>參考 terminal 中的提示，可以看到先執行了 rimraf dist 動作，接著成功完成建置打包的動作。</p>
+<p>在專案中可以看到左邊專案結構自動生成了一個 dist 資料夾，裡面有打包後的 js 檔案，以及從 src 中複製過來的 html 檔案。<br><img src="https://i.imgur.com/RjIjkgT.png" alt></p>
+<p>因為我們的 html 中沒有 HTTP request 動作，所以可以直接用瀏覽器打開 dist 中的 <code>index.html</code>。如果專案中有 HTTP request ，則需要將專案放到 server 環境中才能正常運作。</p>
+<p>用瀏覽器打開<code>index.html</code>，並且檢視開發者工具，可以看到 element 的地方多出了一些內容，這些內容去比對<code>index.html</code>檔案是沒有的，比如說 <code>&lt;style&gt;</code>tag，因為這些內容是在生成過程中透過 JavaScript 動態放入的。<br><img src="https://i.imgur.com/zg17LGA.png" alt></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><p><a href="https://www.freecodecamp.org/news/how-to-create-a-vue-js-app-using-single-file-components-without-the-cli-7e73e5b8244f/" target="_blank" rel="noopener">How to create a Vue.js app using Single-File Components, without the CLI.</a></p>
+</li>
+<li><p><a href="https://www.freecodecamp.org/news/getting-started-with-vue-single-file-components-using-webpack-2ae078058688/" target="_blank" rel="noopener">How to get started with Vue single file components using Webpack</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/">Webpack</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/14/Webpack-引入模組運用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Webpack-引入模組運用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack"><span class="nav-number">1.</span> <span class="nav-text">Webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-SPC-實作一個-Vue-專案"><span class="nav-number">2.</span> <span class="nav-text">用 SPC 實作一個 Vue 專案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-專案結構建置"><span class="nav-number">2.1.</span> <span class="nav-text">Step 1.專案結構建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-安裝套件依賴"><span class="nav-number">2.2.</span> <span class="nav-text">Step 2.安裝套件依賴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-檔案創建"><span class="nav-number">2.3.</span> <span class="nav-text">Step 3.檔案創建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#myApp-vue"><span class="nav-number">2.3.1.</span> <span class="nav-text">myApp.vue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-html"><span class="nav-number">2.3.2.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-js"><span class="nav-number">2.3.3.</span> <span class="nav-text">main.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#babelrc-js"><span class="nav-number">2.3.4.</span> <span class="nav-text">babelrc.js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4-配置-Webpack"><span class="nav-number">2.4.</span> <span class="nav-text">Step 4.配置 Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">2.4.1.</span> <span class="nav-text">webpack.config.js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5-執行-Webpack"><span class="nav-number">2.5.</span> <span class="nav-text">Step 5.執行 Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json"><span class="nav-number">2.5.1.</span> <span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-6-熱加載"><span class="nav-number">2.6.</span> <span class="nav-text">Step 6.熱加載</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack-config-js-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">webpack.config.js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-7-打包建置專案"><span class="nav-number">2.7.</span> <span class="nav-text">Step 7.打包建置專案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">3.</span> <span class="nav-text">參考資料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
