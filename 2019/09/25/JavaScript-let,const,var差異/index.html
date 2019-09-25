@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>javascript - let、const、var差異 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavaScriptJS">
+  
+  
+  
+  
+  <meta name="description" content="過去的 JavaScript 使用”var“ 來做變數宣告，而在 ES6 中出現了”let“及”const“，它們的出現最主要是因為 區塊域(block) 的概念出現。 ES6的變異總體而言，使用 let 與 const 的變數宣告方式，相較於 var 會更為嚴謹，因此建議在開發 ES6 之後的專案，使用let 與 const 作為變數宣吿，除了讓專案更穩定之外，也可以增加程式碼的可讀性。以下三點">
+<meta name="keywords" content="JavaScript,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript - let、const、var差異">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/JavaScript-let,const,var差異/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="過去的 JavaScript 使用”var“ 來做變數宣告，而在 ES6 中出現了”let“及”const“，它們的出現最主要是因為 區塊域(block) 的概念出現。 ES6的變異總體而言，使用 let 與 const 的變數宣告方式，相較於 var 會更為嚴謹，因此建議在開發 ES6 之後的專案，使用let 與 const 作為變數宣吿，除了讓專案更穩定之外，也可以增加程式碼的可讀性。以下三點">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-25T08:39:33.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript - let、const、var差異">
+<meta name="twitter:description" content="過去的 JavaScript 使用”var“ 來做變數宣告，而在 ES6 中出現了”let“及”const“，它們的出現最主要是因為 區塊域(block) 的概念出現。 ES6的變異總體而言，使用 let 與 const 的變數宣告方式，相較於 var 會更為嚴謹，因此建議在開發 ES6 之後的專案，使用let 與 const 作為變數宣吿，除了讓專案更穩定之外，也可以增加程式碼的可讀性。以下三點">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-JavaScript-let,const,var差異" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      JavaScript - let、const、var差異
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/09/25/JavaScript-let,const,var差異/" class="article-date">
+	  <time datetime="2019-09-25T08:38:51.280Z" itemprop="datePublished">September 25, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>過去的 JavaScript 使用”<strong>var</strong>“ 來做變數宣告，而在 ES6 中出現了”<strong>let</strong>“及”<strong>const</strong>“，它們的出現最主要是因為 <strong>區塊域(block)</strong> 的概念出現。</p>
+<h2 id="ES6的變異"><a href="#ES6的變異" class="headerlink" title="ES6的變異"></a>ES6的變異</h2><p>總體而言，使用 <strong>let</strong> 與 <strong>const</strong> 的變數宣告方式，相較於 <strong>var</strong> 會更為嚴謹，因此建議在開發 ES6 之後的專案，使用<strong>let</strong> 與 <strong>const</strong> 作為變數宣吿，除了讓專案更穩定之外，也可以增加程式碼的可讀性。以下三點解釋：</p>
+<ol>
+<li>區塊限制使用</li>
+<li>變數「不」提升(hositing)</li>
+<li>不允許重複宣告</li>
+</ol>
+<h3 id="區塊限制使用"><a href="#區塊限制使用" class="headerlink" title="區塊限制使用"></a>區塊限制使用</h3><p>使用 <strong>var</strong> 作變數宣告，即使在區塊內宣告，仍可以在區塊之外取用。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> v1 = <span class="string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v1);<span class="comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+<p>如果是使用 <strong>let</strong> 或 <strong>const</strong> 作變數宣告，則會受到區塊限制，<strong>無法於區塊之外取用</strong>，會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> v2 = <span class="string">"hi"</span>;</span><br><span class="line">  <span class="keyword">const</span> v3 = <span class="string">"holla"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v2);<span class="comment">//Error:Uncaught ReferenceError: v2 is not defined</span></span><br><span class="line"><span class="built_in">console</span>.log(v3);<span class="comment">//Error:Uncaught ReferenceError: v3 is not defined</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="變數「不」提升-hositing"><a href="#變數「不」提升-hositing" class="headerlink" title="變數「不」提升(hositing)"></a>變數「不」提升(hositing)</h3><p>javascript的執行環境分為兩階段，會先經歷創建階段(creation)，之後才正式進入程式碼執行階段(exection)。</p>
+<p>變數提升指的是在創建階段，電腦的記憶體會為變數先空出記憶體，可是他還不知道它的值為何，會先給予一個undefined的值，而這個動作稱作<a href="https://leahlin912.github.io/2019/05/03/JavaScript-%E6%8F%90%E5%8D%87(Hoisting" target="_blank" rel="noopener">「提升(hoisting)」</a>/)，等到執行階段賦值時，才會將值放進記憶體中。因此在 <strong>var</strong> 變數宣告前，取用該變數是可以的，並不會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(value);<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">var</span> value = <span class="string">'1234'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然而，在 ES6 的 <strong>let</strong> 及 <strong>const</strong> 移除了 hosting 這個不直覺的現象，在宣告之前不得取用，否則會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(value1);<span class="comment">//Error:Uncaught ReferenceError: Cannot access 'value1' before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(value2);<span class="comment">//Error:Uncaught ReferenceError: Cannot access 'value2' before initialization</span></span><br><span class="line"><span class="keyword">let</span> value1 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'5678'</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="不允許重複宣告"><a href="#不允許重複宣告" class="headerlink" title="不允許重複宣告"></a>不允許重複宣告</h3><p>使用 <strong>var</strong> 重複宣告，並不會報錯，後者會覆蓋掉前者。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">var</span> value = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value);<span class="comment">//5678</span></span><br></pre></td></tr></table></figure></p>
+<p>而在 ES6 的 <strong>let</strong> 及 <strong>const</strong> 則移除了這樣不嚴謹的規則，每個變數在該區塊內為獨立宣告，不可重複宣告。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value1 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">let</span> value1 = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value1);<span class="comment">//Error: Identifier 'value1' has already been declared</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value2);<span class="comment">//Error: Identifier 'value2' has already been declared</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="綜合變因"><a href="#綜合變因" class="headerlink" title="綜合變因"></a>綜合變因</h3><p>在區塊限制與變數不提升的綜合，會形成的錯誤。例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">"1234"</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  value = <span class="string">'5678'</span>;<span class="comment">//Error:Cannot access 'value' before initialization</span></span><br><span class="line">  <span class="keyword">let</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 if 區塊中，使用了會受區塊限制的 let ，則在該區塊中的 value 不得在宣告之前使用。</p>
+<h2 id="let-與-const-的區隔"><a href="#let-與-const-的區隔" class="headerlink" title="let 與 const 的區隔"></a>let 與 const 的區隔</h2><h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>通常<strong>const</strong> 使用在識別職(identifier)，其意義為不會改變的常數，因此在一開始宣告就必須賦值，否則會出錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value1;<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">const</span> value2;<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure></p>
+<p>且若賦予一般的純值之後，即不可再被更動。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = <span class="string">'1234'</span>;</span><br><span class="line">value = <span class="string">'5678'</span>;<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name:<span class="string">'Amy'</span>,</span><br><span class="line">    age:<span class="string">'22'</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj = &#123;</span><br><span class="line">    name:<span class="string">'John'</span>,</span><br><span class="line">    age:<span class="string">'25'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>然而，如果是給予物件、陣列的值，<strong>在該變數的記憶體存放位置不變的情況之下</strong>，是可以變動的。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name:<span class="string">'Amy'</span>,</span><br><span class="line">    age:<span class="string">'22'</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj.name = <span class="string">'John'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//John</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/25/JavaScript-Promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript-Promise</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的變異"><span class="nav-number">1.</span> <span class="nav-text">ES6的變異</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#區塊限制使用"><span class="nav-number">1.1.</span> <span class="nav-text">區塊限制使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#變數「不」提升-hositing"><span class="nav-number">1.2.</span> <span class="nav-text">變數「不」提升(hositing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不允許重複宣告"><span class="nav-number">1.3.</span> <span class="nav-text">不允許重複宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#綜合變因"><span class="nav-number">1.4.</span> <span class="nav-text">綜合變因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-與-const-的區隔"><span class="nav-number">2.</span> <span class="nav-text">let 與 const 的區隔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">2.1.</span> <span class="nav-text">const</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
