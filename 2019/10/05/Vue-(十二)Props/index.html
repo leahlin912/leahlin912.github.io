@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(十二)props | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Vue.jsVue">
+  
+  
+  
+  
+  <meta name="description" content="上層傳來的 propsvue 組件，會使用 props 來接受上層傳來的資料。props 是一個陣列，裡面包含多個字串。 12345678910Vue.component(&apos;my-component&apos;, &amp;#123;  props: [&apos;message&apos;, &apos;name&apos;],  template: `    &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;message&amp;#125;&amp;#125; &amp;#12">
+<meta name="keywords" content="Vue.js,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(十二)Props">
+<meta property="og:url" content="http://yoursite.com/2019/10/05/Vue-(十二)Props/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="上層傳來的 propsvue 組件，會使用 props 來接受上層傳來的資料。props 是一個陣列，裡面包含多個字串。 12345678910Vue.component(&apos;my-component&apos;, &amp;#123;  props: [&apos;message&apos;, &apos;name&apos;],  template: `    &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;message&amp;#125;&amp;#125; &amp;#12">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/teZlIAM.png">
+<meta property="og:image" content="https://i.imgur.com/xqEGB2p.png">
+<meta property="og:image" content="https://i.imgur.com/oAM1eZd.png">
+<meta property="og:updated_time" content="2019-10-05T04:02:18.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(十二)Props">
+<meta name="twitter:description" content="上層傳來的 propsvue 組件，會使用 props 來接受上層傳來的資料。props 是一個陣列，裡面包含多個字串。 12345678910Vue.component(&apos;my-component&apos;, &amp;#123;  props: [&apos;message&apos;, &apos;name&apos;],  template: `    &amp;lt;h1&amp;gt;&amp;#123;&amp;#123;message&amp;#125;&amp;#125; &amp;#12">
+<meta name="twitter:image" content="https://i.imgur.com/teZlIAM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(十二)Props" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(十二)Props
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/10/05/Vue-(十二)Props/" class="article-date">
+	  <time datetime="2019-10-05T03:45:51.931Z" itemprop="datePublished">October 5, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="上層傳來的-props"><a href="#上層傳來的-props" class="headerlink" title="上層傳來的 props"></a>上層傳來的 props</h2><p>vue 組件，會使用 <code>props</code> 來接受上層傳來的資料。<code>props</code> 是一個陣列，裡面包含多個字串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'message'</span>, <span class="string">'name'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;&#123;&#123;message&#125;&#125; &#123;&#123;name&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;my-component message=&apos;hello&apos; name=&apos;Leah&apos;&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="props-命名"><a href="#props-命名" class="headerlink" title="props 命名"></a>props 命名</h3><p>假設在 component 中的 props 使用 camelCase、Pascalcase，<strong>在 html 模板中引用時，一律使用 kebab-case</strong> ，因為會需要先經過瀏覽器解析。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'myMesssage'</span>, <span class="string">'MyLastName'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;myMesssage&#125;&#125; &#123;&#123;MyLastName&#125;&#125;&lt;/h1&gt;`</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">    &lt;my-component my-messsage=&apos;Hello&apos; my-last-name=&apos;Lin&apos; &gt;</span><br><span class="line">  &lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如果是在 template 中，即可使用 camelCase、Pascalcase。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'myMesssage'</span>, <span class="string">'MyLastName'</span>],</span><br><span class="line">  template: <span class="string">`&lt;h1&gt;&#123;&#123;myMesssage&#125;&#125; &#123;&#123;MyLastName&#125;&#125;&lt;/h1&gt;`</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;my-component </span></span><br><span class="line"><span class="string">            myMesssage='Hello'</span></span><br><span class="line"><span class="string">            MyLastName='Lin'&gt;</span></span><br><span class="line"><span class="string">        &lt;/my-component&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="動態綁定-props"><a href="#動態綁定-props" class="headerlink" title="動態綁定 props"></a>動態綁定 props</h2><ol>
+<li>先使用<code>v-bind:date=&#39;today&#39;</code>語法，讓 tag 中的 prop 值可以綁定到 data 中的資料，所以此時的 <code>date</code>的值是 ‘20180606’(如果沒有使用<code>v-bind:</code>，直接寫 <code>date=&#39;today&#39;</code>，則 <code>date</code>的值是 ‘today’)</li>
+<li>接著在 component ，props 屬性定義傳入的資要有 ‘date’，此時，component 即已經接到上層傳來的資料</li>
+<li>接著在 component 中的 template 就可以引出 date 的值</li>
+</ol>
+<p><img src="https://i.imgur.com/teZlIAM.png" alt></p>
+<h3 id="陣列資料"><a href="#陣列資料" class="headerlink" title="陣列資料"></a>陣列資料</h3><p>如果是資料是陣列，在 tag 中可以用 <code>v-for</code> 將 data 中的 <code>users</code> 一個個以 text 叫出來，並用 <code>v-bind:user</code>將<code>users</code>中的值綁定給 user</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;post v-for=&apos;text in users&apos; :user=&apos;text&apos;&gt;</span><br><span class="line">  &lt;/post&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>接著在 component 中，同樣在 props 屬性定義傳入的資料有 ‘user’，此時 component 即已經取得該值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    users: [<span class="string">'Amy'</span>, <span class="string">'Betty'</span>, <span class="string">'Celine'</span>, <span class="string">'Doris'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    post: &#123;</span><br><span class="line">      props: [<span class="string">'user'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;&#123;&#123;user&#125;&#125;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="物件資料"><a href="#物件資料" class="headerlink" title="物件資料"></a>物件資料</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;lists v-for=&apos;member in members&apos;</span><br><span class="line">         :name=&apos;member.name&apos; :gender=&apos;member.gender&apos;&gt;</span><br><span class="line">  &lt;/lists&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    members: [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Amy'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Jack'</span>, <span class="attr">gender</span>: <span class="string">'M'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Cindy'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Doris'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    lists: &#123;</span><br><span class="line">      props: [<span class="string">'name'</span>, <span class="string">'gender'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt; &#123;&#123;name&#125;&#125; &lt;small&gt;&#123;&#123;gender&#125;&#125;&lt;/small&gt;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果要將一個物件裡面的所有屬性，指定給一個 component 的 props ，除了上述一個個綁定以外，有另外一個特殊用法，將 html 改寫如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;lists v-for=&apos;member in members&apos; v-bind=&apos;member&apos;&gt;</span><br><span class="line">  &lt;/lists&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="數值資料"><a href="#數值資料" class="headerlink" title="數值資料"></a>數值資料</h3><p>在 tag 中，當要綁定 props 的資料為數值，必須要用 <code>v-bind</code>語法綁定(如果直接寫 number=’1’，則接受到的資料會是字串’1’)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;counter :number=&apos;1&apos;&gt;</span><br><span class="line">  &lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'number'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt; &#123;&#123;number+1&#125;&#125;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="單向數據流"><a href="#單向數據流" class="headerlink" title="單向數據流"></a>單向數據流</h2><h3 id="上傳下"><a href="#上傳下" class="headerlink" title="上傳下"></a>上傳下</h3><p><a href="https://codepen.io/leah-lin/pen/ZNZMvM" target="_blank" rel="noopener">codepen 結果呈現</a></p>
+<p>透過 props 上傳下，上層資料可以往下傳，所以上層資料改變，下層資料也會跟著變；這個資料傳遞的動作是單向的，資料並不會往上傳，所以下層數據改變，並不會影響上層。</p>
+<ul>
+<li>第 5 行，引入<code>&lt;counter/&gt;</code> 組件，<code>:count=&#39;count&#39;</code>的意思代表，counter 組件的 props 資料中，<code>:count</code>的數據綁定上層<code>&#39;count&#39;</code>的資料。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :count=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 1-5 行是上層的資料，第 6-16 行是註冊區域組件的資料。</li>
+<li>由上傳下的單向原理解釋，當第 4 行上層 count 的數據變動，第 8 行組件中的 props 數據也會連帶跟著變動；可是，當組件內的 count 數據變動，並不會影響到上層。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'count'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt; </span></span><br><span class="line"><span class="string">        &lt;button @click='count+=1'&gt;Add+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="父子階層數據分離"><a href="#父子階層數據分離" class="headerlink" title="父子階層數據分離"></a>父子階層數據分離</h3><p><a href="https://codepen.io/leah-lin/pen/JjjjXPm" target="_blank" rel="noopener">codepen 結果呈現</a></p>
+<p>如果不希望上層的數據跟下層的 props 資料發生連動，則可以在下層組件中的 data 自定義一個變數，並僅接住上層一開始傳來的數據做為初始值，並獨立做操作。</p>
+<ul>
+<li>第 5 行引入 counter 組件，<code>:start=&#39;count&#39;</code>的意思代表，counter 組件的 props 資料中，<code>:start</code>的數據綁定上層<code>&#39;count&#39;</code>的資料。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :start=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 8 行 counter 組件的 props 屬性中，start 收到上層傳來的數據時，不直接在組件中的 DOM 做使用，而是先在組件中的 data 重新賦值給 count，接著才在組件中的 DOM (第 16 行) 使用 count。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'start'</span>],</span><br><span class="line">      data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          count: <span class="keyword">this</span>.start,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;button @click='count+=1'&gt;Add+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="運算上層傳來的資料"><a href="#運算上層傳來的資料" class="headerlink" title="運算上層傳來的資料"></a>運算上層傳來的資料</h3><p><a href="https://codepen.io/leah-lin/pen/NWWWNWR" target="_blank" rel="noopener">codepen 結果呈現</a></p>
+<p>如果希望下層資料能夠連動上層傳來的數據，並且直接做運算，可以使用組件中的 computed 做處理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :start=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 10 行的 doubleCount，是直接承接上層傳來的資料做運算所得出的結果。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'start'</span>],</span><br><span class="line">      computed: &#123;</span><br><span class="line">        doubleCount() &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.start * <span class="number">2</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;doubleCount&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Props-驗證"><a href="#Props-驗證" class="headerlink" title="Props 驗證"></a>Props 驗證</h2><p><a href="https://codepen.io/leah-lin/pen/KKKKzMv" target="_blank" rel="noopener">codepen 結果呈現</a></p>
+<h3 id="型別驗證"><a href="#型別驗證" class="headerlink" title="型別驗證"></a>型別驗證</h3><p>當一個組件在多處被使用時，我們會需要事先定義好 props 的資料有哪些，另一方面也必須定義好 props 數據的資料型態，以避免傳入不符合格式型態的資料。例如：應當傳入 Number ，卻傳入 String。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;counter :start=&quot;10&quot;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 3 行 props 改傳以物件，其中物件的，key 為 props 的名稱，而 value 則使用 JaveScript 的資料型態，例：<code>start:Number</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'counter'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    start: <span class="built_in">Number</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="keyword">this</span>.start,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="count+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>而當資料型別錯誤時，則會 log 出錯誤訊息</p>
+<p><img src="https://i.imgur.com/xqEGB2p.png" alt></p>
+<h3 id="資料驗證及預設值"><a href="#資料驗證及預設值" class="headerlink" title="資料驗證及預設值"></a>資料驗證及預設值</h3><p>除了指定 props 型別，也可以去驗證 props 的範圍，此外，也可以在父階層尚未賦值之前給予預設值。</p>
+<ul>
+<li>在第 3 行，props 中的 key pair 的 value 不直接傳入資料型態，而是改以傳入一個物件，例：<code>start:{...}</code>，物件中再去定義 type(型別) 、default(預設值)、validator(驗證)<ul>
+<li>type 的值是 JavaScript 的資料型別</li>
+<li>default 的值可以是純值，也可以是函式</li>
+<li>validator 的值是函式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'counter'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    start: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span>,</span><br><span class="line">      <span class="comment">// default:0,</span></span><br><span class="line">      <span class="keyword">default</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> app.getSetting();</span><br><span class="line">      &#125;,</span><br><span class="line">      validator(value) &#123;</span><br><span class="line">        <span class="keyword">return</span> value &lt;= <span class="number">10</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="keyword">this</span>.start,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="count+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果驗證後不符合，則會 log 出錯誤</p>
+<p><img src="https://i.imgur.com/oAM1eZd.png" alt></p>
+<h3 id="props-驗證的時間點"><a href="#props-驗證的時間點" class="headerlink" title="props 驗證的時間點"></a>props 驗證的時間點</h3><p>props 的檢驗是發生在組件建立「之前」，所以裡面不能用 this.date 或 this.methods！</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/03/Vue-設置每頁的title及圖標/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue - 設置每頁的 title 及 圖標</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上層傳來的-props"><span class="nav-number">1.</span> <span class="nav-text">上層傳來的 props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props-命名"><span class="nav-number">1.1.</span> <span class="nav-text">props 命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態綁定-props"><span class="nav-number">2.</span> <span class="nav-text">動態綁定 props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#陣列資料"><span class="nav-number">2.1.</span> <span class="nav-text">陣列資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物件資料"><span class="nav-number">2.2.</span> <span class="nav-text">物件資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#數值資料"><span class="nav-number">2.3.</span> <span class="nav-text">數值資料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#單向數據流"><span class="nav-number">3.</span> <span class="nav-text">單向數據流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上傳下"><span class="nav-number">3.1.</span> <span class="nav-text">上傳下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父子階層數據分離"><span class="nav-number">3.2.</span> <span class="nav-text">父子階層數據分離</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#運算上層傳來的資料"><span class="nav-number">3.3.</span> <span class="nav-text">運算上層傳來的資料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Props-驗證"><span class="nav-number">4.</span> <span class="nav-text">Props 驗證</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#型別驗證"><span class="nav-number">4.1.</span> <span class="nav-text">型別驗證</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#資料驗證及預設值"><span class="nav-number">4.2.</span> <span class="nav-text">資料驗證及預設值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props-驗證的時間點"><span class="nav-number">4.3.</span> <span class="nav-text">props 驗證的時間點</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
