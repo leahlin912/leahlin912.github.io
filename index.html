@@ -158,6 +158,80 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-vue-自定義directive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/10/05/vue-自定義directive/">vue-自定義directive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/10/05/vue-自定義directive/" class="article-date">
+	  <time datetime="2019-10-05T09:11:31.440Z" itemprop="datePublished">October 5, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-Directive的簡介"><a href="#Vue-Directive的簡介" class="headerlink" title="Vue Directive的簡介"></a>Vue Directive的簡介</h2><p>Vue 提供許多內建指令，例如：<code>v-on</code>、<code>v-bind</code>、<code>v-model</code>，可是有些情況，這些內建指令無法滿足開發者直接對 DOM 元素進行操作，因此 Vue 提供自定義 directive 的方法來滿足這類需求。</p>
+<h2 id="為什麼要使用Vue-Directive"><a href="#為什麼要使用Vue-Directive" class="headerlink" title="為什麼要使用Vue Directive"></a>為什麼要使用Vue Directive</h2><p>雖然，也可以在 Vue 實例中的方法中直接操作 DOM 元素，但是為了秉持 Vue 的 MVVM 框架原則，使用 Vue Directive 封裝 DOM操作，可以讓 ViewModel 層僅負責操作數據， 而 View 層僅負責畫面的渲染顯示，再以數據驅動畫面，實現 ViewModel 與 View 分離的原則</p>
+<p>因為 Vue Directive 是屬於 View 層的，所以 DOM 操作應該被封裝在 Vue Directive 裡，而不是出現在 Vue 實例中。</p>
+<p><img src="https://i.imgur.com/RuZv9VQ.png" alt></p>
+<h2 id="註冊方法"><a href="#註冊方法" class="headerlink" title="註冊方法"></a>註冊方法</h2><p>Vue 提供兩種註冊方法，包含全域以及區域註冊。在註冊並定義 Vue directiove 時，Vue 也提供許多 hook function，例如：<code>inserted</code>、<code>bind</code>、<code>unbind</code>， <code>bind</code>是只會在綁定的元素插入父節點調用時的函式，<code>unbind</code>則是只有在元素被解除綁定時被調用。</p>
+<h3 id="全域註冊"><a href="#全域註冊" class="headerlink" title="全域註冊"></a>全域註冊</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'自定義指令名稱'</span>,&#123;</span><br><span class="line">    <span class="comment">//指令的定義</span></span><br><span class="line">    <span class="comment">//一些options，提供許多 hook function 定義 directive 的具體操作</span></span><br><span class="line">    inserted: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//指令插入元素後的操作</span></span><br><span class="line">    &#125;,</span><br><span class="line">    bind:<span class="function"><span class="keyword">function</span>(<span class="params">el,binding,vnode,oldVnode</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//綁定指令時的操作</span></span><br><span class="line">    &#125;,</span><br><span class="line">    unbind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//指令解除綁定時的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">directive:&#123;</span><br><span class="line">    name:&#123; <span class="comment">//自定義指令名稱</span></span><br><span class="line">        <span class="comment">//指令的定義</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="區域註冊"><a href="#區域註冊" class="headerlink" title="區域註冊"></a>區域註冊</h3><p>在欲使用的 Vue 組件中，以 directive 屬性進行註冊及定義<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="comment">//指令的定義</span></span><br><span class="line">    <span class="comment">//一些options，提供許多 hook function 定義 directive 的具體操作</span></span><br><span class="line">    inserted: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//指令插入元素後的操作</span></span><br><span class="line">    &#125;,</span><br><span class="line">    bind:<span class="function"><span class="keyword">function</span>(<span class="params">el,binding,vnode,oldVnode</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//綁定指令時的操作</span></span><br><span class="line">    &#125;,</span><br><span class="line">    unbind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//指令解除綁定時的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'CustomDirective'</span> <span class="keyword">from</span> <span class="string">'../../xxx.vue'</span>;<span class="comment">//</span></span><br><span class="line">directive:&#123;</span><br><span class="line">    <span class="string">'自定義指令名稱'</span>:<span class="string">'CustomDirective'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="鉤子函式的參數-Directive-Hook-Argument-解釋"><a href="#鉤子函式的參數-Directive-Hook-Argument-解釋" class="headerlink" title="鉤子函式的參數(Directive Hook Argument)解釋"></a>鉤子函式的參數(Directive Hook Argument)解釋</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 範例</span></span><br><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;span v-say:hello.a.b.c=<span class="string">"&#123; name: 'Peter', message: 'hello!' &#125;"</span>&gt;&lt;/span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="el"><a href="#el" class="headerlink" title="el"></a>el</h3><p>自定義指令所綁定的元素，也就是 DOM 元素。</p>
+<h3 id="binding"><a href="#binding" class="headerlink" title="binding"></a>binding</h3><p>binding 物件包含一些屬性</p>
+<ul>
+<li>name:自定義指令的名稱，不含前綴「v-」，如上例的「say」。</li>
+<li>value:指令綁定的值，如上例的「{ name: ‘Peter’, message: ‘hello!’ }」。</li>
+<li>oldValue:綁定值的前一個值，僅在update 及 componentUpdated時可使用。</li>
+<li>expression:綁定值的字串，如上例的「”{ name: ‘Peter’, message: ‘hello!’ }”」。</li>
+<li>arg:傳給自定義指令的參數，如上例的「hello」。</li>
+<li>modifiers:修飾符，如上例的「a」、「b」、「c」。<h3 id="vnode"><a href="#vnode" class="headerlink" title="vnode"></a>vnode</h3>虛擬節點(virtual DOM)<h3 id="oldVnode"><a href="#oldVnode" class="headerlink" title="oldVnode"></a>oldVnode</h3>前一個虛擬節點，僅在update 及 componentUpdated時可使用。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//範例：印出所有參數</span></span><br><span class="line">Vue.directive(<span class="string">'say'</span>, &#123;</span><br><span class="line">  bind: <span class="function"><span class="keyword">function</span>(<span class="params">el, binding, vnode</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="built_in">JSON</span>.stringify;</span><br><span class="line">    el.innerHTML =</span><br><span class="line">      <span class="string">'name: '</span>       + s(binding.name) + <span class="string">'&lt;br&gt;'</span> +</span><br><span class="line">      <span class="string">'value: '</span>      + s(binding.value) + <span class="string">'&lt;br&gt;'</span> +</span><br><span class="line">      <span class="string">'expression: '</span> + s(binding.expression) + <span class="string">'&lt;br&gt;'</span> +</span><br><span class="line">      <span class="string">'argument: '</span>   + s(binding.arg) + <span class="string">'&lt;br&gt;'</span> +</span><br><span class="line">      <span class="string">'modifiers: '</span>  + s(binding.modifiers) + <span class="string">'&lt;br&gt;'</span> +</span><br><span class="line">      <span class="string">'vnode keys: '</span> + <span class="built_in">Object</span>.keys(vnode).join(<span class="string">', '</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//name:"say"</span></span><br><span class="line"><span class="comment">//value:&#123; name: ‘Peter’, message: ‘hello!’ &#125;</span></span><br><span class="line"><span class="comment">//expression:"&#123; name: ‘Peter’, message: ‘hello!’ &#125;"</span></span><br><span class="line"><span class="comment">//modifiers:&#123;"a":true,"b":true,"c":true&#125;</span></span><br><span class="line"><span class="comment">//vnode keys:tag,data,children,text,elm,ns,context,functionalContext,key,componentOptions,componentInstance,parent,raw,isStatic,isRootInsert,isComment,isClobed,isOnce</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><ul>
+<li>Vue directive 要寫在 Vue 實例初始化之前</li>
+<li>命名不支持駱駝峰式寫法<h2 id="實踐範例"><a href="#實踐範例" class="headerlink" title="實踐範例"></a>實踐範例</h2><a href="https://codepen.io/leah-lin/pen/QWWWEjB?editors=1010" target="_blank" rel="noopener">codepan範例：click-outside</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Vue-(十二)Props" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1040,143 +1114,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Webpack-引入模組運用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/14/Webpack-引入模組運用/">Webpack-引入模組運用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/06/14/Webpack-引入模組運用/" class="article-date">
-	  <time datetime="2019-06-14T07:37:26.021Z" itemprop="datePublished">June 14, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="環境建置"><a href="#環境建置" class="headerlink" title="環境建置"></a>環境建置</h2><p><strong>1. 首先在專案中加入 npm</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
-<p>or 加上<code>-y</code>可以快速建立，略過中間自定義中間自定義的項目輸入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-<p>完畢之後，會看到多了一個 <code>package.json</code> 檔案，並產生一些基本的內容</p>
-<p><strong>2. 安裝「開發環境」套件依賴(視需求安裝)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-cli babel-loader babel-core css-loader vue-loader vue-template-compiler -D</span><br></pre></td></tr></table></figure>
-<p>指令後方加上<code>-D</code> 是<code>--save-dev</code>的縮寫，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>devDependencies</code></p>
-<ul>
-<li>webpack:轉換並打包程式碼</li>
-<li>webpack-cli:用以執行 Webpack 命令</li>
-<li>babel-loader:將 ES6 語法轉換為 ES5 需要搭配下面兩個插件依賴使用）<ul>
-<li>@babel/core &amp; @babel/preset: Babel-loader 本身無法作用，必須搭配這兩個插件才能將 ES6 語法轉換為 ES5</li>
-</ul>
-</li>
-<li>css-loader:將撰寫的 css 檔，使用 imports 和 url(…) 來回傳到 JavaScript 檔案中，通常都還會搭配 style-loader 作解析的動作。</li>
-<li>vue-loader:將 vue 檔案轉換為 JavsSript</li>
-<li>vue-template-compiler:將 vue 檔案轉換為 JavsSript</li>
-</ul>
-<p><strong>3. 安裝「生產環境」套件依賴，例：vue(視需求安裝)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -P</span><br></pre></td></tr></table></figure>
-<p>指令後方加上<code>-P</code> 是預設值可以不加，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>dependencies</code></p>
-<p>or 在指令後方加上<code>-S</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue -S</span><br></pre></td></tr></table></figure>
-<p>指令後方加上<code>-S</code> 是<code>--save</code>的縮寫，表示會將安裝的套件記載在 <code>package.json</code> 中的 <code>dependencies</code></p>
-<ul>
-<li>vue: JS 前端框架</li>
-</ul>
-<h2 id="Webpack-概念說明"><a href="#Webpack-概念說明" class="headerlink" title="Webpack 概念說明"></a>Webpack 概念說明</h2><p><img src="https://i.imgur.com/w65GXIx.png" alt></p>
-<p>首先定義一個入口 js 檔案，而讓其他所有的 js 檔案都通過這個入口檔案，去執行底下的腳本。</p>
-<p>而 Webpack 的執行入口也就是這個入口檔案，通過打包之後，最終會產生出 bundle 後的檔案。</p>
-<p>最後，在 <code>html</code>中 <code>script</code> 讀取的檔案，則是打包後的檔案。</p>
-<h2 id="專案結構建置"><a href="#專案結構建置" class="headerlink" title="專案結構建置"></a>專案結構建置</h2><p>創建一個 src 資料夾，代表其中的文件為 sourse 來源，在其中有一個主要的 index.js 檔案（命名不限，通常是 main.js 或 index.js)，另外，有個 components 資料夾，裡面放著各種可以重複被利用的模組、函式 js 檔案。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">|_index.js</span><br><span class="line">|_components</span><br><span class="line">  |_add.js</span><br><span class="line">  |_minus.js</span><br><span class="line">  |_ ...其他模組.js</span><br></pre></td></tr></table></figure>
-<p>完整的專案結構應該會長得像下方這張圖：<br><img src="https://i.imgur.com/dyK46YO.png" alt></p>
-<h3 id="流程說明"><a href="#流程說明" class="headerlink" title="流程說明"></a>流程說明</h3><p>接下來會依序修改幾個檔案：</p>
-<ul>
-<li>index.html</li>
-<li>index.js</li>
-<li>add.js</li>
-<li>webpack.config.js</li>
-<li>package.json</li>
-</ul>
-<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>在<code>&lt;/body&gt;</code>前引入打包後的 js 檔案，路徑參考實際專案中的資料夾結構</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./dist/index.bundle.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><p>寫入一些內容，其中 <code>import</code> 是 ES6 語法，透過 <code>import</code> 將其他 component 引入使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">'./components/add'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<h3 id="add-js"><a href="#add-js" class="headerlink" title="add.js"></a>add.js</h3><p>透過 export 導出函式內容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="webpack-config-js（Webpack-配置重點）"><a href="#webpack-config-js（Webpack-配置重點）" class="headerlink" title="webpack.config.js（Webpack 配置重點）"></a>webpack.config.js（Webpack 配置重點）</h3><ul>
-<li>首先要有一個入口檔案，在第 2 行的 entry 屬性中，定義入口檔案的路徑</li>
-<li>第 3 行是打包後的轉出文件，在 filename 中定義轉出後的檔案名稱</li>
-<li>第 6 行，watch 屬性是定義是否實時自動偵聽，可以省去每次修改都重新手動打包的手續</li>
-<li>第 7 行，是定義打包出來的內容是否要壓縮</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'index.bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上述案例，執行 Webpack 打包，會自動新增一個 dist 資料夾，並將編譯後的檔案存於其中。</p>
-<h3 id="webpack-config-js-自定義轉出路徑"><a href="#webpack-config-js-自定義轉出路徑" class="headerlink" title="webpack.config.js-自定義轉出路徑"></a>webpack.config.js-自定義轉出路徑</h3><p>若想自定義轉出路徑，可以新增 <code>path</code>，改寫如下：</p>
-<ul>
-<li>第 6 行的意思，<ul>
-<li>__dirname:在當前的資料夾</li>
-<li>resolve:搜尋</li>
-<li>build:名稱為 build 的資料夾</li>
-</ul>
-</li>
-<li>第 7 行的意思，<ul>
-<li>filename:打包後的檔案命名為’index.bundle.js’,</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>); <span class="comment">// &lt;---- 引入path</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'build'</span>), <span class="comment">// &lt;---- 自定義資料夾路徑</span></span><br><span class="line">    filename: <span class="string">'index.bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="webpack-config-js-打包多個入口檔案"><a href="#webpack-config-js-打包多個入口檔案" class="headerlink" title="webpack.config.js-打包多個入口檔案"></a>webpack.config.js-打包多個入口檔案</h3><ul>
-<li>第 4 行的入口，改為物件寫法，多個”key/value” pairs，</li>
-<li>第 10 行，轉出檔案的命名以原檔案的命名[name]去做自動命名，方便辨識</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    index2: <span class="string">'./src/index2.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'build'</span>), <span class="comment">// &lt;---- 自定義資料夾路徑</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>在 script 屬性中新增 build 及 dev，並且定義指令訊息內容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">   &quot;build&quot;: &quot;webpack  --mode production&quot;,</span><br><span class="line">   &quot;dev&quot;: &quot;webpack --mode development&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-<h3 id="執行指令"><a href="#執行指令" class="headerlink" title="執行指令"></a>執行指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-<p>或是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/.bin/webpack</span><br></pre></td></tr></table></figure>
-<h3 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h3><p><img src="https://i.imgur.com/NAE9SND.png" alt></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://blog.yowko.com/webpack-vue-file/" target="_blank" rel="noopener">使用 Webpack 來編譯 Vue.js Single File Components (.vue)</a></li>
-<li><a href="https://www.bilibili.com/video/av15680564/?spm_id_from=333.788.videocard.2" target="_blank" rel="noopener">老黑 vue2+webpack+es6 技术入门教程（3）</a></li>
-<li><a href="https://www.bilibili.com/video/av22421176/?spm_id_from=333.788.videocard.4" target="_blank" rel="noopener">老黑 vue2+webpack+es6 技术入门教程（5）配置文件</a></li>
-<li><a href="https://www.freecodecamp.org/news/how-to-create-a-vue-js-app-using-single-file-components-without-the-cli-7e73e5b8244f/" target="_blank" rel="noopener">How to create a Vue.js app using Single-File Components, without the CLI.</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/">Webpack</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1244,6 +1181,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/10/05/vue-自定義directive/">vue-自定義directive</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十二)Props/">Vue-(十二)Props</a></h6>
               <span>October 5, 2019</span>
             </div>
@@ -1298,18 +1247,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/25/JavaScript-Promise/">JavaScript-Promise</a></h6>
-              <span>September 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1319,7 +1256,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1329,7 +1266,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1339,7 +1276,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 19.09px;">CSS</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 17.27px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 18.18px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 12px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 16px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 19px;">CSS</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 14px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 12px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 13px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 12px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/boiler/" style="font-size: 11px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/github/" style="font-size: 12px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 11px;">jQuery</a> <a href="/tags/layout/" style="font-size: 17px;">layout</a> <a href="/tags/layuot/" style="font-size: 11px;">layuot</a> <a href="/tags/library/" style="font-size: 11px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 11px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 15px;">實作</a>
     </div>
   </div>
 
@@ -1349,7 +1286,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
