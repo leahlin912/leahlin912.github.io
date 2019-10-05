@@ -158,6 +158,197 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vue-單一元件檔(Single-file components)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/Vue-單一元件檔(Single-file components)/">Vue-單一元件檔(Single-file components)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/Vue-單一元件檔(Single-file components)/" class="article-date">
+	  <time datetime="2019-06-12T08:27:13.452Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="優缺點"><a href="#優缺點" class="headerlink" title="優缺點"></a>優缺點</h2><p>在許多 Vue 專案中，可以先定義一個「全域組件」<code>Vue.component</code>，接著再創建一個「Vue 實體」<code>new Vue({el:&#39;#app&#39;})</code>，並且將全域組件指定到頁面中的一個容器元素中。</p>
+<p>這種方式卻僅適合中小型的專案，但是當專案更於複雜，會出現一些缺點：</p>
+<ul>
+<li>全域定義問題(Global definitions)：每個組件(component)的命名不能重複。</li>
+<li>字串模板問題(String templates)：在元件中的<code>template</code>屬性只能用字串，當使用編譯器(例：vscode)撰寫內容時，無法有效地以文字顏色區分、辨別內容</li>
+<li>CSS 不支援問題(No CSS support)：在元件中只能提供 HTML 及 JavaScript，無法支援 CSS</li>
+<li>預處理問題(No build step)：元件預設中只能使用 HTML 及 ES5，不能使用預處理工具，例：Babel</li>
+</ul>
+<p>「<strong>單一元件檔(Single-file component)</strong>」就可以解決上述問題，它同時包含 HTML、JavaScript 及 CSS，一個<code>.vue</code>檔案就代表一個組件，且支援使用 Webpack 或 Browserify 等打包建置工具。</p>
+<h2 id="檔案樣板結構"><a href="#檔案樣板結構" class="headerlink" title="檔案樣板結構"></a>檔案樣板結構</h2><p><code>.vue</code>檔案的基本內容結構：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!--HTML內容 --&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // JAvaScript內容</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    /*CSS內容 */</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>若不喜歡 HTML、JavaScript 與 CSS 三者合一，也可以改為將 JavaScript 及 CSS 分離成獨立的檔案再載入的寫法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- my-component.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;This will be pre-compiled&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script src=&quot;./my-component.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;style src=&quot;./my-component.css&quot;&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="templete-區塊"><a href="#templete-區塊" class="headerlink" title="templete 區塊"></a>templete 區塊</h3><p><code>&lt;template&gt;</code>樣板裡的內容會被編譯為元件中 <code>templete</code>屬性的值，樣板中只能有一個根元素，也就是說所有內容要包在一個<code>&lt;div&gt;&lt;/div&gt;</code>中。</p>
+<p>預設使用 HTML，但可以使用 <code>lang</code> 屬性指定為其他樣板系統，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&apos;jade&apos;&gt;...&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="script-區塊"><a href="#script-區塊" class="headerlink" title="script 區塊"></a>script 區塊</h3><p>這個區塊中只能有一個，且最終必須匯出一個 Vue 物件。</p>
+<p>預設為 JavaScript，要使用其他 JS 套件可以使用 require()。如果有安裝 babel-loader 在支援 ES2015 的環境中，則可以使用 import 及 export 語法。例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> loadingFunc <span class="keyword">from</span> <span class="string">'../Loading'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    &lt;!--component content --&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>這裡記得 from 的部份，如果使用的是 node_modules 也就是由 npm / yarn 安裝的套件，直接寫套件的名稱；而如果是自己的 JavaScript 檔，則要在檔名前加上 ./。</p>
+<h3 id="style-區塊"><a href="#style-區塊" class="headerlink" title="style 區塊"></a>style 區塊</h3><p>一個<code>.vue</code>檔案可以有零到多個<code>&lt;style&gt;</code>，且可以是全域或區域的<code>&lt;style&gt;</code>區塊。</p>
+<p><code>&lt;style&gt;</code>的預設為全域的，如果想要限制為區域作用(只在該組件中有效)，可以加上<code>scoped</code>屬性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;...&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>預設為 CSS，也可以更換為 SCSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;sass&quot;&gt;...&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;&#123;&#123; greeting &#125;&#125; World!&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      greeting: &apos;Hello&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">p &#123;</span><br><span class="line">  font-size: 2em;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="撰寫-vue-檔案"><a href="#撰寫-vue-檔案" class="headerlink" title="撰寫.vue 檔案"></a>撰寫.vue 檔案</h2><p>先確定專案的結構，根目錄會有一個<code>index.html</code>作為執行 Vue 的入口;接著在 src 資料架，主要的程式碼都會放在這裡;<code>main.js</code>是程式的進入點，也可以透過 <code>webpack.config.js</code> 設定檔修改、自定義配置;<code>myApp.vue</code>則是這裡的重點，最終會匯出一個 vue 組件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">project根目錄</span><br><span class="line">|_index.html</span><br><span class="line">|_src</span><br><span class="line">    |_main.js</span><br><span class="line">    |_component</span><br><span class="line">        |_myApp.vue</span><br><span class="line">|_build</span><br><span class="line">    |_webpack.config.js</span><br></pre></td></tr></table></figure>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>放置在根目錄底下的<code>index.html</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;hello&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!-- built files will be auto injected --&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 8 行，這是 Vue 的進入點。</li>
+<li>這個檔案中只有最基本的 HTML 內容，沒有 CSS、JavaScript，第 9 行，建置後的檔案會自動引入。</li>
+</ul>
+<h3 id="myApp-vue"><a href="#myApp-vue" class="headerlink" title="myApp.vue"></a>myApp.vue</h3><p>component 資料夾下方放置所有的 vue 組件，示範一個<code>myApp.vue</code>組件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p class="hello"&gt;&#123;&#123; msg &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'這是一個 Vue 組件檔！'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style scoped&gt;</span></span><br><span class="line"><span class="regexp">h1 &#123;</span></span><br><span class="line"><span class="regexp">  color: green;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.hello &#123;</span></span><br><span class="line"><span class="regexp">  font-size: 1.5em;</span></span><br><span class="line"><span class="regexp">  color: blue;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><p><code>myApp.vue</code>組件建立好之後，接著就可以引入到<code>main.js</code>。<br><code>main.js</code>。是程式的進入點，也可以透過 <code>webpack.config.js</code> 設定檔修改、自定義配置。</p>
+<p>基礎的內容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;Hello Vue&lt;/h1&gt;'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果要引入<code>myApp.vue</code>組件，則要添加一些內容，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> MyApp <span class="keyword">from</span> <span class="string">'./myApp'</span>;</span><br><span class="line"><span class="keyword">import</span> MyApp2 <span class="keyword">from</span> <span class="string">'./myApp2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; myApp, myApp2 &#125;,</span><br><span class="line">  template: <span class="string">'&lt;div&gt;&lt;myApp&gt;&lt;/myApp&gt;&lt;myApp2&gt;&lt;/myApp2&gt;&lt;/div&gt;'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 1 行<code>import</code>，<code>&#39;vue&#39;</code>是使用 node_modules 由 npm / yarn 安裝的套件，所以可以直接寫套件的名稱。</li>
+<li>第 2 行<code>import</code>，<code>&#39;./MyApp&#39;</code>是自己的 JavaScript 檔，則要在檔名前加上 <code>./</code>。</li>
+<li>第 8 行，為 vue 實例添加<code>components</code>屬性，其值為引入組件，如有多個組件則用逗號分隔。</li>
+<li>第 9 行，這樣就可以將 templete 樣板中改寫為<code>&lt;myApp&gt;&lt;/myApp&gt;</code>，立即使用引入的組件，但切記只能有一個<code>&lt;div&gt;</code>根元素，所以所有內容都要包在其中。</li>
+</ul>
+<h3 id="組件加在組件中"><a href="#組件加在組件中" class="headerlink" title="組件加在組件中"></a>組件加在組件中</h3><p>除了上述將所有組件都引入到 <code>main.js</code> 中的做法，也可以把 myApp2 組件加在 myApp1 組件中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p class="hello"&gt;&#123;&#123; msg &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;myApp2&gt;&lt;/myApp2&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> myApp2 <span class="keyword">from</span> <span class="string">'./myApp2'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'這是一個 Vue 組件檔(myApp1)！'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123; myApp2 &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在第 10 行中，將 <code>myApp</code> 組件檔<code>import</code>進來</li>
+<li>接著在第 18 行，將 <code>myApp</code> 組件 assign 到 <code>component</code> 屬性中</li>
+<li>最後，在第 5 行，就可以在<code>&lt;template&gt;</code>中使用了</li>
+</ul>
+<h2 id="組件命名及使用"><a href="#組件命名及使用" class="headerlink" title="組件命名及使用"></a>組件命名及使用</h2><p>不論 vue 組件的命名方式為何，在 html 中使用時，一律為 kebab-case (不分大小寫，一律轉為「小寫並加上 dash 線」)</p>
+<p>假設 vue 組件為<code>MyApp</code>，在 HTML 呼叫使用時，需轉換為<code>&lt;my-app&gt;&lt;/my-app&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 三種命名方式</span><br><span class="line"></span><br><span class="line">my-first-component //kebab-case</span><br><span class="line">myFirstComponent    //camelCase</span><br><span class="line">MyFirstComponent //PascalCase</span><br></pre></td></tr></table></figure>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://www.freecodecamp.org/news/how-to-create-a-vue-js-app-using-single-file-components-without-the-cli-7e73e5b8244f/" target="_blank" rel="noopener">How to create a Vue.js app using Single-File Components, without the CLI.</a></li>
+<li><a href="http://blog.tonycube.com/2017/05/vuejs-10-single-file-components.html" target="_blank" rel="noopener"> 單一元件檔(Single-file components)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-嚴格模式_use strict_" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/JavaScript-嚴格模式_use strict_/">JavaScript-嚴格模式&#34;use strict&#34;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/JavaScript-嚴格模式_use strict_/" class="article-date">
+	  <time datetime="2019-06-12T02:42:38.768Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 JavaScript 中有許多鬆散的寫法，雖然因此讓 JS 的彈性受到讚賞，卻也導致 debug 的困難度。 <code>&quot;use strict&quot;</code> 是新加入的標準，目的在於讓「開發具備更穩定的 JS」更容易，當開發者使用不穩定的語法時，即會跳出警告，讓開發者避免這些寫法。</p>
+<p>使用 <strong>strict mode (嚴格模式)</strong> 這個功能，會強迫開發者在開發過程中更為謹慎，用以限制鬆散的 JavaScript 寫法，相比之下也比較不會出錯。</p>
+<h2 id="優點與缺點"><a href="#優點與缺點" class="headerlink" title="優點與缺點"></a>優點與缺點</h2><p>優點：</p>
+<ul>
+<li>撰寫出更為嚴謹的 JS 可以避免不可預知的意外狀況，特別是合作開發時，在 debug 他人撰寫的程式碼會更為簡易。</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>嚴謹模式限制 JS 的彈性</li>
+<li>若專案中使用很多第三方撰寫的 plugin 套件，可能因為嚴格模式而無法運作，會需要修改很多程式</li>
+</ul>
+<p>建議及解套方法：<br><strong>嚴格模式除了可以寫在全域，也可以用在 function 中，如此一來就不會全域都嚴謹模式，避免影響既有的程式碼或 plugin 套件。</strong></p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="全域"><a href="#全域" class="headerlink" title="全域"></a>全域</h3><p><code>&quot;use strict&quot;</code>直接寫在 JS 全域位置的最上方：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>; <span class="comment">//使用 strict mode (嚴格模式)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="區域"><a href="#區域" class="headerlink" title="區域"></a>區域</h3><p><code>&quot;use strict&quot;</code>寫在函式的開頭位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>; <span class="comment">//使用 strict mode (嚴格模式)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不是寫在函式的開頭位置，則無效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">  (<span class="string">'use strict'</span>); <span class="comment">//嚴格模式無效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用嚴格模式的受限"><a href="#使用嚴格模式的受限" class="headerlink" title="使用嚴格模式的受限"></a>使用嚴格模式的受限</h2><ul>
+<li>變數未宣告直接賦值</li>
+<li>物件中有重複的屬性名稱</li>
+<li>刪除已經宣告的錯誤</li>
+<li>不能使用 ‘with’ 語法</li>
+<li>argument, eval 不能作為變數名稱</li>
+<li>保留字不得作為變數名稱，例：implements, interface, let, package, private, protected, static, yield</li>
+</ul>
+<h2 id="瀏覽器支援"><a href="#瀏覽器支援" class="headerlink" title="瀏覽器支援"></a>瀏覽器支援</h2><ul>
+<li>Chrome13 之後都有支援</li>
+<li>IE10,11 有支援</li>
+<li>FF4 有支援</li>
+<li>Safari5.1 之後有支援</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-CSS-Reset" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -817,137 +1008,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-JavaScript-陣列" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-陣列/" class="article-date">
-	  <time datetime="2019-05-13T10:07:47.397Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="宣告陣列"><a href="#宣告陣列" class="headerlink" title="宣告陣列"></a>宣告陣列</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般宣告語法</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//或使用陣列實體語法</span></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在中括號中，用逗號分隔值</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//index從0開始，抓出陣列中的值</span></span><br><span class="line">arr[<span class="number">0</span>];<span class="comment">//a</span></span><br><span class="line">arr[<span class="number">1</span>];<span class="comment">//b</span></span><br><span class="line">arr[<span class="number">2</span>];<span class="comment">//c</span></span><br></pre></td></tr></table></figure>
-<h3 id="JS的陣列特性"><a href="#JS的陣列特性" class="headerlink" title="JS的陣列特性"></a>JS的陣列特性</h3><p>在其他程式語言的陣列中，通常都能包含同一種型別的值。比如說，數字陣列、字串陣列、物件陣列。</p>
-<p>可是在JavaScript中，因為「動態型別」的特性，陣列中可以混合各種不同型別的值，JavaScript會自動去判別每一個值得型別。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'member'</span>,</span><br><span class="line">    <span class="literal">false</span>,</span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">'Amy'</span>,</span><br><span class="line">        age:<span class="string">'20'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> greeting = <span class="string">'hi'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(greeting + name)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'newMember'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/nT5MBLJ.png" alt><br>若要執行陣列中的函式，可以使用陣列的index，呼叫出陣列中的東西，包含陣列中函式、字串、物件…等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr[<span class="number">4</span>](arr[<span class="number">3</span>].name);</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/ruKqxKc.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-_this_關鍵字" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-_this_關鍵字/">JavaScript-&#34;this&#34;關鍵字</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-_this_關鍵字/" class="article-date">
-	  <time datetime="2019-05-13T10:07:41.964Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="全域this"><a href="#全域this" class="headerlink" title="全域this"></a>全域this</h3><p>在全域環境中取用this，會指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
-<p>而在瀏覽器中執行，瀏覽器的全域物件為window物件。<br><img src="https://i.imgur.com/gep8H4i.png" alt></p>
-<h3 id="函式中的this"><a href="#函式中的this" class="headerlink" title="函式中的this"></a>函式中的this</h3><p>每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。</p>
-<p>下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代表執行該函式的程式屬性(code)，也就是函式中的全部程式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure></p>
-<p>實行結果，在a函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/NuOwXaL.png" alt><br>下述另一個案例，使用函式表示式來設定一個物件函式，再將之assign給變數b。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，在b函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/wTE9q2F.png" alt></p>
-<h3 id="函式中創建全域物件"><a href="#函式中創建全域物件" class="headerlink" title="函式中創建全域物件"></a>函式中創建全域物件</h3><p>下述程式碼統整目前的案例，有三個執行環境被產生：</p>
-<ol>
-<li>全域環境</li>
-<li>呼叫函式a，產生的區域環境</li>
-<li>呼叫函式b，產生的區域環境</li>
-</ol>
-<p>在每個執行環境中，分別產生三個不同的this變數，可是三個this都指向同一個位址(同一個全域物件window)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
-<p>小結，在函式中呼叫this，會指向全域變數，而非函式本身。</p>
-<p>在下述程式碼中，在a函式中的this代表全域物件Window，所以宣告this.newVar代表宣告一個全域變數。<br>也因此，直接在全域log出變數newVar不會出錯，因為它確實在執行a函式時，就已經被宣告出來了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.newVar = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(newVar);</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，會將newVar印出值為’hello’，且若點開Window物件中，也可以看到確實有一個變數為newVar。<br><img src="https://i.imgur.com/5rRjEzJ.png" alt></p>
-<h3 id="物件中的this"><a href="#物件中的this" class="headerlink" title="物件中的this"></a>物件中的this</h3><p>宣告一個物件c，在其中有屬性name，也有方法log，接著用c.log()執行物件c中的方法log。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，在物件c的方法log中的this，代表物件c。<br><img src="https://i.imgur.com/mzbz5Tu.png" alt></p>
-<p>小結，當函式是物件的方法時，在其中呼叫的this變數會指向該物件本身。換句話說，this變數會指向包含它的物件。</p>
-<h3 id="在物件方法中修改物件的屬性"><a href="#在物件方法中修改物件的屬性" class="headerlink" title="在物件方法中修改物件的屬性"></a>在物件方法中修改物件的屬性</h3><p>物件c的log方法中，因為this代表物件c本身，所以用this.name代表物件c的屬性，藉此更改其值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update c obj'</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，可以看到物件c的屬性name確實被修改了。<br><img src="https://i.imgur.com/P84OH5Y.png" alt></p>
-<h3 id="self宣告模式，解決JS的不完美"><a href="#self宣告模式，解決JS的不完美" class="headerlink" title="self宣告模式，解決JS的不完美"></a>self宣告模式，解決JS的不完美</h3><p>在物件d的方法log中，宣告一個函式物件setName，在其中的this變數並不會指向物件d，而是指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = &#123;</span><br><span class="line">    name: <span class="string">'The d obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update d obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/UbQJURB.png" alt></p>
-<p><img src="https://i.imgur.com/YRJBgrT.png" alt></p>
-<p>許多人會認為這是JavaScript本身的bug，但是事實上他就是這麼運作，因此若要避免產生錯誤，業界有一套常用的模式來應付這種狀況。</p>
-<p>通常會在物件方法的第一行，宣告一個新的變數self，並且讓this指派給他，因為物件的assign是call by reference，因此self會指向this同一個位置，確保兩者指向同一物件e。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = &#123;</span><br><span class="line">    name: <span class="string">'The e obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        self.name = <span class="string">'update e obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            self.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update e again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">e.log();</span><br></pre></td></tr></table></figure></p>
-<p>當有了一個變數self，之後修改或呼叫，就直接用self以確保是指向物件e。<br><img src="https://i.imgur.com/gDjk5HV.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1027,6 +1087,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十一)組件/">Vue-(十一)組件</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十六)狀態管理vuex(1:2)/">Vue-(十六)狀態管理 vuex(1/2)</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/10/03/Vue-設置每頁的title及圖標/">Vue - 設置每頁的 title 及 圖標</a></h6>
               <span>October 3, 2019</span>
             </div>
@@ -1057,30 +1141,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/Webpack-在vue專案中引用SCSS/">Webpack-在vue專案中引用SCSS</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/FontAwesome-在Vue專案中使用/">FontAwesome-在Vue專案中使用</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1090,7 +1150,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1100,7 +1160,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1120,7 +1180,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

@@ -158,6 +158,280 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vue-(一)課程前言、(二)行前準備" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/17/Vue-(一)課程前言、(二)行前準備/">Vue-(一)課程前言、(二)行前準備</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/17/Vue-(一)課程前言、(二)行前準備/" class="article-date">
+	  <time datetime="2019-04-17T08:15:12.750Z" itemprop="datePublished">April 17, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-1-老師的話-文章"><a href="#1-1-老師的話-文章" class="headerlink" title="1-1.老師的話  (文章)"></a>1-1.老師的話  <a href="https://hiskio.com/courses/145/lectures/5481" target="_blank" rel="noopener">(文章)</a></h3><p>如何設計出好架構，如何寫出好程式?<br>許多人問過我，要如何設計出好架構，寫出好程式 我回答的都是同一個方法: 空氣朋友 在你寫 code 時請你想像一個不存在的朋友 你要向他解釋你寫出來的每一行程式碼，他甚至可能提問 如果在某處你無法流暢清晰的解釋 代表那個地方你必須想的更深更廣，作更多的研究 長此以往，必定可以有顯著的進步!</p>
+<h3 id="2-1：課程準備-影片"><a href="#2-1：課程準備-影片" class="headerlink" title="2-1：課程準備(影片)"></a>2-1：課程準備<a href="https://hiskio.com/courses/145/lectures/5477" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li>在<strong>vscode</strong>中安裝<code>Vue 2 Snippets</code>套件<br>針對編譯器中coding，做不同文字顏色的呈現，便於檢視code<br><img src="https://i.imgur.com/60IXBte.png" alt></li>
+<li>在<strong>codepen</strong>中載入<code>Vue</code><br>javascript的地方新增框架vue，即可使用vue<br><img src="https://i.imgur.com/mCuTeDR.png" alt></li>
+</ul>
+<h3 id="2-2：取代var的let與const-影片"><a href="#2-2：取代var的let與const-影片" class="headerlink" title="2-2：取代var的let與const(影片)"></a>2-2：取代var的let與const<a href="https://hiskio.com/courses/145/lectures/5477" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li><p><code>var</code>是全域變數</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">全域變數<span class="keyword">var</span> i可以在所有地方被使用</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);<span class="comment">//會印出3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>let</code>與<code>const</code>是區域變數<br>區域變數let i只在for迴圈中可以被使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);<span class="comment">//錯誤：i is not defined</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>const 宣告出來的變數是無法被re-assign的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);<span class="comment">//錯誤：i無法被修改</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>若<code>const</code>被宣告為物件，是可以改變其中的內容<br>const若被宣告為物件，const本身無法被重新re-assign，但是物件{}其中的內容是可以重新被re-assign</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> c =&#123;<span class="attr">x</span>:<span class="number">0</span>&#125;;</span><br><span class="line">c.x = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>javascript的<code>hoisting</code>特性<br>可以先執行Function，再補宣告</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a();<span class="comment">//先呼叫執行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123; <span class="comment">//再補宣告</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以先呼叫a,再補宣告var;<br>但是，不能補宣告let<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a+=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> a;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a+=<span class="number">1</span>;<span class="comment">//會報錯，找不到a</span></span><br><span class="line"><span class="keyword">let</span> a;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3：簡潔快速的縮寫shorthands-影片"><a href="#2-3：簡潔快速的縮寫shorthands-影片" class="headerlink" title="2-3：簡潔快速的縮寫shorthands(影片)"></a>2-3：簡潔快速的縮寫shorthands<a href="https://hiskio.com/courses/145/lectures/5321" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li>object中的屬性縮寫<br>當object裡的內容，其key與value是同名的情況（key=value=x)，<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makePoint</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        x:x,<span class="comment">//左邊的x代表key,右邊的x代表value</span></span><br><span class="line">        y:y,</span><br><span class="line">        name:name,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以改寫為<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makePoint</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        x,<span class="comment">//x key的value也是‘x’,所以會往上找到參數‘x’</span></span><br><span class="line">        y,</span><br><span class="line">        name,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>補充：物件object<br>物件的內容是由屬性組成的，而屬性是由 key-value pair 構成，value 可為任意資料型別的值，並且值是以<code>參考型別（reference)</code>的方式（存位置）儲存。</li>
+</ul>
+<p>如何存取物件的屬性呢？有兩種方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 特性存取（property access），使用 .</span><br><span class="line">2. 鍵值存取（key access），使用 [ ]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  &apos;a&apos;: &apos;Hello World&apos;,</span><br><span class="line">&#125;;</span><br><span class="line">console.log(obj.a);&lt;!--&quot;Hello World&quot; --&gt;</span><br><span class="line">console.log(obj[&apos;a&apos;]);&lt;!--&quot;Hello World&quot; --&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>計算屬性<br>若object中的key為動態的，key可以用中括號[]括起來，代表[]裡面是計算後的屬性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj=&#123;&#125;;</span><br><span class="line">    obj[key]=value;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = createObj(<span class="string">'name'</span>,<span class="string">'John'</span>);</span><br><span class="line"><span class="comment">// 會生成出一個物件</span></span><br><span class="line"><span class="comment">// person=&#123;name:'John'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>  改寫為</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj=&#123;</span><br><span class="line">        [key]:value;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = createObj(<span class="string">'name'</span>,<span class="string">'John'</span>);</span><br><span class="line"><span class="keyword">const</span> cat = createObj(<span class="string">'legs'</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>[]裡面也可以放運算子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj=&#123;</span><br><span class="line">        [key+<span class="number">1</span>]:value;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>函式縮寫<br>當物件中有函式function()<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options=&#123;</span><br><span class="line">    name:<span class="string">'Options'</span>,</span><br><span class="line">    level:<span class="number">3</span>,</span><br><span class="line">    created:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    mounted:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以改寫為<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options=&#123;</span><br><span class="line">    name:<span class="string">'Options'</span>,</span><br><span class="line">    level:<span class="number">3</span>,</span><br><span class="line">    created()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-4：便利的取出元素：解構賦值-影片"><a href="#2-4：便利的取出元素：解構賦值-影片" class="headerlink" title="2-4：便利的取出元素：解構賦值(影片)"></a>2-4：便利的取出元素：解構賦值<a href="https://hiskio.com/courses/145/lectures/5322" target="_blank" rel="noopener">(影片)</a></h3><p>解構賦值(Destructuring assignment)語法是一種 JavaScript 運算式，可以將陣列或物件中的資料取出成獨立變數。</p>
+<ul>
+<li><p>陣列解構（拿多個）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">111</span>,<span class="number">222</span>,<span class="number">333</span>];</span><br><span class="line"><span class="keyword">const</span> first = nums[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> second = nums[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> third = nums[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<p> 可以將陣列解構，改寫為</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">111</span>,<span class="number">222</span>,<span class="number">333</span>];</span><br><span class="line"><span class="comment">// const [first,second] = nums;</span></span><br><span class="line"><span class="keyword">const</span> [first,second,third,forth]=nums;<span class="comment">//forth會是undefine</span></span><br><span class="line"><span class="keyword">const</span> result = first+second+third+forth;<span class="comment">//錯誤：因為forth是undefine</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>陣列解構（預設值）<br>若想避免為undefined，可以在解構的同時給予預設值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">111</span>,<span class="number">222</span>,<span class="number">333</span>];</span><br><span class="line"><span class="keyword">const</span>[first, second, third, forth=<span class="number">0</span> ]=nums;<span class="comment">//forth會是undefine</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>陣列解構（忽略元素，拿一個）<br>假設只要拿出third為333，前面可以忽略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">111</span>,<span class="number">222</span>,<span class="number">333</span>];</span><br><span class="line"><span class="keyword">const</span> [,,third] = nums;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>陣列解構(變數交換)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> temp = a;</span><br><span class="line">a = b;</span><br><span class="line">b = temp;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>利用解構賦值做變數交換的改寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">[a,b]=[b,a]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>陣列解構(剩餘部分)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span>[first,...others]=nums;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// first = 1;</span></span><br><span class="line"><span class="comment">// others = [2,3,4]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>物件解構</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;</span><br><span class="line">    x:<span class="number">100</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> x = point.x;</span><br><span class="line"><span class="keyword">const</span> y = point.y;</span><br></pre></td></tr></table></figure>
+<p> 物件解構可以用大括號{}改寫</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;</span><br><span class="line">    x:<span class="number">100</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123;x,y&#125;= point;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>物件解構(預設值)<br>為了避免undefined，可以在解構的同時給予預設值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;</span><br><span class="line">        x:<span class="number">100</span>,</span><br><span class="line">        y:<span class="number">150</span>,</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">const</span> &#123;x, y, z = <span class="number">0</span>&#125; = point;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>物件解構(指派新名稱)<br>透過冒號：給予新名稱</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">    x:<span class="number">100</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span>[x:px, <span class="attr">y</span>:py] = point;</span><br><span class="line"><span class="keyword">const</span> result = px*py;</span><br><span class="line"><span class="keyword">const</span> result = x*y;<span class="comment">//錯誤：找不到x,y</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解構函式參數<br>計算point到圓點的距離<br>數學算式：（x平方＋y評分）=&gt;再開根號</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">    x:<span class="number">100</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">point</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(point.x*point.x + point.y*point.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以改寫為<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">point</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span>&#123;x,y&#125; = point;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(x*x + y*y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或是直接在函式的參數中作解構<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">&#123;x,y&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(x*x + y*y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>甚至還可以在參數中給予預設值，並重新命名<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">&#123;x:px=<span class="number">0</span>;y:py=<span class="number">0</span>&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(px*px + py*py);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-5：更強的字串：字串模板與多行字串-影片"><a href="#2-5：更強的字串：字串模板與多行字串-影片" class="headerlink" title="2-5：更強的字串：字串模板與多行字串(影片)"></a>2-5：更強的字串：字串模板與多行字串<a href="https://hiskio.com/courses/145/lectures/5323" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li>字串模板(string templete)<br>原始寫法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello, '</span> + name + <span class="string">'!'</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">'Jack'</span>);<span class="comment">//印出 Hello, Jack!</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>改寫用backtick`宣告字串模板，在要放入變數的地方用＄{}將變數括起來<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>補充：表達式(expression)vs.陳述式(statement)</strong><br><strong>陳述式statement</strong>:只做行動但不立即產生結果<br><strong>表達式expression</strong>:用小括號()將內容包起來，()裡面是值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a;<span class="comment">//陳述式</span></span><br><span class="line">(a+<span class="number">1</span>);<span class="comment">//表達式</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>字串模板中插入表達式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name,days</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> hours = days * <span class="number">24</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>! It's been <span class="subst">$&#123;hours&#125;</span> hours!`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在字串模板中，加入表達式的改寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name,days</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!It's been <span class="subst">$&#123;days * <span class="number">24</span>&#125;</span> hours!`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>字串模板中加入三元判斷式<br>三元判斷式解釋：若(days&lt;7)成立，則回傳’’,否則回傳’Long time no see.’</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name,days</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>! <span class="subst">$&#123;(days&lt;<span class="number">7</span>)?<span class="string">''</span>:<span class="string">'Long time no see.'</span>&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Jack'</span>,<span class="number">3</span>);<span class="comment">//Hello, Jack!</span></span><br><span class="line">greet(<span class="string">'Peter'</span>,<span class="number">8</span>);<span class="comment">//Hello, Peter! Long tome no see.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多行字串<br>長文章斷行，宣告多行字串不能斷行，若要換行只能使用+</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> words = <span class="string">'aaa\n'</span>+<span class="string">'bbbb\n'</span>+<span class="string">'ccccc'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用字串模板改寫（字串模板支援多行字串）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> words = <span class="string">`</span></span><br><span class="line"><span class="string">    aaa</span></span><br><span class="line"><span class="string">    bbbb</span></span><br><span class="line"><span class="string">    ccccc</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-6：不只更簡短：箭頭函式-影片"><a href="#2-6：不只更簡短：箭頭函式-影片" class="headerlink" title="2-6：不只更簡短：箭頭函式(影片)"></a>2-6：不只更簡短：箭頭函式<a href="https://hiskio.com/courses/145/lectures/5324" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li>箭頭函式，語法簡短<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果<strong>參數只有一個</strong>，可以將小括號()省略<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果<strong>函式本體只有一行</strong>，而且是return，可以省略{}，將return內容直接寫在後面，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x*<span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>箭頭函式，自動綁定<br>箭頭函式內部的this與外部相同<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//等於外面的this</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line"><span class="comment">//第2行、第4行執行的this，指向同一個</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">const</span> aa = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="regexp">/等於外面的this</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/第2行、第4行執行的this，指向同一個</span></span><br></pre></td></tr></table></figure>
+<p><strong>補充：函式裡面的this是什麼？</strong><br>this是函式的context，情境不同，執行結果也不同</p>
+<ol>
+<li><p>直接執行：“this”代表window(瀏覽器的global是window)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Heisenburg'</span>;</span><br><span class="line"><span class="keyword">var</span> sayMyName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">sayMyName();<span class="comment">//Heisenburg</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>宣告一個物件，將函式作為該物件的成員函式：“this”代表該物件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> teacher = &#123;</span><br><span class="line">    name:<span class="string">'Jack'</span>,</span><br><span class="line">&#125;</span><br><span class="line">teacher.sayMyName = sayMyName;<span class="comment">//物件的成員函式</span></span><br><span class="line">teacher.sayNyName();<span class="comment">//Jack</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作為DOM中的監聽函式：“this”代表該DOM元素</p>
+</li>
+</ol>
+<p>假設html中有一個button<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot; name=&quot;Btn-click&quot;&gt;click me!&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>當button被按下之後，會執行函式sayMyName<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(<span class="string">'click'</span>,sayMyName);</span><br><span class="line"><span class="comment">//Btn-click</span></span><br></pre></td></tr></table></figure></p>
+<p>==但是，若將函式改為箭頭函式…==<br>箭頭函式中的this代表外面的this，所以三種執行結果的name都ㄧ樣<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Heisenburg'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayMyName = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> teacher = &#123;</span><br><span class="line">    name = <span class="string">'Jack'</span>,</span><br><span class="line">&#125;</span><br><span class="line">teacher.sayMyName = sayMyName;</span><br><span class="line"></span><br><span class="line">sayMyName();<span class="comment">//Heisenburg</span></span><br><span class="line">teacher.sayMyName();<span class="comment">//Heisenburg</span></span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>,sayMyName);<span class="comment">//Heisenburg</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-7：片尾彩蛋：ES5、ES6、Es2017-到底是什麼東西？-影片"><a href="#2-7：片尾彩蛋：ES5、ES6、Es2017-到底是什麼東西？-影片" class="headerlink" title="2-7：片尾彩蛋：ES5、ES6、Es2017!?到底是什麼東西？(影片)"></a>2-7：片尾彩蛋：ES5、ES6、Es2017!?到底是什麼東西？<a href="https://hiskio.com/courses/145/lectures/5720" target="_blank" rel="noopener">(影片)</a></h3><ul>
+<li>ECMAScript(往往被稱作JavaScript)<br> ECMA組織訂出JavaScript的語法規範，再讓各家瀏覽器依照規範實作<br><img src="https://i.imgur.com/3sUvjnz.png" alt></li>
+</ul>
+<h2 id="學習來源"><a href="#學習來源" class="headerlink" title="學習來源"></a>學習來源</h2><ul>
+<li>Hiskio-姚偉揚老師-<a href="https://hiskio.com/courses/145" target="_blank" rel="noopener">精通 VueJS 前端開發完全指南</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-將footer置底" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/16/CSS-將footer置底/" class="article-date">
+	  <time datetime="2019-04-16T10:50:13.935Z" itemprop="datePublished">April 16, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通常一個頁面中包含三個部分：header、main-content、footer，可是當main-content中的內容不足以撐開整個頁面高度，footer下方就會出現一塊空白區域。這種情況，如果希望footer可以維持底部，整理兩種做法：</p>
+<p>方法1. 設定main-content的最小高度為100%<br>方法2. 在最外部再包一層wrapper，設定期高度為100% ; 且讓footer設定為絕對定位bottom:0</p>
+<p><img src="https://i.imgur.com/1IvdcAV.png" alt></p>
+<h3 id="方法1-設定main-content的最小高度為100"><a href="#方法1-設定main-content的最小高度為100" class="headerlink" title="方法1.設定main-content的最小高度為100%"></a>方法1.設定main-content的最小高度為100%</h3><p><img src="https://i.imgur.com/8acrinG.png" alt></p>
+<p><strong>html, body</strong></p>
+<ul>
+<li>高度為100%<br><strong>main-content</strong></li>
+<li>最小高度為100%</li>
+<li>上、下padding空間，作為放置header、footer的空間</li>
+<li></li>
+</ul>
+<p><strong>header</strong></p>
+<ul>
+<li>使用絕對定位，top為0</li>
+<li>設定z-index確保在最上方</li>
+</ul>
+<p><strong>footer</strong></p>
+<ul>
+<li>使用相對定位，top為自己的高度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">    &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* background-color: azure; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">900</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main-content</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">padding-top</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法2-在最外部再包一層wrapper"><a href="#方法2-在最外部再包一層wrapper" class="headerlink" title="方法2.在最外部再包一層wrapper"></a>方法2.在最外部再包一層wrapper</h3><p><img src="https://i.imgur.com/hJQdVmT.png" alt></p>
+<p><strong>html, body</strong></p>
+<ul>
+<li>高度為100%</li>
+</ul>
+<p><strong>wrapper</strong></p>
+<ul>
+<li>最小高度為100%</li>
+</ul>
+<p><strong>footer</strong></p>
+<ul>
+<li>使用絕對定位，bottom為0</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&apos;wrapper&apos;&gt;</span><br><span class="line">        &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">        &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layuot/">layuot</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-jQuery-改變CSS樣式" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -868,163 +1142,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-使用github page顯示靜態網頁" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/08/使用github page顯示靜態網頁/">使用github page顯示靜態網頁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/08/使用github page顯示靜態網頁/" class="article-date">
-	  <time datetime="2019-04-07T23:29:12.000Z" itemprop="datePublished">April 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="使用github-page顯示靜態網頁"><a href="#使用github-page顯示靜態網頁" class="headerlink" title="使用github page顯示靜態網頁"></a>使用github page顯示靜態網頁</h1><h3 id="設定github綁定金鑰"><a href="#設定github綁定金鑰" class="headerlink" title="設定github綁定金鑰"></a>設定github綁定金鑰</h3><ol>
-<li>在本地端新增ssh資料夾</li>
-<li>取得公鑰、私鑰，將公鑰貼上github</li>
-<li>新增ssh完成</li>
-</ol>
-<h3 id="repository推上GitHub"><a href="#repository推上GitHub" class="headerlink" title="repository推上GitHub"></a>repository推上GitHub</h3><ol>
-<li>在github 新增 repository</li>
-<li>git commit</li>
-<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:leahlin912/111.git</li>
-<li>git push -u origin master</li>
-</ol>
-<h3 id="repository推上GitHub-Page"><a href="#repository推上GitHub-Page" class="headerlink" title="repository推上GitHub Page"></a>repository推上GitHub Page</h3><ol>
-<li>建立新的branch: <code>git branch gh-pages</code></li>
-<li>推上github: <code>git push origin gh-pages</code></li>
-<li>需要注意的是首頁要命名為index.html</li>
-<li>到[github name].github.io/[repository name]網址查看，你的網頁已經展示在這個網址。</li>
-</ol>
-<h3 id="補充說明"><a href="#補充說明" class="headerlink" title="補充說明"></a>補充說明</h3><ul>
-<li>切換分支：<code>git checkout &lt;branch name&gt;</code><br>(切換分支的同時，新增分支<code>git checkout -b &lt;branch name&gt;</code>)</li>
-<li>合併分支：<code>git merge &lt;another branch name&gt;</code></li>
-<li><p>更新到伺服器端：<code>git push</code></p>
-</li>
-<li><p>補充-第一次更新到伺服器：<code>git push -u origin master</code>(設定預設的remote為origin ; 設定預設的branch為master)</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/github/">github</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-申請API憑證-以Youtube Data API為例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/07/申請API憑證-以Youtube Data API為例/">申請API憑證-以Youtube Data API為例</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/07/申請API憑證-以Youtube Data API為例/" class="article-date">
-	  <time datetime="2019-04-07T03:21:04.000Z" itemprop="datePublished">April 7, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="申請API憑證-以Youtube-Data-API為例"><a href="#申請API憑證-以Youtube-Data-API為例" class="headerlink" title="申請API憑證-以Youtube Data API為例"></a>申請API憑證-以Youtube Data API為例</h1><h3 id="流程概念"><a href="#流程概念" class="headerlink" title="流程概念"></a>流程概念</h3><ol>
-<li>申請憑證</li>
-<li>將key加入到專案中</li>
-</ol>
-<h3 id="申請API-Key"><a href="#申請API-Key" class="headerlink" title="申請API Key"></a>申請API Key</h3><ol>
-<li>使用google帳號，進入<a href="https://console.cloud.google.com/home" target="_blank" rel="noopener">Google Cloud Platform(GCP)</a></li>
-<li><p>從左上漢堡標籤，進入「API和服務&gt;資訊主頁」<br><img src="https://i.imgur.com/XPaCpA4.png" alt></p>
-</li>
-<li><p>點按「啟用API」按鈕<br><img src="https://i.imgur.com/s5OVzq2.png" alt></p>
-</li>
-<li><p>進到到API函式庫頁面，選擇要使用的API(也可以透過搜尋bar找到該API)<br><img src="https://i.imgur.com/HTvKrWU.png" alt></p>
-</li>
-<li><p>選擇啟用該API<br><img src="https://i.imgur.com/lfuctZa.png" alt></p>
-</li>
-<li><p>頁面中提示要先「建立憑證」<br><img src="https://i.imgur.com/uZ8UW87.png" alt></p>
-</li>
-<li><p>依照專案需求，填寫表格<br><img src="https://i.imgur.com/oVO3o4b.png" alt></p>
-</li>
-<li><p>依照個人需求、必要，限制金鑰</p>
-</li>
-</ol>
-<ul>
-<li>應用程式限制：若無限制，任何人皆可在任何裝置上使用這組API金鑰；若有限制，則會進行審核，資料符合的使用者才可使用</li>
-<li>API限制：可限制該API僅可用來獲取哪些服務Google服務，避免因使用其他服務導致流量超過配額，或被其他人用來獲取其他服務<br><img src="https://i.imgur.com/Fvo8ka1.png" alt></li>
-</ul>
-<ol start="9">
-<li><p>勾選起該憑證<br><img src="https://i.imgur.com/Joasr4R.png" alt></p>
-</li>
-<li><p>將Key複製到自己的專案中<br><img src="https://i.imgur.com/ehhQGqs.png" alt></p>
-</li>
-</ol>
-<h3 id="將Key加入至專案中"><a href="#將Key加入至專案中" class="headerlink" title="將Key加入至專案中"></a>將Key加入至專案中</h3><ul>
-<li></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -1104,6 +1221,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十一)組件/">Vue-(十一)組件</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十六)狀態管理vuex(1:2)/">Vue-(十六)狀態管理 vuex(1/2)</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/10/03/Vue-設置每頁的title及圖標/">Vue - 設置每頁的 title 及 圖標</a></h6>
               <span>October 3, 2019</span>
             </div>
@@ -1134,30 +1275,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/Webpack-在vue專案中引用SCSS/">Webpack-在vue專案中引用SCSS</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/FontAwesome-在Vue專案中使用/">FontAwesome-在Vue專案中使用</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1167,7 +1284,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1177,7 +1294,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1197,7 +1314,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

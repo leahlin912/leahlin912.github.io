@@ -158,6 +158,127 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-JavaScript-型別" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/03/JavaScript-型別/" class="article-date">
+	  <time datetime="2019-05-03T06:16:44.010Z" itemprop="datePublished">May 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="動態型別-Dynamic-Typing"><a href="#動態型別-Dynamic-Typing" class="headerlink" title="動態型別(Dynamic Typing)"></a>動態型別(Dynamic Typing)</h2><p>在JavaScript中，不需要宣告變數的型別，因為JavaScript是使用「動態型別」在處理變數。</p>
+<p>僅需要宣告變數(type)，不需要告訴JavaScript變數的型別(type)，它會在執行程式時，自動判別變數的型別，而且一個變數在不同時候可能擁有不同型別。</p>
+<h2 id="JavaScript的六種純值-primitive"><a href="#JavaScript的六種純值-primitive" class="headerlink" title="JavaScript的六種純值(primitive)"></a>JavaScript的六種純值(primitive)</h2><p>純值是一種資料型別，代表基本型別，只是一個值，而非物件。</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>JavaScript給所有變數的初始值，變數會一直處於undefined，直到程式碼執行到設定變數的值</p>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>表示不存在，可以在程式宣告時，給與該變數的值為null，用以表示該變數沒有值。</p>
+<h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><p>表示對或錯，用true或false表示值</p>
+<h3 id="Number-數值"><a href="#Number-數值" class="headerlink" title="Number(數值)"></a>Number(數值)</h3><p>在JavaScript中的數值皆為浮點數，不像其他程式語言還會細分整數或其他浮點數等，所以在JavaScript中也可以直接把他假裝為整數。</p>
+<h3 id="String-字串"><a href="#String-字串" class="headerlink" title="String(字串)"></a>String(字串)</h3><p>由一連串字符所組成，可以單引號或雙引號表示</p>
+<h3 id="Symbal-符號"><a href="#Symbal-符號" class="headerlink" title="Symbal(符號)"></a>Symbal(符號)</h3><p>這是新的型別，被用在ES6中，尚未被全部的瀏覽器支援</p>
+<h2 id="強制型轉-Coercion"><a href="#強制型轉-Coercion" class="headerlink" title="強制型轉(Coercion)"></a>強制型轉(Coercion)</h2><p>JavaScript引擎自動將1轉換為字串’1’，才繼續做相加運算，自動避免出錯<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//12</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-執行緒、同步與非同步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/03/JavaScript-執行緒、同步與非同步/">JavaScript-執行緒、同步與非同步</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/03/JavaScript-執行緒、同步與非同步/" class="article-date">
+	  <time datetime="2019-05-03T06:16:38.051Z" itemprop="datePublished">May 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="單執行緒-Single-Threaded"><a href="#單執行緒-Single-Threaded" class="headerlink" title="單執行緒(Single Threaded)"></a>單執行緒(Single Threaded)</h3><p>在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。</p>
+<h3 id="同步執行-Synchronous"><a href="#同步執行-Synchronous" class="headerlink" title="同步執行(Synchronous)"></a>同步執行(Synchronous)</h3><p>對程式語言來說，是一次一個，而且照出現順序一行一行執行。</p>
+<h3 id="非同步執行-Asynchronous"><a href="#非同步執行-Asynchronous" class="headerlink" title="非同步執行(Asynchronous)"></a>非同步執行(Asynchronous)</h3><p>在同一時間中，不只一個在執行。</p>
+<h3 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h3><p>JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎處理別的程式，像是rendering engine會顯示畫面到螢幕中，或是也有負責處理HTTP請求資料的。</p>
+<p>JavaScript引擎外部可以跟其他的引擎相互溝通，而且可以是<strong>非同步</strong>處理，也就是說JavaScript引擎、rendering engine、HTTP請求，這三者可以同時都在進行處理、執行。</p>
+<p>然而，JavaScript引擎本身，是單執行緒和同步執行的。也就是說，在JavaScript引擎裡面，程式碼是一行一行被解讀。</p>
+<p>總結，<strong>JavaScript引擎本身是單執行緒、同步執行，而向外的溝通、請求可以是非同步執行</strong>。</p>
+<p><img src="https://i.imgur.com/Uy3FgZe.jpg" alt></p>
+<h3 id="事件佇列-Event-Queue"><a href="#事件佇列-Event-Queue" class="headerlink" title="事件佇列(Event Queue)"></a>事件佇列(Event Queue)</h3><p>前面提到，JavaScript引擎本身是同步執行，但是當JavaScript引擎接收到從外部來的一個需要處理事件時，在JavaScript引擎中會先被放到等待列，也就是先放進事件佇列(Event Queue)。</p>
+<p><img src="https://i.imgur.com/v5ZxPRB.png" alt></p>
+<p>JavaScript引擎還是會先處理完執行堆處理完，直到b()結束、a()結束、全域結束都從執行堆中pop掉，當執行堆是空的時候，JavaScript才會注意到Event Queue。</p>
+<p><img src="https://i.imgur.com/3u60bpf.png" alt></p>
+<p>首先處理click事件，看到該事件觸發執行clickHandler()，所以就在執行堆中創建一個執行環境給它。當該事件處理完畢，被pop掉之後，執行堆中又被淨空了，才再繼續處理下一個佇列事件。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-JavaScript-範圍鏈(scope chain)" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -718,165 +839,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-NVM-安裝及控管Node.js的版本" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/23/NVM-安裝及控管Node.js的版本/">NVM-安裝及控管Node.js的版本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/23/NVM-安裝及控管Node.js的版本/" class="article-date">
-	  <time datetime="2019-04-23T07:34:37.414Z" itemprop="datePublished">April 23, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什麼是NVM"><a href="#什麼是NVM" class="headerlink" title="什麼是NVM?"></a>什麼是NVM?</h3><p><strong>NVM(Node Version Manager)</strong> 是Node.js的版本管理控制工具</p>
-<h3 id="什麼情況會需要-建議使用NVM"><a href="#什麼情況會需要-建議使用NVM" class="headerlink" title="什麼情況會需要/建議使用NVM?"></a>什麼情況會需要/建議使用NVM?</h3><p>當電腦要配置Node.js環境時，有兩種安裝方法：</p>
-<ul>
-<li>方法一：直接從<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官網</a>下載並安裝到電腦</li>
-<li>方法二：透過NVM，下載並切換各個版本的Node.js</li>
-</ul>
-<p>通常在團隊中開發大型專案，有可能會接手他人的專案程式碼，若同事的Node.js版本較舊，與自己電腦中的本不同，就必須要安裝並切換不同版本來開發。</p>
-<p>因此一般都會使用方法二，透過NVM，即可在同一台電腦上，快速下載、切換Node.js的版本。</p>
-<h3 id="安裝NVM-for-Mac"><a href="#安裝NVM-for-Mac" class="headerlink" title="安裝NVM(for Mac)"></a>安裝NVM(for Mac)</h3><p>參考<a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">github開源</a>的操作說明</p>
-<p>首先，在terminal中執行下方指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure></p>
-<p>接著，如圖中藍色區塊中的說明「先將terminal關閉，再次執行下方的指令」：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; . &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/Tb1n8X1.png" alt></p>
-<p>輸入下方指令，確認是否安裝完畢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm --version</span><br></pre></td></tr></table></figure></p>
-<p>若成功秀出如下圖nvm版本，代表安裝成功</p>
-<p><img src="https://i.imgur.com/EvnrPYa.png" alt></p>
-<h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>使用指令秀出目前所有可以使用的版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote</span><br></pre></td></tr></table></figure></p>
-<p>參考並選擇要下載的Node.js版本<br><img src="https://i.imgur.com/6UeF4hQ.png" alt></p>
-<p>使用下方指令安裝版本(這裡選擇以LTS v10.15.3最新的穩定版本作為示範)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install v10.15.3</span><br></pre></td></tr></table></figure></p>
-<p>執行安裝完畢<br><img src="https://i.imgur.com/hcMeXqg.png" alt><br>查看目前電腦本機端中載有的版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm list</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/6nwOgqn.png" alt></p>
-<p>切換不同版本(以10.15.3版本作為示範)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 10.15.3</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/8oLgLfq.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NVM/">NVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Webpack-基本入門介紹" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/23/Webpack-基本入門介紹/">Webpack-前端建置工具的發展背景及入門介紹</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/23/Webpack-基本入門介紹/" class="article-date">
-	  <time datetime="2019-04-23T07:34:28.561Z" itemprop="datePublished">April 23, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>Webpack</strong>是當下流行的「前端建置工具」之一。</p>
-<h2 id="首先了解建置工具"><a href="#首先了解建置工具" class="headerlink" title="首先了解建置工具"></a>首先了解建置工具</h2><h3 id="建置工具出現的來龍去脈？"><a href="#建置工具出現的來龍去脈？" class="headerlink" title="建置工具出現的來龍去脈？"></a>建置工具出現的來龍去脈？</h3><p><strong>過去：</strong><br>早期前端工程師寫網頁，僅透過前端三大元素「JavaScript、CSS、HTML」開發web應用。</p>
-<p><strong>現今：</strong><br>近年前端發展出許多新思維，出現了「模組化」的概念、「新框架」的出現、「新語言」的誕生，讓傳統的作法不再流行，各種可以加強開發效率的新工具出現。</p>
-<ul>
-<li>模組化：模組化是將一個複雜的系統，分解為多個模組以方便程式開發。例：ES6模組化是國際標準組織ECMA提出的JavaScript模組化標準，他在語言層面上實現模組化，成為瀏覽器和伺服器通用的模組化解決方案。</li>
-<li>新框架：在web應用變的龐大時，直接操作DOM會使程式變得複雜難以維護，因此出現React、Vue、Augular前端框架。</li>
-<li>新語言：ES6、TypeScript、Flow、SCSS…</li>
-</ul>
-<p>然而，前端技術發展之快，卻有一個共同點：<strong>這些工具的原始碼無法直接執行，必須透過「轉換」才可以正常執行</strong>，因此，「建置工具」就誕生了。</p>
-<h3 id="建置工具實際做了什麼？"><a href="#建置工具實際做了什麼？" class="headerlink" title="建置工具實際做了什麼？"></a>建置工具實際做了什麼？</h3><p>「建置」就是將原始程式碼，轉換成可以執行的JavaScript、CSS、HTML。</p>
-<ul>
-<li>程式轉換：將TypeScript編譯為JavaScript，將SCSS編譯為CSS。</li>
-<li>檔案最佳化：壓縮JavaScript、CSS、HTML程式，壓縮合併圖片。</li>
-<li>程式分割：分析首頁不需要執行的部分程式，讓其非同步載入。</li>
-<li>模組合併：採用模組化建置的專案中的有多個模組、檔案，透過建置功能，將模組合併為一個檔案。</li>
-<li>自動更新：監聽本機端程式碼的變動，自動重新建置、更新瀏覽器。</li>
-<li>程式驗證：在程式被傳送到倉庫前，需要驗證程式是否符合標準，以及單元測試是否通過。</li>
-<li>自動發布：更新程式後，自動建置出現上發布程式，並傳輸給發布系統。</li>
-</ul>
-<p>「建置」的目的最主要就是工程化、自動化。</p>
-<h3 id="常見的「建置工具」"><a href="#常見的「建置工具」" class="headerlink" title="常見的「建置工具」"></a>常見的「建置工具」</h3><p>按誕生的時間排序</p>
-<ul>
-<li>Npm Script：Node.js附帶的套件管理員</li>
-<li>Grunt：自動化執行依賴的工作</li>
-<li>Gulp：以串流為基礎的自動化建置工</li>
-<li>Fis3：整合各種Web開發需要的建置功能</li>
-<li>Webpack：包裝模組化JavaScript的工具</li>
-<li>Rollup：專注於ES6的模組包裝工具</li>
-</ul>
-<p>時空背景：</p>
-<ul>
-<li>在Npm Script和Grunt時代，Web開發要做的事情變多、流程變複雜，自動化的思維興起，用於簡化流程。</li>
-<li>在Gulp時代，新語言出現，流式處理思想出現是為了簡化檔案轉換的流程。</li>
-<li>在Webpack的時代，由於單頁應用的流行，網頁的功能和實現程式變得複雜、龐大，因此Web開發相模組化改進。<h2 id="Webpack究竟是什麼"><a href="#Webpack究竟是什麼" class="headerlink" title="Webpack究竟是什麼?"></a>Webpack究竟是什麼?</h2><h3 id="專注於建構模組化的專案"><a href="#專注於建構模組化的專案" class="headerlink" title="專注於建構模組化的專案"></a>專注於建構模組化的專案</h3>在Webpack裡的所有檔案皆被視為模組，透過Loader轉換檔案，透過Plugin植入鉤子，最後輸出為一個由「多個模組合成的檔案」。<br><img src="https://i.imgur.com/i508SSR.png" alt><br>所以一個專案中的所有檔案，包含JavaScript、CSS、SCSS、圖片、範本，在經過Webpack的處理，最後會輸出為瀏覽器可以使用的靜態資源。</li>
-</ul>
-<p>使用方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module.expert=&#123;</span><br><span class="line">    //所有模組的入口，Webpack從入口開始遞迴解析出所有依賴的模組</span><br><span class="line">    entry: &apos;./app/js&apos;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        //將入口所依賴的所有模組包裝成一個檔案bundle.js輸出</span><br><span class="line">        filename: &apos;bundle.js&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="參考資料來源"><a href="#參考資料來源" class="headerlink" title="參考資料來源"></a>參考資料來源</h2><ul>
-<li>JS高手昇華之路Webpack是唯一的路徑-吳浩麟 著</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/">Webpack</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -956,6 +918,30 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十一)組件/">Vue-(十一)組件</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十六)狀態管理vuex(1:2)/">Vue-(十六)狀態管理 vuex(1/2)</a></h6>
+              <span>October 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/10/03/Vue-設置每頁的title及圖標/">Vue - 設置每頁的 title 及 圖標</a></h6>
               <span>October 3, 2019</span>
             </div>
@@ -986,30 +972,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/Webpack-在vue專案中引用SCSS/">Webpack-在vue專案中引用SCSS</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/FontAwesome-在Vue專案中使用/">FontAwesome-在Vue專案中使用</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1019,7 +981,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1029,7 +991,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1049,7 +1011,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
