@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(十三)自訂事件 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Vue.jsVue">
+  
+  
+  
+  
+  <meta name="description" content="使用 v-on 綁定自訂事件codepen結果呈現 當內層組件要傳送資料到外層時，內層組件使用 this.$emit 提交自定義事件、資料，上層則用 v-on 或縮寫 @ 接應。 舉例說明：  內層組件發出一個$emit，自定義事件為’emit-count’並帶有一個資料’this.count’ 外層則用 @emit-count 接應該事件，當該事件被出發時，則會執行 ‘emitCount’ 方法">
+<meta name="keywords" content="Vue.js,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(十三)自訂事件">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/Vue-(十三)自訂事件/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="使用 v-on 綁定自訂事件codepen結果呈現 當內層組件要傳送資料到外層時，內層組件使用 this.$emit 提交自定義事件、資料，上層則用 v-on 或縮寫 @ 接應。 舉例說明：  內層組件發出一個$emit，自定義事件為’emit-count’並帶有一個資料’this.count’ 外層則用 @emit-count 接應該事件，當該事件被出發時，則會執行 ‘emitCount’ 方法">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-30T09:01:39.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(十三)自訂事件">
+<meta name="twitter:description" content="使用 v-on 綁定自訂事件codepen結果呈現 當內層組件要傳送資料到外層時，內層組件使用 this.$emit 提交自定義事件、資料，上層則用 v-on 或縮寫 @ 接應。 舉例說明：  內層組件發出一個$emit，自定義事件為’emit-count’並帶有一個資料’this.count’ 外層則用 @emit-count 接應該事件，當該事件被出發時，則會執行 ‘emitCount’ 方法">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(十三)自訂事件" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(十三)自訂事件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/10/30/Vue-(十三)自訂事件/" class="article-date">
+	  <time datetime="2019-10-30T09:00:21.266Z" itemprop="datePublished">October 30, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用-v-on-綁定自訂事件"><a href="#使用-v-on-綁定自訂事件" class="headerlink" title="使用 v-on 綁定自訂事件"></a>使用 v-on 綁定自訂事件</h2><p><a href="https://codepen.io/leah-lin/pen/xxxXLmx?editors=1010" target="_blank" rel="noopener">codepen結果呈現</a></p>
+<p>當內層組件要傳送資料到外層時，內層組件使用 <code>this.$emit</code> 提交自定義事件、資料，上層則用 <code>v-on</code> 或縮寫 <code>@</code> 接應。</p>
+<p>舉例說明：</p>
+<ul>
+<li>內層組件發出一個<code>$emit</code>，自定義事件為’emit-count’並帶有一個資料’this.count’</li>
+<li>外層則用 <code>@emit-count</code> 接應該事件，當該事件被出發時，則會執行 ‘emitCount’ 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;my-counter @emit-count=&quot;emitCount&quot;&gt;&lt;/my-counter&gt;</span><br><span class="line">  &lt;h3&gt;&#123;&#123;outerCount&#125;&#125;&lt;/h3&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-counter'</span>,&#123;</span><br><span class="line">    template:</span><br><span class="line">    <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;button @click="addOne"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;button @click="emit"&gt;emit&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            count:<span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        addOne()&#123;</span><br><span class="line">            <span class="keyword">this</span>.count += <span class="number">1</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">        emit()&#123;</span><br><span class="line">          <span class="keyword">this</span>.$emit(<span class="string">'emit-count'</span>,<span class="keyword">this</span>.count);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">"#app"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        outerCount:<span class="number">0</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        emitCount(count)&#123;</span><br><span class="line">          <span class="keyword">this</span>.outerCount = count;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="給組件綁定原生事件"><a href="#給組件綁定原生事件" class="headerlink" title="給組件綁定原生事件"></a>給組件綁定原生事件</h2><p>上層組件上層組件除了可以偵聽自定義事件，也可以去偵聽從內層組件發出來的原生事件，如果要偵聽「原生事件」，要加上<code>.native</code> 修飾符。</p>
+<p>舉例說明：</p>
+<ul>
+<li>外層使用 <a href="mailto:`@click.native" target="_blank" rel="noopener">`@click.native</a>` 接偵聽內層物件的click事件是否被觸發，當該事件被出發時，則外層會執行 ‘clickBtn’ 方法</li>
+</ul>
+<p><a href="https://codepen.io/leah-lin/pen/PooJJKa" target="_blank" rel="noopener">codepen結果呈現</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&gt;</span><br><span class="line">    &lt;my-button @click.native=&quot;clickBtn&quot;&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/my-button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-button'</span>,&#123;</span><br><span class="line">    template:<span class="string">`&lt;button&gt;Button&lt;/button&gt;`</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">"#app"</span>,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        clickBtn()&#123;</span><br><span class="line">            alert(<span class="string">'Clicked'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="sync修飾符"><a href="#sync修飾符" class="headerlink" title=".sync修飾符"></a>.sync修飾符</h2><p>外層資料透過 <code>props</code> 將傳進給內層，內層經過獨立處理之後，若希望內層資料也能夠將資料更新到外層，依照前面的方法，可以在內層使用 <code>$emit</code> 將資料再往外傳。</p>
+<p>舉例說明：</p>
+<ul>
+<li>先使用 <code>props</code> 傳 ‘outer-count’ 給內層，並賦值給內層的 ‘innerCount’</li>
+<li>當觸發 ‘clickSync’ 事件時，透過 <code>$emit</code> 將’this.innerCount’ 往外層傳送</li>
+<li>外層則透過 <code>@sync-count</code> 偵聽到自定義事件被觸發後，則執行 ‘syncCount’方法，方法中再重新賦值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;my-counter @sync-count=&quot;syncCount&quot; :outer-count=&apos;outerCount&apos;&gt; </span><br><span class="line">  &lt;/my-counter&gt; </span><br><span class="line">  &lt;h3&gt;&#123;&#123;outerCount&#125;&#125;&lt;/h3&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-counter'</span>,&#123;</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div&gt;</span></span><br><span class="line"><span class="string">    &lt;h1&gt;&#123;&#123;innerCount&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;button @click="innerCount+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;button @click="clickSync"&gt;sync&lt;/button&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  props:[<span class="string">"outer-count"</span>],</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      innerCount:<span class="keyword">this</span>.outerCount,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    clickSync()&#123;</span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'sync-count'</span>,<span class="keyword">this</span>.innerCount)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    outerCount:<span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    syncCount(innerCount)&#123;</span><br><span class="line">      <span class="keyword">this</span>.outerCount = innerCount;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>不過，使用 <code>.sync</code> 修飾符，可以讓程式碼更簡潔</p>
+<p><a href="https://codepen.io/leah-lin/pen/rNNGGZe" target="_blank" rel="noopener">codepen結果呈現</a></p>
+<p>舉例說明：</p>
+<ul>
+<li>內層透過 <code>$emit</code> 傳送 <code>update:outCount</code>事件到外層</li>
+<li>外層不使用 <code>@</code> 去偵聽內層透過 <code>$emit</code> 傳送進來的自定義事件</li>
+<li>外層直接在傳入 <code>props</code> 的地方加上 <code>.sync</code> 修飾符， <code>:outer-count.sync</code> 去偵聽 ‘outer-count’的更動事件，其意義等同於 <code>@update:outer-count=&quot;value =&gt; outerCount = count&quot;</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;my-counter :outer-count.sync=&apos;outerCount&apos;&gt; </span><br><span class="line">  &lt;/my-counter&gt; </span><br><span class="line">  &lt;h3&gt;&#123;&#123;outerCount&#125;&#125;&lt;/h3&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-counter'</span>,&#123;</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div&gt;</span></span><br><span class="line"><span class="string">    &lt;h1&gt;&#123;&#123;innerCount&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;button @click="innerCount+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;button @click="clickSync"&gt;sync&lt;/button&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  props:[<span class="string">"outer-count"</span>],</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      innerCount:<span class="keyword">this</span>.outerCount,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    clickSync()&#123;</span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'update:outerCount'</span>,<span class="keyword">this</span>.innerCount)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    outerCount:<span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="自訂組件的-v-model"><a href="#自訂組件的-v-model" class="headerlink" title="自訂組件的 v-model"></a>自訂組件的 v-model</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//常見 v-model 的用法</span><br><span class="line">&lt;my-counter v-model=&quot;outerCOunt&quot;&gt;&lt;/my-counter&gt;</span><br><span class="line">    </span><br><span class="line">//拆解上述 v-model 的意義，等同於下方程式碼</span><br><span class="line">&lt;my-counter :value=&quot;outerCount&quot; @input=&apos;val =&gt; outerCount = val&apos;&gt;&lt;/my-counter&gt;</span><br></pre></td></tr></table></figure>
+<p>自定義 model 事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-counter'</span>,&#123;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    model:&#123;</span><br><span class="line">        prop:<span class="string">"value"</span>,</span><br><span class="line">        event:<span class="string">"input"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://codepen.io/leah-lin/pen/bGGoYeG?editors=1010" target="_blank" rel="noopener">codepen結果呈現</a></p>
+<p>舉例說明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;!--v-model寫法： --&gt;</span><br><span class="line">    &lt;my-counter v-model=&quot;outerCount&quot;&gt;&lt;/my-counter&gt;  </span><br><span class="line">    </span><br><span class="line">    &lt;!--意義等同於： --&gt;</span><br><span class="line">    &lt;my-counter :count=&quot;outerCount&quot; @update:count=&quot;val=&gt; outerCount=val&quot;&gt;&lt;/my-counter&gt;</span><br><span class="line">  &lt;h3&gt;&#123;&#123;outerCount&#125;&#125;&lt;/h3&gt;</span><br><span class="line">&lt;/app&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-counter'</span>,&#123;</span><br><span class="line">  model:&#123;</span><br><span class="line">    prop:<span class="string">'count'</span>,</span><br><span class="line">    event:<span class="string">'update:count'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  props:[<span class="string">'count'</span>],</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      innerCount:<span class="keyword">this</span>.count,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    syncCount()&#123;</span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'update:count'</span>,<span class="keyword">this</span>.innerCount)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  template:</span><br><span class="line">  <span class="string">`&lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;innerCount&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="innerCount+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="syncCount"&gt;sync&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    outerCount:<span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="跨組件的溝通"><a href="#跨組件的溝通" class="headerlink" title="跨組件的溝通"></a>跨組件的溝通</h2><p>上、下組件的溝通，可以透過 <code>$emit</code> 與 <code>props</code>來做溝通、傳遞資料，但如果組件之間並非上、下關聯，而是跨組件的關係，則有幾種溝通方式：</p>
+<ol>
+<li>使用多次 <code>$emit</code> 與 <code>props</code> 傳遞：不建議，會造成混亂</li>
+<li>使用 event bus</li>
+<li>使用 Vuex</li>
+</ol>
+<h3 id="event-bus"><a href="#event-bus" class="headerlink" title="event bus"></a>event bus</h3><p>專門用來發出事件跟偵聽事件的渠道，本身是一個 Vue 實體，不綁定任何 element</p>
+<p><a href="https://codepen.io/leah-lin/pen/LYYzeLP?editors=1010" target="_blank" rel="noopener">codepen結果呈現</a></p>
+<p>舉例說明：</p>
+<ul>
+<li>首先 <code>const bus = new Vue();</code> 創建一個 Vue 實體來代表 event bus</li>
+<li>要推送資料給 event bus，使用 <code>bus.$emit</code> 發送 ‘add’ 事件給 event bus</li>
+<li>要從 event bus 接受事件、資料，則是在 mounted 生命週期階段裡，用 <code>bus.$on</code> 去偵聽 ‘add’ 事件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;my-count&gt;&lt;/my-count&gt;</span><br><span class="line">  &lt;my-button&gt;&lt;/my-button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bus = <span class="keyword">new</span> Vue();</span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">'my-count'</span>,&#123;</span><br><span class="line">  template:<span class="string">'&lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;'</span>,</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">      count:<span class="number">0</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    bus.$on(<span class="string">'add'</span>,()=&gt;&#123;</span><br><span class="line">      <span class="keyword">this</span>.count += <span class="number">1</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">'my-button'</span>,&#123;</span><br><span class="line">  template:<span class="string">'&lt;button @click="add"&gt;+1&lt;/button&gt;'</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    addOne()&#123;</span><br><span class="line">      bus.$emit(<span class="string">'add'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/21/JavaScript-陣列處理方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript-陣列處理方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-v-on-綁定自訂事件"><span class="nav-number">1.</span> <span class="nav-text">使用 v-on 綁定自訂事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#給組件綁定原生事件"><span class="nav-number">2.</span> <span class="nav-text">給組件綁定原生事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sync修飾符"><span class="nav-number">3.</span> <span class="nav-text">.sync修飾符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自訂組件的-v-model"><span class="nav-number">4.</span> <span class="nav-text">自訂組件的 v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨組件的溝通"><span class="nav-number">5.</span> <span class="nav-text">跨組件的溝通</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#event-bus"><span class="nav-number">5.1.</span> <span class="nav-text">event bus</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
