@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>vue-(十六)狀態管理 vuex(2/2) | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Vue.jsVue">
+  
+  
+  
+  
+  <meta name="description" content="一個 vuex 的 Store 中有四大元素:  State Mutations Getters Actions  12345678910111213141516171819import Vue from &apos;vue&apos;;import Vuex from &apos;vuex&apos;;Vue.use(Vuex);const store = new Vuex.Store(&amp;#123;    state:&amp;#123;">
+<meta name="keywords" content="Vue.js,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-(十六)狀態管理 vuex(2&#x2F;2)">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/Vue-(十六)狀態管理vuex(2_2)/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="一個 vuex 的 Store 中有四大元素:  State Mutations Getters Actions  12345678910111213141516171819import Vue from &apos;vue&apos;;import Vuex from &apos;vuex&apos;;Vue.use(Vuex);const store = new Vuex.Store(&amp;#123;    state:&amp;#123;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-01T09:34:56.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-(十六)狀態管理 vuex(2&#x2F;2)">
+<meta name="twitter:description" content="一個 vuex 的 Store 中有四大元素:  State Mutations Getters Actions  12345678910111213141516171819import Vue from &apos;vue&apos;;import Vuex from &apos;vuex&apos;;Vue.use(Vuex);const store = new Vuex.Store(&amp;#123;    state:&amp;#123;">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Vue-(十六)狀態管理vuex(2_2)" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Vue-(十六)狀態管理 vuex(2/2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/11/01/Vue-(十六)狀態管理vuex(2_2)/" class="article-date">
+	  <time datetime="2019-11-01T09:33:50.796Z" itemprop="datePublished">November 1, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一個 vuex 的 Store 中有四大元素:</p>
+<ul>
+<li>State</li>
+<li>Mutations</li>
+<li>Getters</li>
+<li>Actions</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        <span class="comment">//count:0,</span></span><br><span class="line">        <span class="comment">//userName:"Amy",</span></span><br><span class="line">        <span class="comment">//list:[]</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        addCount(state)&#123;</span><br><span class="line">            state.count += <span class="number">1</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+<h2 id="存放狀態的-State"><a href="#存放狀態的-State" class="headerlink" title="存放狀態的 State"></a>存放狀態的 State</h2><p>state 是 Vuex.Store 中儲存狀態的物件，裡面就可以存放許多自定義的屬性資料</p>
+<p>日後會用到的資料，通常都會事先定義好屬性在 Store 中，即使是空字串、空陣列也沒關係，如果沒有事先定義好，之後就必須要用<code>Vue.set</code>的語法才能在 Store 中新增屬性資料。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        count:<span class="number">0</span>,</span><br><span class="line">        userName:<span class="string">""</span>,</span><br><span class="line">        list:[]</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        addCount(state)&#123;</span><br><span class="line">            state.count += <span class="number">1</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">        setLoading(state)&#123;</span><br><span class="line">            <span class="comment">//Store 中還沒有  loading 屬性，所以要用 Vue.set 去新增</span></span><br><span class="line">            Vue.set(state,<span class="string">'loading'</span>,<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="變更狀態的-Mutations"><a href="#變更狀態的-Mutations" class="headerlink" title="變更狀態的 Mutations"></a>變更狀態的 Mutations</h2><p>要改變 Store 中的屬性，唯一的方法是透過 Mutation，它的實作方法是在 callBack 函式中，把 state 作為參數傳進去，並在其中重新 assign 值給 state 的屬性。而 mutations 中的操作只能是「同步」操作，不能是非同步操作，如果要非同步操作只能在 actions 中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        count:<span class="number">0</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        addCount(state)&#123;</span><br><span class="line">            state.count += <span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//不得使用非同步操作，如：fetch</span></span><br><span class="line">            <span class="comment">// fetch(url).then(()=&gt;&#123;</span></span><br><span class="line">            <span class="comment">//     state.count +=1;</span></span><br><span class="line">            <span class="comment">// &#125;);</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="取得狀態的-Getters"><a href="#取得狀態的-Getters" class="headerlink" title="取得狀態的 Getters"></a>取得狀態的 Getters</h2><p>Getter 其實就是 Store 中的 computed</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        todos:[],</span><br><span class="line">    &#125;,</span><br><span class="line">    getters:&#123;</span><br><span class="line">        itemsNotDone(state)&#123;</span><br><span class="line">            <span class="keyword">return</span> state.todos.filter(<span class="function"><span class="params">item</span>=&gt;</span> !item.done).length;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//將 getters 拿進 getter 中用</span></span><br><span class="line">        itemsDone(state,getters)&#123;</span><br><span class="line">            <span class="keyword">return</span> state.todos.length - getters.itemsNotDone;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//getter 也可以回傳出一個函式</span></span><br><span class="line">        itemWithID(state)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function">(<span class="params">(id</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> state.todos.filter(<span class="function"><span class="params">item</span>=&gt;</span>item.id===id);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>在組件中要引用 getters 的做法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//&lt;script&gt;</span></span><br><span class="line"><span class="keyword">import</span> &#123;mapStates, mapGetters&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    computed:&#123;</span><br><span class="line">        ...mapStates([<span class="string">'todos'</span>]),</span><br><span class="line">        ...mapGetters([<span class="string">'itemNotDone'</span>,<span class="string">'itemWithID'</span>]),</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        test()&#123;</span><br><span class="line">            <span class="keyword">this</span>.itemWithID(<span class="string">'123'</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="發出指令的-Actions"><a href="#發出指令的-Actions" class="headerlink" title="發出指令的 Actions"></a>發出指令的 Actions</h2><p>前面提過，Mutations 裡面的操作只能是同步的，但若要透過「非同步」    的方式改變 State 裡的資料，就必須使用 Actions 來做操作。可是 Action<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        todos:[],</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        setTodos(state,todos)&#123;</span><br><span class="line">            state.todos = todos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    actions:&#123;</span><br><span class="line">        fetchTodos(context,payload)&#123;</span><br><span class="line">            fetch(url).</span><br><span class="line">            then(<span class="function"><span class="params">rs</span> =&gt;</span> rs.json()).</span><br><span class="line">            then(<span class="function"><span class="params">todos</span>=&gt;</span>&#123;</span><br><span class="line">                context.commit(<span class="string">'setTodos'</span>,todos);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//context 是一個包含 store 中一切的東西，</span></span><br><span class="line">        <span class="comment">//可是 context 比 store 還多了一些東西，</span></span><br><span class="line">        <span class="comment">//所以 context 不等同於 store。</span></span><br><span class="line">        <span class="comment">//因為我們只需要用到 context 中的 commit</span></span><br><span class="line">        <span class="comment">//所以這裡經常會使用到重新解構的語法：</span></span><br><span class="line">        fetchTodos(&#123;commit&#125;,payload)&#123;</span><br><span class="line">            ...</span><br><span class="line">            .then(<span class="function"><span class="params">todos</span>=&gt;</span>&#123;</span><br><span class="line">                commit(<span class="string">'setTodos'</span>,todos);</span><br><span class="line">            &#125;)</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>在組件中要引用 actions 的做法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&lt;/script&gt;</span></span><br><span class="line"><span class="keyword">import</span> &#123; mapActions&#125; <span class="keyword">from</span> Vuex;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        <span class="keyword">this</span>.$store.dispatch(<span class="string">'fetchTodos'</span>,&#123;<span class="attr">id</span>:<span class="number">2</span>&#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//或是將傳入 dispatch 的參數包成一個物件的寫法</span></span><br><span class="line">    mounted()&#123;</span><br><span class="line">        <span class="keyword">this</span>.$store.dispatch(&#123;</span><br><span class="line">            type:<span class="string">'fetchTodos'</span>,<span class="comment">//type 是固定的 key</span></span><br><span class="line">            id:<span class="number">2</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        ...mapActions([<span class="string">'fetchTodos'</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>進階補充：<br>Actions 可以回傳一個 Promise<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        todos:[],</span><br><span class="line">        loading:<span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        setTodos(state,todos)&#123;</span><br><span class="line">            state.todos = todos;</span><br><span class="line">        &#125;,</span><br><span class="line">        setLoading(state,loading)&#123;</span><br><span class="line">            state.loading = loading;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    actions:&#123;</span><br><span class="line">        fetchUserInfo()&#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;,</span><br><span class="line">        fetchTodos(&#123;commit,dispatch&#125;,payload)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span>=&gt;</span>&#123;</span><br><span class="line">                commit(<span class="string">'setLoadeing'</span>,<span class="literal">true</span>)</span><br><span class="line">                fetch(url)</span><br><span class="line">                .then(<span class="function"><span class="params">rs</span> =&gt;</span> rs.json())</span><br><span class="line">                .then(<span class="function"><span class="params">todos</span>=&gt;</span>&#123;</span><br><span class="line">                    commit(<span class="string">'setTodos'</span>,todos);</span><br><span class="line">                    commit(<span class="string">'setLoading'</span>,<span class="literal">false</span>);</span><br><span class="line">                    <span class="comment">//action 中可以放另一個 action</span></span><br><span class="line">                    dispatch(<span class="string">'fetchUserInfo'</span>);</span><br><span class="line">                    resolve();</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;) </span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&lt;/script&gt;</span></span><br><span class="line"><span class="keyword">import</span> &#123; mapActions&#125; <span class="keyword">from</span> Vuex;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        <span class="keyword">this</span>.$store.dispatch(<span class="string">'fetchTodos'</span>,&#123;<span class="attr">id</span>:<span class="number">2</span>&#125;)</span><br><span class="line">        .then((=&gt;&#123;</span><br><span class="line">            ...</span><br><span class="line">            ...</span><br><span class="line">        &#125;))</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        ...mapActions([<span class="string">'fetchTodos'</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>補：因為 fetch() 本身是個 Promise，所以可以簡化寫法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="comment">//簡化前</span></span><br><span class="line">fetchTodos(&#123;commit,dispatch&#125;,payload)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span>=&gt;</span>&#123;</span><br><span class="line">        commit(<span class="string">'setLoadeing'</span>,<span class="literal">true</span>)</span><br><span class="line">        fetch(url)</span><br><span class="line">        .then(<span class="function"><span class="params">rs</span> =&gt;</span> rs.json())</span><br><span class="line">        .then(<span class="function"><span class="params">todos</span>=&gt;</span>&#123;</span><br><span class="line">            commit(<span class="string">'setTodos'</span>,todos);</span><br><span class="line">            commit(<span class="string">'setLoading'</span>,<span class="literal">false</span>);</span><br><span class="line">            <span class="comment">//action 中可以放另一個 action</span></span><br><span class="line">            dispatch(<span class="string">'fetchUserInfo'</span>);</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//簡化後</span></span><br><span class="line">fetchTodos(&#123;commit,dispatch&#125;,payload)&#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(url)</span><br><span class="line">        .then(<span class="function"><span class="params">rs</span> =&gt;</span> rs.json())</span><br><span class="line">        .then(<span class="function"><span class="params">todos</span>=&gt;</span>&#123;</span><br><span class="line">            commit(<span class="string">'setTodos'</span>,todos);</span><br><span class="line">            commit(<span class="string">'setLoading'</span>,<span class="literal">false</span>);</span><br><span class="line">            <span class="comment">//action 中可以放另一個 action</span></span><br><span class="line">            dispatch(<span class="string">'fetchUserInfo'</span>);</span><br><span class="line">            resolve();</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/30/Vue-(十三)自訂事件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue-(十三)自訂事件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存放狀態的-State"><span class="nav-number">1.</span> <span class="nav-text">存放狀態的 State</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變更狀態的-Mutations"><span class="nav-number">2.</span> <span class="nav-text">變更狀態的 Mutations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取得狀態的-Getters"><span class="nav-number">3.</span> <span class="nav-text">取得狀態的 Getters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#發出指令的-Actions"><span class="nav-number">4.</span> <span class="nav-text">發出指令的 Actions</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
