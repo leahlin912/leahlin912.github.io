@@ -158,6 +158,395 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-JavaScript-陣列" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-陣列/" class="article-date">
+	  <time datetime="2019-05-13T10:07:47.397Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="宣告陣列"><a href="#宣告陣列" class="headerlink" title="宣告陣列"></a>宣告陣列</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般宣告語法</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//或使用陣列實體語法</span></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在中括號中，用逗號分隔值</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//index從0開始，抓出陣列中的值</span></span><br><span class="line">arr[<span class="number">0</span>];<span class="comment">//a</span></span><br><span class="line">arr[<span class="number">1</span>];<span class="comment">//b</span></span><br><span class="line">arr[<span class="number">2</span>];<span class="comment">//c</span></span><br></pre></td></tr></table></figure>
+<h3 id="JS的陣列特性"><a href="#JS的陣列特性" class="headerlink" title="JS的陣列特性"></a>JS的陣列特性</h3><p>在其他程式語言的陣列中，通常都能包含同一種型別的值。比如說，數字陣列、字串陣列、物件陣列。</p>
+<p>可是在JavaScript中，因為「動態型別」的特性，陣列中可以混合各種不同型別的值，JavaScript會自動去判別每一個值得型別。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'member'</span>,</span><br><span class="line">    <span class="literal">false</span>,</span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">'Amy'</span>,</span><br><span class="line">        age:<span class="string">'20'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> greeting = <span class="string">'hi'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(greeting + name)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'newMember'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/nT5MBLJ.png" alt><br>若要執行陣列中的函式，可以使用陣列的index，呼叫出陣列中的東西，包含陣列中函式、字串、物件…等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr[<span class="number">4</span>](arr[<span class="number">3</span>].name);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/ruKqxKc.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-_this_關鍵字" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/13/JavaScript-_this_關鍵字/">JavaScript-&#34;this&#34;關鍵字</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-_this_關鍵字/" class="article-date">
+	  <time datetime="2019-05-13T10:07:41.964Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="全域this"><a href="#全域this" class="headerlink" title="全域this"></a>全域this</h3><p>在全域環境中取用this，會指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p>而在瀏覽器中執行，瀏覽器的全域物件為window物件。<br><img src="https://i.imgur.com/gep8H4i.png" alt></p>
+<h3 id="函式中的this"><a href="#函式中的this" class="headerlink" title="函式中的this"></a>函式中的this</h3><p>每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。</p>
+<p>下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代表執行該函式的程式屬性(code)，也就是函式中的全部程式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure></p>
+<p>實行結果，在a函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/NuOwXaL.png" alt><br>下述另一個案例，使用函式表示式來設定一個物件函式，再將之assign給變數b。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，在b函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/wTE9q2F.png" alt></p>
+<h3 id="函式中創建全域物件"><a href="#函式中創建全域物件" class="headerlink" title="函式中創建全域物件"></a>函式中創建全域物件</h3><p>下述程式碼統整目前的案例，有三個執行環境被產生：</p>
+<ol>
+<li>全域環境</li>
+<li>呼叫函式a，產生的區域環境</li>
+<li>呼叫函式b，產生的區域環境</li>
+</ol>
+<p>在每個執行環境中，分別產生三個不同的this變數，可是三個this都指向同一個位址(同一個全域物件window)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p>小結，在函式中呼叫this，會指向全域變數，而非函式本身。</p>
+<p>在下述程式碼中，在a函式中的this代表全域物件Window，所以宣告this.newVar代表宣告一個全域變數。<br>也因此，直接在全域log出變數newVar不會出錯，因為它確實在執行a函式時，就已經被宣告出來了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.newVar = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(newVar);</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，會將newVar印出值為’hello’，且若點開Window物件中，也可以看到確實有一個變數為newVar。<br><img src="https://i.imgur.com/5rRjEzJ.png" alt></p>
+<h3 id="物件中的this"><a href="#物件中的this" class="headerlink" title="物件中的this"></a>物件中的this</h3><p>宣告一個物件c，在其中有屬性name，也有方法log，接著用c.log()執行物件c中的方法log。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，在物件c的方法log中的this，代表物件c。<br><img src="https://i.imgur.com/mzbz5Tu.png" alt></p>
+<p>小結，當函式是物件的方法時，在其中呼叫的this變數會指向該物件本身。換句話說，this變數會指向包含它的物件。</p>
+<h3 id="在物件方法中修改物件的屬性"><a href="#在物件方法中修改物件的屬性" class="headerlink" title="在物件方法中修改物件的屬性"></a>在物件方法中修改物件的屬性</h3><p>物件c的log方法中，因為this代表物件c本身，所以用this.name代表物件c的屬性，藉此更改其值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update c obj'</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p>執行結果，可以看到物件c的屬性name確實被修改了。<br><img src="https://i.imgur.com/P84OH5Y.png" alt></p>
+<h3 id="self宣告模式，解決JS的不完美"><a href="#self宣告模式，解決JS的不完美" class="headerlink" title="self宣告模式，解決JS的不完美"></a>self宣告模式，解決JS的不完美</h3><p>在物件d的方法log中，宣告一個函式物件setName，在其中的this變數並不會指向物件d，而是指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = &#123;</span><br><span class="line">    name: <span class="string">'The d obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update d obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/UbQJURB.png" alt></p>
+<p><img src="https://i.imgur.com/YRJBgrT.png" alt></p>
+<p>許多人會認為這是JavaScript本身的bug，但是事實上他就是這麼運作，因此若要避免產生錯誤，業界有一套常用的模式來應付這種狀況。</p>
+<p>通常會在物件方法的第一行，宣告一個新的變數self，並且讓this指派給他，因為物件的assign是call by reference，因此self會指向this同一個位置，確保兩者指向同一物件e。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = &#123;</span><br><span class="line">    name: <span class="string">'The e obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        self.name = <span class="string">'update e obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            self.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update e again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">e.log();</span><br></pre></td></tr></table></figure></p>
+<p>當有了一個變數self，之後修改或呼叫，就直接用self以確保是指向物件e。<br><img src="https://i.imgur.com/gDjk5HV.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-傳值與傳參考" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/13/JavaScript-傳值與傳參考/">JavaScript-傳值與傳參考</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-傳值與傳參考/" class="article-date">
+	  <time datetime="2019-05-13T10:07:36.885Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="傳值-by-value"><a href="#傳值-by-value" class="headerlink" title="傳值(by value)"></a>傳值(by value)</h3><p>首先宣告一個變數a，並且assign一個純值(primitive)給a，則在記憶體中會有以個0x001位置存有該值，等著被a參照。<br>接著，宣告一個變數b，並且將a指派給b (b = a)，實際上的執行狀況，會將a參照到的記憶體位置中的值複製到一個新的記憶體位置0x002，再讓b可以參照到它。<br><img src="https://i.imgur.com/XBn7gaT.png" alt></p>
+<p>以下方程式碼為例，當執行到第6行，若重新assign一個值給a，並不會影響到b的值，因為a跟b是指向不同的記憶體位置，兩者的值不會互相被影響。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//call by value(primitives)</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="傳參考-by-reference"><a href="#傳參考-by-reference" class="headerlink" title="傳參考(by reference)"></a>傳參考(by reference)</h3><p>首先有一個變數a，將一個物件(包含函式)指派給該變數，則在記憶體中會有一個位置0x001存有該物件，並透過記憶體位置被a參照到。<br>接著，宣告一個變數b，並且將a指派給b (b = a)，此時並不會得到一個新的物件以及新的記憶體位置，而是會讓b也參照到跟a同個物件所在記憶體中的位置，也就是同樣指向0x001。<br>這也代表，如果a的值被改變，b的值也同樣會被改變，因為它們兩者指向的物件就是同一個物件。</p>
+<p><img src="https://i.imgur.com/D2BcuKn.png" alt></p>
+<p>以下方程式碼為例，當執行到第6行，執行mutate，改變a物件中的值，接著再分別印出a、b的值，會發現兩者的結果皆被改變為mutate後的值了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// call by reference(all objects, including functions)</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line">a.greeting = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="傳參考-用於參數）"><a href="#傳參考-用於參數）" class="headerlink" title="傳參考(用於參數）"></a>傳參考(用於參數）</h3><p>在第5行，b已經指向a同個物件的記憶體，而當第9行將b作為傳入參數作為函式中obj物件，在第7行被mutate之後，最終a跟b所印出的值皆相同，因為兩者皆是指向同個記憶體位置中的同個物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//call by reference (even as parameters)</span></span><br><span class="line"><span class="keyword">var</span> a =&#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeGreeting</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    obj.greeting = <span class="string">'hola'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeGreeting(b);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用等號運算子，創建一個新的記憶體空間"><a href="#使用等號運算子，創建一個新的記憶體空間" class="headerlink" title="使用等號運算子，創建一個新的記憶體空間"></a>使用等號運算子，創建一個新的記憶體空間</h3><p>透過”=”運算子創建物件，藉由這個物件實體語法，因為不知道<code>{ greeting:&#39;hola&#39;}</code>是否已經存在於記憶體，所以會另外創建一個記憶體空間給新的物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//equals operator sets up a new memory space(new address)</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line"></span><br><span class="line">a.greting = <span class="string">'hello'</span>;</span><br><span class="line">a = &#123; <span class="attr">greeting</span>:<span class="string">'hola'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Z9ul7iY.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-函數陳述式與函數表示式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/13/JavaScript-函數陳述式與函數表示式/">JavaScript-函數陳述式與函數表示式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-函數陳述式與函數表示式/" class="article-date">
+	  <time datetime="2019-05-13T10:07:31.804Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="陳述式vs-表示式"><a href="#陳述式vs-表示式" class="headerlink" title="陳述式vs.表示式"></a>陳述式vs.表示式</h3><ul>
+<li>陳述式(Statement)只是去做某件事。</li>
+<li>表示式(Expression)是程式碼的單位，位，會形成一個值，但不一定要存於一個變數中。<h3 id="陳述式"><a href="#陳述式" class="headerlink" title="陳述式"></a>陳述式</h3>if本身只是一個陳述句，它會去做其他事，但是不會回傳任何值。而在if的()中的條件是表示式，因為他會回傳一個值，true或false。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">3</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="表示式"><a href="#表示式" class="headerlink" title="表示式"></a>表示式</h3><p>以下三行分別的程式碼，都是一個表示式，因為他們執行完之後，都會回傳一個值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span>;<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="attr">language</span>:<span class="string">'english'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>以下執行結果可證，程式碼會回傳一個值，這個值可以是數值、字串或物件，無論是什麼型態都可以。<br><img src="https://i.imgur.com/GLFpmPO.png" alt></p>
+<h3 id="函數陳述式"><a href="#函數陳述式" class="headerlink" title="函數陳述式"></a>函數陳述式</h3><p>當它被呼叫執行，它不會回傳值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/5fk468r.png" alt></p>
+<h3 id="函數表示式"><a href="#函數表示式" class="headerlink" title="函數表示式"></a>函數表示式</h3><p>先宣告一個變數，並將一個函式assigm給該變數。因為函式在JavaScript中是一個物件，所以當該函式被指派給anonymousGreet變數時，在記憶體中的，anonymousGreet變數就會指向函式物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> anonymousGreet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line">anonymousGreet();</span><br></pre></td></tr></table></figure></p>
+<p>在這個例子中，該函式中並沒有name，是一個匿名函式，不過因為被assign給變數，所以可以透過該變數名去參照它。<br><img src="https://i.imgur.com/tVSRT8d.png" alt></p>
+<p>所以在下圖中特別被標記出的這段程式碼為函數表示式，當整段程式碼執行時，會叫出函式物件並作回傳。<br><img src="https://i.imgur.com/Rw1VT8e.png" alt></p>
+<h3 id="函數表示式並不會被hositing"><a href="#函數表示式並不會被hositing" class="headerlink" title="函數表示式並不會被hositing"></a>函數表示式並不會被hositing</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">anonymousGreet();<span class="comment">//Uncaught TypeError: undefined is not a function.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anonymousGreet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">anonymousGreet();<span class="comment">//hi</span></span><br></pre></td></tr></table></figure>
+<p>在程式碼的創建階段，會在記憶體中創建變數anonymousGreet，預設值為undefined。<br>開始執行，第1行呼叫函式，卻發現anonymousGreet為undefined值，而非一個函式，因此就會被出錯。<br>因此正確寫法，應該是要在執行完第3行，assign一個函式給變數之後，才能如第7行呼叫。</p>
+<h3 id="將函數表示式作為傳入參數"><a href="#將函數表示式作為傳入參數" class="headerlink" title="將函數表示式作為傳入參數"></a>將函數表示式作為傳入參數</h3><p>在JavaScript中，函式為一級函式，也就是函式可以視為物件，因此也可以作為將函式表示式作為另外一個函式的傳入參數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    a();</span><br><span class="line">&#125;</span><br><span class="line">log(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-函式就是物件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/13/JavaScript-函式就是物件/">JavaScript-函式就是物件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/13/JavaScript-函式就是物件/" class="article-date">
+	  <time datetime="2019-05-13T10:07:26.114Z" itemprop="datePublished">May 13, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一級函式-First-class-function"><a href="#一級函式-First-class-function" class="headerlink" title="一級函式(First class function)"></a>一級函式(First class function)</h3><p>在JavaScript中，函式可以被視作一級值。<br><strong>一級函式(First class function)</strong>，指的是可以處理程式語言中對其他任何型別(物件、字串、布林值、純值)的方式來處理它；換句話說，我們也可以對一級函式做出任何其他型別能做得到的事，包含以下：</p>
+<ul>
+<li>將函式賦值給一個變數</li>
+<li>將函式當成傳入參數，成為另外一個函式的引數</li>
+<li>函式可以作為回傳值(在一個函式中，回傳另一個函式)</li>
+</ul>
+<h3 id="函式是特殊型態的物件"><a href="#函式是特殊型態的物件" class="headerlink" title="函式是特殊型態的物件"></a>函式是特殊型態的物件</h3><p>在JavaScript中的函式有物件的特色，是一種特殊型態的物件。<br><img src="https://i.imgur.com/w5YvQUO.png" alt></p>
+<ul>
+<li>函式中可以附屬有純值(primitive)(用name/value pair表示)</li>
+<li>函式中可以附屬有物件</li>
+<li>函式中可以附屬有其他函式</li>
+</ul>
+<p>另外，函式包含兩個特別的屬性，一個是名稱(name)，一個是執行的程式內容(code)。</p>
+<ul>
+<li>在name的部分，函式可以是匿名的(anonymous)，也就是可以不一定要有name。</li>
+<li>而code的部分，也就是我們撰寫的程式碼內容。換句話說，我們撰寫的程式碼並非函式，而只是函式這個特殊物件中的一個屬性而已。而這個屬性可以透過”()”方法被呼叫、執行。</li>
+</ul>
+<h3 id="程式碼說明"><a href="#程式碼說明" class="headerlink" title="程式碼說明"></a>程式碼說明</h3><p>首先宣告一個函式為greet，因為在JavaScript中的函式同等於物件，因此我們用”.”為greet創造language屬性的值。在其他程式語言中，這樣會出錯，但是在JavaScript中是可行的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet.language = <span class="string">'english'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(greet);</span><br><span class="line"><span class="built_in">console</span>.log(greet.language);</span><br></pre></td></tr></table></figure></p>
+<p>執行印出結果<br><img src="https://i.imgur.com/Nx8Xzuq.png" alt></p>
+<p>以下解釋整個創建、執行的過程。</p>
+<p><img src="https://i.imgur.com/fsURtx7.png" alt><br>首先在創建階段會在全域記憶體中先創建一個全域物件，他的名稱是greet。而他的程式屬性，包含所寫的程式碼內容。而用”()”呼叫，即可執行該函式。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-JSON與物件實體" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/08/JavaScript-JSON與物件實體/" class="article-date">
+	  <time datetime="2019-05-08T11:47:13.888Z" itemprop="datePublished">May 8, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JSON的發展"><a href="#JSON的發展" class="headerlink" title="JSON的發展"></a>JSON的發展</h3><p><strong>JSON</strong>(JavaScript Object Notation)是被JavaScript物件實體語法(Object literal syntax)所啟發的。</p>
+<p>多年前，網路資料的傳輸格式很多種，像是XML。透過tag標籤，伺服器會解析它的資訊，可是當要下載資料時，因為過多不必要的tag符號，導致資料便很龐大，佔據很多頻寬。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//xml格式範例</span><br><span class="line"><span class="tag">&lt;<span class="name">object</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">firstname</span>&gt;</span>Mary<span class="tag">&lt;/<span class="name">firstname</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">isAProgrammer</span>&gt;</span>true<span class="tag">&lt;/<span class="name">isAProgrammer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>後來發現JavaScript物件實體語法(Object literal syntax)的格式更簡易。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">    firstName:<span class="string">'Mary'</span>,</span><br><span class="line">    isAProgrammer:<span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此，發展出一串字串的JSON格式，現今普遍都是使用JSON格式傳輸資料。</p>
+<p>JSON格式有一些規範，<strong>屬性命名一定要被包在引號””中</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"firstName"</span>:<span class="string">"Mary"</span>,</span><br><span class="line">    <span class="string">"isAProgrammer"</span>:<span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="轉換JSON的方法"><a href="#轉換JSON的方法" class="headerlink" title="轉換JSON的方法"></a>轉換JSON的方法</h3><p>在JavaScript中，有兩個內建的函式可以轉化JSON格式。</p>
+<ul>
+<li><p>將物件轉化為JSON字串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(object)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>將JSON字串轉化回物件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(<span class="string">'&#123;</span></span><br><span class="line"><span class="string">    "firstName":"Mary",</span></span><br><span class="line"><span class="string">    "isAProgrammer":true</span></span><br><span class="line"><span class="string">&#125;'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(object));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonValue = <span class="built_in">JSON</span>.parse(<span class="string">'&#123;</span></span><br><span class="line"><span class="string">    "firstName":"Mary",</span></span><br><span class="line"><span class="string">    "isAProgrammer":true</span></span><br><span class="line"><span class="string">&#125;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonValue);</span><br></pre></td></tr></table></figure>
+<p>上述程式碼會印出下方所示的結果，先是印出一個JSON字串，接著再印出一個物件<br><img src="https://i.imgur.com/mtLqSVZ.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-JavaScript-物件" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -380,393 +769,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-JavaScript-型別" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-型別/">JavaScript-型別</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-型別/" class="article-date">
-	  <time datetime="2019-05-03T06:16:44.010Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="動態型別-Dynamic-Typing"><a href="#動態型別-Dynamic-Typing" class="headerlink" title="動態型別(Dynamic Typing)"></a>動態型別(Dynamic Typing)</h2><p>在JavaScript中，不需要宣告變數的型別，因為JavaScript是使用「動態型別」在處理變數。</p>
-<p>僅需要宣告變數(type)，不需要告訴JavaScript變數的型別(type)，它會在執行程式時，自動判別變數的型別，而且一個變數在不同時候可能擁有不同型別。</p>
-<h2 id="JavaScript的六種純值-primitive"><a href="#JavaScript的六種純值-primitive" class="headerlink" title="JavaScript的六種純值(primitive)"></a>JavaScript的六種純值(primitive)</h2><p>純值是一種資料型別，代表基本型別，只是一個值，而非物件。</p>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>JavaScript給所有變數的初始值，變數會一直處於undefined，直到程式碼執行到設定變數的值</p>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>表示不存在，可以在程式宣告時，給與該變數的值為null，用以表示該變數沒有值。</p>
-<h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><p>表示對或錯，用true或false表示值</p>
-<h3 id="Number-數值"><a href="#Number-數值" class="headerlink" title="Number(數值)"></a>Number(數值)</h3><p>在JavaScript中的數值皆為浮點數，不像其他程式語言還會細分整數或其他浮點數等，所以在JavaScript中也可以直接把他假裝為整數。</p>
-<h3 id="String-字串"><a href="#String-字串" class="headerlink" title="String(字串)"></a>String(字串)</h3><p>由一連串字符所組成，可以單引號或雙引號表示</p>
-<h3 id="Symbal-符號"><a href="#Symbal-符號" class="headerlink" title="Symbal(符號)"></a>Symbal(符號)</h3><p>這是新的型別，被用在ES6中，尚未被全部的瀏覽器支援</p>
-<h2 id="強制型轉-Coercion"><a href="#強制型轉-Coercion" class="headerlink" title="強制型轉(Coercion)"></a>強制型轉(Coercion)</h2><p>JavaScript引擎自動將1轉換為字串’1’，才繼續做相加運算，自動避免出錯<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//12</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-執行緒、同步與非同步" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-執行緒、同步與非同步/">JavaScript-執行緒、同步與非同步</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-執行緒、同步與非同步/" class="article-date">
-	  <time datetime="2019-05-03T06:16:38.051Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="單執行緒-Single-Threaded"><a href="#單執行緒-Single-Threaded" class="headerlink" title="單執行緒(Single Threaded)"></a>單執行緒(Single Threaded)</h3><p>在程式碼裡面都有很多指令，單執行緒代表一次只執行一個指令。</p>
-<h3 id="同步執行-Synchronous"><a href="#同步執行-Synchronous" class="headerlink" title="同步執行(Synchronous)"></a>同步執行(Synchronous)</h3><p>對程式語言來說，是一次一個，而且照出現順序一行一行執行。</p>
-<h3 id="非同步執行-Asynchronous"><a href="#非同步執行-Asynchronous" class="headerlink" title="非同步執行(Asynchronous)"></a>非同步執行(Asynchronous)</h3><p>在同一時間中，不只一個在執行。</p>
-<h3 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h3><p>JavaScript引擎本身並非獨立存在，比如說在瀏覽器中，JavaScript並非唯一的東西，還會有其他的引擎處理別的程式，像是rendering engine會顯示畫面到螢幕中，或是也有負責處理HTTP請求資料的。</p>
-<p>JavaScript引擎外部可以跟其他的引擎相互溝通，而且可以是<strong>非同步</strong>處理，也就是說JavaScript引擎、rendering engine、HTTP請求，這三者可以同時都在進行處理、執行。</p>
-<p>然而，JavaScript引擎本身，是單執行緒和同步執行的。也就是說，在JavaScript引擎裡面，程式碼是一行一行被解讀。</p>
-<p>總結，<strong>JavaScript引擎本身是單執行緒、同步執行，而向外的溝通、請求可以是非同步執行</strong>。</p>
-<p><img src="https://i.imgur.com/Uy3FgZe.jpg" alt></p>
-<h3 id="事件佇列-Event-Queue"><a href="#事件佇列-Event-Queue" class="headerlink" title="事件佇列(Event Queue)"></a>事件佇列(Event Queue)</h3><p>前面提到，JavaScript引擎本身是同步執行，但是當JavaScript引擎接收到從外部來的一個需要處理事件時，在JavaScript引擎中會先被放到等待列，也就是先放進事件佇列(Event Queue)。</p>
-<p><img src="https://i.imgur.com/v5ZxPRB.png" alt></p>
-<p>JavaScript引擎還是會先處理完執行堆處理完，直到b()結束、a()結束、全域結束都從執行堆中pop掉，當執行堆是空的時候，JavaScript才會注意到Event Queue。</p>
-<p><img src="https://i.imgur.com/3u60bpf.png" alt></p>
-<p>首先處理click事件，看到該事件觸發執行clickHandler()，所以就在執行堆中創建一個執行環境給它。當該事件處理完畢，被pop掉之後，執行堆中又被淨空了，才再繼續處理下一個佇列事件。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-範圍鏈(scope chain)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-範圍鏈(scope chain)/">JavaScript-範圍鏈(scope chain)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-範圍鏈(scope chain)/" class="article-date">
-	  <time datetime="2019-05-03T06:16:31.852Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="外部環境參照"><a href="#外部環境參照" class="headerlink" title="外部環境參照"></a>外部環境參照</h3><p>每個執行環境都會有一個外部環境參照，用意是當使用變數時，JavaScript不只會在當前的執行環境中尋找變數，也會到外部環境參眾中尋找變數<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myVar);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myVar = <span class="number">2</span>;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myVar = <span class="number">1</span>;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/tdILu0U.png" alt></p>
-<h3 id="範圍鍊"><a href="#範圍鍊" class="headerlink" title="範圍鍊"></a>範圍鍊</h3><p>當在目前執行環境找不到變數或函式時，JavaScript會往外部環境參照找，若沒有找到，則再外繼續往下一層的外部環境找，一直往範圍鍊下面找，直到最底層的全域環境中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myVAr);<span class="comment">//1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(myVAr);<span class="comment">//2</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> myVar = <span class="number">2</span>;</span><br><span class="line">    b();</span><br><span class="line">    c();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myVar = <span class="number">1</span>;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
-<p>注意！<br>在範圍鍊中，每個執行環境的外部環境參照與「執行堆的上下位置」<strong>沒有</strong>關係，而是取決於「程式碼中的<strong>物理位置</strong>」<br><img src="https://i.imgur.com/qAabdps.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-執行堆" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-執行堆/">JavaScript-執行堆</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-執行堆/" class="article-date">
-	  <time datetime="2019-05-03T06:16:10.132Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="呼叫函數-Invocation"><a href="#呼叫函數-Invocation" class="headerlink" title="呼叫函數(Invocation)"></a>呼叫函數(Invocation)</h3><p>當我們說到invocation function或是 function invocation，代表是去執行這個函式。</p>
-<p>在JavaScript中，使用小括號()做「呼叫函式(invocation)」的動作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//宣告、定義a函式內容</span></span><br><span class="line">&#125;;</span><br><span class="line">a();<span class="comment">//呼叫a函式</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="執行堆-Execution-Stack"><a href="#執行堆-Execution-Stack" class="headerlink" title="執行堆(Execution Stack)"></a>執行堆(Execution Stack)</h3><p>每一次在JavaScript呼叫函式，就會創造出一個新的執行環境，並且堆疊放進執行堆中(後者在上)，這個執行環境中會有自己的記憶體空間，用以存取區域變數和函式，並獨立進行其中的區域創建與執行</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
-<p>上方的實際運作，當在全域creation創建階段時</p>
-<ol>
-<li>會在全域記憶體中創建a()與b()函式</li>
-</ol>
-<p>接著在全域execution執行階段時</p>
-<ol start="2">
-<li>讀到第7行時會呼叫a()函式，此時就會創造一個新的執行環境，放到執行堆中</li>
-<li>當進入a()函式中呼叫到b()函式時，則會暫停當前的執行，另外創建一個新的執行環境，放到執行堆中</li>
-<li>當b()函式執行完畢之後，該執行環境就會從之星堆被拿掉(pop)</li>
-<li>接著回到a()函式中，執行完畢後，該執行環境再被拿掉(pop)</li>
-<li>最後回到全域繼續執行完畢</li>
-</ol>
-<p><img src="https://i.imgur.com/mCowXLD.png" alt></p>
-<h3 id="變數環境"><a href="#變數環境" class="headerlink" title="變數環境"></a>變數環境</h3><p>每當一個執行環境被創造時，他都會有獨立的記憶體空間，用以存取區域變數和函式。</p>
-<p><strong>變數環境</strong>指的是，創建變數的位置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myVar;</span><br><span class="line">    <span class="built_in">console</span>.log(myVar);<span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myVar = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(myVar);<span class="comment">//2</span></span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myVar =<span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(myVar);<span class="comment">//1</span></span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(myVar);<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<p>上方的實際運作，當在全域creation創建階段時</p>
-<ol>
-<li>會在全域記憶體中創建a()與b()函式，以及變數myVar初始值為undefined</li>
-</ol>
-<p>接著在全域execution執行階段時</p>
-<ol start="2">
-<li>讀到第10行時，會在全域的記憶體中設定變數myVar的值為1</li>
-<li>讀到第12行時會呼叫a()函式，此時就會創造一個新的執行環境，放到執行堆中。在其中的獨立記憶體，創建變數myVar，同樣先給預設值undefined，等到執行到第6行內容，才設定myVar的值為2</li>
-<li>在a()函式中呼叫到b()函式時，則會暫停a()當前的執行，另外創建一個新的執行環境，放到執行堆中</li>
-<li>在b()函式中，又再獨立的記憶體中創建變數myVar，同樣先給預設值undefined</li>
-<li>當b()函式執行完畢之後，該執行環境就會從之星堆被拿掉(pop)</li>
-<li>接著回到a()函式中，執行完畢後，該執行環境再被拿掉(pop)</li>
-<li>最後回到全域繼續執行完畢<br><img src="https://i.imgur.com/frfVOWu.png" alt></li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-undefined vs. not defined" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-undefined vs. not defined/">JavaScript-undefined vs. not defined</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-undefined vs. not defined/" class="article-date">
-	  <time datetime="2019-05-03T06:15:59.303Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="undefined值"><a href="#undefined值" class="headerlink" title="undefined值"></a>undefined值</h3><p><strong>undefined</strong>是JavaScript中一個特殊的值，用以表示這個變數僅被宣告出來，可是值尚未被設定。</p>
-<p>實際的運作上，會在creation創建階段先在記憶體中宣告一個變數a，並且給予undefined值。而進入execution執行階段，因為在呼叫變數a之前，沒有定義a的值，所以印出來的值就是undefined值。<br><img src="https://i.imgur.com/PVRhRc9.png" alt></p>
-<h3 id="not-defined錯誤"><a href="#not-defined錯誤" class="headerlink" title="not defined錯誤"></a>not defined錯誤</h3><p>如果變數完全沒有被宣告，在creation創建階段並沒有任何變數被宣告出來，進入execution執行階段，當要呼叫變數b時，因為記憶體中完全沒有b這個變數及值，就會出現not defined錯誤。<br><img src="https://i.imgur.com/BCvbmrC.png" alt></p>
-<h3 id="補充：最好不要宣告值為undefined"><a href="#補充：最好不要宣告值為undefined" class="headerlink" title="補充：最好不要宣告值為undefined"></a>補充：最好不要宣告值為undefined</h3><p><strong>undefined</strong>通常都是在creation創建階段，系統給予變數的一個預設值。雖然也可以人工宣告變數為undefined，可是會導致日後degub的困難。<br><img src="https://i.imgur.com/lqwfome.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-提升(Hoisting)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/JavaScript-提升(Hoisting)/">JavaScript-提升(Hoisting)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/03/JavaScript-提升(Hoisting)/" class="article-date">
-	  <time datetime="2019-05-03T06:15:48.791Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>javascript的執行環境分為兩階段，會先經歷<strong>創建階段(creation)</strong>，之後才正式進入程式碼<strong>執行階段(exection)</strong>。</p>
-<p>在創建階段中會將函式及變數先設置在記憶體中，而這個動作稱作「提升(hoisting)」，另外細分解釋<strong>函式提升</strong>及<strong>變數提升</strong>。</p>
-<h3 id="函式提升"><a href="#函式提升" class="headerlink" title="函式提升"></a>函式提升</h3><p>在執行任何程式碼前，JavaScript 會把「函式宣告初始化」放進記憶體裡面，意思是函式{}的內容都會在創建階段放在記憶體中。</p>
-<h3 id="變數提升"><a href="#變數提升" class="headerlink" title="變數提升"></a>變數提升</h3><p>在創建階段，電腦的記憶體為a空出記憶體，可是他還不知道他的值為何，會先給予一個undefine的值，等到執行階段賦值時，才會將a的值放進記憶體中。也因此下方案例，印出a並不會出錯，只是它的值為undefine。<br><img src="https://i.imgur.com/z5usW8d.png" alt></p>
-<h3 id="程式實際執行程序"><a href="#程式實際執行程序" class="headerlink" title="程式實際執行程序"></a>程式實際執行程序</h3><ol>
-<li><p>首先在creation創建階段，會做：</p>
-<ul>
-<li>函式提升-在記憶體中創建函式b(){…}</li>
-<li>變數提升-在記憶體中創建出變數a，並給予預設值undefined</li>
-</ul>
-</li>
-<li><p>接著開始進入exection執行階段，由上而下一行一行編譯讀取程式碼 </p>
-<ul>
-<li>印出b的值(將b函式內容印出來)</li>
-<li>呼叫b()</li>
-<li>印出a的值(此時的值仍為預設值undefined)</li>
-<li>設定a的值為’I am a’</li>
-<li>印出a的值(此時的值為’I am a’)</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(b); </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'called b.'</span>);</span><br><span class="line">&#125;</span><br><span class="line">b();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'I am a'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
-<p>完整執行結果如下<br><img src="https://i.imgur.com/4AD2XuB.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -829,8 +836,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/11/01/Vue-(十六)狀態管理vuex(2_2)/">Vue-(十六)狀態管理 vuex(2/2)</a></h6>
-              <span>November 1, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
+              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -841,8 +848,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/10/30/Vue-(十三)自訂事件/">Vue-(十三)自訂事件</a></h6>
-              <span>October 30, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-物件導向class/">ES6-物件導向class</a></h6>
+              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -853,8 +860,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/10/21/JavaScript-陣列處理方法/">JavaScript-陣列處理方法</a></h6>
-              <span>October 21, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-import與export/">ES6-import與export</a></h6>
+              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -865,8 +872,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-自定義directive/">Vue-自定義directive</a></h6>
-              <span>October 5, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-箭頭函示/">ES6-箭頭函示</a></h6>
+              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -877,8 +884,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十二)Props/">Vue-(十二)Props</a></h6>
-              <span>October 5, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-取代var的let跟const/">ES6-取代var的let跟const</a></h6>
+              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -889,8 +896,8 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/10/05/Vue-(十一)組件/">Vue-(十一)組件</a></h6>
-              <span>October 5, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/11/04/NVM-安裝及控管Node.js的版本/">NVM-安裝及控管Node.js的版本</a></h6>
+              <span>November 4, 2019</span>
             </div>
 
           </li>
@@ -904,7 +911,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -914,7 +921,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -924,7 +931,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
     </div>
   </div>
 
@@ -934,7 +941,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -948,7 +955,7 @@ var themeMenus = {};
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 Leah&#39;s Blog All Rights Reserved.
+	      &copy; 2020 Leah&#39;s Blog All Rights Reserved.
           
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
