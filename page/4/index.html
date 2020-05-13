@@ -158,6 +158,409 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-WebSocket-簡易server端實作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/WebSocket-簡易server端實作/">WebSocket-簡易server端實作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/WebSocket-簡易server端實作/" class="article-date">
+	  <time datetime="2019-06-12T02:40:41.700Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="server-端環境建置"><a href="#server-端環境建置" class="headerlink" title="server 端環境建置"></a>server 端環境建置</h3><p>首先，創立一個簡易的 WebSocket 資料夾專案，裡面有一個 index.js 檔案，以及一個 server 資料夾</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebSocket</span><br><span class="line">|--index.html</span><br><span class="line">|--server（forder）</span><br></pre></td></tr></table></figure>
+<p>啟用 terminal，進入 WebSocket 專案資料夾中做初始化設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>接著，系統執行過程中，會被要求輸入幾個欄位(可以直接按 enter 略過到下一個欄位)</p>
+<ul>
+<li>package name: 你這個 Project 要叫什麼名字</li>
+<li>version: 你決定這個 Project 現在該是第幾版</li>
+<li>description: Project 基本介紹</li>
+<li>entry point: 進入點，如果要跑你的 Project 應該要執行哪個檔案</li>
+<li>test command:</li>
+<li>git repository:</li>
+<li>keywords:</li>
+<li>author: 作者(自己)</li>
+<li>license: 你這個 Project 是採用什麼授權的</li>
+</ul>
+<p><img src="https://i.imgur.com/FGCHpqi.png" alt></p>
+<p>結束後，可以看到 server 這個資料夾底下，自動產生了一個 Package.json<br><img src="https://i.imgur.com/N6TfdsE.png" alt></p>
+<p>接著，在 server 資料夾中，手動新增 index.js 檔案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WebSocket</span><br><span class="line">|--index.html</span><br><span class="line">|--server（forder）</span><br><span class="line">    |-package.json</span><br><span class="line">    |-index.js</span><br></pre></td></tr></table></figure>
+<p>資料架構建置完，接著要在其中安裝 WebSocket:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ws</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/T6Ll0bd.png" alt><br>安裝完畢後，專案結構中會多出幾個檔案及資料夾，package-lock.json 中紀錄安裝套件相容的版本。<br><img src="https://i.imgur.com/Lgrc7E2.png" alt></p>
+<p>到目前為止，基本的環境建置完成。</p>
+<h3 id="建置後端-server"><a href="#建置後端-server" class="headerlink" title="建置後端 server"></a>建置後端 server</h3><p>這裡示範模擬 server，以本機端 5001 埠，作為配置 server 的接口。<br>在資料夾中的 index.js 檔案中，寫入以下程式碼：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//導入WebSocket模組</span></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">'ws'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用Server類</span></span><br><span class="line"><span class="keyword">var</span> WebSocketServer = WebSocket.Server;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立實體(實例化)</span></span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123;</span><br><span class="line">  port: <span class="number">5001</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>也可以將上述三行程式碼，簡易化為下述兩行寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123;</span><br><span class="line">  port: <span class="number">5001</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="啟用-Server"><a href="#啟用-Server" class="headerlink" title="啟用 Server"></a>啟用 Server</h3><p>「control + ` 」快捷鍵開啟 vscode 中的終端機。在終端機可以先確認當前位置，用下述指令進入 server 資料夾中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd server</span><br></pre></td></tr></table></figure>
+<p>在 server 中，輸入下述指令，<strong>啟用 server</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+<p>這樣的狀態就代表 server 正在運轉啟用中<br><img src="https://i.imgur.com/HISdDTV.png" alt></p>
+<p>為了確認 server 為啟動狀態，可以由前端測試是否可以連接上後端。<br>在專案中的 index.html 檔案代表前端(用戶端)，在其中輸入指令，透過 server 端的 <code>port:5001</code> 接口，讓前端與後端建立連結：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sock = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:5001'</span>);</span><br><span class="line">sock.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//當為連結狀態，執行下述動作</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected successfully!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//製造ㄧ秒時間差，再傳送訊息給server</span></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    sock.send(<span class="string">'Hey there'</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>啟用瀏覽器 locolhost:，查看開發工具 network，可以看到順利連結上 server，並執行從瀏覽器傳送訊息給 server 端。<br><img src="https://i.imgur.com/GK09ig1.png" alt></p>
+<h3 id="server-端偵聽事件"><a href="#server-端偵聽事件" class="headerlink" title="server 端偵聽事件"></a>server 端偵聽事件</h3><p>首先建立 WebSocket 的 server 實體，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先引用Server類</span></span><br><span class="line"><span class="comment">//再new出實體，並asign給wss變數</span></span><br><span class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> WebSocketServer(&#123; <span class="attr">port</span>: <span class="number">5001</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//當偵聽到連結建立時，執行動作</span></span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當偵測收到訊息時，執行動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Receieve:'</span> + message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>用 vsCode 打開 terminal 查看 sever 端的 log 訊息，可以檢查看到確實有執行動作。<br><img src="https://i.imgur.com/BUhZfhm.png" alt></p>
+<h3 id="Server-端回傳訊息給前端"><a href="#Server-端回傳訊息給前端" class="headerlink" title="Server 端回傳訊息給前端"></a>Server 端回傳訊息給前端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當偵測收到訊息時，執行動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Receieve:'</span> + message);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (message == <span class="string">'Hello'</span>) &#123;</span><br><span class="line">      <span class="comment">//從server回送訊息給前端</span></span><br><span class="line">      ws.send(<span class="string">'Hey there from the server'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ws.send(<span class="string">'what did you say?'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>從瀏覽器的開發工具 NetWork&gt;WS 可以檢查到前、後端訊息傳遞的狀況。<br><img src="https://i.imgur.com/B3u7osC.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WebSocket/">WebSocket</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-WebSocket-基礎介紹與實體物件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/WebSocket-基礎介紹與實體物件/">WebSocket-基礎介紹與實體物件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/WebSocket-基礎介紹與實體物件/" class="article-date">
+	  <time datetime="2019-06-12T02:40:35.391Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="WebSocket-介紹"><a href="#WebSocket-介紹" class="headerlink" title="WebSocket 介紹"></a>WebSocket 介紹</h2><h3 id="What-is-WebSocket"><a href="#What-is-WebSocket" class="headerlink" title="What is WebSocket?"></a>What is WebSocket?</h3><p>WebSocket 是一種<strong>通訊協定(protocal)</strong>，可在單個 TCP 連接上進行全雙工通訊。<br>在 WebSocket API 中，瀏覽器和伺服器只需要完成一次交握，兩者之間就可以建立永續性的連接，並進行雙向資料傳輸。</p>
+<h3 id="HTTP-vs-WebSocket"><a href="#HTTP-vs-WebSocket" class="headerlink" title="HTTP vs. WebSocket"></a>HTTP vs. WebSocket</h3><p>最普遍常見的 protocal 是 HTTP，不過 HTTP 有個缺陷：溝通只能由客戶端(browser)發起，無法做到由服務端(server)主動向客戶端發送訊息。效率低，必須不停地發送請求確認連結。</p>
+<p>WebSocket 與 HTTP 最大的不同是，WebSocket 是一個持續的雙向連線，不需要重新連線，不需要重新傳送 request，反應更即時。</p>
+<ul>
+<li>HTTP 是單向請求，必須由 browser 先發出一個 request，server 端才會回傳一個 response</li>
+<li>WebSocket 則是完成一次”握手”驗證之後，即可執行雙邊的訊息傳送，或是由 server 端主動回傳訊息<br><img src="https://i.imgur.com/CS6OCqQ.png" alt></li>
+</ul>
+<h3 id="Why-WebSocket"><a href="#Why-WebSocket" class="headerlink" title="Why WebSocket?"></a>Why WebSocket?</h3><p>當我們需要客戶端 browser 需要與 server 端保持即時、持續的雙向溝通。例：Chat apps、Real time data analytics、Social media</p>
+<h2 id="WebSocket-實體的方法與屬性"><a href="#WebSocket-實體的方法與屬性" class="headerlink" title="WebSocket 實體的方法與屬性"></a>WebSocket 實體的方法與屬性</h2><h3 id="建立一個-WebSocket-物件"><a href="#建立一個-WebSocket-物件" class="headerlink" title="建立一個 WebSocket 物件"></a>建立一個 WebSocket 物件</h3><p>首先必須建立一個 WebSocket 物件，才能讓瀏覽器、伺服器以 WebSocket 協定進行通訊，<strong>物件一但被建立，就會自動與伺服器連線</strong>。</p>
+<p>WebSocket 的建構子，有兩個參數:</p>
+<ol>
+<li><p><strong>url</strong><br>URL 的協議類型必須是 ws:// （非加密連線）或是 wss:// （加密連線）</p>
+</li>
+<li><p><strong>protocols</strong>，選擇性參數<br>一個字串，或是字串組成的陣列，因此一個 Server 可以實作多個 WebSocket 子協定。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//僅傳入連線用的URL</span></span><br><span class="line"><span class="keyword">new</span> WebSocket(<span class="string">'URL'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定伺服器使用某個sub protocol</span></span><br><span class="line"><span class="keyword">new</span> WebSocket(<span class="string">'URL'</span>, <span class="string">'prorocol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定伺服器執行多個sub protocols</span></span><br><span class="line"><span class="keyword">new</span> WebSocket(<span class="string">'URL'</span>, <span class="string">'protocols[]'</span>);</span><br></pre></td></tr></table></figure>
+<p>下方簡單建立了一個新的 WebSocket，連到位於 <a href="http://websocket.org/echo.html" target="_blank" rel="noopener">http://echo.websocket.org</a> 的伺服器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MySocket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org'</span>);</span><br></pre></td></tr></table></figure>
+<p>將這段程式碼貼到瀏覽器的 console 中，執行完，查看 Network&gt;WS，已經連上 echo.websocket.org 伺服器。</p>
+<p>且再查看 Headers 中，可以看到狀態「101 Web Socket Protocol Handshake」<br><img src="https://i.imgur.com/LncCkaJ.png" alt></p>
+<p>WebSOcket 的其他屬性及方法，參考<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener">這裡</a>。</p>
+<h3 id="查詢-WebSocket-狀態"><a href="#查詢-WebSocket-狀態" class="headerlink" title="查詢 WebSocket 狀態"></a>查詢 WebSocket 狀態</h3><p>WebSocket 物件中的 readyState 屬性是表示目前狀態，有四種值，分別代表不同的狀態。</p>
+<ul>
+<li>WebSocket.CONNECTING:值為 0，表示正在連接中</li>
+<li>WebSocket.OPEN:值為 1，表示已連結成功，可以進行通訊</li>
+<li>WebSocket.CLOSING:值為 2，表示正在關閉</li>
+<li>WebSocket.CLOSED:值為 3，表示為關閉狀態</li>
+</ul>
+<p>可以透過狀態判斷，來做一些事，以下舉例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (MySocket.readyStatus) &#123;</span><br><span class="line">  <span class="keyword">case</span> WebSocket.CONNECTING:</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> WebSocket.OPEN:</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> WebSocket.CLOSING:</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> WebSocket.CLOSED:</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    <span class="comment">//this would never happen</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="WebSocket-onopen"><a href="#WebSocket-onopen" class="headerlink" title="WebSocket.onopen"></a>WebSocket.onopen</h3><p>WebSocket 物件中的<code>onopen</code>屬性，可以用於定義當連結成功後的回調函式，也就是當 WebSocket 完成連結時，會執行函式中的動作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySocket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>若要指定多個回調函式，可以用<code>addEventListener</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySocket.addEventListener(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="WebSocket-onclose"><a href="#WebSocket-onclose" class="headerlink" title="WebSocket.onclose"></a>WebSocket.onclose</h3><p>WebSocket 物件中的<code>onopen</code>屬性，可以用於定義當關閉連結後的回調函式，也就是當 WebSocket 關閉連結時，會執行函式中的動作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mySocket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">  <span class="comment">//dandle close event</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>若要指定多個回調函式，可以用<code>addEventListener</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySocket.addEventListener(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//handle close event</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="WebSocket-onmessage"><a href="#WebSocket-onmessage" class="headerlink" title="WebSocket.onmessage"></a>WebSocket.onmessage</h3><p>WebSocket 物件中的<code>onmessage</code>屬性，用於定義收到 server 傳來資料後的回調函式，也就是當偵聽到 sever 傳來訊息的事件，會執行函式中的動作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mySocket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">//do something for data</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>若要指定多個回調函式，可以用<code>addEventListener</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mySocket.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">//do something for data</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="WebSocket-onerror"><a href="#WebSocket-onerror" class="headerlink" title="WebSocket.onerror"></a>WebSocket.onerror</h3><p>WebSocket 物件中的<code>onerror</code>屬性，用於定義報錯時的回調函式，也就是當偵聽到錯誤事件，會執行函式中的動作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySocket.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//handle error event</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>若要指定多個回調函式，可以用<code>addEventListener</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySocket.addEventListener(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//handle error event</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="傳資料給伺服器"><a href="#傳資料給伺服器" class="headerlink" title="傳資料給伺服器"></a>傳資料給伺服器</h3><p>WebSocket 的<code>send()</code>方法，用於向伺服器傳送訊息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mySocket.send(<span class="string">'message to server'</span>);</span><br></pre></td></tr></table></figure>
+<p>可以傳送的格式，包含字串、Blob、ArrayBuffer。</p>
+<p>若要傳送複雜的資料給伺服器，可以用 JSON 格式傳送物件，以下以聊天程式應用舉例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//創建WebSocket實體</span></span><br><span class="line"><span class="keyword">var</span> mySocket = <span class="keyword">new</span> WebSocket(<span class="string">'wss://echo.websocket.org'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//當WebSocket狀態為連線時，執行的動作</span></span><br><span class="line">mySocket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> msg = &#123;</span><br><span class="line">    type: <span class="string">'message'</span>,</span><br><span class="line">    text: <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>).textContent,</span><br><span class="line">    id: <span class="string">'clientID'</span>,</span><br><span class="line">    data: time.getTime(),</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//先將資料轉為JSON格式，再傳資料給server</span></span><br><span class="line">  mySocket.send(<span class="built_in">JSON</span>.stringify(msg));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//當瀏覽器從伺服器接收到訊息，偵聽事件被傳入onmessage並觸發函式執行</span></span><br><span class="line">mySocket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>).innerHTML = <span class="string">'&lt;b&gt;Message already sent.&lt;/b&gt;'</span>;</span><br><span class="line">  &#125;, <span class="number">5000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>參考<a href="https://codepen.io/leah-lin/pen/RmjwRG" target="_blank" rel="noopener">codepen 執行結果</a></p>
+<h3 id="從伺服器接收訊息"><a href="#從伺服器接收訊息" class="headerlink" title="從伺服器接收訊息"></a>從伺服器接收訊息</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mySocket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>).innerHTML = <span class="string">'&lt;b&gt;Message already sent.&lt;/b&gt;'</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(event);</span><br><span class="line">  <span class="keyword">var</span> f = <span class="built_in">document</span>.getElementById(<span class="string">'chatbox'</span>);</span><br><span class="line">  <span class="keyword">var</span> text = <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">var</span> msg = <span class="built_in">JSON</span>.parse(event.data);</span><br><span class="line">  <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(msg.date);</span><br><span class="line">  <span class="keyword">var</span> timeStr = time.toLocaleTimeString();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//僅示範switch判斷，此案例會接到的為'message'</span></span><br><span class="line">  <span class="keyword">switch</span> (msg.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'id'</span>:</span><br><span class="line">      clientID = msg.id;</span><br><span class="line">      setUserName();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'message'</span>:</span><br><span class="line">      text =</span><br><span class="line">        <span class="string">'使用者 &lt;em&gt;'</span> + msg.id + <span class="string">'&lt;/em&gt; :&lt;b&gt;'</span> + msg.text + <span class="string">'&lt;br&gt;&lt;/b&gt;'</span> + <span class="string">'&lt;small&gt;登入於 '</span> + timeStr + <span class="string">'&lt;/small&gt;&lt;br&gt;'</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (text.length) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'chatbox'</span>).innerHTML = text;</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>參考<a href="https://codepen.io/leah-lin/pen/gJXywe" target="_blank" rel="noopener">codepen 執行結果</a></p>
+<h3 id="關閉連線"><a href="#關閉連線" class="headerlink" title="關閉連線"></a>關閉連線</h3><p>WebSocket 的<code>close()</code>方法，用於結束 WebSocket 連線。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mySocket.close();</span><br></pre></td></tr></table></figure>
+<p>關閉連線後，再次查看連線狀態為 3，代表狀態為 CLOSED 關閉的狀態。<br><img src="https://i.imgur.com/ABIbzpe.png" alt></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><p><a href="https://developer.mozilla.org/zh-TW/docs/WebSockets/Writing_WebSocket_client_applications" target="_blank" rel="noopener">MDN web doc - 製作 WebSocket 客戶端應用程式
+</a></p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">WebSocket 教程 - 阮一峰</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/playlist?list=PLYxzS__5yYQnRizvwNYWwzFjd9J4ni_Ga" target="_blank" rel="noopener">WebSocket Tutorials - codedamn</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WebSocket/">WebSocket</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-獲取當前時間" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/JavaScript-獲取當前時間/">JavaScript-獲取當前時間</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/JavaScript-獲取當前時間/" class="article-date">
+	  <time datetime="2019-06-12T02:40:26.837Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Date 物件是基於世界標準時間（UTC） 1970 年 1 月 1 日開始的毫秒數值來儲存時間。</p>
+<h3 id="Date-建構子語法"><a href="#Date-建構子語法" class="headerlink" title="Date 建構子語法"></a>Date 建構子語法</h3><p>透過建構子創建 Date 實體物件，建構子有下述四種：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//預設為「當前時間」的物件</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//傳入「某時間」距離標準時間「毫秒數」</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//表示時間日期的字串。</span></span><br><span class="line"><span class="comment">//這個字串應該要能被 Date.parse()方法解析</span></span><br><span class="line"><span class="comment">//格式因瀏覽器而不同，強烈不建議使用解析字串的方式建立 Date 物件。</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(dateString);</span><br><span class="line"></span><br><span class="line"><span class="comment">//不需要全部參數皆傳入，部分參數為選用</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(year, month, day, hour, minutes, seconds, milliseconds);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>year：表示年份的整數。當數值落在 0 到 99 之間，表示 1900 到 1999 之間的年份。參考下面的範例.</li>
+<li>month：表示月份的整數。由 0 開始（一月）到 11 （十二月）。</li>
+<li>day：選用。表示月份中第幾天的整數值。</li>
+<li>hour：選用。表示小時數的整數值。</li>
+<li>minute：選用。表示分鐘數的整數值。</li>
+<li>second：選用。表示秒數的整數值。</li>
+<li>millisecond：選用。表示毫秒數的整數值。</li>
+</ul>
+<h3 id="創建-Date-實體"><a href="#創建-Date-實體" class="headerlink" title="創建 Date 實體"></a>創建 Date 實體</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先創建一個Date實體</span></span><br><span class="line"><span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//試著印出實體查看</span></span><br><span class="line"><span class="built_in">console</span>.log(time); <span class="comment">//Wed May 22 2019 10:42:52 GMT+0800 (台北標準時間)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Getter"><a href="#Getter" class="headerlink" title="Getter"></a>Getter</h3><p>下方示範幾個常用的 getter，更多請參考<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Date#Getter" target="_blank" rel="noopener">這裡</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先創建一個Date實體</span></span><br><span class="line"><span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//獲取當前時間(取得的值為一個毫秒数值)</span></span><br><span class="line"><span class="keyword">var</span> theTime = time.getTime(); <span class="comment">//1558492972644</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> timeDetails = &#123;</span><br><span class="line">  year: time.getFullYear(),</span><br><span class="line">  month: time.getMonth() + <span class="number">1</span>,</span><br><span class="line">  date: time.getDate(),</span><br><span class="line">  hour: time.getHours(),</span><br><span class="line">  minute: time.getMinutes(),</span><br><span class="line">  second: time.getSeconds(),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Conversion-getter"><a href="#Conversion-getter" class="headerlink" title="Conversion getter"></a>Conversion getter</h3><p>下方示範將 Date 物件轉換為可閱讀的字串型式，並回傳 Date 的部分資訊</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">time.toLocaleString(); <span class="comment">//2019/5/22 上午10:42:52</span></span><br><span class="line">time.toLocaleDateString(); <span class="comment">//2019/5/22</span></span><br><span class="line">time.toLocaleTimeString(); <span class="comment">//上午10:42:52</span></span><br></pre></td></tr></table></figure>
+<p>更多 Date 參考：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener">MDN web doc-Date</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-參數(argument)與其餘參數(spread)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/18/JavaScript-參數(argument)與其餘參數(spread)/">JavaScript-參數(argument)與其餘參數(spread)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/18/JavaScript-參數(argument)與其餘參數(spread)/" class="article-date">
+	  <time datetime="2019-05-18T14:12:28.773Z" itemprop="datePublished">May 18, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函式執行時的參數變數"><a href="#函式執行時的參數變數" class="headerlink" title="函式執行時的參數變數"></a>函式執行時的參數變數</h3><p>重新複習一下，當函式被呼叫執行時，會創建一個新的執行環境，而在創建階段的同時，JavaScript引擎會設定幾個東西：</p>
+<ul>
+<li>「變數環境」用來包住變數</li>
+<li>給範圍鍊(Scope Chain)的「外部參考環境」</li>
+<li>特殊關鍵字「this」</li>
+<li><strong>另一個特殊關鍵字「arguments」</strong></li>
+</ul>
+<p><img src="https://i.imgur.com/O0bb21G.jpg" alt></p>
+<p>即使我沒有在函式中宣告過arguments這個變數，當我在執行環境中直接呼叫arguments這個關鍵字，會印出有傳入值的所有參數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName,lastName,language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'En'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>印出的東西會是由斜體中括號 <em>[]</em> 呈現，有點像陣列，可是不太一樣，我們稱作為array-like，只有部分陣列的功能。</p>
+<p><img src="https://i.imgur.com/XK2WQSr.png" alt></p>
+<h3 id="預設參數為undefined"><a href="#預設參數為undefined" class="headerlink" title="預設參數為undefined"></a>預設參數為undefined</h3><p>在JavaScript中，可以呼叫函式卻不傳入任何參數。因為當函式被呼叫執行時，在創建階段就會先在記憶體空間設定好這些值為undefined，所以並不會出錯。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>當我執行印出函式中的參數時，因為未傳入、賦予值給參數，所以就會印出預設值為undefined。<br><img src alt="Uploading file..._zdbxuzz93"></p>
+<h3 id="由左到右傳入參數值"><a href="#由左到右傳入參數值" class="headerlink" title="由左到右傳入參數值"></a>由左到右傳入參數值</h3><p>JavaScript可以處理為傳入參數的函式，也可以處理只傳入部分參述的函式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'--------------'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>);</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>);</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'English'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>也就是說，當我宣告一個函式時，函式中的參數有三個，而當我呼叫執行時，我<strong>可以選擇不傳入值，也可以選擇只傳入一個或兩個</strong>，當然也可以傳入三個，可是要記得，一定是由<strong>左至右</strong>傳入設定做處理。</p>
+<p><img src="https://i.imgur.com/wbl7Bl7.png" alt></p>
+<h3 id="ES6語法-預設參數"><a href="#ES6語法-預設參數" class="headerlink" title="ES6語法:預設參數"></a>ES6語法:預設參數</h3><p>當不確定每次函式被呼叫時，會傳入幾個參數，卻不希望未被設定的參數值為undefined，在ES6版本中，可以自定義為參數設定預設值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language=<span class="string">'English'</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>也就是當呼叫函式時，若沒有給予language這個參數的值，則會在函式中賦值’language’給該參數。<br><img src="https://i.imgur.com/1GNuRIV.png" alt></p>
+<p>不過因為這種ES6語法只適用於部分瀏覽器，所以下述寫法，也可以達成相同的目的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(firstName);</span><br><span class="line">    <span class="built_in">console</span>.log(lastName);</span><br><span class="line">    <span class="built_in">console</span>.log(language);</span><br><span class="line">&#125;</span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
+<p>當呼叫greet()卻沒有傳入language參數的值，執行到上述第三行程式碼時，則會判斷出language為undefined，所以賦予值為’English’。</p>
+<p>下方獨立解析這行「自定義參數預設值」程式碼意思。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language = language||<span class="string">'English'</span></span><br></pre></td></tr></table></figure></p>
+<p>其中看到兩個運算子，分別是’=’以及’||’，因為’||’的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">優先權</a>較高，所以會先執行這個部分，接著才去執行’=’。</p>
+<p>首先，執行’||’左邊的程式碼，若language為undefined，會被強制轉型為falese，而繼續執行’||’右邊的程式碼，獲得’English’的這個值。</p>
+<p>接著，執行’=’的動作，就會將’English’賦值給變數language。<br><img src="https://i.imgur.com/0ZN2hzG.png" alt></p>
+<h3 id="其餘參數-spread-parameter"><a href="#其餘參數-spread-parameter" class="headerlink" title="其餘參數(spread parameter)"></a>其餘參數(spread parameter)</h3><p>其餘參數是arguments被傳入函式時，還沒有被指定變數名稱的引數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, ...otherP</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(otherP);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'female'</span>,<span class="string">'English'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>其餘參數的變數名稱可以自定義，範例中使用otherP代表其餘參數。<br>所以剩餘沒有被直接寫出來的參數，就會被包進這個otherP陣列中。<br><img src="https://i.imgur.com/Vhgr4fo.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-「沒有」重載函式(function overloading)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/18/JavaScript-「沒有」重載函式(function overloading)/">JavaScript-「沒有」重載函式(function overloading)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/05/18/JavaScript-「沒有」重載函式(function overloading)/" class="article-date">
+	  <time datetime="2019-05-18T14:12:23.932Z" itemprop="datePublished">May 18, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，先了解其他程式語言有的重載函式(function overloading)特性，在C#、C++、Java中，都有重載函式的概念。</p>
+<h3 id="重載函式"><a href="#重載函式" class="headerlink" title="重載函式"></a>重載函式</h3><p>多個函式可以<strong>重複使用同一個函式的名稱</strong>，只要有不同數量的參數，就會被判斷為不同個函式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這裡僅用JS的語法表示其他程式語言的重載函式，但在JS中，無法正常執行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">height,weight,age</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(height);</span><br><span class="line">    <span class="built_in">console</span>.log(weight);</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//呼叫函式時，帶入不同數量的參數</span></span><br><span class="line"><span class="comment">//就會自動判斷是呼叫哪一個函式</span></span><br><span class="line">greet();</span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'20'</span>);</span><br><span class="line">greet(<span class="string">'70'</span>,<span class="string">'180'</span>,<span class="string">'male'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="JS「沒有」重載函式"><a href="#JS「沒有」重載函式" class="headerlink" title="JS「沒有」重載函式"></a>JS「沒有」重載函式</h3><p>在JavaScript中，函式就是物件，一個變數名稱只能代表一個物件，若用同一個名稱宣告多個函式，後方宣告的函式內容就會覆蓋前方的，所以JavaScript沒有處理重載函式的功能。</p>
+<h3 id="通用模式處理"><a href="#通用模式處理" class="headerlink" title="通用模式處理"></a>通用模式處理</h3><p>在一般的狀況，若參數值得狀況很多樣，並且要讓函式判別遇到不同參數，需要做出不同的處理過程，可以針對傳入參數做判斷。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'English'</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hi!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'Spanish'</span>)&#123;</span><br><span class="line">        cosole.log(<span class="string">'Hola!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>,<span class="string">'English'</span>);</span><br><span class="line">greet(<span class="string">'John'</span>,<span class="string">'Chen'</span>,<span class="string">'Spanish'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>不過，為了簡化呼叫時的傳入資訊，可以改寫為下方常見的模式寫法。<br>額外新增兩個函式，在其中去執行呼叫不同傳入參數的函式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">firstName, lastName, language</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    language = language||<span class="string">'English'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'English'</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hi!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(language === <span class="string">'Spanish'</span>)&#123;</span><br><span class="line">        cosole.log(<span class="string">'Hola!'</span>+firstName+<span class="string">' '</span>+lastName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greetEnglish</span>(<span class="params">firstName, lastName</span>)</span>&#123;</span><br><span class="line">    greet(firstName, lastName, <span class="string">'English'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greetSpanish</span>(<span class="params">firstName, lastName</span>)</span>&#123;</span><br><span class="line">    greet(firstName, lastName, <span class="string">'Spanish'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greetEnglish(<span class="string">'Amy'</span>,<span class="string">'Lin'</span>);</span><br><span class="line">greetSpanish(<span class="string">'John'</span>,<span class="string">'Chen'</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-JavaScript-陣列" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -482,293 +885,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-JavaScript-JSON與物件實體" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-JSON與物件實體/">JavaScript-JSON與物件實體</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-JSON與物件實體/" class="article-date">
-	  <time datetime="2019-05-08T11:47:13.888Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="JSON的發展"><a href="#JSON的發展" class="headerlink" title="JSON的發展"></a>JSON的發展</h3><p><strong>JSON</strong>(JavaScript Object Notation)是被JavaScript物件實體語法(Object literal syntax)所啟發的。</p>
-<p>多年前，網路資料的傳輸格式很多種，像是XML。透過tag標籤，伺服器會解析它的資訊，可是當要下載資料時，因為過多不必要的tag符號，導致資料便很龐大，佔據很多頻寬。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//xml格式範例</span><br><span class="line"><span class="tag">&lt;<span class="name">object</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">firstname</span>&gt;</span>Mary<span class="tag">&lt;/<span class="name">firstname</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">isAProgrammer</span>&gt;</span>true<span class="tag">&lt;/<span class="name">isAProgrammer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>後來發現JavaScript物件實體語法(Object literal syntax)的格式更簡易。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">    firstName:<span class="string">'Mary'</span>,</span><br><span class="line">    isAProgrammer:<span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>因此，發展出一串字串的JSON格式，現今普遍都是使用JSON格式傳輸資料。</p>
-<p>JSON格式有一些規範，<strong>屬性命名一定要被包在引號””中</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"firstName"</span>:<span class="string">"Mary"</span>,</span><br><span class="line">    <span class="string">"isAProgrammer"</span>:<span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="轉換JSON的方法"><a href="#轉換JSON的方法" class="headerlink" title="轉換JSON的方法"></a>轉換JSON的方法</h3><p>在JavaScript中，有兩個內建的函式可以轉化JSON格式。</p>
-<ul>
-<li><p>將物件轉化為JSON字串</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(object)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>將JSON字串轉化回物件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(<span class="string">'&#123;</span></span><br><span class="line"><span class="string">    "firstName":"Mary",</span></span><br><span class="line"><span class="string">    "isAProgrammer":true</span></span><br><span class="line"><span class="string">&#125;'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(object));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonValue = <span class="built_in">JSON</span>.parse(<span class="string">'&#123;</span></span><br><span class="line"><span class="string">    "firstName":"Mary",</span></span><br><span class="line"><span class="string">    "isAProgrammer":true</span></span><br><span class="line"><span class="string">&#125;'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonValue);</span><br></pre></td></tr></table></figure>
-<p>上述程式碼會印出下方所示的結果，先是印出一個JSON字串，接著再印出一個物件<br><img src="https://i.imgur.com/mtLqSVZ.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-物件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-物件/">JavaScript-物件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-物件/" class="article-date">
-	  <time datetime="2019-05-08T11:47:06.522Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="創建物件"><a href="#創建物件" class="headerlink" title="創建物件"></a>創建物件</h3><p>宣告一個物件，有以下兩種寫法。<br>當JavaScript解析到大括號”{}”時，會認為這是在創造一個物件，因此下述第二行寫法，等同於創建一個空的物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> psrson = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">var</span> person =&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
-<h3 id="初始化物件"><a href="#初始化物件" class="headerlink" title="初始化物件"></a>初始化物件</h3><p>在創建物件的同時，也可以在大括號”{}”中同時創建其中的屬性及方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tony = &#123;</span><br><span class="line">    firstName:<span class="string">'Tony'</span>,</span><br><span class="line">    lastName:<span class="string">'Alicea'</span>,</span><br><span class="line">    address:&#123;</span><br><span class="line">        country:<span class="string">'Taiwan'</span>,</span><br><span class="line">        city:<span class="string">'Taipei'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hi"</span>+person.firstname);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greet(Tony);<span class="comment">//Hi Tony</span></span><br></pre></td></tr></table></figure>
-<h3 id="呼叫函式時同時建立物件"><a href="#呼叫函式時同時建立物件" class="headerlink" title="呼叫函式時同時建立物件"></a>呼叫函式時同時建立物件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">greet(&#123;</span><br><span class="line">    firstName:<span class="string">'Mary'</span>,</span><br><span class="line">    lastName:<span class="string">'Doe'</span></span><br><span class="line">&#125;);<span class="comment">//Hi Mary</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-偽命名空間" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-偽命名空間/">JavaScript-偽命名空間</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-偽命名空間/" class="article-date">
-	  <time datetime="2019-05-08T11:46:59.489Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="命名空間為何？"><a href="#命名空間為何？" class="headerlink" title="命名空間為何？"></a>命名空間為何？</h3><p>在現代程式語言中，「命名空間(Namespace)」是承裝變數與函式的一個容器，通常會將變數跟函式的名稱分別開來。<br>可是，在JavaScript中，並沒有命名空間。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greet = <span class="string">'Hello'</span>;</span><br><span class="line"><span class="keyword">var</span> greet = <span class="string">'Hola'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(greet);<span class="comment">//Hola</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="偽裝命名空間"><a href="#偽裝命名空間" class="headerlink" title="偽裝命名空間"></a>偽裝命名空間</h3><p>在JavaScript中為了避免衝突，可以使用物件當作容器，偽裝成命名空間的作用。<br>這樣子也可以避免在不同的框架中，若想給變數或函式取名字時，可以避免重複命名而被覆蓋的問題。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> english = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> spanish = &#123;&#125;;</span><br><span class="line">english.greet = <span class="string">'Hello'</span>;</span><br><span class="line">spanish.greet = <span class="string">'Hola'</span>;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-創建、取用物件中的屬性" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-創建、取用物件中的屬性/">JavaScript-創建、取用物件中的屬性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-創建、取用物件中的屬性/" class="article-date">
-	  <time datetime="2019-05-08T11:46:49.691Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line">person[<span class="string">'firstName'</span>]=<span class="string">'Tony'</span>;</span><br><span class="line">person[<span class="string">'lastName'</span>]=<span class="string">'Alicea'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNameProperty = <span class="string">'firstName'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person);</span><br></pre></td></tr></table></figure>
-<p>上述結果會印出person物件，如下圖所示<br><img src="https://i.imgur.com/0CoWNux.png" alt></p>
-<p>若要取出物件中特定屬性的值，可以使用”[]”運算子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person[firstNameProperty])<span class="comment">//Tony</span></span><br></pre></td></tr></table></figure></p>
-<p>簡化程式碼的寫法，可以使用”.”運算子，會自動理解”.”後述的為屬性名稱，並將該屬性名稱傳入物件中做參照查找，取出它的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.firstName);<span class="comment">//Tony</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以用”.”去設定值。<br>下述程式碼，會先去address中查找country、city屬性，若找不到則會自動建立這個屬性，並且賦值給它。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">person.address = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">persone.address.country = <span class="string">'Taiwan'</span></span><br><span class="line">persone.address.city = <span class="string">'Taipei'</span></span><br></pre></td></tr></table></figure></p>
-<p>若要取值，可以用”.”也可以用”[]”去取出屬性的值，兩種寫法做的事情都一樣。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.address.country);<span class="comment">//Taiwan</span></span><br><span class="line"><span class="built_in">console</span>.log(person.address.city);<span class="comment">//Taipei</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">'address'</span>][<span class="string">'country'</span>];<span class="comment">//Taiwan</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">'address'</span>][<span class="string">'city'</span>];<span class="comment">//Taipei</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-函式中的預設值" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/JavaScript-函式中的預設值/">JavaScript-函式中的預設值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/08/JavaScript-函式中的預設值/" class="article-date">
-	  <time datetime="2019-05-08T11:46:38.932Z" itemprop="datePublished">May 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在JavaScript的函式中，每當一個函式被呼叫，就會創建一個執行環境，在這個執行環境(execution context)被創造的同時，會同步先在記憶體中創建引數中的變數，預設值為undefined。<br>如果在呼叫函示時沒有帶入參數，並不會出錯，因為會被當作引數為undefined值做帶入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>+name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet();<span class="comment">//Hello undefined;</span></span><br></pre></td></tr></table></figure></p>
-<p>上方的例子，在程式執行時，新的執行環境建立，而在其中也會宣告出一個變數name，在變數倍賦值之前，預設值為undefined。</p>
-<h3 id="建立預設值"><a href="#建立預設值" class="headerlink" title="建立預設值"></a>建立預設值</h3><p>當沒有參數傳入時，如果希望自訂預設值，可以使用||(or運算子)來完成預設值設定。</p>
-<p>當變數name為undefined時就會是false，接著就會繼續讀取”||”右邊的字串，並回傳該字串的值assign變數name。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = name||<span class="string">'&lt;default name here&gt;'</span></span><br></pre></td></tr></table></figure></p>
-<p>查看<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">Operator precedence(運算子 先後順序)</a>，因為”||”相較於”=”有更高的precedence，所以會先執行”||”，並且由左至右執行。</p>
-<p><img src="https://i.imgur.com/qn4e1G4.png" alt></p>
-<p>當”||”左邊是true的時候，若讀取到true，會直接回傳true；但若讀取到false，就會繼續判斷”||”右邊，當右邊是一個字串時，它會判斷是true，並回傳字串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    name = name || <span class="string">'&lt;default name here&gt;'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>+name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet(Tony);<span class="comment">// Hello Tony;</span></span><br><span class="line">greet();<span class="comment">// Hello &lt;default name here&gt;;</span></span><br><span class="line">greet(<span class="number">0</span>);<span class="comment">// Hello &lt;default name here&gt;;</span></span><br></pre></td></tr></table></figure>
-<p>但是這個寫法要注意，傳入參數的值不能為0，因為0會被當成false，所以會繼續執行判斷”||”右邊。</p>
-<h3 id="避免library重複，設定預設值"><a href="#避免library重複，設定預設值" class="headerlink" title="避免library重複，設定預設值"></a>避免library重複，設定預設值</h3><p>假設在同一個檔案中，引入三個library，lib1跟lib2的變數名可能會重複，程式碼會依照library引入的順序，由上而下執行，若變數有重複，後者會覆蓋前者變數的值。<br><img src="https://i.imgur.com/NcUYHm1.png" alt></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lib1.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib1'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//lib2.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.js中</span></span><br><span class="line"><span class="built_in">console</span>.log(libraryName);<span class="comment">//lib2</span></span><br></pre></td></tr></table></figure>
-<p>為了解決變數重複，在使用之前可以先檢查該變數是非已經從存在於全域執行環境中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.libraryName = <span class="built_in">window</span>.libraryName || <span class="string">"lib2"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上述程式碼，會先檢查”||”左邊的值，若已經有被定義賦值，則會被判斷為true，並將字串assign給window.libraryName；若尚未被賦值則會判斷為false，並將”||”右邊的字串回傳assign給window.libraryName。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lib1.js中</span></span><br><span class="line"><span class="keyword">var</span> libraryName = <span class="string">'lib1'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//lib2.js中</span></span><br><span class="line"><span class="built_in">window</span>.libraryName = <span class="built_in">window</span>.libraryName || <span class="string">"lib2"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.js中</span></span><br><span class="line"><span class="built_in">console</span>.log(libraryName);<span class="comment">//lib1</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -836,68 +952,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/05/13/React-(四)組件進階/">React-(四)組件進階</a></h6>
+              <span>May 13, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/05/13/React-(三)組件基本/">React-(三)組件基本</a></h6>
+              <span>May 13, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/05/13/React-(二)JSX與render/">React-(二)JSX與render</a></h6>
+              <span>May 13, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/05/13/React-(一)創建一個React專案(懶人包)/">React-(一)創建一個React專案(懶人包)</a></h6>
+              <span>May 13, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/05/13/Vue-EventBus組件溝通/">Vue-EventBus組件溝通</a></h6>
+              <span>May 13, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
               <span>April 28, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-物件導向class/">ES6-物件導向class</a></h6>
-              <span>April 28, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-import與export/">ES6-import與export</a></h6>
-              <span>April 28, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-箭頭函示/">ES6-箭頭函示</a></h6>
-              <span>April 28, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-取代var的let跟const/">ES6-取代var的let跟const</a></h6>
-              <span>April 28, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/11/04/NVM-安裝及控管Node.js的版本/">NVM-安裝及控管Node.js的版本</a></h6>
-              <span>November 4, 2019</span>
             </div>
 
           </li>
@@ -911,7 +1027,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -921,7 +1037,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -931,7 +1047,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/React/" style="font-size: 12.73px;">React</a> <a href="/tags/React-js/" style="font-size: 12.73px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
     </div>
   </div>
 
@@ -941,7 +1057,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
