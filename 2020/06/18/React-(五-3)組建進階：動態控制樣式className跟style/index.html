@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>react-(五-3)組建進階：動態控制樣式classname跟style | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="React.jsReact">
+  
+  
+  
+  
+  <meta name="description" content="直接不 render假設想要讓圖片動態顯示、隱藏，第一種方法是設定一個型態為布林值的變數，依據值的 true 或 false，搭配三元運算式決定是否要 render 出這個元素。 123456789101112131415161718192021222324252627//Main.jsimport React,&amp;#123;Component&amp;#125; from &quot;react&quot;;import p">
+<meta name="keywords" content="React.js,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-(五-3)組建進階：動態控制樣式className跟style">
+<meta property="og:url" content="http://yoursite.com/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="直接不 render假設想要讓圖片動態顯示、隱藏，第一種方法是設定一個型態為布林值的變數，依據值的 true 或 false，搭配三元運算式決定是否要 render 出這個元素。 123456789101112131415161718192021222324252627//Main.jsimport React,&amp;#123;Component&amp;#125; from &quot;react&quot;;import p">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/LRNJimE.png">
+<meta property="og:image" content="https://i.imgur.com/Q06NO6S.png">
+<meta property="og:image" content="https://i.imgur.com/PFcN6Q2.png">
+<meta property="og:image" content="https://i.imgur.com/Cy2ndaB.png">
+<meta property="og:updated_time" content="2020-06-18T10:01:57.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-(五-3)組建進階：動態控制樣式className跟style">
+<meta name="twitter:description" content="直接不 render假設想要讓圖片動態顯示、隱藏，第一種方法是設定一個型態為布林值的變數，依據值的 true 或 false，搭配三元運算式決定是否要 render 出這個元素。 123456789101112131415161718192021222324252627//Main.jsimport React,&amp;#123;Component&amp;#125; from &quot;react&quot;;import p">
+<meta name="twitter:image" content="https://i.imgur.com/LRNJimE.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-React-(五-3)組建進階：動態控制樣式className跟style" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      React-(五-3)組建進階：動態控制樣式className跟style
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/" class="article-date">
+	  <time datetime="2020-06-18T10:00:17.739Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="直接不-render"><a href="#直接不-render" class="headerlink" title="直接不 render"></a>直接不 render</h2><p>假設想要讓圖片動態顯示、隱藏，第一種方法是設定一個型態為布林值的變數，依據值的 true 或 false，搭配三元運算式決定是否要 render 出這個元素。<br><img src="https://i.imgur.com/LRNJimE.png" alt></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> picture <span class="keyword">from</span> <span class="string">"./image/test.png"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainPage</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">      visable:<span class="literal">true</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    toggle = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        visable: !<span class="keyword">this</span>.state.visable,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">      <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">          &lt;hr/</span>&gt;</span><br><span class="line">          &#123;visable?&lt;img src=&#123;picture&#125;/&gt;:null&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> MainPage;</span><br></pre></td></tr></table></figure>
+<p>又或者，用稍微更簡潔的方式取代三元判斷式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三元判斷式</span></span><br><span class="line">&#123;visable ? &lt;img src=&#123;picture&#125;&gt; : null&#125;</span><br><span class="line"></span><br><span class="line">//更簡化一些</span><br><span class="line">&#123;visable &amp;&amp; &lt;img src=&#123;picture&#125;&gt;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上述兩個做法中，都是採取直接不 render 出 image 的方式，也就是說當 visable 為 false 時，在 DOM 元素中是直接沒有畫出這個 image。<br><img src="https://i.imgur.com/Q06NO6S.png" alt></p>
+<p>如果情況是一定要 render 出這個 image，那就可以採用改變 scc 樣式來決定顯示、隱藏，因此就必須動態綁定 style。</p>
+<h2 id="動態綁定-style"><a href="#動態綁定-style" class="headerlink" title="動態綁定 style"></a>動態綁定 style</h2><blockquote>
+<p>補：在 JSX 中，style 是一個物件</p>
+</blockquote>
+<p>在 image 上面綁定 style 屬性，而 style 屬性綁定一個物件，在這個物件中就可以定義 display 樣式，樣式一樣採用三元判斷是的做法。</p>
+<p>特別注意，在第 10 行中的連續兩個大括號，第一個外面的大括號代表 JSX 綁定值的表示，第二個裡面的大括號代表它是一個物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="comment">// ...略</span></span><br><span class="line">render()&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;hr/</span>&gt;</span><br><span class="line">      &lt;img </span><br><span class="line">          style=&#123;&#123;<span class="attr">display</span>:visable?<span class="string">'block'</span>:<span class="string">'none'</span>&#125;&#125;</span><br><span class="line">          src=&#123;picture&#125;/&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以直接將 style 屬性綁定的物件，直接在外面宣告成一個物件型態的變數 pictureObj<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="comment">// ...略</span></span><br><span class="line">render()&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">  <span class="keyword">const</span> pictureObj = &#123;</span><br><span class="line">    display:visable?<span class="string">'block'</span>:<span class="string">'none'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;hr/</span>&gt;</span><br><span class="line">      &lt;img </span><br><span class="line">          style=&#123;pictureObj&#125;</span><br><span class="line">          src=&#123;picture&#125;/&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>查看 DOM 元素的變化，可以看到顯示跟隱藏時，image 都有被 render 出來，只是他的樣式 display 改變了。<br><img src="https://i.imgur.com/PFcN6Q2.png" alt></p>
+<h2 id="動態綁定-className"><a href="#動態綁定-className" class="headerlink" title="動態綁定 className"></a>動態綁定 className</h2><p>先在 css 檔案中定義好 class 的樣式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* main.css */</span></span><br><span class="line"><span class="selector-class">.image</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hide</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第 4 行，引入 css 檔案<br>第 17 行，宣告一個型態為字串的變數，並將該變數當作第 22 行 className 屬性綁定的值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> picture <span class="keyword">from</span> <span class="string">"./image/test.png"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"./style/main.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainPage</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">      visable:<span class="literal">true</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    toggle = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        visable: !<span class="keyword">this</span>.state.visable,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">      <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">      <span class="keyword">const</span> pictureClass = visable ?<span class="string">"image"</span>:<span class="string">"image hide"</span></span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">          &lt;hr/</span>&gt;</span><br><span class="line">          &lt;img className=&#123;pictureClass&#125; src=&#123;picture&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default MainPage;</span></span><br></pre></td></tr></table></figure></p>
+<p>因為有重複的 class ，也可以改用字串模板的方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pictureClass = <span class="string">`image <span class="subst">$&#123;visable?<span class="string">''</span>:hide&#125;</span>`</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Cy2ndaB.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/18/React-(五-4)三種組件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React-(五-4)三種組件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React-(五-1)組件進階：ref屬性找到DOM</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接不-render"><span class="nav-number">1.</span> <span class="nav-text">直接不 render</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態綁定-style"><span class="nav-number">2.</span> <span class="nav-text">動態綁定 style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態綁定-className"><span class="nav-number">3.</span> <span class="nav-text">動態綁定 className</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

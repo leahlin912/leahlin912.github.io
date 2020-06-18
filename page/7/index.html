@@ -158,6 +158,467 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Webpack-基本入門介紹" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/23/Webpack-基本入門介紹/">Webpack-前端建置工具的發展背景及入門介紹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/23/Webpack-基本入門介紹/" class="article-date">
+	  <time datetime="2019-04-23T07:34:28.561Z" itemprop="datePublished">April 23, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Webpack</strong>是當下流行的「前端建置工具」之一。</p>
+<h2 id="首先了解建置工具"><a href="#首先了解建置工具" class="headerlink" title="首先了解建置工具"></a>首先了解建置工具</h2><h3 id="建置工具出現的來龍去脈？"><a href="#建置工具出現的來龍去脈？" class="headerlink" title="建置工具出現的來龍去脈？"></a>建置工具出現的來龍去脈？</h3><p><strong>過去：</strong><br>早期前端工程師寫網頁，僅透過前端三大元素「JavaScript、CSS、HTML」開發web應用。</p>
+<p><strong>現今：</strong><br>近年前端發展出許多新思維，出現了「模組化」的概念、「新框架」的出現、「新語言」的誕生，讓傳統的作法不再流行，各種可以加強開發效率的新工具出現。</p>
+<ul>
+<li>模組化：模組化是將一個複雜的系統，分解為多個模組以方便程式開發。例：ES6模組化是國際標準組織ECMA提出的JavaScript模組化標準，他在語言層面上實現模組化，成為瀏覽器和伺服器通用的模組化解決方案。</li>
+<li>新框架：在web應用變的龐大時，直接操作DOM會使程式變得複雜難以維護，因此出現React、Vue、Augular前端框架。</li>
+<li>新語言：ES6、TypeScript、Flow、SCSS…</li>
+</ul>
+<p>然而，前端技術發展之快，卻有一個共同點：<strong>這些工具的原始碼無法直接執行，必須透過「轉換」才可以正常執行</strong>，因此，「建置工具」就誕生了。</p>
+<h3 id="建置工具實際做了什麼？"><a href="#建置工具實際做了什麼？" class="headerlink" title="建置工具實際做了什麼？"></a>建置工具實際做了什麼？</h3><p>「建置」就是將原始程式碼，轉換成可以執行的JavaScript、CSS、HTML。</p>
+<ul>
+<li>程式轉換：將TypeScript編譯為JavaScript，將SCSS編譯為CSS。</li>
+<li>檔案最佳化：壓縮JavaScript、CSS、HTML程式，壓縮合併圖片。</li>
+<li>程式分割：分析首頁不需要執行的部分程式，讓其非同步載入。</li>
+<li>模組合併：採用模組化建置的專案中的有多個模組、檔案，透過建置功能，將模組合併為一個檔案。</li>
+<li>自動更新：監聽本機端程式碼的變動，自動重新建置、更新瀏覽器。</li>
+<li>程式驗證：在程式被傳送到倉庫前，需要驗證程式是否符合標準，以及單元測試是否通過。</li>
+<li>自動發布：更新程式後，自動建置出現上發布程式，並傳輸給發布系統。</li>
+</ul>
+<p>「建置」的目的最主要就是工程化、自動化。</p>
+<h3 id="常見的「建置工具」"><a href="#常見的「建置工具」" class="headerlink" title="常見的「建置工具」"></a>常見的「建置工具」</h3><p>按誕生的時間排序</p>
+<ul>
+<li>Npm Script：Node.js附帶的套件管理員</li>
+<li>Grunt：自動化執行依賴的工作</li>
+<li>Gulp：以串流為基礎的自動化建置工</li>
+<li>Fis3：整合各種Web開發需要的建置功能</li>
+<li>Webpack：包裝模組化JavaScript的工具</li>
+<li>Rollup：專注於ES6的模組包裝工具</li>
+</ul>
+<p>時空背景：</p>
+<ul>
+<li>在Npm Script和Grunt時代，Web開發要做的事情變多、流程變複雜，自動化的思維興起，用於簡化流程。</li>
+<li>在Gulp時代，新語言出現，流式處理思想出現是為了簡化檔案轉換的流程。</li>
+<li>在Webpack的時代，由於單頁應用的流行，網頁的功能和實現程式變得複雜、龐大，因此Web開發相模組化改進。<h2 id="Webpack究竟是什麼"><a href="#Webpack究竟是什麼" class="headerlink" title="Webpack究竟是什麼?"></a>Webpack究竟是什麼?</h2><h3 id="專注於建構模組化的專案"><a href="#專注於建構模組化的專案" class="headerlink" title="專注於建構模組化的專案"></a>專注於建構模組化的專案</h3>在Webpack裡的所有檔案皆被視為模組，透過Loader轉換檔案，透過Plugin植入鉤子，最後輸出為一個由「多個模組合成的檔案」。<br><img src="https://i.imgur.com/i508SSR.png" alt><br>所以一個專案中的所有檔案，包含JavaScript、CSS、SCSS、圖片、範本，在經過Webpack的處理，最後會輸出為瀏覽器可以使用的靜態資源。</li>
+</ul>
+<p>使用方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module.expert=&#123;</span><br><span class="line">    //所有模組的入口，Webpack從入口開始遞迴解析出所有依賴的模組</span><br><span class="line">    entry: &apos;./app/js&apos;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        //將入口所依賴的所有模組包裝成一個檔案bundle.js輸出</span><br><span class="line">        filename: &apos;bundle.js&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="參考資料來源"><a href="#參考資料來源" class="headerlink" title="參考資料來源"></a>參考資料來源</h2><ul>
+<li>JS高手昇華之路Webpack是唯一的路徑-吳浩麟 著</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/">Webpack</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Vue-(十)表單綁定" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(十)表單綁定/">Vue-(十)表單綁定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(十)表單綁定/" class="article-date">
+	  <time datetime="2019-04-19T07:52:31.905Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="10-1-文字輸入：text-input與textarea-影片"><a href="#10-1-文字輸入：text-input與textarea-影片" class="headerlink" title="10-1.文字輸入：text input與textarea (影片)"></a>10-1.文字輸入：text input與textarea <a href="https://hiskio.com/courses/145/lectures/5388" target="_blank" rel="noopener">(影片)</a></h2><h3 id="單行文字綁定，用input"><a href="#單行文字綁定，用input" class="headerlink" title="單行文字綁定，用input"></a>單行文字綁定，用input</h3><ul>
+<li>大括號雙向綁定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; v-model=&quot;msg&quot;&gt;&lt;/input&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>input事件偵聽<br>該元素的value用動態綁定，當input事件發生時，執行change函式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; :value=&quot;msg&quot; @input=&quot;change&quot;&gt;&lt;/input&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>event.target找到事件發生的元素，其value則是user剛剛輸入的資料<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    change(event)&#123;</span><br><span class="line">      <span class="keyword">this</span>.msg = event.target.value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="多行文字綁定，用textarea"><a href="#多行文字綁定，用textarea" class="headerlink" title="多行文字綁定，用textarea"></a>多行文字綁定，用textarea</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;textarea v-model=&quot;msg&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>但是換行字元’\n’無法被反映到h1標籤中，因此可以改用pre標籤(preserve)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;textarea v-model=&quot;msg&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">  &lt;pre&gt;&#123;&#123;msg&#125;&#125;&lt;/pre&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>或是在css中定義<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;textarea v-model=&quot;msg&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">  <span class="attribute">white-space</span>: pre;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="10-2-打勾按鈕：checkbox-影片"><a href="#10-2-打勾按鈕：checkbox-影片" class="headerlink" title="10-2.打勾按鈕：checkbox (影片)"></a>10-2.打勾按鈕：checkbox <a href="https://hiskio.com/courses/145/lectures/5390" target="_blank" rel="noopener">(影片)</a></h2><h3 id="綁定單個屬性boolean值"><a href="#綁定單個屬性boolean值" class="headerlink" title="綁定單個屬性boolean值"></a>綁定單個屬性boolean值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;status&quot;&gt;Agree&lt;/input&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;h3&gt;&#123;&#123;status&#125;&#125;&lt;/h3&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;button @click=&quot;submit&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    status:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    submit()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.status)&#123;</span><br><span class="line">        alert(<span class="string">"Success!"</span>);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        alert(<span class="string">"Please agree first!"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="綁定至array中"><a href="#綁定至array中" class="headerlink" title="綁定至array中"></a>綁定至array中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h2&gt;請選擇可以送達的時間：&lt;/h2&gt;</span><br><span class="line">  &lt;input id=&quot;optA&quot; type=&quot;checkbox&quot; v-model=&quot;options&quot; value=&quot;Morning&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;optA&quot;&gt;Morning&lt;/label&gt;</span><br><span class="line">  &lt;input id=&quot;optB&quot; type=&quot;checkbox&quot; v-model=&quot;options&quot; value=&quot;Afternoon&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;optB&quot;&gt;Afternoon&lt;/label&gt;</span><br><span class="line">  &lt;input id=&quot;optC&quot; type=&quot;checkbox&quot; v-model=&quot;options&quot; value=&quot;Evening&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;optC&quot;&gt;Evening&lt;/label&gt;</span><br><span class="line">  &lt;br/&gt;</span><br><span class="line">  &lt;h3&gt;&#123;&#123;options&#125;&#125;&lt;/h3&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    options:[],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="10-3-圓點單選按鈕：radio-影片"><a href="#10-3-圓點單選按鈕：radio-影片" class="headerlink" title="10-3.圓點單選按鈕：radio (影片)"></a>10-3.圓點單選按鈕：radio <a href="https://hiskio.com/courses/145/lectures/5391" target="_blank" rel="noopener">(影片)</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input id=&quot;female&quot; type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;f&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;</span><br><span class="line">  &lt;input id=&quot;male&quot; type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;m&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;</span><br><span class="line">  &lt;input id=&quot;other&quot; type=&quot;radio&quot; v-model=&quot;gender&quot; value=&quot;o&quot;/&gt;</span><br><span class="line">  &lt;label for=&quot;other&quot;&gt;Other&lt;/label&gt;</span><br><span class="line">  &lt;h2/&gt;&#123;&#123;gender&#125;&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    gender:<span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="10-4-下拉選單：select與option-影片"><a href="#10-4-下拉選單：select與option-影片" class="headerlink" title="10-4.下拉選單：select與option (影片)"></a>10-4.下拉選單：select與option <a href="https://hiskio.com/courses/145/lectures/5392" target="_blank" rel="noopener">(影片)</a></h2><h3 id="綁定單一個屬性"><a href="#綁定單一個屬性" class="headerlink" title="綁定單一個屬性"></a>綁定單一個屬性</h3><p>若沒有定義option中的value，會自動將option標籤中的內容當作value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;select v-model=&quot;year&quot;&gt;</span><br><span class="line">    &lt;option disable value=&quot;&quot;&gt;Select Year&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;17&quot;&gt;2017&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;2018&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;2019&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;h2&gt;&#123;&#123;year&#125;&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    year:<span class="string">''</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="綁定至array中，使用multiple"><a href="#綁定至array中，使用multiple" class="headerlink" title="綁定至array中，使用multiple"></a>綁定至array中，使用<code>multiple</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;select v-model=&quot;years&quot; multiple&gt;</span><br><span class="line">    &lt;option disable value=&quot;&quot;&gt;Select Year&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;17&quot;&gt;2017&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;2018&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;2019&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;h2&gt;&#123;&#123;years&#125;&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    years:[],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="使用v-for綁定option"><a href="#使用v-for綁定option" class="headerlink" title="使用v-for綁定option"></a>使用v-for綁定option</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;select v-model=&quot;selectedYear&quot;&gt;</span><br><span class="line">    &lt;option disable value=&quot;&quot;&gt;select year&lt;/option&gt;</span><br><span class="line">    &lt;option v-for=&quot;item in years&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;h2&gt;&#123;&#123;selectedYear&#125;&#125;&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    years:[<span class="number">2017</span>,<span class="number">2018</span>,<span class="number">2019</span>],</span><br><span class="line">    selectedYear:<span class="string">''</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Vue-(九)事件處理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(九)事件處理/">Vue-(九)事件處理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(九)事件處理/" class="article-date">
+	  <time datetime="2019-04-19T07:49:44.233Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="9-1-處理事件的兩種方式-影片"><a href="#9-1-處理事件的兩種方式-影片" class="headerlink" title="9-1.處理事件的兩種方式 (影片)"></a>9-1.處理事件的兩種方式 <a href="https://hiskio.com/courses/145/lectures/5385" target="_blank" rel="noopener">(影片)</a></h2><h3 id="在methods中定義函式方法"><a href="#在methods中定義函式方法" class="headerlink" title="在methods中定義函式方法"></a>在methods中定義函式方法</h3><p>當執行內容較多時，建議定義為函式方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;add&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.count++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="直接改變data中的變數"><a href="#直接改變data中的變數" class="headerlink" title="直接改變data中的變數"></a>直接改變data中的變數</h3><p>當執行內容簡短時，可以直接改變屬性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&quot;count++&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-2-偵聽滑鼠事件-影片"><a href="#9-2-偵聽滑鼠事件-影片" class="headerlink" title="9-2.偵聽滑鼠事件 (影片)"></a>9-2.偵聽滑鼠事件 <a href="https://hiskio.com/courses/145/lectures/5384" target="_blank" rel="noopener">(影片)</a></h2><h3 id="v-on綁定事件"><a href="#v-on綁定事件" class="headerlink" title="v-on綁定事件"></a>v-on綁定事件</h3><p><code>v-on:click=&quot;&quot;</code>簡寫為<code>@:click=&quot;&quot;</code></p>
+<h3 id="其他滑鼠事件"><a href="#其他滑鼠事件" class="headerlink" title="其他滑鼠事件"></a>其他滑鼠事件</h3><ul>
+<li>mouseover：滑鼠經過</li>
+<li>mouseout：滑鼠移出</li>
+<li>mousedown:滑鼠點下</li>
+<li>mouseup:滑鼠點下後‘放開’</li>
+<li>mousemove：滑鼠在其上方移動時</li>
+</ul>
+<hr>
+<h2 id="9-3-偵聽圖片的load事件-影片"><a href="#9-3-偵聽圖片的load事件-影片" class="headerlink" title="9-3.偵聽圖片的load事件 (影片)"></a>9-3.偵聽圖片的load事件 <a href="https://hiskio.com/courses/145/lectures/5386" target="_blank" rel="noopener">(影片)</a></h2><p>偵聽圖片loading前後，回傳不同的class樣式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-if</span>=<span class="string">"loading"</span>&gt;</span>loading<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-else</span>&gt;</span>complete<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> </span></span><br><span class="line"><span class="tag">     <span class="attr">:class</span>=<span class="string">'imgClass'</span></span></span><br><span class="line"><span class="tag">     @<span class="attr">load</span>=<span class="string">"loading=false"</span>  </span></span><br><span class="line"><span class="tag">     <span class="attr">src</span>=<span class="string">"https://loremflickr.com/g/320/240/paris"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.image</span>&#123;</span><br><span class="line">  <span class="attribute">transition</span>: all <span class="number">1s</span>;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.image</span><span class="selector-class">.hide</span>&#123;</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(3) <span class="built_in">rotate</span>(180deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    loading:<span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    imgClass()&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.loading)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image hide'</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'image'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen"><a href="#示範練習-codepen" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/XGaYpv" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-4-偵聽按鍵事件-影片"><a href="#9-4-偵聽按鍵事件-影片" class="headerlink" title="9-4.偵聽按鍵事件 (影片)"></a>9-4.偵聽按鍵事件 <a href="https://hiskio.com/courses/145/lectures/5915" target="_blank" rel="noopener">(影片)</a></h2><h3 id="鍵盤事件"><a href="#鍵盤事件" class="headerlink" title="鍵盤事件"></a>鍵盤事件</h3><ul>
+<li>keydown：按鍵被‘按下’時</li>
+<li>keyup：按鍵被按下後‘彈起’時<h3 id="修飾符-定義按鍵"><a href="#修飾符-定義按鍵" class="headerlink" title="修飾符 定義按鍵"></a>修飾符 定義按鍵</h3></li>
+<li>v-on:keydown.enter<br>(當「enter」按鍵被按下時)<h3 id="修飾符-防止按鍵內容被輸入"><a href="#修飾符-防止按鍵內容被輸入" class="headerlink" title="修飾符 防止按鍵內容被輸入"></a>修飾符 防止按鍵內容被輸入</h3></li>
+<li>v-on:keydown.a.prevent<br>(當「a」按鍵被按下時，但a的內容不會被放入input中)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input v-model=&quot;input&quot; v-on:keyup.enter=&quot;add&quot;/&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in todo&quot;&gt;&#123;&#123;item&#125;&#125;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">  input:<span class="string">''</span>,</span><br><span class="line">  todo:[],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    add()&#123;</span><br><span class="line">      <span class="keyword">this</span>.todo.push(<span class="keyword">this</span>.input);</span><br><span class="line">      <span class="keyword">this</span>.input = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="示範練習-codepen-1"><a href="#示範練習-codepen-1" class="headerlink" title="示範練習 (codepen)"></a>示範練習 <a href="https://codepen.io/leah-lin/pen/moBXmR" target="_blank" rel="noopener">(codepen)</a></h3><hr>
+<h2 id="9-5-便利的修飾符語法-影片"><a href="#9-5-便利的修飾符語法-影片" class="headerlink" title="9-5.便利的修飾符語法 (影片)"></a>9-5.便利的修飾符語法 <a href="https://hiskio.com/courses/145/lectures/5387" target="_blank" rel="noopener">(影片)</a></h2><h3 id="prevent：不執行預設效果"><a href="#prevent：不執行預設效果" class="headerlink" title=".prevent：不執行預設效果"></a>.prevent：不執行預設效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick(event)&#123;</span><br><span class="line">      event.preventDefault();</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.prevent</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;a </span><br><span class="line">      href=&quot;https://www.google.com&quot;</span><br><span class="line">      target=&quot;_blank&quot; </span><br><span class="line">      @click.prevent=&quot;linkClick&quot;&gt;</span><br><span class="line">    google&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    linkClick()&#123;</span><br><span class="line">      alert(<span class="string">"Don't do it!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="stop：不讓event傳到外層"><a href="#stop：不讓event傳到外層" class="headerlink" title=".stop：不讓event傳到外層"></a>.stop：不讓event傳到外層</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click=&quot;clickA&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click=&quot;clickB&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click=&quot;clickC&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">2px</span> solid blue;</span><br><span class="line">  <span class="attribute">min-width</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">min-height</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">'null'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    clickA(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'A'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickB(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'B'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    clickC(event)&#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">      <span class="keyword">this</span>.msg = <span class="string">'C'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>改用修飾符<code>.stop</code>的便利寫法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.stop=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="self：只執行自己發出的event"><a href="#self：只執行自己發出的event" class="headerlink" title=".self：只執行自己發出的event"></a>.self：只執行自己發出的event</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;A&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;B&apos;&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;box&quot; @click.self=&quot;msg=&apos;C&apos;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;msg&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="once：只執行一次"><a href="#once：只執行一次" class="headerlink" title=".once：只執行一次"></a>.once：只執行一次</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;num&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click.once=&quot;num+=1&quot;&gt;+Add &lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">"#app"</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    num:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="更多修飾符，參考-Vue文件"><a href="#更多修飾符，參考-Vue文件" class="headerlink" title="更多修飾符，參考(Vue文件)"></a>更多修飾符，參考<a href="https://vuejs.org/v2/api/#v-on" target="_blank" rel="noopener">(Vue文件)</a></h3><p><img src="https://i.imgur.com/u6Cz86Y.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Vue-(八)列表渲染" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(八)列表渲染/">Vue-(八)列表渲染</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(八)列表渲染/" class="article-date">
+	  <time datetime="2019-04-19T07:46:29.651Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="8-1-用v-for把陣列轉換為一組元素-影片"><a href="#8-1-用v-for把陣列轉換為一組元素-影片" class="headerlink" title="8-1.用v-for把陣列轉換為一組元素 (影片)"></a>8-1.用v-for把陣列轉換為一組元素 <a href="https://hiskio.com/courses/145/lectures/5377" target="_blank" rel="noopener">(影片)</a></h2><h3 id="v-for項目基本語法"><a href="#v-for項目基本語法" class="headerlink" title="v-for項目基本語法"></a>v-for項目基本語法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in colors&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;  </span><br><span class="line">    colors:[<span class="string">'學習javascrip'</span>,<span class="string">'學會vue框架'</span>,<span class="string">'做作品'</span>,<span class="string">'準備面試'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>補充：HTML ul 與 ol 差異==</strong><br><img src="https://i.imgur.com/IfM76Fr.png" alt></p>
+<h3 id="將item拿出來當作屬性"><a href="#將item拿出來當作屬性" class="headerlink" title="將item拿出來當作屬性"></a>將item拿出來當作屬性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in todo&quot; v-bind:class=&apos;item.key&apos;&gt;</span><br><span class="line">      &#123;&#123;item.date&#125;&#125; &#123;&#123;item.content&#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.first</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.second</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;  </span><br><span class="line">    todo:[&#123;<span class="attr">key</span>:<span class="string">'first'</span>,<span class="attr">date</span>:<span class="string">'3/9'</span>,<span class="attr">content</span>:<span class="string">'學習javascrip'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/10'</span>,<span class="attr">content</span>:<span class="string">'學會vue框架'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/11'</span>,<span class="attr">content</span>:<span class="string">'做作品'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">key</span>:<span class="string">'second'</span>,<span class="attr">date</span>:<span class="string">'3/12'</span>,<span class="attr">content</span>:<span class="string">'準備面試'</span>&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="用index綁定value"><a href="#用index綁定value" class="headerlink" title="用index綁定value"></a>用index綁定value</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;select &gt;</span><br><span class="line">    &lt;option v-for=&quot;(item,index) in monthes&quot; :value=&quot;index&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123; </span><br><span class="line">    monthes:[<span class="string">'1月'</span>,<span class="string">'2月'</span>,<span class="string">'3月'</span>,<span class="string">'4月'</span>,<span class="string">'5月'</span>,<span class="string">'6月'</span>,<span class="string">'7月'</span>,<span class="string">'8月'</span>,<span class="string">'9月'</span>,<span class="string">'10月'</span>,<span class="string">'11月'</span>,<span class="string">'12月'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-2-用v-for把物件轉換為一組元素-影片"><a href="#8-2-用v-for把物件轉換為一組元素-影片" class="headerlink" title="8-2.用v-for把物件轉換為一組元素 (影片)"></a>8-2.用v-for把物件轉換為一組元素 <a href="https://hiskio.com/courses/145/lectures/5378" target="_blank" rel="noopener">(影片)</a></h2><p><strong>注意</strong><br><strong><code>v-for</code>render出來的順序不一定會跟物件中的順序一樣，所以如果是需要遵從順序的情況，盡可能使用陣列</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;span v-for=&quot;(value,key) in me&quot;&gt;&#123;&#123;key&#125;&#125;-&#123;&#123;value&#125;&#125;&lt;br/&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    me:&#123;</span><br><span class="line">      name:<span class="string">'Leah'</span>,</span><br><span class="line">      age:<span class="number">26</span>,</span><br><span class="line">      gender:<span class="string">"Female"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-3-修改陣列或物件的注意事項-影片"><a href="#8-3-修改陣列或物件的注意事項-影片" class="headerlink" title="8-3.修改陣列或物件的注意事項 (影片)"></a>8-3.修改陣列或物件的注意事項 <a href="https://hiskio.com/courses/145/lectures/5379" target="_blank" rel="noopener">(影片)</a></h2><h3 id="陣列新增、刪減、排列基本語法"><a href="#陣列新增、刪減、排列基本語法" class="headerlink" title="陣列新增、刪減、排列基本語法"></a>陣列新增、刪減、排列基本語法</h3><ul>
+<li><code>push(ew item)</code>從陣列後面新增</li>
+<li><code>pop()</code>從陣列後面刪減</li>
+<li><code>unshift(new item)</code>從陣列前面新增</li>
+<li><code>shift()</code>從陣列前面刪減</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in steps&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;button @click=&quot;push&quot;&gt;Push&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;pop&quot;&gt;Pop&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;shift&quot;&gt;Shift&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;unshift&quot;&gt;Unshift&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    steps:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    push()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.push(<span class="keyword">this</span>.steps.length+<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    pop()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.pop();</span><br><span class="line">    &#125;,</span><br><span class="line">    shift()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.shift();</span><br><span class="line">    &#125;,</span><br><span class="line">    unshift()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.unshift(<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>splice(index,length)</code>從陣列中切割<br>第一個參數index代表陣列中要開始被切割的元素索引，第二個length參數代表要被切割掉的長度(元素數量)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">splice()&#123;<span class="comment">//切除陣列中倒數第二個元素</span></span><br><span class="line">  <span class="keyword">this</span>.steps.splice(<span class="keyword">this</span>.steps.length<span class="number">-2</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>splice(index,length,...)</code>從陣列中切除，並添加新的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">splice()&#123;<span class="comment">//從steps[1]開始切除0個，並從該位置添加元素'new1','new2','new3'</span></span><br><span class="line">      <span class="keyword">this</span>.steps.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="string">'new1'</span>,<span class="string">'new2'</span>,<span class="string">'new3'</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>slice(from,to)</code>從陣列中取出部分元素，並重組出一個新的陣列<br>==slice()不會改變原先的陣列，會產出一個新的陣列==</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">slice()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps = <span class="keyword">this</span>.steps.slice(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">* `</span>sort()<span class="string">`從陣列中的元素從小到大排列</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript=</span><br><span class="line">sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.sort();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>reverse()</code>從陣列中的元素反過來從後面到前面排列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reverse()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps.reverse();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>filter()</code>從陣列中的過濾符合條件的元素，並重組出一個陣列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//將steps中的每個元素一個個檢查</span></span><br><span class="line"><span class="comment">//若符合(item%2===0)，則會被放入新陣列中</span></span><br><span class="line"><span class="comment">//最後將新的陣列作為filter()的回傳值</span></span><br><span class="line"><span class="comment">//並重新assign給this.steps</span></span><br><span class="line">filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.steps = <span class="keyword">this</span>.steps.filter(<span class="function"><span class="params">item</span> =&gt;</span> item%<span class="number">2</span> === <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意！！！！</strong></p>
+<ul>
+<li>this.steps[0]=10, 不會修改陣列元素的值，應用<code>splice()</code>達到此目的</li>
+<li>this.steps.length=0, 沒辦法清空陣列中的元素，應用<code>splice()</code>，或是<code>slice()</code>達到此目的。</li>
+<li>this.obj.z=30, 沒有辦法達到新增物件屬性的功能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;h4 v-for=&quot;(value,key) in obj&quot;&gt;&#123;&#123;key&#125;&#125;=&#123;&#123;value&#125;&#125;&lt;/h4&gt;</span><br><span class="line">  &lt;button @click=&quot;addZ&quot;&gt;Add Z&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>this代表Vue實例，Vue實例中有個方法$set()，第一個參數是設定的目標物件，第二個參數代表新增的key，第三個參數代表新增的value<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">addZ()&#123;</span><br><span class="line">  <span class="comment">// this.obj.z = 300;//無效</span></span><br><span class="line">  <span class="keyword">this</span>.$<span class="keyword">set</span>(this.obj,'z',300);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>或是，這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">addZ()&#123;</span><br><span class="line">  Vue.set(<span class="keyword">this</span>.obj,<span class="string">'z'</span>,<span class="number">300</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong><br><strong><code>this.$set()</code>與<code>Vue.set()</code>用於物件原先沒有該屬性的情況;若情況是要修改物件本來就存在的屬性值，直接改寫就可以</strong></p>
+<hr>
+<h2 id="8-4-列表的過濾與排序-影片"><a href="#8-4-列表的過濾與排序-影片" class="headerlink" title="8-4.列表的過濾與排序 (影片)"></a>8-4.列表的過濾與排序 <a href="https://hiskio.com/courses/145/lectures/5380" target="_blank" rel="noopener">(影片)</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in nums&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;button @click=&quot;initiate&quot;&gt;Initiate&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;filter&quot;&gt;Filter&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;sort&quot;&gt;Sort&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>sort()會改變原先的this.num陣列;又因為data中nums=orgNums，所以最外面的orgNums也被改變了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> orgNums = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">9</span>];</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    nums:orgNums,</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    initiate()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = orgNums;</span><br><span class="line">    &#125;,</span><br><span class="line">    filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.filter(<span class="function"><span class="params">item</span> =&gt;</span>item%<span class="number">2</span>===<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums.sort();</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>因此，若要避免原先的陣列被改動而喚不回初始值，可以利用<code>slice()</code>語法，先複製一個新的陣列<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> orgNums = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">9</span>];</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    nums:orgNums,</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    initiate()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = orgNums;</span><br><span class="line">    &#125;,</span><br><span class="line">    filter()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.filter(<span class="function"><span class="params">item</span> =&gt;</span>item%<span class="number">2</span>===<span class="number">0</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    sort()&#123;</span><br><span class="line">      <span class="keyword">this</span>.nums = <span class="keyword">this</span>.nums.slice().sort();</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="8-5-用v-for渲染templete-影片"><a href="#8-5-用v-for渲染templete-影片" class="headerlink" title="8-5.用v-for渲染templete [(影片)]"></a>8-5.用v-for渲染templete [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5382" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5382</a>)</p>
+<ul>
+<li>每次迴圈需要被render出來的不只一個元素，而是包含多個標籤元素，可以使用<code>&lt;templete&gt;&lt;/templete&gt;</code>，並將<code>v-for</code>指令放在templete標籤中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;template v-for=&apos;item in header&apos;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;item&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;hr/&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    header:[<span class="string">'Home'</span>,<span class="string">'About'</span>,<span class="string">'Product'</span>,<span class="string">'Contact'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-6-實作：從JSON資料渲染課程列表-影片"><a href="#8-6-實作：從JSON資料渲染課程列表-影片" class="headerlink" title="8-6.實作：從JSON資料渲染課程列表 [(影片)]"></a>8-6.實作：從JSON資料渲染課程列表 [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5383" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5383</a>)</p>
+<h3 id="在mounted-階段引入JSON格式資料"><a href="#在mounted-階段引入JSON格式資料" class="headerlink" title="在mounted()階段引入JSON格式資料"></a>在<code>mounted()</code>階段引入JSON格式資料</h3><ul>
+<li><p>用原生的<code>fetch()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">    fetch(<span class="string">'./data.json'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">    .then(<span class="function"><span class="params">lessons</span> =&gt;</span> <span class="keyword">this</span>.lessons = lessons);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入<code>jquery</code>寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(<span class="string">'./data.json'</span>)</span><br><span class="line">            .then(<span class="function"><span class="params">lessons</span> =&gt;</span> <span class="keyword">this</span>.lessons = lessons);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>axios</code>寫法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'./data.json'</span>).then(<span class="function"><span class="params">res</span> =&gt;</span><span class="keyword">this</span>.lessons = res.data);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="結果呈現"><a href="#結果呈現" class="headerlink" title="結果呈現"></a>結果呈現</h3><ul>
+<li><a href="https://github.com/lehlin912/practice_vue_JSONdata_0311" target="_blank" rel="noopener">github完整程式碼</a><br><img src="https://i.imgur.com/BFdJWYF.jpg" alt></li>
+</ul>
+<p><strong>補充</strong><br>vscode 擴充套件 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener">Live Server</a>：可以快速地建造一個本地端的server</p>
+<h2 id="8-7-片尾彩蛋：認識JSON格式-影片"><a href="#8-7-片尾彩蛋：認識JSON格式-影片" class="headerlink" title="8-7.片尾彩蛋：認識JSON格式 [(影片)]"></a>8-7.片尾彩蛋：認識JSON格式 [(影片)]</h2><p>(<a href="https://hiskio.com/courses/145/lectures/5470" target="_blank" rel="noopener">https://hiskio.com/courses/145/lectures/5470</a>)</p>
+<h3 id="「JSON格式」本身是一個「字串」"><a href="#「JSON格式」本身是一個「字串」" class="headerlink" title="「JSON格式」本身是一個「字串」"></a>「JSON格式」本身是一個「字串」</h3><h3 id="JSON格式的限制"><a href="#JSON格式的限制" class="headerlink" title="JSON格式的限制"></a>JSON格式的限制</h3><ul>
+<li>JSON格式的key一定要有雙引號””</li>
+<li>最後一個value不能有,結尾</li>
+<li>value不能是函式（不過可以把它存成字串，之後再轉為函式執行）<h3 id="格式轉換"><a href="#格式轉換" class="headerlink" title="格式轉換"></a>格式轉換</h3></li>
+<li>javascript物件轉為JSON格式：<code>JSON.stringify();</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  name:<span class="string">"point"</span>,</span><br><span class="line">  x:<span class="number">100</span>,</span><br><span class="line">  y:<span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure>
+<p>印出結果，用“”代表是一個字串(JSON格式字串)<br><img src="https://i.imgur.com/U7NQhXd.png" alt></p>
+<ul>
+<li>JSON格式轉為javascript物件：<code>JSON.parse()</code>;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataObj = <span class="built_in">JSON</span>.parse(dataJSON);</span><br><span class="line"><span class="built_in">console</span>.log(dataObj);</span><br></pre></td></tr></table></figure>
+<p>印出結果，是一個物件<br><img src="https://i.imgur.com/UlK7Fmv.png" alt></p>
+<h3 id="replacer-重建JSON資料"><a href="#replacer-重建JSON資料" class="headerlink" title="replacer:重建JSON資料"></a>replacer:重建JSON資料</h3><p>將物件轉換為JSON格式時，只取其中部分的key值。<br>作法：在stringify()的第二個參數放上key字串組成的陣列[‘x’,’y’];若放null，則代表曲全部的資料<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.clear();</span><br><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  name:<span class="string">"point"</span>,</span><br><span class="line">  x:<span class="number">100</span>,</span><br><span class="line">  y:<span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data,[<span class="string">'x'</span>,<span class="string">'y'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure></p>
+<p>印出結果，產出的JSON格式資料中，只有出’x’,’y’<br><img src="https://i.imgur.com/89hAJ0R.png" alt></p>
+<h3 id="提高JSON格式易讀性"><a href="#提高JSON格式易讀性" class="headerlink" title="提高JSON格式易讀性"></a>提高JSON格式易讀性</h3><p>為了易讀性，讓JSON格式排列整齊，每個key值前面補上空格<br>作法：在stringify()的第三個參數空格數量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataJSON = <span class="built_in">JSON</span>.stringify(data,<span class="literal">null</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(dataJSON);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/bODDGqY.png" alt></p>
+<h3 id="格式JSON搭配try-catch"><a href="#格式JSON搭配try-catch" class="headerlink" title="格式JSON搭配try,catch()"></a>格式JSON搭配try,catch()</h3><p>因為不能保證每次能成功將JSON格式轉換為物件，為了避免城市卡住，通常會搭配try,catch(err)處理錯誤<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(dataJSON);</span><br><span class="line">&#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">  <span class="keyword">const</span> data = &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-Vue-(七)條件判斷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/Vue-(七)條件判斷/">Vue-(七)條件判斷</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/04/19/Vue-(七)條件判斷/" class="article-date">
+	  <time datetime="2019-04-19T07:45:07.200Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="7-1-v-if-影片"><a href="#7-1-v-if-影片" class="headerlink" title="7-1.v-if  (影片)"></a>7-1.v-if  <a href="https://hiskio.com/courses/145/lectures/5374" target="_blank" rel="noopener">(影片)</a></h2><p><strong>補充:</strong><br><strong><templete></templete>本身並非元素，只是用來包著許多元素的模板</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;show&quot;/&gt;勾選秀出內容</span><br><span class="line">  &lt;templete v-if=&quot;show&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/h3&gt;</span><br><span class="line">  &lt;/templete&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    message:<span class="string">'跳樓大拍賣'</span>,</span><br><span class="line">    show:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-2-v-else-影片"><a href="#7-2-v-else-影片" class="headerlink" title="7-2.v-else  (影片)"></a>7-2.v-else  <a href="https://hiskio.com/courses/145/lectures/5375" target="_blank" rel="noopener">(影片)</a></h2><p><code>v-else</code>一定要依附在<code>v-if</code>之後，且是同一層的東西<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;show&quot;/&gt;</span><br><span class="line">  &lt;span v-if=&apos;show&apos;&gt;隱藏內容&lt;/span&gt;</span><br><span class="line">  &lt;span v-else&gt;秀出內容&lt;/span&gt;</span><br><span class="line">  &lt;templete v-if=&quot;show&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/h3&gt;</span><br><span class="line">  &lt;/templete&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>==如果中間有其他東西，<code>v-else</code>會無效<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"checkbox"</span> v-model=<span class="string">"show"</span>/&gt;</span><br><span class="line">  &lt;span v-<span class="keyword">if</span>=<span class="string">'show'</span>&gt;隱藏內容&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;br/</span>&gt;<span class="comment">//錯誤：不得再v-if/v-else插入其他東西，會出錯</span></span><br><span class="line">  &lt;span v-<span class="keyword">else</span>&gt;秀出內容&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;templete v-if="show"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;message&#125;&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h3&gt;&#123;&#123;message&#125;&#125;&lt;/</span>h3&gt;</span><br><span class="line">  &lt;<span class="regexp">/templete&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="7-3-v-else-if-影片"><a href="#7-3-v-else-if-影片" class="headerlink" title="7-3.v-else-if  (影片)"></a>7-3.v-else-if  <a href="https://hiskio.com/courses/145/lectures/5468" target="_blank" rel="noopener">(影片)</a></h2><p><code>v-if</code>若有成立，就不會render下面的<code>v-else-if</code>與<code>v-else</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showRed&quot;/&gt;red</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showGreen&quot;/&gt;green</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; v-model=&quot;showBlue&quot;/&gt;blue</span><br><span class="line">  &lt;h1 v-if=&quot;showRed&quot;&gt;I&apos;m Red.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else-if=&quot;showGreen&quot;&gt;I&apos;m Green.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else-if=&quot;showBlue&quot;&gt;I&apos;m Blue.&lt;/h1&gt;</span><br><span class="line">  &lt;h1 v-else&gt;Non&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">   showRed:<span class="literal">false</span>,</span><br><span class="line">    showGreen:<span class="literal">false</span>,</span><br><span class="line">    showBlue:<span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-4-v-show-影片"><a href="#7-4-v-show-影片" class="headerlink" title="7-4.v-show  (影片)"></a>7-4.v-show  <a href="https://hiskio.com/courses/145/lectures/5376" target="_blank" rel="noopener">(影片)</a></h2><ul>
+<li><code>v-if</code>是讓程式判斷是否被render出來</li>
+<li><code>v-show</code>是用css控制是否在畫面中顯示(意即套用display: none)，所以該元素在原始碼中有被render出來，只是不在畫面顯示</li>
+</ul>
+<ul>
+<li><templete>可以搭配<code>v-if</code>使用，代表<templete>裡面的東西是否render出來;但是不能用<code>v-show</code>，因為<templete>本身並非一個元素，只是一個模板，無法被顯示處理</templete></templete></templete></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Vue-(六)HTML元素的屬性綁定" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -748,437 +1209,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-CSS-將footer置底" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/16/CSS-將footer置底/">CSS-將footer置底</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/16/CSS-將footer置底/" class="article-date">
-	  <time datetime="2019-04-16T10:50:13.935Z" itemprop="datePublished">April 16, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>通常一個頁面中包含三個部分：header、main-content、footer，可是當main-content中的內容不足以撐開整個頁面高度，footer下方就會出現一塊空白區域。這種情況，如果希望footer可以維持底部，整理兩種做法：</p>
-<p>方法1. 設定main-content的最小高度為100%<br>方法2. 在最外部再包一層wrapper，設定期高度為100% ; 且讓footer設定為絕對定位bottom:0</p>
-<p><img src="https://i.imgur.com/1IvdcAV.png" alt></p>
-<h3 id="方法1-設定main-content的最小高度為100"><a href="#方法1-設定main-content的最小高度為100" class="headerlink" title="方法1.設定main-content的最小高度為100%"></a>方法1.設定main-content的最小高度為100%</h3><p><img src="https://i.imgur.com/8acrinG.png" alt></p>
-<p><strong>html, body</strong></p>
-<ul>
-<li>高度為100%<br><strong>main-content</strong></li>
-<li>最小高度為100%</li>
-<li>上、下padding空間，作為放置header、footer的空間</li>
-<li></li>
-</ul>
-<p><strong>header</strong></p>
-<ul>
-<li>使用絕對定位，top為0</li>
-<li>設定z-index確保在最上方</li>
-</ul>
-<p><strong>footer</strong></p>
-<ul>
-<li>使用相對定位，top為自己的高度</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">    &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/* background-color: azure; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">900</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main-content</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">padding-top</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="方法2-在最外部再包一層wrapper"><a href="#方法2-在最外部再包一層wrapper" class="headerlink" title="方法2.在最外部再包一層wrapper"></a>方法2.在最外部再包一層wrapper</h3><p><img src="https://i.imgur.com/hJQdVmT.png" alt></p>
-<p><strong>html, body</strong></p>
-<ul>
-<li>高度為100%</li>
-</ul>
-<p><strong>wrapper</strong></p>
-<ul>
-<li>最小高度為100%</li>
-</ul>
-<p><strong>footer</strong></p>
-<ul>
-<li>使用絕對定位，bottom為0</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&apos;wrapper&apos;&gt;</span><br><span class="line">        &lt;header class=&apos;header&apos;&gt;&lt;/header&gt;</span><br><span class="line">        &lt;div class=&quot;main-content&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layuot/">layuot</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-jQuery-改變CSS樣式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/16/jQuery-改變CSS樣式/">jQuery-改變CSS樣式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/16/jQuery-改變CSS樣式/" class="article-date">
-	  <time datetime="2019-04-16T10:49:34.889Z" itemprop="datePublished">April 16, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).css(&apos;屬性&apos;,&apos;值&apos;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
-<li><p><code>css()</code>中所定義的指令是「<strong>jQuery方法</strong>」，意即「jQuery其js中定義了的<code>css()</code>這個函式」</p>
-</li>
-<li><p>選擇器：與CSS相同的選擇器</p>
-</li>
-<li>屬性：CSS的屬性</li>
-<li>值：若為字串，需用單引號或雙引號（<code>&quot;&quot;</code>、<code>&#39;&#39;</code>)括號起來;若值為數值，則不需要。</li>
-</ul>
-<p>補充：jQuery可以修改元素的CSS屬性中的值，但若有使用<code>!important</code>的項目仍會優先套用。</p>
-<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
-<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
-<li>針對jQuery物件呼叫方法，以進行相關操作<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><img src="https://i.imgur.com/RFhWHmz.png" alt></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#556A5B'</span>);</span><br><span class="line">    $(<span class="string">'#typo'</span>).css(<span class="string">'transform'</span>,<span class="string">'rotate(10deg)'</span>)</span><br><span class="line">    $(<span class="string">'#typo .inner'</span>).css(<span class="string">'opacity'</span>,<span class="number">0.5</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-jQuery-事件處理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/16/jQuery-事件處理/">jQuery-事件處理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/16/jQuery-事件處理/" class="article-date">
-	  <time datetime="2019-04-16T10:49:25.993Z" itemprop="datePublished">April 16, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="事件處理函式"><a href="#事件處理函式" class="headerlink" title="事件處理函式"></a>事件處理函式</h2><h3 id="語法結構"><a href="#語法結構" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    任意處理程序</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>$()</code>函式的功能是將HTML元素轉換為jQuery特殊元素，經此方法轉換後的HTML元素稱為「<strong>jQuery物件</strong>」</li>
-<li><code>on()</code>是設定「當某<strong>事件</strong>發生時，執行某<strong>指令</strong>」的方法。<ul>
-<li>第一個參數是「事件類型(Event Type)」：事件觸發的條件</li>
-<li>第二個參數是「處理程序(Event Handler)」：事件被觸發後，接著要调用的方法。</li>
-</ul>
-</li>
-</ul>
-<h3 id="語法執行概念"><a href="#語法執行概念" class="headerlink" title="語法執行概念"></a>語法執行概念</h3><ol>
-<li>先利用<code>$()</code>函式，將作為指令對象的HTML元素，轉換為jQuery物件</li>
-<li>針對jQuery物件呼叫<code>on()</code>方法</li>
-<li>在<code>on()</code>方法中傳入兩個參數，定義要被觸發的「事件類型」以及接下來要執行的「處理程序」</li>
-</ol>
-<h3 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h3><p>當滑鼠移入<code>#typo</code>，接著會執行：透過css樣式修改<code>#typo</code>的顏色</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多個處理程序"><a href="#多個處理程序" class="headerlink" title="多個處理程序"></a>多個處理程序</h2><p>在<code>.on()</code>方法中的第一個參數「事件類型」被觸發之後，第二個參數「處理程序函式」中可以執行數個個別處理的程序</p>
-<h3 id="語法結構-1"><a href="#語法結構-1" class="headerlink" title="語法結構"></a>語法結構</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).on(&apos;事件類型&apos;, function()&#123;</span><br><span class="line">    處理1;</span><br><span class="line">    處理2;</span><br><span class="line">    處理3...;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="簡易範例-1"><a href="#簡易範例-1" class="headerlink" title="簡易範例"></a>簡易範例</h3><ul>
-<li>當滑鼠移入<code>#typo</code>，接著會執行：<ul>
-<li>透過css樣式修改<code>#typo</code>的顏色</li>
-<li>透過css樣式修改<code>header</code>的背景顏色<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(<span class="string">'color'</span>,<span class="string">'#ebc000'</span>) ;</span><br><span class="line">        $(<span class="string">'header'</span>).css(<span class="string">'background-color'</span>,<span class="string">'#ffffff'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="設定多個事件類型"><a href="#設定多個事件類型" class="headerlink" title="設定多個事件類型"></a>設定多個事件類型</h2><p>一個jQuery物件，可以有多個<code>.on()方法</code>，例如：當A事件(滑鼠移入)時要執行a程序，而當B事件(滑鼠移出)時要執行b程序</p>
-<h3 id="方法鏈串語法"><a href="#方法鏈串語法" class="headerlink" title="方法鏈串語法"></a>方法鏈串語法</h3><p>多個方法如鎖鏈一般串連起來，針對$()產生的同一個jQuery物件作為執行對象，程式會從左到右開始執行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;選擇器&apos;).事件A().事件B().事件C()....</span><br></pre></td></tr></table></figure></p>
-<h3 id="簡易案例"><a href="#簡易案例" class="headerlink" title="簡易案例"></a>簡易案例</h3><ul>
-<li>當滑鼠移入<code>#typo</code>元素時，會改變文字即背景顏色</li>
-<li>當滑鼠移出<code>#typo</code>元素時，會回復為原本的顏色</li>
-</ul>
-<p>多個事件一般寫法(效能差)</p>
-<ul>
-<li>針對同一個物件，寫兩次<code>$()</code>函式，瀏覽器花時間分析HTML並取得目標元素，會造成CPU負擔<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">'#ebc000'</span>,</span><br><span class="line">            backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#typo'</span>).on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">            color:<span class="string">''</span>,</span><br><span class="line">            backgroundColor:<span class="string">''</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>修改為鏈串寫法(效能佳)</p>
-<ul>
-<li>只需要使用一次<code>$()</code>函式，除了簡化程式碼，也提稱程式處理速度<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#typo'</span>)</span><br><span class="line">        .on(<span class="string">'mouseover'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">'#ebc000'</span>,</span><br><span class="line">                backgroundColor:<span class="string">'#ae5e96'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        .on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">'#typo'</span>).css(&#123;</span><br><span class="line">                color:<span class="string">''</span>,</span><br><span class="line">                backgroundColor:<span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="主要的事件類型"><a href="#主要的事件類型" class="headerlink" title="主要的事件類型"></a>主要的事件類型</h3><p><img src="https://i.imgur.com/q7B1WBC.png" alt></p>
-<p>jQuery中，大部分的操作都基於HTML DOM，所以必須確定頁面文件已經完全下載好，才能開始執行程式。jQuery 提供下面這個函式來處理 DOM ready事件 </p>
-<p>當DOM載入後，執行ready()方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>也可以這樣寫<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 這裡放你要執行的程式碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Hexo-使用靜態生成器，建立blog(3_3)變更主題" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(3_3)變更主題/" class="article-date">
-	  <time datetime="2019-04-11T08:50:43.538Z" itemprop="datePublished">April 11, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
-<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
-<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
-<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="複製主題到自己的專案"><a href="#複製主題到自己的專案" class="headerlink" title="複製主題到自己的專案"></a>複製主題到自己的專案</h3><img src="https://i.imgur.com/oZKXHqP.png" alt></li>
-</ul>
-<p>將別人的製作好的主題repository clone下來的時候，可能會連.git 一起 clone下來，出現「<strong>Git Submodule</strong>」</p>
-<p>「<strong>Git Submodule</strong>」就是原先的repository中，還內嵌一到多個外部repository</p>
-<ul>
-<li>查看clone下來的repository是否含有.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//進入themes資料夾，查看檔案列表</span><br><span class="line">$ cd themes</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//進入內部主題資料夾，查看其中檔案列表</span><br><span class="line">$ cd hiero</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/qpIENwA.png" alt></p>
-<ul>
-<li>刪除內部主題資料夾中的.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//強制刪除.git（-rf : recursive + force）</span><br><span class="line">$ rm -rf .git</span><br><span class="line">$ ls -al</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/j8iRxPp.png" alt></p>
-<ul>
-<li><p>刪除快取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached  themes/hiero -f</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看尚未commit的當案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新增檔案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file name&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用git管理檔案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m&quot;&lt;commit message&gt;&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢視提交紀錄(也可以用soursetree檢視)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/A3bCU0J.png" alt></p>
-<p><img src="https://i.imgur.com/0TScs2K.png" alt></p>
-<ul>
-<li>使用hexo產生靜態網頁<br>hexo 是把產生出來的網站push到github(可以理解為，hexo的deploy指令會先把原始碼變成網站瀏覽器可以閱讀的程式碼 再push到github)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Hexo-使用靜態生成器，建立blog(2_3)推上github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/">Hexo-使用靜態生成器，建立blog(2/3)推上github</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/11/Hexo-使用靜態生成器，建立blog(2_3)推上github/" class="article-date">
-	  <time datetime="2019-04-11T08:50:37.359Z" itemprop="datePublished">April 11, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h3><ul>
-<li><a href="https://hackmd.io/t8j-iGjCRx6yT--jJe-3Iw?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(1/3)本地端</a></li>
-<li><a href="https://hackmd.io/x_uo0ABMRjCl0QHVnwaTtA?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(2/3)推上github</a></li>
-<li><a href="https://hackmd.io/t_DX2ch3S_mzW6MKhb6_-Q?both" target="_blank" rel="noopener">Hexo-使用靜態生成器，建立blog(3/3)變更主題</a><h3 id="push上github"><a href="#push上github" class="headerlink" title="push上github"></a>push上github</h3></li>
-</ul>
-<ol>
-<li><p>先在github新增一個repository，命名邏輯為</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[github account]</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br><span class="line">例：<span class="selector-tag">leahlin912</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>複製該repository的網址(例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:leahlin912/leahlin912.github.io.git`)</p>
-</li>
-<li><p>用vscode(或其他編譯器)打開_config.yml檔案，並修改<code># Deployment</code>的部分</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">Deployment</span></span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"><span class="selector-tag">deploy</span>:</span><br><span class="line">  <span class="selector-tag">type</span>: <span class="selector-tag">git</span></span><br><span class="line">  repository: git@github.com:leahlin912/leahlin912.github.io.git</span><br><span class="line">  <span class="selector-tag">branch</span>: <span class="selector-tag">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安裝git</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>輸入指令，將網站佈署到伺服器上</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy -g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>設定repository的主題<br>在github的該repository頁面，進入「setting」<br><img src="https://i.imgur.com/HKOW9XH.png" alt><br>往下滑，點按「change theme」<br><img src="https://i.imgur.com/BgZoPjj.png" alt></p>
-</li>
-<li><p>在瀏覽器中查看網址，成功！<a href="https://leahlin912.github.io/" target="_blank" rel="noopener">https://leahlin912.github.io/</a></p>
-</li>
-<li><p>若有檔案更新，則重複輸入指令</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="更換主題"><a href="#更換主題" class="headerlink" title="更換主題"></a>更換主題</h3><ol>
-<li><p>選擇要套用的主題<br>[Themes]<br>(<a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">https://hexo.io/themes/index.html</a>)<br><img src="https://i.imgur.com/LC6xzT9.png" alt></p>
-</li>
-<li><p>點進該主題的github頁面<br><img src="https://i.imgur.com/V8NNjOP.png" alt></p>
-</li>
-<li><p>在README.md中，依照install指令複製起來，並在terminal中進入blog資料夾中執行指令完畢<br><img src="https://i.imgur.com/IQz4I6S.png" alt><br><img src="https://i.imgur.com/Zd57Cs3.png" alt></p>
-</li>
-<li><p>用vscode開啟blog資料夾，並進入<code>_config.yml</code>檔案中，修改主題theme(參考readme中開發者定義的theme名稱)<br><img src="https://i.imgur.com/QUikitj.png" alt><br><img src="https://i.imgur.com/zgGjkZE.png" alt></p>
-</li>
-<li><p>因為檔案有更新，所以需要在terminal輸入指令</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">hexo</span> <span class="selector-tag">deploy</span> <span class="selector-tag">-g</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">Next</a>
   </nav>
 
 </section>
@@ -1241,68 +1276,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/">React-(五-2)組件進階：組件的父子溝通</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/">【Debug筆記】利用pointer-events:none解決點擊事件失效</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-4)三種組件/">React-(五-4)三種組件</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/">React-(五-3)組建進階：動態控制樣式className跟style</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/">React-(五-1)組件進階：ref屬性找到DOM</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/05/13/React-(四)組件進階/">React-(四)組件進階</a></h6>
               <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(三)組件基本/">React-(三)組件基本</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(二)JSX與render/">React-(二)JSX與render</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(一)創建一個React專案(懶人包)/">React-(一)創建一個React專案(懶人包)</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/Vue-EventBus組件溝通/">Vue-EventBus組件溝通</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
-              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -1316,7 +1351,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1326,7 +1361,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1336,7 +1371,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/React/" style="font-size: 12.73px;">React</a> <a href="/tags/React-js/" style="font-size: 12.73px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.67px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.33px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.83px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.17px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.33px;">Node.js</a> <a href="/tags/React/" style="font-size: 15.83px;">React</a> <a href="/tags/React-js/" style="font-size: 15.83px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.33px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.17px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.67px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.5px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.67px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.83px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.83px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.67px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.83px;">layuot</a> <a href="/tags/library/" style="font-size: 10.83px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.83px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.17px;">實作</a>
     </div>
   </div>
 
@@ -1346,7 +1381,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

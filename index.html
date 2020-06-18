@@ -158,6 +158,326 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-React-(五-2)組件進階：組件的父子溝通" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/">React-(五-2)組件進階：組件的父子溝通</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/" class="article-date">
+	  <time datetime="2020-06-18T10:00:32.116Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="父叫子做事"><a href="#父叫子做事" class="headerlink" title="父叫子做事"></a>父叫子做事</h2><ul>
+<li>第 4 行，在父層組件中引入子組件，並且在第 27 行使用子組件</li>
+<li>第 7 行，使用 <code>createRef()</code> 來創建一個ref，並且在第 27 行給子組件使用</li>
+<li><p>第 20 行，點擊觸發第 12 行 addChild() 函式時，則去拿取該 ref 並觸發定義子組件中的 addCount()函式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Parent.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component,createRef&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">'./Child'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  childRef = createRef();</span><br><span class="line">  state = &#123;</span><br><span class="line">    count:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  addChild = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.childRef.current.addCount();</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;Parent:&#123;<span class="keyword">this</span>.state.count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.addChild&#125;&gt;+Child +1&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Child ref=&#123;<span class="keyword">this</span>.childRef&#125;/&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Parent;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第 10 行，子組件中的 addCount()函式會被觸發</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Child.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    count:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addCount = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      count:<span class="keyword">this</span>.state.count + <span class="number">1</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Child;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/eucZ6WI.png" alt></p>
+<h2 id="子叫父做事"><a href="#子叫父做事" class="headerlink" title="子叫父做事"></a>子叫父做事</h2><ul>
+<li>第 11 行，先定義好動作，也就是從子層觸發父層去執行的函式</li>
+<li><p>第 21 行，把函式當作一個 props 傳給子層。當子層觸發 addParent ，就會在父層執行 addCount </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Parent.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">'./Child'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    count:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addCount = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      count:<span class="keyword">this</span>.state.count + <span class="number">1</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;Parent:&#123;<span class="keyword">this</span>.state.count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">        </span></span><br><span class="line"><span class="regexp">        &lt;Child addParent=&#123;this.addCount&#125;/</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Parent;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第 14 行，用 props 綁定 addparent</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Child.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    count:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;Child:&#123;<span class="keyword">this</span>.state.count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.props.addParent&#125;&gt;Parent +1&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Child;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/Ny9afMh.png" alt></p>
+<h2 id="父叫子做事-方法二"><a href="#父叫子做事-方法二" class="headerlink" title="父叫子做事(方法二)"></a>父叫子做事(方法二)</h2><p>父對子溝通，除了用 ref 溝通，另一種狀況是子層沒有自己的 state(剝奪子層的自主權)。</p>
+<ul>
+<li>第 8 行，增加一個變數 childCount 作為子層的 count 資料</li>
+<li><p>第 27 行，透過 props 傳入屬性跟方法給子層</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Parents.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">"./child"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">parent</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">        count:<span class="string">""</span>,</span><br><span class="line">        childCount:<span class="string">""</span></span><br><span class="line">    &#125;</span><br><span class="line">    addParent = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            count:<span class="keyword">this</span>.state.count + <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    addChild = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            childCount:<span class="keyword">this</span>.state.childCount + <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h3&gt;Parent:&#123;<span class="keyword">this</span>.state.count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">            &lt;button onClick=&#123;<span class="keyword">this</span>.adParent&#125;&gt;+Parent&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;button onCLick=&#123;this.addChild&#125;&gt;+Child&lt;/</span>button&gt;</span><br><span class="line">            &lt;Child count=&#123;<span class="keyword">this</span>.state.childCount&#125; addParent=&#123;<span class="keyword">this</span>.addParent&#125; addChild=&#123;<span class="keyword">this</span>.addChild&#125;&gt;&lt;/Child&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第 4 行，先解構上層傳來的 props，作為子層的屬性及方法</p>
+</li>
+<li>第 10, 11 行，就可以把解構出來的屬性或方法給子層顯示、使用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Child.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;count,addParent,addChild&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    </span><br><span class="line">    render()&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h3&gt;Child:&#123;count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">                &lt;button onClick=&#123;adParent&#125;&gt;+Parent&lt;/</span>button&gt;</span><br><span class="line">                &lt;button onCLick=&#123;addChild&#125;&gt;+Child&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-【Debug筆記】利用pointer-events_none解決點擊事件失效" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/">【Debug筆記】利用pointer-events:none解決點擊事件失效</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/" class="article-date">
+	  <time datetime="2020-06-18T10:00:26.573Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在button 內層包了一個 svg 圖片，而在 button 上面綁定 click 事件，可是當點按的範圍在 svg 區域內時，click 事件無法被正常觸發。<br><img src="https://i.imgur.com/JfLvUrC.png" alt></p>
+<p>原因是因為 svg 蓋在 button 上方時，但滑鼠點擊時，上方的 svg 層遮蓋住，導致無法點到下層 button 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">svg</span> &#123;</span><br><span class="line">  <span class="attribute">pointer-events</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解決方法是，透過 CSS3 的新屬性 pointer-events，讓點擊事件忽略上層 svg，如此一來就可點到下層 button 區塊。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-React-(五-4)三種組件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/06/18/React-(五-4)三種組件/">React-(五-4)三種組件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/React-(五-4)三種組件/" class="article-date">
+	  <time datetime="2020-06-18T10:00:22.418Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-Class-Component"><a href="#一-Class-Component" class="headerlink" title="(一) Class Component"></a>(一) Class Component</h2><p>透過繼承 React 的 Component，所創建出來的組件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Progress.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Progress</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;value&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"bar-outer"</span>&gt;</span><br><span class="line">        &lt;div </span><br><span class="line">          className=<span class="string">"bar-inner"</span></span><br><span class="line">          style=&#123;&#123;<span class="attr">width</span>:<span class="string">`<span class="subst">$&#123;value&#125;</span>%`</span>&#125;&#125;/&gt;</span><br><span class="line">        &lt;span&gt;&#123;value&#125;%&lt;/span&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Progress;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="二-Functional-Component"><a href="#二-Functional-Component" class="headerlink" title="(二) Functional Component"></a>(二) Functional Component</h2><p>相較於 <strong>Class Component</strong>，在<strong>Functional Component</strong> 中，props 是當作一個參數傳進函式中</p>
+<p>使用情境： 當這個 Component 中沒有使用到 state ，只有 render 函式而沒有其他自定義方法</p>
+<p>因此，<strong>Functional Component</strong> 又稱作 <strong>Stateless Component</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ProgressBar = <span class="function">(<span class="params">props</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;value&#125; = props;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"bar-outer"</span>&gt;</span><br><span class="line">        &lt;div </span><br><span class="line">          className=<span class="string">"bar-inner"</span></span><br><span class="line">          style=&#123;&#123;<span class="attr">width</span>:<span class="string">`<span class="subst">$&#123;value&#125;</span>%`</span>&#125;&#125;/&gt;</span><br><span class="line">        &lt;span&gt;&#123;value&#125;%&lt;/span&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default ProgressBar;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="三-Pure-Component"><a href="#三-Pure-Component" class="headerlink" title="(三) Pure Component"></a>(三) Pure Component</h2><p><strong>Pure Component</strong> 跟 <strong>Class Component</strong> 很相似，最主要是差在效能上。</p>
+<p>只要 props 裡面的值沒有改變，Pure Component 就不會重新 render<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProgressBar.js</span></span><br><span class="line"><span class="comment">//Class Component：</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;PureComponent&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProgressBar</span> <span class="keyword">extends</span> <span class="title">PureComponent</span></span>&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        count &#123;value&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;value&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Re-render Progress"</span>)</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            ...略</span><br><span class="line">        )</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此外，Pure Component 也會去比對自己的 state，在每一次決定是否要重新 render，是採取 shallow compare 的方式是去比對，也就是僅針對 state 中的第一層值是否改變</p>
+<p>所以在下方程式碼中，即使每次重複點按 button 觸發 add()，卻因為 count 沒有被改變值，且第一層的 people 也沒有被改變，所以並不會重新 render<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Progress.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;PureComponent&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Progress</span> <span class="keyword">extends</span> <span class="title">PureComponent</span></span>&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        count:<span class="number">0</span>,</span><br><span class="line">        people:&#123;</span><br><span class="line">            age:<span class="number">10</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    add:<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            count:<span class="number">0</span>,</span><br><span class="line">            people:<span class="keyword">this</span>.state.people</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;value&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Re-render Progress"</span>)</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="keyword">this</span>.add&#125;&gt;&lt;/button&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;    </span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>即使把第一層的 people 拿出來，重新setState，也第9行的 people 跟第4行的 people 是同一個 people，所以也不會重新render<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Progress</span> <span class="keyword">extends</span> <span class="title">PureComponent</span></span>&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        people:&#123;</span><br><span class="line">            age:<span class="number">10</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    add:<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;people&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">        people.age += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            people:people,</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;value&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Re-render Progress"</span>)</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="keyword">this</span>.add&#125;&gt;&lt;/button&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;    </span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>但是如果把上述案例都改為繼承 Component 而非 PureComponent，不論值 props 跟 state 中的值是否改變，都會重新 render</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-React-(五-3)組建進階：動態控制樣式className跟style" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/">React-(五-3)組建進階：動態控制樣式className跟style</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/" class="article-date">
+	  <time datetime="2020-06-18T10:00:17.739Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="直接不-render"><a href="#直接不-render" class="headerlink" title="直接不 render"></a>直接不 render</h2><p>假設想要讓圖片動態顯示、隱藏，第一種方法是設定一個型態為布林值的變數，依據值的 true 或 false，搭配三元運算式決定是否要 render 出這個元素。<br><img src="https://i.imgur.com/LRNJimE.png" alt></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> picture <span class="keyword">from</span> <span class="string">"./image/test.png"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainPage</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">      visable:<span class="literal">true</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    toggle = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        visable: !<span class="keyword">this</span>.state.visable,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">      <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">          &lt;hr/</span>&gt;</span><br><span class="line">          &#123;visable?&lt;img src=&#123;picture&#125;/&gt;:null&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> MainPage;</span><br></pre></td></tr></table></figure>
+<p>又或者，用稍微更簡潔的方式取代三元判斷式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三元判斷式</span></span><br><span class="line">&#123;visable ? &lt;img src=&#123;picture&#125;&gt; : null&#125;</span><br><span class="line"></span><br><span class="line">//更簡化一些</span><br><span class="line">&#123;visable &amp;&amp; &lt;img src=&#123;picture&#125;&gt;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上述兩個做法中，都是採取直接不 render 出 image 的方式，也就是說當 visable 為 false 時，在 DOM 元素中是直接沒有畫出這個 image。<br><img src="https://i.imgur.com/Q06NO6S.png" alt></p>
+<p>如果情況是一定要 render 出這個 image，那就可以採用改變 scc 樣式來決定顯示、隱藏，因此就必須動態綁定 style。</p>
+<h2 id="動態綁定-style"><a href="#動態綁定-style" class="headerlink" title="動態綁定 style"></a>動態綁定 style</h2><blockquote>
+<p>補：在 JSX 中，style 是一個物件</p>
+</blockquote>
+<p>在 image 上面綁定 style 屬性，而 style 屬性綁定一個物件，在這個物件中就可以定義 display 樣式，樣式一樣採用三元判斷是的做法。</p>
+<p>特別注意，在第 10 行中的連續兩個大括號，第一個外面的大括號代表 JSX 綁定值的表示，第二個裡面的大括號代表它是一個物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="comment">// ...略</span></span><br><span class="line">render()&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;hr/</span>&gt;</span><br><span class="line">      &lt;img </span><br><span class="line">          style=&#123;&#123;<span class="attr">display</span>:visable?<span class="string">'block'</span>:<span class="string">'none'</span>&#125;&#125;</span><br><span class="line">          src=&#123;picture&#125;/&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以直接將 style 屬性綁定的物件，直接在外面宣告成一個物件型態的變數 pictureObj<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="comment">// ...略</span></span><br><span class="line">render()&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">  <span class="keyword">const</span> pictureObj = &#123;</span><br><span class="line">    display:visable?<span class="string">'block'</span>:<span class="string">'none'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;hr/</span>&gt;</span><br><span class="line">      &lt;img </span><br><span class="line">          style=&#123;pictureObj&#125;</span><br><span class="line">          src=&#123;picture&#125;/&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>查看 DOM 元素的變化，可以看到顯示跟隱藏時，image 都有被 render 出來，只是他的樣式 display 改變了。<br><img src="https://i.imgur.com/PFcN6Q2.png" alt></p>
+<h2 id="動態綁定-className"><a href="#動態綁定-className" class="headerlink" title="動態綁定 className"></a>動態綁定 className</h2><p>先在 css 檔案中定義好 class 的樣式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* main.css */</span></span><br><span class="line"><span class="selector-class">.image</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hide</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第 4 行，引入 css 檔案<br>第 17 行，宣告一個型態為字串的變數，並將該變數當作第 22 行 className 屬性綁定的值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> picture <span class="keyword">from</span> <span class="string">"./image/test.png"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"./style/main.css"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainPage</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">      visable:<span class="literal">true</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    toggle = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        visable: !<span class="keyword">this</span>.state.visable,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">      <span class="keyword">const</span> &#123;visable&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">      <span class="keyword">const</span> pictureClass = visable ?<span class="string">"image"</span>:<span class="string">"image hide"</span></span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Toggle&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">          &lt;hr/</span>&gt;</span><br><span class="line">          &lt;img className=&#123;pictureClass&#125; src=&#123;picture&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default MainPage;</span></span><br></pre></td></tr></table></figure></p>
+<p>因為有重複的 class ，也可以改用字串模板的方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pictureClass = <span class="string">`image <span class="subst">$&#123;visable?<span class="string">''</span>:hide&#125;</span>`</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Cy2ndaB.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-React-(五-1)組件進階：ref屬性找到DOM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/">React-(五-1)組件進階：ref屬性找到DOM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/" class="article-date">
+	  <time datetime="2020-06-18T10:00:13.067Z" itemprop="datePublished">June 18, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ref-三種用法"><a href="#ref-三種用法" class="headerlink" title="ref 三種用法"></a>ref 三種用法</h2><h3 id="ㄧ-傳入字串（官方未來不支援）"><a href="#ㄧ-傳入字串（官方未來不支援）" class="headerlink" title="ㄧ.傳入字串（官方未來不支援）"></a>ㄧ.傳入字串（官方未來不支援）</h3><p>補充：<code>componentDidMount</code>是第一次加載到這個組件時，會呼叫的生命週期函式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Input.vue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// import... 略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Inputer</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="keyword">this</span>.refs.msgInput.focus();</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;h3&gt;Input Your message&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;input type="text" ref="msgInput"/</span>&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>執行結果<br><img src="https://i.imgur.com/iNBQTpq.png" alt></p>
+<h3 id="二-傳入函式"><a href="#二-傳入函式" class="headerlink" title="二. 傳入函式"></a>二. 傳入函式</h3><ul>
+<li>第 7 行，函式的參數 tag 就是呼叫該函式的 DOM 元素，也就是第 13 行的input</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//inputer.js</span></span><br><span class="line"><span class="comment">// import... 略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Inputer</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="keyword">this</span>.msgInput.focus();</span><br><span class="line">    &#125;</span><br><span class="line">    setMsgInputRef = <span class="function">(<span class="params">tag</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.msgInput = tag;</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;h3&gt;Input Your message&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;input type="text" ref="this.setMsgInputRef"/</span>&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以直接在函式中去執行 <code>focus()</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//inputer.js</span></span><br><span class="line"><span class="comment">// import... 略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Inputer</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    setMsgInputRef = <span class="function">(<span class="params">tag</span>) =&gt;</span> &#123;</span><br><span class="line">        tag.focus();</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;h3&gt;Input Your message&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;input type="text" ref="this.setMsgInputRef"/</span>&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="三-使用-createRef-官方推薦作法）"><a href="#三-使用-createRef-官方推薦作法）" class="headerlink" title="三. 使用 createRef(官方推薦作法）"></a>三. 使用 createRef(官方推薦作法）</h3><ul>
+<li>第 3 行，引入 React 的 createRef 方法</li>
+<li>第 6 行，將 createRef 執行過後的結果回傳值指定給一個變數</li>
+<li>接著在生命週期函式中，第 9 行，記得要加上 <code>.current</code> 拿取到 ref <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//inputer.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component, createRef&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Inputer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  msgInput = createRef();</span><br><span class="line">  </span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    <span class="keyword">this</span>.msgInput.current.focus();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;Enter your message&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input type="text" ref=&#123;this.msgInput&#125;/</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Inputer;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-js/">React.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-React-(四)組件進階" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -644,340 +964,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-ES6-其他好用的特色" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/28/ES6-其他好用的特色/" class="article-date">
-	  <time datetime="2020-04-28T08:10:50.811Z" itemprop="datePublished">April 28, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="解構"><a href="#解構" class="headerlink" title="解構"></a>解構</h3><p><strong>解構陣列</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> x = point[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> y = point[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> z = point[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6作法</span></span><br><span class="line"><span class="keyword">const</span> point = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> [x,y,z] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取第一個</span></span><br><span class="line"><span class="keyword">const</span> [x] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取第二個，用「，」捨去前面的</span></span><br><span class="line"><span class="keyword">const</span>[,y] = point</span><br><span class="line"></span><br><span class="line"><span class="comment">//取第一個跟其他的，用「...」代表</span></span><br><span class="line"><span class="keyword">const</span>[x,...others] = point;<span class="comment">//others 代表一個陣列[2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//給予預設值，當長度不夠時，會自動補植</span></span><br><span class="line"><span class="keyword">const</span>[x,y,z,w = <span class="number">0</span>] = point;</span><br></pre></td></tr></table></figure></p>
-<p><strong>解構物件</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point =&#123; <span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>, <span class="attr">z</span>:<span class="number">3</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> x = point.x;</span><br><span class="line"><span class="keyword">const</span> y = point.y;</span><br><span class="line"><span class="keyword">const</span> z = point.z;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6寫法</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, y, z&#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取一個值</span></span><br><span class="line"><span class="keyword">const</span> &#123; x &#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取x跟其他的</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, ...others&#125; = point<span class="comment">//other代表&#123;y:2, z:3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//給予預設值，如果原本point裡面沒有值，就會給它預設值</span></span><br><span class="line"><span class="keyword">const</span> &#123; x=<span class="number">0</span>, w=<span class="number">0</span> &#125; = point;<span class="comment">//x還是1, w是0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//重新命名</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">x</span>:px=<span class="number">0</span> &#125; = point;<span class="comment">//px是1，可是x會是undefined</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>解構物件用於函式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point =&#123; <span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>, <span class="attr">z</span>:<span class="number">3</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> draw = <span class="function"><span class="params">point</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(point);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//解構寫法</span></span><br><span class="line"><span class="keyword">const</span> draw = <span class="function">(<span class="params">&#123;x,y,z&#125;</span>)=&gt;</span>&#123;</span><br><span class="line">    draw(point);<span class="comment">//印出1 2 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="字串模板"><a href="#字串模板" class="headerlink" title="字串模板"></a>字串模板</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> msg = <span class="string">"I am "</span>+ age +<span class="string">" years old"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字串模板寫法，支援多行</span></span><br><span class="line"><span class="keyword">const</span> msg = <span class="string">`</span></span><br><span class="line"><span class="string">    I am <span class="subst">$&#123;age *<span class="number">2</span>&#125;</span> years old.</span></span><br><span class="line"><span class="string">    I have <span class="subst">$&#123;brother&#125;</span> brothers and <span class="subst">$&#123;sister&#125;</span> sisters.</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原始寫法</span></span><br><span class="line">callSomeApi(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//promise</span></span><br><span class="line">callSomeApi().then(<span class="function"><span class="params">result</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//async/await寫法</span></span><br><span class="line"><span class="comment">//要使用await，外面一定要包一個async function</span></span><br><span class="line"><span class="comment">//async被還是是使用promise，所以await後面呼叫的函式還是要回傳一個promise</span></span><br><span class="line"><span class="keyword">const</span> start = <span class="keyword">async</span>() =&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> callSomeApi()</span><br><span class="line">&#125;</span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-ES6-物件導向class" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/28/ES6-物件導向class/">ES6-物件導向class</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/28/ES6-物件導向class/" class="article-date">
-	  <time datetime="2020-04-28T08:10:47.471Z" itemprop="datePublished">April 28, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一個class裡面會有兩個基本東西，「屬性」跟「方法」</p>
-<ul>
-<li>屬性(property)：屬於物件的變數</li>
-<li>方法(method)：屬於物件的函式</li>
-</ul>
-<p>在 ES6 的 class 語法中，只能定義方法，因此必須使用建構子來定義屬性</p>
-<ul>
-<li>建構子(Constructor)：是一個特別的方法，在「建構實體」時，會被執行的程式內容</li>
-</ul>
-<p>在下方 Dog 案例中:</p>
-<ul>
-<li>age 是屬性</li>
-<li>bark 是方法</li>
-<li>Dog 類繼承 Animal 的屬性跟方法(Dog 的父類別是 Animal)</li>
-<li>new Dog() 來建構實體時，會執行 constructor()<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;<span class="comment">//Animal</span></span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    bark()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'woof'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">const</span> spot = <span class="keyword">new</span> Dog();<span class="comment">//當new Dog()時，會執行建構子</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>使用babel class-properties plugin</strong></p>
-<ul>
-<li>使用該 plugin 時，則可以「不需要」透過建構子來定義屬性</li>
-<li>且可以使用箭頭函式定義方法，箭頭函式則裡面的 this 等於一開始實體new出來時綁定的物件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    age = <span class="number">0</span>;</span><br><span class="line">    bark =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"bark"</span>)</span><br><span class="line">        <span class="built_in">console</span>.lg(<span class="keyword">this</span>);<span class="comment">//this</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> spot = <span class="keyword">new</span> Dog();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>補：在React中，會使用ES6的class語法，來定義組件(component)</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-ES6-import與export" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/28/ES6-import與export/">ES6-import與export</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/28/ES6-import與export/" class="article-date">
-	  <time datetime="2020-04-28T08:10:43.785Z" itemprop="datePublished">April 28, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用背景：過去經常會不小心讓一個 main.js 程式碼長達千、萬行<br>優化目的：可以模組化管理程式碼，方便協作跟測試</p>
-<p>解決方式：為了達到模組化管理，ES6 語法出現<strong>import 、 export</strong>，可以先將特定功能拆分到另外一個檔案中，之後再 import 到主要的檔案裡作使用</p>
-<p>案例：假設現在要定義一個數學計算功能<br>可以先將這些數學計算包成一個物件，所以先新增一個 math.js 檔案，在其中地義好並且export出一個物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//math.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> math = &#123;</span><br><span class="line">    double: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>,</span><br><span class="line">    square: <span class="function"><span class="params">x</span> =&gt;</span> x * x,</span><br><span class="line">    area: <span class="function">(<span class="params">w,h</span>) =&gt;</span> w * h</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> math;</span><br></pre></td></tr></table></figure></p>
-<p>接著，在主要檔案 main.js 檔案中，import近這個物件，並做執行使用</p>
-<ul>
-<li>被import的物件可以隨意命名</li>
-<li>而依據實際狀況，須放上檔案正確的參考路徑</li>
-<li>副檔名’.js’可以省略<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m <span class="keyword">from</span> <span class="string">"./math.js"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(m.square(<span class="number">2</span>));<span class="comment">//印出4</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>Named export</strong><br>在 export 時，給予一個名字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ROOT_2 = <span class="number">1.414</span>;</span><br></pre></td></tr></table></figure></p>
-<p>在引入時，用大括號包起 named 物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;PI,ROOT_2&#125; <span class="keyword">from</span><span class="string">"./math"</span>;<span class="comment">//被import的物件命名必須跟export時的名稱一樣</span></span><br><span class="line"><span class="built_in">console</span>.log(PI,ROOT_2)<span class="comment">//3.1415 1.414</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>default 跟 named 可以混用</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">const</span> math = &#123;</span><br><span class="line">    ...略</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ROOT_2 = <span class="number">1.414</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> math;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m,&#123;PI,ROOT_2&#125; <span class="keyword">from</span> <span class="string">"./math.js"</span></span><br></pre></td></tr></table></figure>
-<p><strong>重新命名named export</strong><br>在 import named 物件時，可以用 as 來重新命名<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m,&#123;PI <span class="keyword">as</span> P,ROOT_2 <span class="keyword">as</span> R&#125; <span class="keyword">from</span> <span class="string">"./math.js"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(P,R)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-ES6-箭頭函示" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/28/ES6-箭頭函示/">ES6-箭頭函示</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/28/ES6-箭頭函示/" class="article-date">
-	  <time datetime="2020-04-28T08:10:26.328Z" itemprop="datePublished">April 28, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="宣告函式更簡化"><a href="#宣告函式更簡化" class="headerlink" title="宣告函式更簡化"></a>宣告函式更簡化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//箭頭函示</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//簡化箭頭函示</span></span><br><span class="line"><span class="comment">//如果只有一個參數，可以省略括號</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">n</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//簡化箭頭函示</span></span><br><span class="line"><span class="comment">//如果函式本體只有一行，且return一個值，可以省略大括號、return</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">n</span> =&gt;</span> n*<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h2 id="函式裡的this"><a href="#函式裡的this" class="headerlink" title="函式裡的this"></a>函式裡的this</h2><blockquote>
-<p>this 指的是<strong>函式</strong>執行的情境(context)，因此 this 代表什麼？取決於如何執行函式</p>
-</blockquote>
-<p><strong>第一種：直接執行函式，this代表window</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line">jump();</span><br></pre></td></tr></table></figure></p>
-<p><strong>第二種：函式作為物件的方法來執行，其中的this代表物件本身</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是a</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a.jump();</span><br></pre></td></tr></table></figure></p>
-<p><strong>第三種：函式作為DOM的偵聽函式，其中的this代表DOM元件</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是 &lt;button id="btn"&gt;btn&lt;/button&gt;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">btn.addEventListener(<span class="string">"click"</span>,jump);</span><br></pre></td></tr></table></figure>
-<h2 id="箭頭函式裡的this"><a href="#箭頭函式裡的this" class="headerlink" title="箭頭函式裡的this"></a>箭頭函式裡的this</h2><p>箭頭沒有自己的情境(context)，它內部的context就等於它外面的context，函式在哪裡被宣告函式，它裡面的this就代表被宣告時的環境。</p>
-<p><strong>如果，把函式改成箭頭函式，因為宣告函式的環境是global，因此箭頭函式中的this就代表global環境的物件，也就是window，不論用哪種方式執行函式一樣</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line">jump();</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a,jump();</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-ES6-取代var的let跟const" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/28/ES6-取代var的let跟const/">ES6-取代var的let跟const</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/28/ES6-取代var的let跟const/" class="article-date">
-	  <time datetime="2020-04-28T08:10:11.722Z" itemprop="datePublished">April 28, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="let-跟-const"><a href="#let-跟-const" class="headerlink" title="let 跟 const"></a>let 跟 const</h2><blockquote>
-<p>let可以重新賦值，const不能重新賦值(re-assign)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age = <span class="number">20</span>;</span><br><span class="line">age = <span class="number">22</span>;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gender = <span class="string">"F"</span>;</span><br><span class="line">gender = <span class="string">"M"</span>;<span class="comment">//[錯誤]const不能重新賦值，會出錯</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> point =&#123;<span class="attr">x</span>:<span class="number">50</span>,<span class="attr">y</span>:<span class="number">100</span>&#125;</span><br><span class="line">body.weight = <span class="number">60</span>;<span class="comment">//可以修改body物件</span></span><br><span class="line"></span><br><span class="line">point =&#123;<span class="attr">x</span>:<span class="number">200</span>,<span class="attr">y</span>:<span class="number">100</span>&#125;<span class="comment">//[錯誤]不可以把新的物件重新賦值給const，會出錯</span></span><br></pre></td></tr></table></figure>
-<h2 id="先了解scope"><a href="#先了解scope" class="headerlink" title="先了解scope"></a>先了解scope</h2><blockquote>
-<p>了解var之前，要先了解Javascript的scope跟block</p>
-</blockquote>
-<ul>
-<li>Scope(作用域)有兩種，<strong>function scope</strong> 跟 <strong>global scope</strong>，只要不是在函式裡面，就是global scope</li>
-<li>scope會由外往內繼承，反過來也就是說，內部會繼承外部的作用域</li>
-</ul>
-<p>下方案例中，x屬於global scope，而f函式內屬於function scope，雖然funciton scope中沒有定義x，可是function scope中會繼承global scope，因此是可以印出x<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x =<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);<span class="comment">//x</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f();</span><br><span class="line"><span class="comment">//x</span></span><br></pre></td></tr></table></figure></p>
-<p>兩個作用域都有分別定義x，因為先執行f函式，所以先進去f中執行印出2，接著回到global scope中執行印出1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="什麼是block"><a href="#什麼是block" class="headerlink" title="什麼是block"></a>什麼是block</h2><blockquote>
-<p>用大括號包起來的範圍，就是block(除非物件的{})</p>
-<ul>
-<li>在程式碼中，可以隨時宣告block</li>
-<li>block裡面有程式碼</li>
-<li>block跟scope一樣是由外向內繼承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> y = x+<span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<h2 id="var-跟-let-const-的作用範圍"><a href="#var-跟-let-const-的作用範圍" class="headerlink" title="var 跟 let/const 的作用範圍"></a>var 跟 let/const 的作用範圍</h2><ul>
-<li>var的作用範圍是 scope</li>
-<li>let/const 的作用範圍是 block</li>
-</ul>
-<p>因為var的作用範圍是scope，而非block，所以即使在block內/外都宣吿x，可是var會穿越block，導致block裡面跟外面的x會合而為一，兩次印出的結果都是2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//2</span></span><br></pre></td></tr></table></figure></p>
-<p>同樣的例子改為let做宣告，因為let的作用範圍是block，所以程式碼由上而下執行到block中會先印出2，接著結束block之後再印出外面的1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<p>在ES6出現let/const之後，let/const可以完全取代var，所以鮮少再使用var了</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -1040,68 +1031,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/">React-(五-2)組件進階：組件的父子溝通</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/">【Debug筆記】利用pointer-events:none解決點擊事件失效</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-4)三種組件/">React-(五-4)三種組件</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/">React-(五-3)組建進階：動態控制樣式className跟style</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/">React-(五-1)組件進階：ref屬性找到DOM</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/05/13/React-(四)組件進階/">React-(四)組件進階</a></h6>
               <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(三)組件基本/">React-(三)組件基本</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(二)JSX與render/">React-(二)JSX與render</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(一)創建一個React專案(懶人包)/">React-(一)創建一個React專案(懶人包)</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/Vue-EventBus組件溝通/">Vue-EventBus組件溝通</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
-              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -1115,7 +1106,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1125,7 +1116,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1135,7 +1126,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/React/" style="font-size: 12.73px;">React</a> <a href="/tags/React-js/" style="font-size: 12.73px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.67px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.33px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.83px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.17px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.33px;">Node.js</a> <a href="/tags/React/" style="font-size: 15.83px;">React</a> <a href="/tags/React-js/" style="font-size: 15.83px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.33px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.17px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.67px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.5px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.67px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.83px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.83px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.67px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.83px;">layuot</a> <a href="/tags/library/" style="font-size: 10.83px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.83px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.17px;">實作</a>
     </div>
   </div>
 
@@ -1145,7 +1136,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

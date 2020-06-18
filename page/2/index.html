@@ -158,6 +158,335 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-ES6-其他好用的特色" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/28/ES6-其他好用的特色/" class="article-date">
+	  <time datetime="2020-04-28T08:10:50.811Z" itemprop="datePublished">April 28, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="解構"><a href="#解構" class="headerlink" title="解構"></a>解構</h3><p><strong>解構陣列</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> x = point[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> y = point[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> z = point[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6作法</span></span><br><span class="line"><span class="keyword">const</span> point = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> [x,y,z] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取第一個</span></span><br><span class="line"><span class="keyword">const</span> [x] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取第二個，用「，」捨去前面的</span></span><br><span class="line"><span class="keyword">const</span>[,y] = point</span><br><span class="line"></span><br><span class="line"><span class="comment">//取第一個跟其他的，用「...」代表</span></span><br><span class="line"><span class="keyword">const</span>[x,...others] = point;<span class="comment">//others 代表一個陣列[2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//給予預設值，當長度不夠時，會自動補植</span></span><br><span class="line"><span class="keyword">const</span>[x,y,z,w = <span class="number">0</span>] = point;</span><br></pre></td></tr></table></figure></p>
+<p><strong>解構物件</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point =&#123; <span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>, <span class="attr">z</span>:<span class="number">3</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> x = point.x;</span><br><span class="line"><span class="keyword">const</span> y = point.y;</span><br><span class="line"><span class="keyword">const</span> z = point.z;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6寫法</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, y, z&#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取一個值</span></span><br><span class="line"><span class="keyword">const</span> &#123; x &#125; = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只取x跟其他的</span></span><br><span class="line"><span class="keyword">const</span> &#123; x, ...others&#125; = point<span class="comment">//other代表&#123;y:2, z:3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//給予預設值，如果原本point裡面沒有值，就會給它預設值</span></span><br><span class="line"><span class="keyword">const</span> &#123; x=<span class="number">0</span>, w=<span class="number">0</span> &#125; = point;<span class="comment">//x還是1, w是0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//重新命名</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">x</span>:px=<span class="number">0</span> &#125; = point;<span class="comment">//px是1，可是x會是undefined</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>解構物件用於函式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> point =&#123; <span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>, <span class="attr">z</span>:<span class="number">3</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> draw = <span class="function"><span class="params">point</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(point);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//解構寫法</span></span><br><span class="line"><span class="keyword">const</span> draw = <span class="function">(<span class="params">&#123;x,y,z&#125;</span>)=&gt;</span>&#123;</span><br><span class="line">    draw(point);<span class="comment">//印出1 2 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="字串模板"><a href="#字串模板" class="headerlink" title="字串模板"></a>字串模板</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始寫法</span></span><br><span class="line"><span class="keyword">const</span> msg = <span class="string">"I am "</span>+ age +<span class="string">" years old"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字串模板寫法，支援多行</span></span><br><span class="line"><span class="keyword">const</span> msg = <span class="string">`</span></span><br><span class="line"><span class="string">    I am <span class="subst">$&#123;age *<span class="number">2</span>&#125;</span> years old.</span></span><br><span class="line"><span class="string">    I have <span class="subst">$&#123;brother&#125;</span> brothers and <span class="subst">$&#123;sister&#125;</span> sisters.</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原始寫法</span></span><br><span class="line">callSomeApi(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//promise</span></span><br><span class="line">callSomeApi().then(<span class="function"><span class="params">result</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//async/await寫法</span></span><br><span class="line"><span class="comment">//要使用await，外面一定要包一個async function</span></span><br><span class="line"><span class="comment">//async被還是是使用promise，所以await後面呼叫的函式還是要回傳一個promise</span></span><br><span class="line"><span class="keyword">const</span> start = <span class="keyword">async</span>() =&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> callSomeApi()</span><br><span class="line">&#125;</span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-ES6-物件導向class" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/28/ES6-物件導向class/">ES6-物件導向class</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/28/ES6-物件導向class/" class="article-date">
+	  <time datetime="2020-04-28T08:10:47.471Z" itemprop="datePublished">April 28, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一個class裡面會有兩個基本東西，「屬性」跟「方法」</p>
+<ul>
+<li>屬性(property)：屬於物件的變數</li>
+<li>方法(method)：屬於物件的函式</li>
+</ul>
+<p>在 ES6 的 class 語法中，只能定義方法，因此必須使用建構子來定義屬性</p>
+<ul>
+<li>建構子(Constructor)：是一個特別的方法，在「建構實體」時，會被執行的程式內容</li>
+</ul>
+<p>在下方 Dog 案例中:</p>
+<ul>
+<li>age 是屬性</li>
+<li>bark 是方法</li>
+<li>Dog 類繼承 Animal 的屬性跟方法(Dog 的父類別是 Animal)</li>
+<li>new Dog() 來建構實體時，會執行 constructor()<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;<span class="comment">//Animal</span></span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    bark()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'woof'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">const</span> spot = <span class="keyword">new</span> Dog();<span class="comment">//當new Dog()時，會執行建構子</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>使用babel class-properties plugin</strong></p>
+<ul>
+<li>使用該 plugin 時，則可以「不需要」透過建構子來定義屬性</li>
+<li>且可以使用箭頭函式定義方法，箭頭函式則裡面的 this 等於一開始實體new出來時綁定的物件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    age = <span class="number">0</span>;</span><br><span class="line">    bark =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"bark"</span>)</span><br><span class="line">        <span class="built_in">console</span>.lg(<span class="keyword">this</span>);<span class="comment">//this</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> spot = <span class="keyword">new</span> Dog();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>補：在React中，會使用ES6的class語法，來定義組件(component)</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-ES6-import與export" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/28/ES6-import與export/">ES6-import與export</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/28/ES6-import與export/" class="article-date">
+	  <time datetime="2020-04-28T08:10:43.785Z" itemprop="datePublished">April 28, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用背景：過去經常會不小心讓一個 main.js 程式碼長達千、萬行<br>優化目的：可以模組化管理程式碼，方便協作跟測試</p>
+<p>解決方式：為了達到模組化管理，ES6 語法出現<strong>import 、 export</strong>，可以先將特定功能拆分到另外一個檔案中，之後再 import 到主要的檔案裡作使用</p>
+<p>案例：假設現在要定義一個數學計算功能<br>可以先將這些數學計算包成一個物件，所以先新增一個 math.js 檔案，在其中地義好並且export出一個物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//math.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> math = &#123;</span><br><span class="line">    double: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>,</span><br><span class="line">    square: <span class="function"><span class="params">x</span> =&gt;</span> x * x,</span><br><span class="line">    area: <span class="function">(<span class="params">w,h</span>) =&gt;</span> w * h</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> math;</span><br></pre></td></tr></table></figure></p>
+<p>接著，在主要檔案 main.js 檔案中，import近這個物件，並做執行使用</p>
+<ul>
+<li>被import的物件可以隨意命名</li>
+<li>而依據實際狀況，須放上檔案正確的參考路徑</li>
+<li>副檔名’.js’可以省略<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m <span class="keyword">from</span> <span class="string">"./math.js"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(m.square(<span class="number">2</span>));<span class="comment">//印出4</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Named export</strong><br>在 export 時，給予一個名字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ROOT_2 = <span class="number">1.414</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在引入時，用大括號包起 named 物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;PI,ROOT_2&#125; <span class="keyword">from</span><span class="string">"./math"</span>;<span class="comment">//被import的物件命名必須跟export時的名稱一樣</span></span><br><span class="line"><span class="built_in">console</span>.log(PI,ROOT_2)<span class="comment">//3.1415 1.414</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>default 跟 named 可以混用</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">const</span> math = &#123;</span><br><span class="line">    ...略</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ROOT_2 = <span class="number">1.414</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> math;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m,&#123;PI,ROOT_2&#125; <span class="keyword">from</span> <span class="string">"./math.js"</span></span><br></pre></td></tr></table></figure>
+<p><strong>重新命名named export</strong><br>在 import named 物件時，可以用 as 來重新命名<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> m,&#123;PI <span class="keyword">as</span> P,ROOT_2 <span class="keyword">as</span> R&#125; <span class="keyword">from</span> <span class="string">"./math.js"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(P,R)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-ES6-箭頭函示" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/28/ES6-箭頭函示/">ES6-箭頭函示</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/28/ES6-箭頭函示/" class="article-date">
+	  <time datetime="2020-04-28T08:10:26.328Z" itemprop="datePublished">April 28, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="宣告函式更簡化"><a href="#宣告函式更簡化" class="headerlink" title="宣告函式更簡化"></a>宣告函式更簡化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//箭頭函示</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//簡化箭頭函示</span></span><br><span class="line"><span class="comment">//如果只有一個參數，可以省略括號</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">n</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//簡化箭頭函示</span></span><br><span class="line"><span class="comment">//如果函式本體只有一行，且return一個值，可以省略大括號、return</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">n</span> =&gt;</span> n*<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="函式裡的this"><a href="#函式裡的this" class="headerlink" title="函式裡的this"></a>函式裡的this</h2><blockquote>
+<p>this 指的是<strong>函式</strong>執行的情境(context)，因此 this 代表什麼？取決於如何執行函式</p>
+</blockquote>
+<p><strong>第一種：直接執行函式，this代表window</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line">jump();</span><br></pre></td></tr></table></figure></p>
+<p><strong>第二種：函式作為物件的方法來執行，其中的this代表物件本身</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是a</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a.jump();</span><br></pre></td></tr></table></figure></p>
+<p><strong>第三種：函式作為DOM的偵聽函式，其中的this代表DOM元件</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//this是 &lt;button id="btn"&gt;btn&lt;/button&gt;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">btn.addEventListener(<span class="string">"click"</span>,jump);</span><br></pre></td></tr></table></figure>
+<h2 id="箭頭函式裡的this"><a href="#箭頭函式裡的this" class="headerlink" title="箭頭函式裡的this"></a>箭頭函式裡的this</h2><p>箭頭沒有自己的情境(context)，它內部的context就等於它外面的context，函式在哪裡被宣告函式，它裡面的this就代表被宣告時的環境。</p>
+<p><strong>如果，把函式改成箭頭函式，因為宣告函式的環境是global，因此箭頭函式中的this就代表global環境的物件，也就是window，不論用哪種方式執行函式一樣</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line">jump();</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump =<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//this是window</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a,jump();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-ES6-取代var的let跟const" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/28/ES6-取代var的let跟const/">ES6-取代var的let跟const</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/28/ES6-取代var的let跟const/" class="article-date">
+	  <time datetime="2020-04-28T08:10:11.722Z" itemprop="datePublished">April 28, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="let-跟-const"><a href="#let-跟-const" class="headerlink" title="let 跟 const"></a>let 跟 const</h2><blockquote>
+<p>let可以重新賦值，const不能重新賦值(re-assign)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age = <span class="number">20</span>;</span><br><span class="line">age = <span class="number">22</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gender = <span class="string">"F"</span>;</span><br><span class="line">gender = <span class="string">"M"</span>;<span class="comment">//[錯誤]const不能重新賦值，會出錯</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> point =&#123;<span class="attr">x</span>:<span class="number">50</span>,<span class="attr">y</span>:<span class="number">100</span>&#125;</span><br><span class="line">body.weight = <span class="number">60</span>;<span class="comment">//可以修改body物件</span></span><br><span class="line"></span><br><span class="line">point =&#123;<span class="attr">x</span>:<span class="number">200</span>,<span class="attr">y</span>:<span class="number">100</span>&#125;<span class="comment">//[錯誤]不可以把新的物件重新賦值給const，會出錯</span></span><br></pre></td></tr></table></figure>
+<h2 id="先了解scope"><a href="#先了解scope" class="headerlink" title="先了解scope"></a>先了解scope</h2><blockquote>
+<p>了解var之前，要先了解Javascript的scope跟block</p>
+</blockquote>
+<ul>
+<li>Scope(作用域)有兩種，<strong>function scope</strong> 跟 <strong>global scope</strong>，只要不是在函式裡面，就是global scope</li>
+<li>scope會由外往內繼承，反過來也就是說，內部會繼承外部的作用域</li>
+</ul>
+<p>下方案例中，x屬於global scope，而f函式內屬於function scope，雖然funciton scope中沒有定義x，可是function scope中會繼承global scope，因此是可以印出x<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x =<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);<span class="comment">//x</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f();</span><br><span class="line"><span class="comment">//x</span></span><br></pre></td></tr></table></figure></p>
+<p>兩個作用域都有分別定義x，因為先執行f函式，所以先進去f中執行印出2，接著回到global scope中執行印出1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="什麼是block"><a href="#什麼是block" class="headerlink" title="什麼是block"></a>什麼是block</h2><blockquote>
+<p>用大括號包起來的範圍，就是block(除非物件的{})</p>
+<ul>
+<li>在程式碼中，可以隨時宣告block</li>
+<li>block裡面有程式碼</li>
+<li>block跟scope一樣是由外向內繼承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> y = x+<span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="var-跟-let-const-的作用範圍"><a href="#var-跟-let-const-的作用範圍" class="headerlink" title="var 跟 let/const 的作用範圍"></a>var 跟 let/const 的作用範圍</h2><ul>
+<li>var的作用範圍是 scope</li>
+<li>let/const 的作用範圍是 block</li>
+</ul>
+<p>因為var的作用範圍是scope，而非block，所以即使在block內/外都宣吿x，可是var會穿越block，導致block裡面跟外面的x會合而為一，兩次印出的結果都是2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//2</span></span><br></pre></td></tr></table></figure></p>
+<p>同樣的例子改為let做宣告，因為let的作用範圍是block，所以程式碼由上而下執行到block中會先印出2，接著結束block之後再印出外面的1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+<p>在ES6出現let/const之後，let/const可以完全取代var，所以鮮少再使用var了</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-NVM-安裝及控管Node.js的版本" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -558,521 +887,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-Vue-(十二)Props" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/05/Vue-(十二)Props/">Vue-(十二)Props</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/10/05/Vue-(十二)Props/" class="article-date">
-	  <time datetime="2019-10-05T03:45:51.931Z" itemprop="datePublished">October 5, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="上層傳來的-props"><a href="#上層傳來的-props" class="headerlink" title="上層傳來的 props"></a>上層傳來的 props</h2><p>vue 組件，會使用 <code>props</code> 來接受上層傳來的資料。<code>props</code> 是一個陣列，裡面包含多個字串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'message'</span>, <span class="string">'name'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;&#123;&#123;message&#125;&#125; &#123;&#123;name&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;my-component message=&apos;hello&apos; name=&apos;Leah&apos;&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="props-命名"><a href="#props-命名" class="headerlink" title="props 命名"></a>props 命名</h3><p>假設在 component 中的 props 使用 camelCase、Pascalcase，<strong>在 html 模板中引用時，一律使用 kebab-case</strong> ，因為會需要先經過瀏覽器解析。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'myMesssage'</span>, <span class="string">'MyLastName'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;myMesssage&#125;&#125; &#123;&#123;MyLastName&#125;&#125;&lt;/h1&gt;`</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">    &lt;my-component my-messsage=&apos;Hello&apos; my-last-name=&apos;Lin&apos; &gt;</span><br><span class="line">  &lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>如果是在 template 中，即可使用 camelCase、Pascalcase。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'myMesssage'</span>, <span class="string">'MyLastName'</span>],</span><br><span class="line">  template: <span class="string">`&lt;h1&gt;&#123;&#123;myMesssage&#125;&#125; &#123;&#123;MyLastName&#125;&#125;&lt;/h1&gt;`</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;my-component </span></span><br><span class="line"><span class="string">            myMesssage='Hello'</span></span><br><span class="line"><span class="string">            MyLastName='Lin'&gt;</span></span><br><span class="line"><span class="string">        &lt;/my-component&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="動態綁定-props"><a href="#動態綁定-props" class="headerlink" title="動態綁定 props"></a>動態綁定 props</h2><ol>
-<li>先使用<code>v-bind:date=&#39;today&#39;</code>語法，讓 tag 中的 prop 值可以綁定到 data 中的資料，所以此時的 <code>date</code>的值是 ‘20180606’(如果沒有使用<code>v-bind:</code>，直接寫 <code>date=&#39;today&#39;</code>，則 <code>date</code>的值是 ‘today’)</li>
-<li>接著在 component ，props 屬性定義傳入的資要有 ‘date’，此時，component 即已經接到上層傳來的資料</li>
-<li>接著在 component 中的 template 就可以引出 date 的值</li>
-</ol>
-<p><img src="https://i.imgur.com/teZlIAM.png" alt></p>
-<h3 id="陣列資料"><a href="#陣列資料" class="headerlink" title="陣列資料"></a>陣列資料</h3><p>如果是資料是陣列，在 tag 中可以用 <code>v-for</code> 將 data 中的 <code>users</code> 一個個以 text 叫出來，並用 <code>v-bind:user</code>將<code>users</code>中的值綁定給 user</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;post v-for=&apos;text in users&apos; :user=&apos;text&apos;&gt;</span><br><span class="line">  &lt;/post&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>接著在 component 中，同樣在 props 屬性定義傳入的資料有 ‘user’，此時 component 即已經取得該值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    users: [<span class="string">'Amy'</span>, <span class="string">'Betty'</span>, <span class="string">'Celine'</span>, <span class="string">'Doris'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    post: &#123;</span><br><span class="line">      props: [<span class="string">'user'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;&#123;&#123;user&#125;&#125;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="物件資料"><a href="#物件資料" class="headerlink" title="物件資料"></a>物件資料</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;lists v-for=&apos;member in members&apos;</span><br><span class="line">         :name=&apos;member.name&apos; :gender=&apos;member.gender&apos;&gt;</span><br><span class="line">  &lt;/lists&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    members: [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Amy'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Jack'</span>, <span class="attr">gender</span>: <span class="string">'M'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Cindy'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'Doris'</span>, <span class="attr">gender</span>: <span class="string">'F'</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    lists: &#123;</span><br><span class="line">      props: [<span class="string">'name'</span>, <span class="string">'gender'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt; &#123;&#123;name&#125;&#125; &lt;small&gt;&#123;&#123;gender&#125;&#125;&lt;/small&gt;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如果要將一個物件裡面的所有屬性，指定給一個 component 的 props ，除了上述一個個綁定以外，有另外一個特殊用法，將 html 改寫如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;lists v-for=&apos;member in members&apos; v-bind=&apos;member&apos;&gt;</span><br><span class="line">  &lt;/lists&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="數值資料"><a href="#數值資料" class="headerlink" title="數值資料"></a>數值資料</h3><p>在 tag 中，當要綁定 props 的資料為數值，必須要用 <code>v-bind</code>語法綁定(如果直接寫 number=’1’，則接受到的資料會是字串’1’)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;counter :number=&apos;1&apos;&gt;</span><br><span class="line">  &lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'number'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt; &#123;&#123;number+1&#125;&#125;&lt;div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="單向數據流"><a href="#單向數據流" class="headerlink" title="單向數據流"></a>單向數據流</h2><h3 id="上傳下"><a href="#上傳下" class="headerlink" title="上傳下"></a>上傳下</h3><p><a href="https://codepen.io/leah-lin/pen/ZNZMvM" target="_blank" rel="noopener">codepen 結果呈現</a></p>
-<p>透過 props 上傳下，上層資料可以往下傳，所以上層資料改變，下層資料也會跟著變；這個資料傳遞的動作是單向的，資料並不會往上傳，所以下層數據改變，並不會影響上層。</p>
-<ul>
-<li>第 5 行，引入<code>&lt;counter/&gt;</code> 組件，<code>:count=&#39;count&#39;</code>的意思代表，counter 組件的 props 資料中，<code>:count</code>的數據綁定上層<code>&#39;count&#39;</code>的資料。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :count=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第 1-5 行是上層的資料，第 6-16 行是註冊區域組件的資料。</li>
-<li>由上傳下的單向原理解釋，當第 4 行上層 count 的數據變動，第 8 行組件中的 props 數據也會連帶跟著變動；可是，當組件內的 count 數據變動，並不會影響到上層。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'count'</span>],</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt; </span></span><br><span class="line"><span class="string">        &lt;button @click='count+=1'&gt;Add+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="父子階層數據分離"><a href="#父子階層數據分離" class="headerlink" title="父子階層數據分離"></a>父子階層數據分離</h3><p><a href="https://codepen.io/leah-lin/pen/JjjjXPm" target="_blank" rel="noopener">codepen 結果呈現</a></p>
-<p>如果不希望上層的數據跟下層的 props 資料發生連動，則可以在下層組件中的 data 自定義一個變數，並僅接住上層一開始傳來的數據做為初始值，並獨立做操作。</p>
-<ul>
-<li>第 5 行引入 counter 組件，<code>:start=&#39;count&#39;</code>的意思代表，counter 組件的 props 資料中，<code>:start</code>的數據綁定上層<code>&#39;count&#39;</code>的資料。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :start=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第 8 行 counter 組件的 props 屬性中，start 收到上層傳來的數據時，不直接在組件中的 DOM 做使用，而是先在組件中的 data 重新賦值給 count，接著才在組件中的 DOM (第 16 行) 使用 count。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'start'</span>],</span><br><span class="line">      data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          count: <span class="keyword">this</span>.start,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;button @click='count+=1'&gt;Add+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="運算上層傳來的資料"><a href="#運算上層傳來的資料" class="headerlink" title="運算上層傳來的資料"></a>運算上層傳來的資料</h3><p><a href="https://codepen.io/leah-lin/pen/NWWWNWR" target="_blank" rel="noopener">codepen 結果呈現</a></p>
-<p>如果希望下層資料能夠連動上層傳來的數據，並且直接做運算，可以使用組件中的 computed 做處理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;button @click=&apos;count+=1&apos;&gt;Add+1&lt;/button&gt;</span><br><span class="line">  &lt;counter :start=&apos;count&apos;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第 10 行的 doubleCount，是直接承接上層傳來的資料做運算所得出的結果。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    count: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    counter: &#123;</span><br><span class="line">      props: [<span class="string">'start'</span>],</span><br><span class="line">      computed: &#123;</span><br><span class="line">        doubleCount() &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.start * <span class="number">2</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;&#123;&#123;doubleCount&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      `</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Props-驗證"><a href="#Props-驗證" class="headerlink" title="Props 驗證"></a>Props 驗證</h2><p><a href="https://codepen.io/leah-lin/pen/KKKKzMv" target="_blank" rel="noopener">codepen 結果呈現</a></p>
-<h3 id="型別驗證"><a href="#型別驗證" class="headerlink" title="型別驗證"></a>型別驗證</h3><p>當一個組件在多處被使用時，我們會需要事先定義好 props 的資料有哪些，另一方面也必須定義好 props 數據的資料型態，以避免傳入不符合格式型態的資料。例如：應當傳入 Number ，卻傳入 String。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;counter :start=&quot;10&quot;&gt;&lt;/counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第 3 行 props 改傳以物件，其中物件的，key 為 props 的名稱，而 value 則使用 JaveScript 的資料型態，例：<code>start:Number</code></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'counter'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    start: <span class="built_in">Number</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="keyword">this</span>.start,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="count+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>而當資料型別錯誤時，則會 log 出錯誤訊息</p>
-<p><img src="https://i.imgur.com/xqEGB2p.png" alt></p>
-<h3 id="資料驗證及預設值"><a href="#資料驗證及預設值" class="headerlink" title="資料驗證及預設值"></a>資料驗證及預設值</h3><p>除了指定 props 型別，也可以去驗證 props 的範圍，此外，也可以在父階層尚未賦值之前給予預設值。</p>
-<ul>
-<li>在第 3 行，props 中的 key pair 的 value 不直接傳入資料型態，而是改以傳入一個物件，例：<code>start:{...}</code>，物件中再去定義 type(型別) 、default(預設值)、validator(驗證)<ul>
-<li>type 的值是 JavaScript 的資料型別</li>
-<li>default 的值可以是純值，也可以是函式</li>
-<li>validator 的值是函式</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'counter'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    start: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span>,</span><br><span class="line">      <span class="comment">// default:0,</span></span><br><span class="line">      <span class="keyword">default</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> app.getSetting();</span><br><span class="line">      &#125;,</span><br><span class="line">      validator(value) &#123;</span><br><span class="line">        <span class="keyword">return</span> value &lt;= <span class="number">10</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="keyword">this</span>.start,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button @click="count+=1"&gt;+1&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如果驗證後不符合，則會 log 出錯誤</p>
-<p><img src="https://i.imgur.com/oAM1eZd.png" alt></p>
-<h3 id="props-驗證的時間點"><a href="#props-驗證的時間點" class="headerlink" title="props 驗證的時間點"></a>props 驗證的時間點</h3><p>props 的檢驗是發生在組件建立「之前」，所以裡面不能用 this.date 或 this.methods！</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Vue-(十一)組件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/05/Vue-(十一)組件/">Vue-(十一)組件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/10/05/Vue-(十一)組件/" class="article-date">
-	  <time datetime="2019-10-05T01:58:38.769Z" itemprop="datePublished">October 5, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="11-1-Vue組件的註冊與使用-影片"><a href="#11-1-Vue組件的註冊與使用-影片" class="headerlink" title="11-1.Vue組件的註冊與使用(影片)"></a>11-1.Vue組件的註冊與使用<a href="https://hiskio.com/courses/145/lectures/5396" target="_blank" rel="noopener">(影片)</a></h2><p>Vue 的組件(component)是Vue的強大功能之一，Vue 組件預先定義好模組內容，可包含html 的視覺元素、資料、偵聽器等等，將來模組就可以重複使用，方便在開發過程的時候聚焦於一小區塊功能，在維護也比較方便。</p>
-<h3 id="全域組件"><a href="#全域組件" class="headerlink" title="全域組件"></a>全域組件</h3><ol>
-<li>首先用<code>Vue.component()</code>方法</li>
-<li>第一個參數是component的名字(component 命名用全小寫以 dash 分隔)</li>
-<li>第二個參數是一個物件，其中用 <code>templete</code> 的字串定義組件的視覺元素(直接定義html的內容)</li>
-<li>有個重點！ <strong>component的宣告必須在 vue 實例 new之前！</strong></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global component</span></span><br><span class="line">Vue.component(<span class="string">'my-component'</span>,&#123;</span><br><span class="line">  template:<span class="string">'&lt;div&gt;Here is content in my-component&lt;/div&gt;'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app1'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app2'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>因為是Global component，所以在html中，可以不受限Vue實例範圍，就可以用<code>&lt;my-component&gt;&lt;/my-component&gt;</code>去使用自定義的component</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app1&apos;&gt;</span><br><span class="line">  &lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&apos;app2&apos;&gt;</span><br><span class="line">  &lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="區域組件"><a href="#區域組件" class="headerlink" title="區域組件"></a>區域組件</h3><p>local component 只能在該 Vue 實例中被使用</p>
-<ol>
-<li>首先new出一個 Vue 實例</li>
-<li>定義其中的 compinents 屬性，值為一個物件</li>
-<li>在該物件中用key pair 作component 的命名及內容定義</li>
-<li>下方案例中，key字串<code>my-component</code>為該 component 的名字</li>
-<li><p>再其中的 template 屬性用字串定義組件的視覺元素(直接定義html的內容)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Local component</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  components:&#123;</span><br><span class="line">    <span class="string">'my-component'</span>:&#123;</span><br><span class="line">      template:<span class="string">'&lt;div&gt;Here is content in my-component&lt;/div&gt;'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接下來在html中，就可以用<code>&lt;my-component&gt;&lt;/my-component&gt;</code>去使用自定義的component</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="11-2-DOM模板解析事項-影片"><a href="#11-2-DOM模板解析事項-影片" class="headerlink" title="11-2.DOM模板解析事項(影片)"></a>11-2.DOM模板解析事項<a href="https://hiskio.com/courses/145/lectures/5398" target="_blank" rel="noopener">(影片)</a></h2><h3 id="HTML解析流程"><a href="#HTML解析流程" class="headerlink" title="HTML解析流程"></a>HTML解析流程</h3><p>假設將<code>&lt;option&gt;</code>tag中的<code>&lt;option&gt;</code>內容額外包成一個component，如下述的寫法：</p>
-<ol>
-<li><p>首先，元素會先經過html瀏覽器的解析，再交給Vue實例使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>,&#123;</span><br><span class="line">  template:<span class="string">'&lt;option&gt;AAA&lt;/option&gt;'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所以一開始當html在解讀元素時，會因為解析到不合規範的標籤，而略過。<br>在此例中，也就是說當html解讀到<code>&lt;select&gt;</code>，會預想接下來是<code>&lt;option&gt;</code>，然而卻得到<code>&lt;my-component&gt;&lt;/my-component&gt;</code>，因此被判定為不合法的情況，導致畫面無法正常如願顯示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;select&gt;</span><br><span class="line">    &lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="解決辦法：在templete中定義"><a href="#解決辦法：在templete中定義" class="headerlink" title="解決辦法：在templete中定義"></a>解決辦法：在templete中定義</h3><p>讓瀏覽器在解讀html時，可以先略過該元素，將不合法的元素先移除，避免出現錯誤。因此：</p>
-<ol>
-<li><p>僅給予一個元素，綁定 Vue實例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt; </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>讓html內容直接定義在<code>templete</code>中，避免經過html解析的流程</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  template:<span class="string">'&lt;select&gt;&lt;option&gt;AAA&lt;/option&gt;&lt;option&gt;CCC&lt;/option&gt;&lt;/select&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>綁定了Vue實例，抓取其中<code>templete</code>的內容，並作顯示 </p>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/ZvnFiFp.png" alt></p>
-<p><a href="https://codepen.io/leah-lin/pen/BePzPe?editors=1010" target="_blank" rel="noopener">codepan-範例結果</a></p>
-<h3 id="類似使用時機"><a href="#類似使用時機" class="headerlink" title="類似使用時機"></a>類似使用時機</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;&lt;/li&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr/&gt;</span><br><span class="line">        &lt;td&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&lt;/td&gt; </span><br><span class="line">        &lt;td&gt;&lt;/td&gt; </span><br><span class="line">        ...</span><br><span class="line">    &lt;tr/&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="11-3-data必須是函數-影片"><a href="#11-3-data必須是函數-影片" class="headerlink" title="11-3.data必須是函數(影片)"></a>11-3.data必須是函數<a href="https://hiskio.com/courses/145/lectures/5399" target="_blank" rel="noopener">(影片)</a></h2><p>Vue 實例的data是一個物件，然而，Vue 組件的 data 必須是<strong>函數</strong>。這個設計邏輯的概念是，每呼叫使用一次組件，組件中的data應該是要各自獨立，所以用函數的方式可以每次都獨立新增一個獨立的data個體。</p>
-<h3 id="Vue實例，data共用"><a href="#Vue實例，data共用" class="headerlink" title="Vue實例，data共用"></a>Vue實例，data共用</h3><p>假設我需要有兩個計數器，若使用下述方法，因為data資料共用，所以兩個計數器的count會互相影響，無法獨立<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">      count:<span class="number">0</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button @click=&apos;count+=1&apos;&gt;+click&lt;/button&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button @click=&apos;count+=1&apos;&gt;+click&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/63wluEU.png" alt></p>
-<h3 id="善用組件，達到獨立data"><a href="#善用組件，達到獨立data" class="headerlink" title="善用組件，達到獨立data"></a>善用組件，達到獨立data</h3><p>將計數器功能拆分出來成為一個組件，<code>Vue.component()</code>等同於每次都會重新創造一個新的component<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'counter-component'</span>,&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">      count:<span class="number">0</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;button v-on:click='count+=1''&gt;+click&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>即是多次呼叫<code>&lt;counter-component&gt;&lt;/counter-component&gt;</code>重複使用component，其中的data也會是各自獨立<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;counter-component&gt;&lt;/counter-component&gt;</span><br><span class="line">  &lt;counter-component&gt;&lt;/counter-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>最終的執行效果，會是兩個資料獨立的計數器</p>
-<p><img src="https://i.imgur.com/eXmZoXR.png" alt></p>
-<h2 id="11-4-合體！組件組合-影片"><a href="#11-4-合體！組件組合-影片" class="headerlink" title="11-4.合體！組件組合(影片)"></a>11-4.合體！組件組合<a href="https://hiskio.com/courses/145/lectures/5400" target="_blank" rel="noopener">(影片)</a></h2><p><img src="https://i.imgur.com/PLydKK1.png" alt></p>
-<h3 id="資料網內傳-父傳子"><a href="#資料網內傳-父傳子" class="headerlink" title="資料網內傳(父傳子)"></a>資料網內傳(父傳子)</h3><ol>
-<li>定義最外層的 todo-list 組件</li>
-<li><p>因為要將資料傳進內層資料，第11行使用自定義屬性<code>:label=&#39;todo&#39;</code>，意思是這裡獲取出的<code>todo</code>資料要以<code>label</code>(可以使用自定義其他命名)屬性往內傳，屆時內層可以用<code>label</code>取出</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-list'</span>,&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">      todos:[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;todo-input&gt;&lt;/todo-input&gt;</span></span><br><span class="line"><span class="string">      &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;todo-item v-for='todo in todos' :label='todo'&gt;&lt;/todo-item&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;      </span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義to-item 組件 </p>
-</li>
-<li>第2行定義屬性，代表外層會以<code>label</code>屬性傳入資料</li>
-<li><p>第4行一樣可以用大括號取用資料</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-item'</span>,&#123;</span><br><span class="line">  props:[<span class="string">'label'</span>],</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;li&gt;&#123;&#123;label&#125;&#125;&lt;/li&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定義 todo-input 組件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-input'</span>,&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">      text:<span class="string">''</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;form&gt;</span></span><br><span class="line"><span class="string">      &lt;input type='text' v-model='text'/&gt;</span></span><br><span class="line"><span class="string">      &lt;button type='submit'&gt;Submit&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;/form&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>new 出 Vue 實例 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>撰寫html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;todo-list&gt;&lt;/todo-list&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">``` </span><br><span class="line">### 資料往外傳(子傳父)</span><br><span class="line">欲將內層 todo-input 的資料，往外層 todo-list 傳遞</span><br><span class="line">![](https://i.imgur.com/wkQ4vk9.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">7. 第14行`@submit.prevent=&apos;submit&apos;`用意是讓提交事件不再重載頁面 </span><br><span class="line">8. 重點在第9行，用`$emit`方法，定義透過這個事件傳資料至外層(父層)</span><br><span class="line">9. `$emit`方法的兩個參數，第一個代表自定義的事件命名`input`(自定義命名)，第二個代表要傳遞的資料</span><br><span class="line"></span><br><span class="line">```javascript=</span><br><span class="line">Vue.component(&apos;todo-input&apos;,&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">      text:&apos;&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    submit()&#123;</span><br><span class="line">      this.$emit(&apos;input&apos;,this.text);</span><br><span class="line">      this.text = &apos;&apos;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  template:`</span><br><span class="line">    &lt;form @submit.prevent=&apos;submit&apos;&gt;</span><br><span class="line">      &lt;input type=&apos;text&apos; v-model=&apos;text&apos;/&gt;</span><br><span class="line">      &lt;button type=&apos;submit&apos;&gt;Submit&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  `</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第14行，在外層(父層)templete的內層組件標籤中，用<code>@input</code>接受事件</p>
-</li>
-<li><p>在第8行，<code>addToDo</code>方法中的參數，就是內層傳來的資料，因此可以將之做後續處理</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-list'</span>,&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">      todos:[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    addTodo(text)&#123;</span><br><span class="line">      <span class="keyword">this</span>.todos.push(text);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;todo-input @input='addTodo'&gt;&lt;/todo-input&gt;</span></span><br><span class="line"><span class="string">      &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;todo-item v-for='todo in todos' :label='todo'&gt;&lt;/todo-item&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;      </span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">結果呈現，[codepen成果](https://codepen.io/leah-lin/pen/gJjmmY)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 11-5.動態組件組合[(影片)](https://hiskio.com/courses/145/lectures/5401)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">當我們在某個位置，需要有彈性地放置component，也就是說需要依據判斷值，決定該處要顯示哪個component時，則可以使用動態組件的寫法：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1. 先創建多個conpoment，此案例中先創建了`</span>lesson-component<span class="string">`以及`</span>apply-component<span class="string">`這兩個組件</span></span><br><span class="line"><span class="string">2. 各自定義組件中的templete內容</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript=</span><br><span class="line">Vue.component(<span class="string">'lesson-component'</span>,&#123;</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;課程&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;老師&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;費用&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">'apply-component'</span>,&#123;</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;form&gt;</span></span><br><span class="line"><span class="string">      &lt;textarea&gt;&lt;/textarea&gt;</span></span><br><span class="line"><span class="string">      &lt;button&gt;Submit&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;form&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>創建完 component 之後，接著 new 出一個 Vue 實例</p>
-</li>
-<li><p>Vue 實例中有一個 data 作為判斷依准，此案例中先以<code>content</code>作為判斷值，並且給予一個初始值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    content:<span class="string">'lesson-component'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接著在 html 中規劃視覺呈現，此案例中設計兩個按鈕，透過按鈕的 click 事件，下方空間會切換為不同的 component 的呈現</p>
-</li>
-<li>第4行中， <code>:is</code>判斷 content 當前的值，用來決定這裡要顯示什麼 component <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;button @click=&quot;content=&apos;lesson-component&apos;&quot;&gt;Lessons&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;content=&apos;apply-component&apos;&quot;&gt;Apply&lt;/button&gt;</span><br><span class="line">  &lt;component :is=&apos;content&apos;&gt;&lt;/component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/INKycRk.png" alt></p>
-<p>結果呈現，<a href="https://codepen.io/leah-lin/pen/pmZrvE" target="_blank" rel="noopener">codepen成果</a></p>
-<h2 id="11-6-看不見但依舊存在的-keep-alive-影片"><a href="#11-6-看不見但依舊存在的-keep-alive-影片" class="headerlink" title="11-6.看不見但依舊存在的 keep-alive (影片)"></a>11-6.看不見但依舊存在的 keep-alive <a href="https://hiskio.com/courses/145/lectures/5402" target="_blank" rel="noopener">(影片)</a></h2><p>接續11-5的動態組件，當前有兩個字定義的組件：lessons與apply，其中apply組件中是一個輸入框，假設在輸入框中先輸入訊息後，卻做了組件切換到lessons，之後再切換回apply時，會發現原先輸入的訊息會被清空。</p>
-<p>如果希望當組件切換時，可以 keep 住訊息內容，則可以使用<code>keep-alive</code>標籤。<br>下方第4、6行就是用<code>keep-alive</code>標籤將第5行組件範圍包覆起來，讓組件中的內容可以不因組件切換而消失，反而會 keep 住訊息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">  &lt;button @click=&quot;content=&apos;lesson-component&apos;&quot;&gt;Lessons&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;content=&apos;apply-component&apos;&quot;&gt;Apply&lt;/button&gt;</span><br><span class="line">  &lt;keep-alive&gt;</span><br><span class="line">    &lt;component :is=&apos;content&apos;&gt;&lt;/component&gt;</span><br><span class="line">  &lt;/keep-alive&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>結果呈現，<a href="https://codepen.io/leah-lin/pen/oRPbyJ" target="_blank" rel="noopener">codepen成果</a></p>
-<h2 id="11-7-組件命名學-影片"><a href="#11-7-組件命名學-影片" class="headerlink" title="11-7.組件命名學(影片)"></a>11-7.組件命名學<a href="https://hiskio.com/courses/145/lectures/5403" target="_blank" rel="noopener">(影片)</a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 三種命名方式</span></span><br><span class="line"><span class="comment">// 示範：my first component</span></span><br><span class="line"></span><br><span class="line">my-first-component <span class="comment">//kebab-case</span></span><br><span class="line">myFirstComponent    <span class="comment">//camelCase</span></span><br><span class="line">MyFirstComponent <span class="comment">//PascalCase</span></span><br></pre></td></tr></table></figure>
-<h3 id="在-html-中，只能使用-kebab-case-的命名法"><a href="#在-html-中，只能使用-kebab-case-的命名法" class="headerlink" title="在 html 中，只能使用 kebab-case 的命名法"></a>在 html 中，只能使用 kebab-case 的命名法</h3><ol>
-<li><p>假設在 Vue 中創建了一個組件，並使用「camelCase」的命名方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//vue.js</span></span><br><span class="line">Vue.component(<span class="string">'myFirstComponent'</span>,&#123;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接著在html中呼叫使用組件，並需要轉換為「kebab-case」的命名方式才能夠辨識出組件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html --&gt;</span><br><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">    &lt;my-first-component&gt;&lt;/my-first-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="在-template-中使用，三種命名方式都可以"><a href="#在-template-中使用，三種命名方式都可以" class="headerlink" title="在 template 中使用，三種命名方式都可以"></a>在 template 中使用，三種命名方式都可以</h3><ol>
-<li><p>假設在 Vue 中創建了一個組件，並使用「camelCase」的命名方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//vue.js</span></span><br><span class="line">Vue.component(<span class="string">'myFirstComponent'</span>,&#123;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在html中只是簡單綁定 Vue 實例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">``` </span><br><span class="line">3. 接著在 Vue 實例中的 template 使用組件，此時要用何種命名方式都可以辨識</span><br><span class="line">```javascript=</span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el:&apos;#app&apos;,</span><br><span class="line">    template:`</span><br><span class="line">        &lt;div &gt;</span><br><span class="line">            &lt;myFirstComponent&gt;&lt;/myFirstComponent&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    `</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="補充：sefe-closing"><a href="#補充：sefe-closing" class="headerlink" title="補充：sefe-closing"></a>補充：sefe-closing</h3><ul>
-<li><p>在 html 中，不能使用「self-closing tag 」， 僅能使用完整一組「star tag」+「end tag」</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos;&gt;</span><br><span class="line">    &lt;my-first-component&gt;&lt;/my-first-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不過在 template 中的字串模板，就可以使用「self-closing tag 」</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;my-first-component/&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;   </span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Vue-(十六)狀態管理vuex(1:2)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/05/Vue-(十六)狀態管理vuex(1:2)/">Vue-(十六)狀態管理 vuex(1/2)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/10/05/Vue-(十六)狀態管理vuex(1:2)/" class="article-date">
-	  <time datetime="2019-10-05T01:53:08.119Z" itemprop="datePublished">October 5, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="關於-vuex"><a href="#關於-vuex" class="headerlink" title="關於 vuex"></a>關於 vuex</h2><h3 id="Vue的組件溝通"><a href="#Vue的組件溝通" class="headerlink" title="Vue的組件溝通"></a>Vue的組件溝通</h3><p>在單純的情況之下，兩個上、下層Vue組件若要進行溝通，會使用：</p>
-<ul>
-<li>由上傳下：上層使用 v-bind ，下層用props接到v-bind傳來的屬性資料</li>
-<li>由下傳上：下層發出$emit事件，上層則用v-on偵聽該事件<br><img src="https://i.imgur.com/oWmKL1b.png" alt><h3 id="eventbus"><a href="#eventbus" class="headerlink" title="eventbus"></a>eventbus</h3>若專案更大一些，資料不太可能$emit一層一層慢慢傳上去，上層組件用v-on偵聽到事件並拿到資料之後，又再一層層用props慢慢傳到另一個下層組件，這樣很麻煩也很難維護，所以這種結構複雜的跨組件溝通會使用 eventbus 來傳遞資料。<br><img src="https://i.imgur.com/dibdqYT.png" alt></li>
-</ul>
-<p>eventbus 的做法是另外創立一個 Vue 實例，假設要由 A 組件傳資料到 B組件，則在 A 組件中引入 eventbus ，A 組件請求 Vue實例透過 $emit 將資料傳進eventbus，而另一方面，B組件也引入 eventbus ，再透過 $on 偵聽 eventbus 發出的事件。</p>
-<p>然而，eventbus 依然是有限制的，例：</p>
-<p>當「購買按鈕」被按下之後，在「購物車」中要增添一筆資料，這個情況之下，資料不應該儲存在「購買按鈕」上，也不該儲存在「購物車」中，而是應當要儲存在一個<strong>統一管理</strong>的狀態裡面，因此就需要用到 <strong>Vuex</strong> 來做狀態管理。</p>
-<p><img src="https://i.imgur.com/IWcBvEx.png" alt></p>
-<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><p><strong>Vuex</strong> 大致上是透過一個 <strong>Global state</strong> 來儲存整個網站共有的狀態，而其設計概念是由「購買按鈕」組件 commit 一個 Mutation，而這個 Mutation 會改變 State，當 State 被改變時，則會觸發有使用到 State 的「購物車」組件的視覺元件被更新，而這整個觸法的過程是「單向運作」的。<br><img src="https://i.imgur.com/bWKYdOD.png" alt></p>
-<p><strong>Vuex</strong> 跟 eventbus 最主要的差異在於，Vuex 的 Global state 是組件<strong>共用</strong>的狀態，而非單純儲存在某個組件內部中的狀態。</p>
-<p>所以本質上，組件與組件之間並沒有溝通，而是透過更新 Global State的狀態，而反應畫面到另外一個組件上。<br><img src="https://i.imgur.com/r2SluKc.png" alt></p>
-<p><img src="https://i.imgur.com/c1oJyEe.png" alt></p>
-<h3 id="使用-Vuex-時機"><a href="#使用-Vuex-時機" class="headerlink" title="使用 Vuex 時機"></a>使用 Vuex 時機</h3><ul>
-<li>組件之間很上互相溝通：不用Vuex</li>
-<li>組件僅需上下傳遞就很夠用：不用Vuex</li>
-<li>組件會互相溝通，但情境很固定，次數也很少：Event Bus</li>
-<li>組件之間會跨結構傳遞狀態：Vuex</li>
-<li>需要全域狀態管理：Vuex</li>
-</ul>
-<h2 id="引入-Vuex"><a href="#引入-Vuex" class="headerlink" title="引入 Vuex"></a>引入 Vuex</h2><p>step 1.先以指令安裝Vuex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//使用npm指令</span><br><span class="line">npm i -S vuex</span><br><span class="line"></span><br><span class="line">// or 使用yarn指令</span><br><span class="line">yarn add vuex</span><br></pre></td></tr></table></figure>
-<p>step 2.在使用 webpack 打包的專案中，於 <code>src</code> 資料夾中新增一個檔案 <code>store.js</code><br><img src="https://i.imgur.com/ivd087V.png" alt></p>
-<p>step 3.開始在檔案中創建 store 實例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;<span class="comment">//引入vue</span></span><br><span class="line"><span class="keyword">import</span> Vuex,&#123;Store&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;<span class="comment">//引入vuex</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);<span class="comment">//註冊外掛Vuex，之後才能被使用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Store(&#123;<span class="comment">//透過呼叫Store的建構函式，創建store實例</span></span><br><span class="line">  state:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations:&#123;</span><br><span class="line">    addCount(state)&#123;</span><br><span class="line">      state.count +=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
-<p>另外一種寫法，也可以不引入{Store}，而使用Vuex.Store 取得之<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);<span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;<span class="comment">//使用Vuex.Store 取得之</span></span><br><span class="line">  state:&#123;</span><br><span class="line">    count:<span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations:&#123;</span><br><span class="line">    addCount(state)&#123;</span><br><span class="line">      state.count +=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure></p>
-<p>step 4.在整個專案的中使用該定義好的 store實例</p>
-<p>第3行，在既有的專案中的 <code>main.js</code>引入 <code>store.js</code>;第5行，讓 store 成為整個專案 Vue實例中的一個屬性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./app.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store.js'</span>;<span class="comment">//use Vuex</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  store,<span class="comment">//加入 store 屬性，讓所有的紫組件都可以使用</span></span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function">(<span class="params">h</span>) =&gt;</span> h(app),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>step 5.在 <code>app.vue</code>中就可以直接以 this.$store 獲取並使用store<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click="addCount"&gt;Add&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.count;<span class="comment">//獲取 store 的資料</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addCount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$store.commit(<span class="string">"addCount"</span>);<span class="comment">//commit mutation 到 store 中去更新資料</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>或是使用 Vuex 的工具函式 <strong>mapState</strong> 和 <strong>mapMutations</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click="addCount"&gt;Add&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; mapState , mapMutations&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;<span class="comment">//引入 mapState 和 mapMutations</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  computed:mapState([<span class="string">'count'</span>]),</span><br><span class="line">  methods:mapMutations([<span class="string">'addCount'</span>]),</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>又或者改寫搭配 ES6 的物件 spread(…) 語法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;&#123;&#123;count&#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click="addCount"&gt;Add&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; mapState , mapMutations&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;<span class="comment">//引入 mapState 和 mapMutations</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  computed:&#123;</span><br><span class="line">      ...mapState([<span class="string">'count'</span>]),</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">      ...mapMutations([<span class="string">'addCount'</span>]),</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>step 6.開始執行，就可以看到畫面中的計數器</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Vue-設置每頁的title及圖標"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/03/Vue-設置每頁的title及圖標/">Vue - 設置每頁的 title 及 圖標</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/10/03/Vue-設置每頁的title及圖標/" class="article-date">
-	  <time datetime="2019-10-03T03:56:06.585Z" itemprop="datePublished">October 3, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>過往要設置網頁的 title，直接在 html 中新增一個 <title></title> tag，在其中的文字就會呈現在網頁標籤中。因此，一個基礎 html 網頁的架構大概會長這樣：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">　&lt;title&gt;網頁標題&lt;/title&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">　網頁內容</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然而，通常網站不僅有一個網頁，建議每個網頁應當有一個專屬的title，以便管理。</p>
-<h2 id="透過-Vue-Router-設置每頁的-title"><a href="#透過-Vue-Router-設置每頁的-title" class="headerlink" title="透過 Vue Router 設置每頁的 title"></a>透過 Vue Router 設置每頁的 title</h2><p>step0.在自己專案中的 router.js 或 router/index.js 檔案中(依照個人在專案中的檔案命名及路徑)，確定有引入 vue 及 vue-router</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span>;</span><br><span class="line">Vue.use(VueRouter);</span><br></pre></td></tr></table></figure>
-<p>step1. 加入每個路徑頁面的 meta 資料，且於meta中定義title文字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">     &#123;</span><br><span class="line">        path: <span class="string">'/entrance'</span>,</span><br><span class="line">        name: <span class="string">'entrance'</span>,</span><br><span class="line">        component: Entrance,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            title: <span class="string">'Entrance'</span>&#125;</span><br><span class="line">     &#125;,&#123;</span><br><span class="line">        path: <span class="string">'/login'</span>,</span><br><span class="line">        name: <span class="string">'login'</span>,</span><br><span class="line">        component: Login,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            title: <span class="string">'Login'</span>&#125;</span><br><span class="line">     &#125;,&#123;</span><br><span class="line">        path: <span class="string">'/test'</span>,</span><br><span class="line">        name: <span class="string">'test'</span>,</span><br><span class="line">        component: Test,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            title: <span class="string">'Test'</span>&#125;</span><br><span class="line">     &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>step2.使用全域 <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards" target="_blank" rel="noopener">navigation guards</a> 非同步解析執行：當路徑(router object)前往(to) meta.title 時，瀏覽器的 title 為 meta.title</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (to.meta.title) &#123;</span><br><span class="line">        <span class="built_in">document</span>.title = to.meta.title</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>step3.最後引出該 router<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure></p>
-<h2 id="在-vue-專案中變更-title-圖示"><a href="#在-vue-專案中變更-title-圖示" class="headerlink" title="在 vue 專案中變更 title 圖示"></a>在 vue 專案中變更 title 圖示</h2><p>step1.因為專案會使用 webpack 或 vue-cli 打包，因此將圖片放置根目錄，或是static資料夾中<br><img src="https://i.imgur.com/I3W6uIx.png" alt></p>
-<p>step2.在 html 的 <head><meta name="generator" content="Hexo 3.8.0"></head> 中配置圖片及文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;標題文字&lt;/title&gt;</span><br><span class="line">    &lt;!--href中的路徑依照專案實際放置圖示的位置。--&gt;</span><br><span class="line">    &lt;link rel=&quot;icon&quot; href=&quot;./../static/favicon.ico&quot; type=“image/x-icon&gt; </span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></p>
-<p>step3.修改 webpack 配置檔案<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  favicon: path.resolve(<span class="string">'/static/favicon.ico'</span>), <span class="comment">//路徑依照專案實際放置圖示的位置</span></span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>step4.重新啟用，並適時清除瀏覽器暫存資料，即可正確圖示畫面<br><img src="https://i.imgur.com/Ckqvvd8.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-let,const,var差異" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/25/JavaScript-let,const,var差異/">JavaScript - let、const、var差異</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/09/25/JavaScript-let,const,var差異/" class="article-date">
-	  <time datetime="2019-09-25T08:38:51.280Z" itemprop="datePublished">September 25, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>過去的 JavaScript 使用”<strong>var</strong>“ 來做變數宣告，而在 ES6 中出現了”<strong>let</strong>“及”<strong>const</strong>“，它們的出現最主要是因為 <strong>區塊域(block)</strong> 的概念出現。</p>
-<h2 id="ES6的變異"><a href="#ES6的變異" class="headerlink" title="ES6的變異"></a>ES6的變異</h2><p>總體而言，使用 <strong>let</strong> 與 <strong>const</strong> 的變數宣告方式，相較於 <strong>var</strong> 會更為嚴謹，因此建議在開發 ES6 之後的專案，使用<strong>let</strong> 與 <strong>const</strong> 作為變數宣吿，除了讓專案更穩定之外，也可以增加程式碼的可讀性。以下三點解釋：</p>
-<ol>
-<li>區塊限制使用</li>
-<li>變數「不」提升(hositing)</li>
-<li>不允許重複宣告</li>
-</ol>
-<h3 id="區塊限制使用"><a href="#區塊限制使用" class="headerlink" title="區塊限制使用"></a>區塊限制使用</h3><p>使用 <strong>var</strong> 作變數宣告，即使在區塊內宣告，仍可以在區塊之外取用。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> v1 = <span class="string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v1);<span class="comment">//hello</span></span><br></pre></td></tr></table></figure></p>
-<p>如果是使用 <strong>let</strong> 或 <strong>const</strong> 作變數宣告，則會受到區塊限制，<strong>無法於區塊之外取用</strong>，會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> v2 = <span class="string">"hi"</span>;</span><br><span class="line">  <span class="keyword">const</span> v3 = <span class="string">"holla"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v2);<span class="comment">//Error:Uncaught ReferenceError: v2 is not defined</span></span><br><span class="line"><span class="built_in">console</span>.log(v3);<span class="comment">//Error:Uncaught ReferenceError: v3 is not defined</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="變數「不」提升-hositing"><a href="#變數「不」提升-hositing" class="headerlink" title="變數「不」提升(hositing)"></a>變數「不」提升(hositing)</h3><p>javascript的執行環境分為兩階段，會先經歷創建階段(creation)，之後才正式進入程式碼執行階段(exection)。</p>
-<p>變數提升指的是在創建階段，電腦的記憶體會為變數先空出記憶體，可是他還不知道它的值為何，會先給予一個undefined的值，而這個動作稱作<a href="https://leahlin912.github.io/2019/05/03/JavaScript-%E6%8F%90%E5%8D%87(Hoisting" target="_blank" rel="noopener">「提升(hoisting)」</a>/)，等到執行階段賦值時，才會將值放進記憶體中。因此在 <strong>var</strong> 變數宣告前，取用該變數是可以的，並不會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(value);<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">var</span> value = <span class="string">'1234'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>然而，在 ES6 的 <strong>let</strong> 及 <strong>const</strong> 移除了 hosting 這個不直覺的現象，在宣告之前不得取用，否則會報錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(value1);<span class="comment">//Error:Uncaught ReferenceError: Cannot access 'value1' before initialization</span></span><br><span class="line"><span class="built_in">console</span>.log(value2);<span class="comment">//Error:Uncaught ReferenceError: Cannot access 'value2' before initialization</span></span><br><span class="line"><span class="keyword">let</span> value1 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'5678'</span>;</span><br></pre></td></tr></table></figure></p>
-<h3 id="不允許重複宣告"><a href="#不允許重複宣告" class="headerlink" title="不允許重複宣告"></a>不允許重複宣告</h3><p>使用 <strong>var</strong> 重複宣告，並不會報錯，後者會覆蓋掉前者。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">var</span> value = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value);<span class="comment">//5678</span></span><br></pre></td></tr></table></figure></p>
-<p>而在 ES6 的 <strong>let</strong> 及 <strong>const</strong> 則移除了這樣不嚴謹的規則，每個變數在該區塊內為獨立宣告，不可重複宣告。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value1 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">let</span> value1 = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value1);<span class="comment">//Error: Identifier 'value1' has already been declared</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">const</span> value2 = <span class="string">'5678'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(value2);<span class="comment">//Error: Identifier 'value2' has already been declared</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="綜合變因"><a href="#綜合變因" class="headerlink" title="綜合變因"></a>綜合變因</h3><p>在區塊限制與變數不提升的綜合，會形成的錯誤。例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">"1234"</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  value = <span class="string">'5678'</span>;<span class="comment">//Error:Cannot access 'value' before initialization</span></span><br><span class="line">  <span class="keyword">let</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 if 區塊中，使用了會受區塊限制的 let ，則在該區塊中的 value 不得在宣告之前使用。</p>
-<h2 id="let-與-const-的區隔"><a href="#let-與-const-的區隔" class="headerlink" title="let 與 const 的區隔"></a>let 與 const 的區隔</h2><h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>通常<strong>const</strong> 使用在識別職(identifier)，其意義為不會改變的常數，因此在一開始宣告就必須賦值，否則會出錯。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value1;<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">const</span> value2;<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure></p>
-<p>且若賦予一般的純值之後，即不可再被更動。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = <span class="string">'1234'</span>;</span><br><span class="line">value = <span class="string">'5678'</span>;<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name:<span class="string">'Amy'</span>,</span><br><span class="line">    age:<span class="string">'22'</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj = &#123;</span><br><span class="line">    name:<span class="string">'John'</span>,</span><br><span class="line">    age:<span class="string">'25'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//Error:Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
-<p>然而，如果是給予物件、陣列的值，<strong>在該變數的記憶體存放位置不變的情況之下</strong>，是可以變動的。例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name:<span class="string">'Amy'</span>,</span><br><span class="line">    age:<span class="string">'22'</span>,</span><br><span class="line">&#125;;</span><br><span class="line">obj.name = <span class="string">'John'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//John</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next</a>
+    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">Next</a>
   </nav>
 
 </section>
@@ -1135,68 +954,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/">React-(五-2)組件進階：組件的父子溝通</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/">【Debug筆記】利用pointer-events:none解決點擊事件失效</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-4)三種組件/">React-(五-4)三種組件</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/">React-(五-3)組建進階：動態控制樣式className跟style</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/">React-(五-1)組件進階：ref屬性找到DOM</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/05/13/React-(四)組件進階/">React-(四)組件進階</a></h6>
               <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(三)組件基本/">React-(三)組件基本</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(二)JSX與render/">React-(二)JSX與render</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(一)創建一個React專案(懶人包)/">React-(一)創建一個React專案(懶人包)</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/Vue-EventBus組件溝通/">Vue-EventBus組件溝通</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
-              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -1210,7 +1029,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1220,7 +1039,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1230,7 +1049,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/React/" style="font-size: 12.73px;">React</a> <a href="/tags/React-js/" style="font-size: 12.73px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.67px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.33px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.83px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.17px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.33px;">Node.js</a> <a href="/tags/React/" style="font-size: 15.83px;">React</a> <a href="/tags/React-js/" style="font-size: 15.83px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.33px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.17px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.67px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.5px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.67px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.83px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.83px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.67px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.83px;">layuot</a> <a href="/tags/library/" style="font-size: 10.83px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.83px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.17px;">實作</a>
     </div>
   </div>
 
@@ -1240,7 +1059,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 

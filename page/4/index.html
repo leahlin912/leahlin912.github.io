@@ -158,6 +158,453 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vue-單一元件檔(Single-file components)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/Vue-單一元件檔(Single-file components)/">Vue-單一元件檔(Single-file components)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/Vue-單一元件檔(Single-file components)/" class="article-date">
+	  <time datetime="2019-06-12T08:27:13.452Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="優缺點"><a href="#優缺點" class="headerlink" title="優缺點"></a>優缺點</h2><p>在許多 Vue 專案中，可以先定義一個「全域組件」<code>Vue.component</code>，接著再創建一個「Vue 實體」<code>new Vue({el:&#39;#app&#39;})</code>，並且將全域組件指定到頁面中的一個容器元素中。</p>
+<p>這種方式卻僅適合中小型的專案，但是當專案更於複雜，會出現一些缺點：</p>
+<ul>
+<li>全域定義問題(Global definitions)：每個組件(component)的命名不能重複。</li>
+<li>字串模板問題(String templates)：在元件中的<code>template</code>屬性只能用字串，當使用編譯器(例：vscode)撰寫內容時，無法有效地以文字顏色區分、辨別內容</li>
+<li>CSS 不支援問題(No CSS support)：在元件中只能提供 HTML 及 JavaScript，無法支援 CSS</li>
+<li>預處理問題(No build step)：元件預設中只能使用 HTML 及 ES5，不能使用預處理工具，例：Babel</li>
+</ul>
+<p>「<strong>單一元件檔(Single-file component)</strong>」就可以解決上述問題，它同時包含 HTML、JavaScript 及 CSS，一個<code>.vue</code>檔案就代表一個組件，且支援使用 Webpack 或 Browserify 等打包建置工具。</p>
+<h2 id="檔案樣板結構"><a href="#檔案樣板結構" class="headerlink" title="檔案樣板結構"></a>檔案樣板結構</h2><p><code>.vue</code>檔案的基本內容結構：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!--HTML內容 --&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // JAvaScript內容</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    /*CSS內容 */</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>若不喜歡 HTML、JavaScript 與 CSS 三者合一，也可以改為將 JavaScript 及 CSS 分離成獨立的檔案再載入的寫法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- my-component.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;This will be pre-compiled&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script src=&quot;./my-component.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;style src=&quot;./my-component.css&quot;&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="templete-區塊"><a href="#templete-區塊" class="headerlink" title="templete 區塊"></a>templete 區塊</h3><p><code>&lt;template&gt;</code>樣板裡的內容會被編譯為元件中 <code>templete</code>屬性的值，樣板中只能有一個根元素，也就是說所有內容要包在一個<code>&lt;div&gt;&lt;/div&gt;</code>中。</p>
+<p>預設使用 HTML，但可以使用 <code>lang</code> 屬性指定為其他樣板系統，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang=&apos;jade&apos;&gt;...&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="script-區塊"><a href="#script-區塊" class="headerlink" title="script 區塊"></a>script 區塊</h3><p>這個區塊中只能有一個，且最終必須匯出一個 Vue 物件。</p>
+<p>預設為 JavaScript，要使用其他 JS 套件可以使用 require()。如果有安裝 babel-loader 在支援 ES2015 的環境中，則可以使用 import 及 export 語法。例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> loadingFunc <span class="keyword">from</span> <span class="string">'../Loading'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    &lt;!--component content --&gt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>這裡記得 from 的部份，如果使用的是 node_modules 也就是由 npm / yarn 安裝的套件，直接寫套件的名稱；而如果是自己的 JavaScript 檔，則要在檔名前加上 ./。</p>
+<h3 id="style-區塊"><a href="#style-區塊" class="headerlink" title="style 區塊"></a>style 區塊</h3><p>一個<code>.vue</code>檔案可以有零到多個<code>&lt;style&gt;</code>，且可以是全域或區域的<code>&lt;style&gt;</code>區塊。</p>
+<p><code>&lt;style&gt;</code>的預設為全域的，如果想要限制為區域作用(只在該組件中有效)，可以加上<code>scoped</code>屬性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;...&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>預設為 CSS，也可以更換為 SCSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;sass&quot;&gt;...&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="簡易範例"><a href="#簡易範例" class="headerlink" title="簡易範例"></a>簡易範例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;&#123;&#123; greeting &#125;&#125; World!&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      greeting: &apos;Hello&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">p &#123;</span><br><span class="line">  font-size: 2em;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="撰寫-vue-檔案"><a href="#撰寫-vue-檔案" class="headerlink" title="撰寫.vue 檔案"></a>撰寫.vue 檔案</h2><p>先確定專案的結構，根目錄會有一個<code>index.html</code>作為執行 Vue 的入口;接著在 src 資料架，主要的程式碼都會放在這裡;<code>main.js</code>是程式的進入點，也可以透過 <code>webpack.config.js</code> 設定檔修改、自定義配置;<code>myApp.vue</code>則是這裡的重點，最終會匯出一個 vue 組件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">project根目錄</span><br><span class="line">|_index.html</span><br><span class="line">|_src</span><br><span class="line">    |_main.js</span><br><span class="line">    |_component</span><br><span class="line">        |_myApp.vue</span><br><span class="line">|_build</span><br><span class="line">    |_webpack.config.js</span><br></pre></td></tr></table></figure>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>放置在根目錄底下的<code>index.html</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;hello&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!-- built files will be auto injected --&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 8 行，這是 Vue 的進入點。</li>
+<li>這個檔案中只有最基本的 HTML 內容，沒有 CSS、JavaScript，第 9 行，建置後的檔案會自動引入。</li>
+</ul>
+<h3 id="myApp-vue"><a href="#myApp-vue" class="headerlink" title="myApp.vue"></a>myApp.vue</h3><p>component 資料夾下方放置所有的 vue 組件，示範一個<code>myApp.vue</code>組件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p class="hello"&gt;&#123;&#123; msg &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'這是一個 Vue 組件檔！'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style scoped&gt;</span></span><br><span class="line"><span class="regexp">h1 &#123;</span></span><br><span class="line"><span class="regexp">  color: green;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.hello &#123;</span></span><br><span class="line"><span class="regexp">  font-size: 1.5em;</span></span><br><span class="line"><span class="regexp">  color: blue;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><p><code>myApp.vue</code>組件建立好之後，接著就可以引入到<code>main.js</code>。<br><code>main.js</code>。是程式的進入點，也可以透過 <code>webpack.config.js</code> 設定檔修改、自定義配置。</p>
+<p>基礎的內容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;Hello Vue&lt;/h1&gt;'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果要引入<code>myApp.vue</code>組件，則要添加一些內容，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> MyApp <span class="keyword">from</span> <span class="string">'./myApp'</span>;</span><br><span class="line"><span class="keyword">import</span> MyApp2 <span class="keyword">from</span> <span class="string">'./myApp2'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; myApp, myApp2 &#125;,</span><br><span class="line">  template: <span class="string">'&lt;div&gt;&lt;myApp&gt;&lt;/myApp&gt;&lt;myApp2&gt;&lt;/myApp2&gt;&lt;/div&gt;'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第 1 行<code>import</code>，<code>&#39;vue&#39;</code>是使用 node_modules 由 npm / yarn 安裝的套件，所以可以直接寫套件的名稱。</li>
+<li>第 2 行<code>import</code>，<code>&#39;./MyApp&#39;</code>是自己的 JavaScript 檔，則要在檔名前加上 <code>./</code>。</li>
+<li>第 8 行，為 vue 實例添加<code>components</code>屬性，其值為引入組件，如有多個組件則用逗號分隔。</li>
+<li>第 9 行，這樣就可以將 templete 樣板中改寫為<code>&lt;myApp&gt;&lt;/myApp&gt;</code>，立即使用引入的組件，但切記只能有一個<code>&lt;div&gt;</code>根元素，所以所有內容都要包在其中。</li>
+</ul>
+<h3 id="組件加在組件中"><a href="#組件加在組件中" class="headerlink" title="組件加在組件中"></a>組件加在組件中</h3><p>除了上述將所有組件都引入到 <code>main.js</code> 中的做法，也可以把 myApp2 組件加在 myApp1 組件中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p class="hello"&gt;&#123;&#123; msg &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;myApp2&gt;&lt;/myApp2&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> myApp2 <span class="keyword">from</span> <span class="string">'./myApp2'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'這是一個 Vue 組件檔(myApp1)！'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123; myApp2 &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在第 10 行中，將 <code>myApp</code> 組件檔<code>import</code>進來</li>
+<li>接著在第 18 行，將 <code>myApp</code> 組件 assign 到 <code>component</code> 屬性中</li>
+<li>最後，在第 5 行，就可以在<code>&lt;template&gt;</code>中使用了</li>
+</ul>
+<h2 id="組件命名及使用"><a href="#組件命名及使用" class="headerlink" title="組件命名及使用"></a>組件命名及使用</h2><p>不論 vue 組件的命名方式為何，在 html 中使用時，一律為 kebab-case (不分大小寫，一律轉為「小寫並加上 dash 線」)</p>
+<p>假設 vue 組件為<code>MyApp</code>，在 HTML 呼叫使用時，需轉換為<code>&lt;my-app&gt;&lt;/my-app&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 三種命名方式</span><br><span class="line"></span><br><span class="line">my-first-component //kebab-case</span><br><span class="line">myFirstComponent    //camelCase</span><br><span class="line">MyFirstComponent //PascalCase</span><br></pre></td></tr></table></figure>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://www.freecodecamp.org/news/how-to-create-a-vue-js-app-using-single-file-components-without-the-cli-7e73e5b8244f/" target="_blank" rel="noopener">How to create a Vue.js app using Single-File Components, without the CLI.</a></li>
+<li><a href="http://blog.tonycube.com/2017/05/vuejs-10-single-file-components.html" target="_blank" rel="noopener"> 單一元件檔(Single-file components)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-嚴格模式_use strict_" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/JavaScript-嚴格模式_use strict_/">JavaScript-嚴格模式&#34;use strict&#34;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/JavaScript-嚴格模式_use strict_/" class="article-date">
+	  <time datetime="2019-06-12T02:42:38.768Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 JavaScript 中有許多鬆散的寫法，雖然因此讓 JS 的彈性受到讚賞，卻也導致 debug 的困難度。 <code>&quot;use strict&quot;</code> 是新加入的標準，目的在於讓「開發具備更穩定的 JS」更容易，當開發者使用不穩定的語法時，即會跳出警告，讓開發者避免這些寫法。</p>
+<p>使用 <strong>strict mode (嚴格模式)</strong> 這個功能，會強迫開發者在開發過程中更為謹慎，用以限制鬆散的 JavaScript 寫法，相比之下也比較不會出錯。</p>
+<h2 id="優點與缺點"><a href="#優點與缺點" class="headerlink" title="優點與缺點"></a>優點與缺點</h2><p>優點：</p>
+<ul>
+<li>撰寫出更為嚴謹的 JS 可以避免不可預知的意外狀況，特別是合作開發時，在 debug 他人撰寫的程式碼會更為簡易。</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>嚴謹模式限制 JS 的彈性</li>
+<li>若專案中使用很多第三方撰寫的 plugin 套件，可能因為嚴格模式而無法運作，會需要修改很多程式</li>
+</ul>
+<p>建議及解套方法：<br><strong>嚴格模式除了可以寫在全域，也可以用在 function 中，如此一來就不會全域都嚴謹模式，避免影響既有的程式碼或 plugin 套件。</strong></p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="全域"><a href="#全域" class="headerlink" title="全域"></a>全域</h3><p><code>&quot;use strict&quot;</code>直接寫在 JS 全域位置的最上方：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>; <span class="comment">//使用 strict mode (嚴格模式)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="區域"><a href="#區域" class="headerlink" title="區域"></a>區域</h3><p><code>&quot;use strict&quot;</code>寫在函式的開頭位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>; <span class="comment">//使用 strict mode (嚴格模式)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不是寫在函式的開頭位置，則無效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">  (<span class="string">'use strict'</span>); <span class="comment">//嚴格模式無效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用嚴格模式的受限"><a href="#使用嚴格模式的受限" class="headerlink" title="使用嚴格模式的受限"></a>使用嚴格模式的受限</h2><ul>
+<li>變數未宣告直接賦值</li>
+<li>物件中有重複的屬性名稱</li>
+<li>刪除已經宣告的錯誤</li>
+<li>不能使用 ‘with’ 語法</li>
+<li>argument, eval 不能作為變數名稱</li>
+<li>保留字不得作為變數名稱，例：implements, interface, let, package, private, protected, static, yield</li>
+</ul>
+<h2 id="瀏覽器支援"><a href="#瀏覽器支援" class="headerlink" title="瀏覽器支援"></a>瀏覽器支援</h2><ul>
+<li>Chrome13 之後都有支援</li>
+<li>IE10,11 有支援</li>
+<li>FF4 有支援</li>
+<li>Safari5.1 之後有支援</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-CSS-Reset" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/CSS-Reset/">CSS-Reset</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/CSS-Reset/" class="article-date">
+	  <time datetime="2019-06-12T02:42:10.358Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在每一個瀏覽器，都會有瀏覽器自帶的 CSS 樣式檔案，用以呈現各個瀏覽器特有的預設外觀。雖然有預設樣式的好處是，當開發者沒有特別定義樣式時，至少會有基礎的排版、樣式效果；可是壞處是，當開發者自定義樣式時，經常會因此而出現不可預期的狀況。<br>所以通常在做網頁切版時，都會用 CSS Reset，將瀏覽器預設的樣式通通歸零，包含行距離、字距、margin、padding⋯ 等。<br><img src="https://i.imgur.com/demmH1A.jpg" alt></p>
+<h3 id="Reset-版本"><a href="#Reset-版本" class="headerlink" title="Reset 版本"></a>Reset 版本</h3><p>最普遍常用的 CSS-Reset 為 <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">Eric Meyer 版本 </a>，下方也以此版本說明。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* http://meyerweb.com/eric/tools/css/reset/ </span></span><br><span class="line"><span class="comment">   v2.0 | 20110126</span></span><br><span class="line"><span class="comment">   License: none (public domain)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span>,</span><br><span class="line"><span class="selector-tag">body</span>,</span><br><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">span</span>,</span><br><span class="line"><span class="selector-tag">applet</span>,</span><br><span class="line"><span class="selector-tag">object</span>,</span><br><span class="line"><span class="selector-tag">iframe</span>,</span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span>,</span><br><span class="line"><span class="selector-tag">h3</span>,</span><br><span class="line"><span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-tag">h5</span>,</span><br><span class="line"><span class="selector-tag">h6</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">pre</span>,</span><br><span class="line"><span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">abbr</span>,</span><br><span class="line"><span class="selector-tag">acronym</span>,</span><br><span class="line"><span class="selector-tag">address</span>,</span><br><span class="line"><span class="selector-tag">big</span>,</span><br><span class="line"><span class="selector-tag">cite</span>,</span><br><span class="line"><span class="selector-tag">code</span>,</span><br><span class="line"><span class="selector-tag">del</span>,</span><br><span class="line"><span class="selector-tag">dfn</span>,</span><br><span class="line"><span class="selector-tag">em</span>,</span><br><span class="line"><span class="selector-tag">img</span>,</span><br><span class="line"><span class="selector-tag">ins</span>,</span><br><span class="line"><span class="selector-tag">kbd</span>,</span><br><span class="line"><span class="selector-tag">q</span>,</span><br><span class="line"><span class="selector-tag">s</span>,</span><br><span class="line"><span class="selector-tag">samp</span>,</span><br><span class="line"><span class="selector-tag">small</span>,</span><br><span class="line"><span class="selector-tag">strike</span>,</span><br><span class="line"><span class="selector-tag">strong</span>,</span><br><span class="line"><span class="selector-tag">sub</span>,</span><br><span class="line"><span class="selector-tag">sup</span>,</span><br><span class="line"><span class="selector-tag">tt</span>,</span><br><span class="line"><span class="selector-tag">var</span>,</span><br><span class="line"><span class="selector-tag">b</span>,</span><br><span class="line"><span class="selector-tag">u</span>,</span><br><span class="line"><span class="selector-tag">i</span>,</span><br><span class="line"><span class="selector-tag">center</span>,</span><br><span class="line"><span class="selector-tag">dl</span>,</span><br><span class="line"><span class="selector-tag">dt</span>,</span><br><span class="line"><span class="selector-tag">dd</span>,</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">ul</span>,</span><br><span class="line"><span class="selector-tag">li</span>,</span><br><span class="line"><span class="selector-tag">fieldset</span>,</span><br><span class="line"><span class="selector-tag">form</span>,</span><br><span class="line"><span class="selector-tag">label</span>,</span><br><span class="line"><span class="selector-tag">legend</span>,</span><br><span class="line"><span class="selector-tag">table</span>,</span><br><span class="line"><span class="selector-tag">caption</span>,</span><br><span class="line"><span class="selector-tag">tbody</span>,</span><br><span class="line"><span class="selector-tag">tfoot</span>,</span><br><span class="line"><span class="selector-tag">thead</span>,</span><br><span class="line"><span class="selector-tag">tr</span>,</span><br><span class="line"><span class="selector-tag">th</span>,</span><br><span class="line"><span class="selector-tag">td</span>,</span><br><span class="line"><span class="selector-tag">article</span>,</span><br><span class="line"><span class="selector-tag">aside</span>,</span><br><span class="line"><span class="selector-tag">canvas</span>,</span><br><span class="line"><span class="selector-tag">details</span>,</span><br><span class="line"><span class="selector-tag">embed</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,</span><br><span class="line"><span class="selector-tag">figcaption</span>,</span><br><span class="line"><span class="selector-tag">footer</span>,</span><br><span class="line"><span class="selector-tag">header</span>,</span><br><span class="line"><span class="selector-tag">hgroup</span>,</span><br><span class="line"><span class="selector-tag">menu</span>,</span><br><span class="line"><span class="selector-tag">nav</span>,</span><br><span class="line"><span class="selector-tag">output</span>,</span><br><span class="line"><span class="selector-tag">ruby</span>,</span><br><span class="line"><span class="selector-tag">section</span>,</span><br><span class="line"><span class="selector-tag">summary</span>,</span><br><span class="line"><span class="selector-tag">time</span>,</span><br><span class="line"><span class="selector-tag">mark</span>,</span><br><span class="line"><span class="selector-tag">audio</span>,</span><br><span class="line"><span class="selector-tag">video</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">font</span>: inherit;</span><br><span class="line">  <span class="attribute">vertical-align</span>: baseline;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* HTML5 display-role reset for older browsers */</span></span><br><span class="line"><span class="selector-tag">article</span>,</span><br><span class="line"><span class="selector-tag">aside</span>,</span><br><span class="line"><span class="selector-tag">details</span>,</span><br><span class="line"><span class="selector-tag">figcaption</span>,</span><br><span class="line"><span class="selector-tag">figure</span>,</span><br><span class="line"><span class="selector-tag">footer</span>,</span><br><span class="line"><span class="selector-tag">header</span>,</span><br><span class="line"><span class="selector-tag">hgroup</span>,</span><br><span class="line"><span class="selector-tag">menu</span>,</span><br><span class="line"><span class="selector-tag">nav</span>,</span><br><span class="line"><span class="selector-tag">section</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">q</span> &#123;</span><br><span class="line">  <span class="attribute">quotes</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">blockquote</span><span class="selector-pseudo">:before</span>,</span><br><span class="line"><span class="selector-tag">blockquote</span><span class="selector-pseudo">:after</span>,</span><br><span class="line"><span class="selector-tag">q</span><span class="selector-pseudo">:before</span>,</span><br><span class="line"><span class="selector-tag">q</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">content</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">  <span class="attribute">border-spacing</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到內容即為將很多樣式都歸零，如此一來，不論使用者的瀏覽器版本，在 CSS Reset 之後，都是統一無樣式的版本。而開發過程中，也不會因為 各個瀏覽器各自的預設值，而影響到開發者重新自定義的樣式，進而發生不可預知的狀況。</p>
+<h3 id="如何-Reset？"><a href="#如何-Reset？" class="headerlink" title="如何 Reset？"></a>如何 Reset？</h3><p>將 <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">Eric Meyer 版本 </a>寫好的程式碼內容，全部複製一份到個人專案中的一個 CSS 檔案中，可以命名為 reset.css 接著在專案中的每個 html 都引入 reset.css ，這樣就可以確定每個頁面在一開始的樣式都被歸零。</p>
+<h3 id="重點提醒！"><a href="#重點提醒！" class="headerlink" title="重點提醒！"></a>重點提醒！</h3><p>一定要在一開始就引入 CSS Reset，避免 CSS Reset 反而蓋掉開發者自行定義的樣式。</p>
+<h3 id="資料來源"><a href="#資料來源" class="headerlink" title="資料來源"></a>資料來源</h3><p><a href="https://www.youtube.com/watch?v=WtjXBIyxhw8&amp;t=11s" target="_blank" rel="noopener">金魚都能懂網頁設計入門 : CSS Reset </a></p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10196528" target="_blank" rel="noopener">小事之 CSS Reset 與 CSS normalize</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-JavaScript-BOM與DOM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/JavaScript-BOM與DOM/">JavaScript-BOM與DOM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/JavaScript-BOM與DOM/" class="article-date">
+	  <time datetime="2019-06-12T02:41:03.679Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>檔案物件模型（Document Object Model, DOM）是瀏覽器的執行規範，提供了結構化的標準方法，將網頁的程式碼及其他程式語言結合起來。開發人員即可以通過文件中物件的屬性、方法和事件來掌控、操縱和建立動態的網頁元素。</p>
+<h3 id="DOM-Document-Object-Model"><a href="#DOM-Document-Object-Model" class="headerlink" title="DOM(Document Object Model)"></a>DOM(Document Object Model)</h3><p>每個 DOM 的基礎建置在一個(D)文件上（也就是以 document 作為根基），而由 document 中的每個(O)物件作為出一個個節點，最後由這一個個節點，組成為一個 DOM Tree。</p>
+<ul>
+<li>D：（文件）瀏覽器當前載入的 document</li>
+<li>O：（物件）將 document 中的所有元素視為物件，可以調用其屬性、方法</li>
+<li>M：（模型）所有的物件在該結構中都是節點，這些眾多節點組成一個<strong>樹狀結構</strong></li>
+</ul>
+<p>將 HTML 分解為 DOM:<br><img src="https://i.imgur.com/01xXBTU.jpg" alt></p>
+<p>DOM 節點有:</p>
+<ol>
+<li>元素節點：上圖中<code>&lt;html&gt;</code>、<code>&lt;body&gt;</code>、<code>&lt;p&gt;</code>標籤皆是元素節點。</li>
+<li>文本節點:向用户展示的内容，如<code>&lt;li&gt;...&lt;/li&gt;</code>中的 JavaScript、DOM、CSS 等文本。</li>
+<li>屬性節點:標籤中的屬性，如<code>&lt;a&gt;</code>標籤中的連結屬性<code>href=&quot;http://www.baidu.com&quot;</code>。</li>
+</ol>
+<h3 id="查找節點的方法"><a href="#查找節點的方法" class="headerlink" title="查找節點的方法"></a>查找節點的方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getElementById()</td>
+<td style="text-align:center">獲取特定 ID 元素的節點</td>
+</tr>
+<tr>
+<td>getElementsByTagName()</td>
+<td style="text-align:center">獲取相同元素的節點列表</td>
+</tr>
+<tr>
+<td>getElementsByName</td>
+<td style="text-align:center">獲取相同名稱的節點列表</td>
+</tr>
+<tr>
+<td>getAttribute()</td>
+<td style="text-align:center">獲得特定元素節點屬性的值</td>
+</tr>
+<tr>
+<td>setAttribute()</td>
+<td style="text-align:center">設置特定元素節點屬性的值</td>
+</tr>
+<tr>
+<td>removeAttribute()</td>
+<td style="text-align:center">移除特定元素節點的属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="節點的屬性"><a href="#節點的屬性" class="headerlink" title="節點的屬性"></a>節點的屬性</h3><table>
+<thead>
+<tr>
+<th>屬性</th>
+<th style="text-align:center">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nodeName</td>
+<td style="text-align:center">返回一个字串，其内容是節點的名字</td>
+</tr>
+<tr>
+<td>nodeType</td>
+<td style="text-align:center">返回一个整數，這個數值代表给定節點的類型</td>
+</tr>
+<tr>
+<td>nodeValue</td>
+<td style="text-align:center">返回給定節點的當前值</td>
+</tr>
+<tr>
+<td>tagName</td>
+<td style="text-align:center">獲取元素節點的標籤名</td>
+</tr>
+<tr>
+<td>innerHTML</td>
+<td style="text-align:center">獲取元素節點的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h3><p>用 DOM API 可以輕鬆地删除、添加和替換節點。<br>| DOM 操作 |说明 |<br>| ————- |:————-:|<br>|creatElement(element) |創建一个新的元素節點|<br>|creatTextNode() |創建一个包含給定文本的新文本節點|<br>|appendChild() |指定節點的最後一個節點列表後添加一个新的子節點|<br>|insertBefore() |將一個給定節點节点插入到一个給定元素節點的給定子節點的前面|<br>|removeChild() |从一个给定元素中删除子节点|<br>|replaceChild() |把一个给定父元素里的一个子节点替换为另外一个节点|</p>
+<h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><p>瀏覽器物件模型（Browser Object Model,BOM）是瀏覽器提供的附加對象，用於處理 document 以外的所有内容，主要處理瀏覽器窗口和框架，不过通常瀏覽器特定的 JavaScript 也會被看作 BOM 的一部分。</p>
+<p>區別：BOM 描述了與瀏覽器進行交互的方法和接口，DOM 描述了處理網頁内容的方法和接口。</p>
+<ul>
+<li><p>window 物件包含属性：document、navigator、frames、history、location、screen</p>
+</li>
+<li><p>document 根節點包含子節點：forms、location、anchors、images、links</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/y6ohu8g.png" alt></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://segmentfault.com/a/1190000000654274" target="_blank" rel="noopener">JavaScript 学习总结（三）BOM 和 DOM 详解</a><br><a href="https://zhuanlan.zhihu.com/p/33672055" target="_blank" rel="noopener">知乎-BOM 和 DOM</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-WebSocket-簡易APP應用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/12/WebSocket-簡易APP應用/">WebSocket-簡易APP應用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/12/WebSocket-簡易APP應用/" class="article-date">
+	  <time datetime="2019-06-12T02:40:53.017Z" itemprop="datePublished">June 12, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.imgur.com/GI6v8jF.png" alt></p>
+<p>完整 Demo:參考<a href="https://github.com/leahlin912/SimpleChat" target="_blank" rel="noopener">github 程式碼</a></p>
+<h3 id="安裝-nodemon"><a href="#安裝-nodemon" class="headerlink" title="安裝 nodemon"></a>安裝 nodemon</h3><p>持續監視程式碼，一旦我們做了修改並儲存，nodemon 就會自動重新啟動 Node.js 程式，這樣刷新瀏覽器就能看到變更。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nodemon</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/wrE8iOL.png" alt><br>安裝完畢之後，輸入指令，就會啟用「自動偵聽並重啟」的功能：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon index.js</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Mr6b7Jk.png" alt></p>
+<p>nodemon 啟動之後，以可以看到提示字元，如果想要人工手動重啟，也可以輸入<code>rs</code>指令。</p>
+<h3 id="前端頁面功能"><a href="#前端頁面功能" class="headerlink" title="前端頁面功能"></a>前端頁面功能</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個WebSocket實體，建立完成自動連線到server</span></span><br><span class="line"><span class="keyword">var</span> sock = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:5001'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定義完成連線時的回呼函式</span></span><br><span class="line">sock.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'status'</span>).setAttribute(<span class="string">'class'</span>, <span class="string">'status_connected'</span>);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'status'</span>).innerHTML = <span class="string">'&lt;b&gt;Connected&lt;/b&gt;'</span>;</span><br><span class="line">  &#125;, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//設定按鈕監控click事件</span></span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> data = &#123;</span><br><span class="line">      user: <span class="built_in">document</span>.getElementById(<span class="string">'user'</span>).value,</span><br><span class="line">      msg: <span class="built_in">document</span>.getElementById(<span class="string">'inputBox'</span>).value,</span><br><span class="line">      time: date.getTime(),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//傳送訊之前要先將物件轉為JSON格式</span></span><br><span class="line">    sock.send(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'inputBox'</span>).value = <span class="string">''</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//定義收到訊息時的回呼函式</span></span><br><span class="line">  sock.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將JSON格式先轉為物件</span></span><br><span class="line">    <span class="keyword">var</span> newEvent = <span class="built_in">JSON</span>.parse(event.data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判斷資料並分類做處理</span></span><br><span class="line">    <span class="keyword">switch</span> (newEvent.type) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'request'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> logArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='logArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        logArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'response'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> resArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='resArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        resArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'notify'</span>:</span><br><span class="line">        <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(newEvent.time).toLocaleTimeString();</span><br><span class="line">        <span class="keyword">var</span> resArea = <span class="built_in">document</span>.getElementById(<span class="string">'chatArea'</span>);</span><br><span class="line">        <span class="keyword">var</span> newArea = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newArea.innerHTML =</span><br><span class="line">          <span class="string">"&lt;div id='resArea'&gt;&lt;div class='card'&gt;"</span> +</span><br><span class="line">          <span class="string">'&lt;p&gt;'</span> +</span><br><span class="line">          newEvent.user +</span><br><span class="line">          <span class="string">':&lt;b&gt;'</span> +</span><br><span class="line">          newEvent.msg +</span><br><span class="line">          <span class="string">'&lt;/b&gt;&lt;small&gt;'</span> +</span><br><span class="line">          time +</span><br><span class="line">          <span class="string">'&lt;/small&gt;&lt;/p&gt;&lt;/br&gt;&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">        resArea.appendChild(newArea);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div id=&apos;status&apos; class=&quot;status_disconnected&quot;&gt;&lt;b style=&quot;color: white&quot;&gt;Disconected&lt;/b&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&apos;content&apos;&gt;</span><br><span class="line">        &lt;span&gt;User:&lt;/span&gt;</span><br><span class="line">        &lt;select id=&apos;user&apos;&gt;</span><br><span class="line">            &lt;option&gt;Amy&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;Bora&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;Cherry&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br/&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;textarea id=&apos;inputBox&apos; type=&apos;text&apos; placeholder=&quot;Input message here&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;button&gt;Send&lt;/button&gt;</span><br><span class="line">    &lt;div id=&apos;chatArea&apos;&gt;</span><br><span class="line">    &lt;!--     在這裡面處理appendChild() --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#chatArea</span> &#123;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">3px</span> solid white;</span><br><span class="line">  <span class="comment">/* margin-top:10px; */</span></span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f1f1f1</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#logArea</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">3px</span> solid white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#resArea</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">3px</span> solid white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="後端處理"><a href="#後端處理" class="headerlink" title="後端處理"></a>後端處理</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立server實體</span></span><br><span class="line"><span class="keyword">var</span> webSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> webSocketServer(&#123; <span class="attr">port</span>: <span class="number">5001</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//設計一個計數器，計算當前連線數量</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定義每當一個連線建立的執行動作</span></span><br><span class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ws</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> user = <span class="string">''</span>;</span><br><span class="line">  count++;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Curent clients:'</span> + count);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'[Server] connected!'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當某個建立連線的ws發送出message，會執行的動作</span></span><br><span class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//將JSON格式先轉為物件</span></span><br><span class="line">    <span class="keyword">var</span> newData = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`[Server] received <span class="subst">$&#123;data&#125;</span>`</span>);</span><br><span class="line">    user = newData.user;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將訊息同步傳給「所有」的用戶端瀏覽器，達成訊息同步</span></span><br><span class="line">    wss.clients.forEach(<span class="function">(<span class="params">client</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//判斷用戶端是否為發出訊息的自己，而做不同的處理</span></span><br><span class="line">      <span class="keyword">if</span> (client == ws) &#123;</span><br><span class="line">        newData.type = <span class="string">'request'</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        newData.type = <span class="string">'response'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      client.send(<span class="built_in">JSON</span>.stringify(newData), (err) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">`[Server] error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當某個用戶端斷線，所執行的動作</span></span><br><span class="line">  ws.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    count--;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[Server] Lost a client.'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Online clients:'</span> + count);</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    newData = &#123;</span><br><span class="line">      type: <span class="string">'notify'</span>,</span><br><span class="line">      user: user,</span><br><span class="line">      msg: <span class="string">'[Left chat room]'</span>,</span><br><span class="line">      time: date.getTime(),</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//將斷線訊息同步給所有其他用戶</span></span><br><span class="line">    wss.clients.forEach(<span class="function">(<span class="params">client</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (client != ws) &#123;</span><br><span class="line">        client.send(<span class="built_in">JSON</span>.stringify(newData), (err) =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`[Server] error: <span class="subst">$&#123;err&#125;</span>`</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WebSocket/">WebSocket</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-WebSocket-簡易server端實作" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -561,335 +1008,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-JavaScript-陣列" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-陣列/">JavaScript-陣列</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-陣列/" class="article-date">
-	  <time datetime="2019-05-13T10:07:47.397Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="宣告陣列"><a href="#宣告陣列" class="headerlink" title="宣告陣列"></a>宣告陣列</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般宣告語法</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//或使用陣列實體語法</span></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在中括號中，用逗號分隔值</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//index從0開始，抓出陣列中的值</span></span><br><span class="line">arr[<span class="number">0</span>];<span class="comment">//a</span></span><br><span class="line">arr[<span class="number">1</span>];<span class="comment">//b</span></span><br><span class="line">arr[<span class="number">2</span>];<span class="comment">//c</span></span><br></pre></td></tr></table></figure>
-<h3 id="JS的陣列特性"><a href="#JS的陣列特性" class="headerlink" title="JS的陣列特性"></a>JS的陣列特性</h3><p>在其他程式語言的陣列中，通常都能包含同一種型別的值。比如說，數字陣列、字串陣列、物件陣列。</p>
-<p>可是在JavaScript中，因為「動態型別」的特性，陣列中可以混合各種不同型別的值，JavaScript會自動去判別每一個值得型別。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'member'</span>,</span><br><span class="line">    <span class="literal">false</span>,</span><br><span class="line">    &#123;</span><br><span class="line">        name:<span class="string">'Amy'</span>,</span><br><span class="line">        age:<span class="string">'20'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> greeting = <span class="string">'hi'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(greeting + name)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'newMember'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/nT5MBLJ.png" alt><br>若要執行陣列中的函式，可以使用陣列的index，呼叫出陣列中的東西，包含陣列中函式、字串、物件…等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr[<span class="number">4</span>](arr[<span class="number">3</span>].name);</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/ruKqxKc.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-_this_關鍵字" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-_this_關鍵字/">JavaScript-&#34;this&#34;關鍵字</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-_this_關鍵字/" class="article-date">
-	  <time datetime="2019-05-13T10:07:41.964Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="全域this"><a href="#全域this" class="headerlink" title="全域this"></a>全域this</h3><p>在全域環境中取用this，會指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
-<p>而在瀏覽器中執行，瀏覽器的全域物件為window物件。<br><img src="https://i.imgur.com/gep8H4i.png" alt></p>
-<h3 id="函式中的this"><a href="#函式中的this" class="headerlink" title="函式中的this"></a>函式中的this</h3><p>每當一個函式被呼叫，會創造出一個新的執行環境，且同時會產生一個未曾宣告的”this變數”，然而，”this變數”的值指向哪個物件，會依據函式在何處被呼叫而決定。</p>
-<p>下述例子中，先有一個函式，其中log出this。當使用a()呼叫執行，代表執行該函式的程式屬性(code)，也就是函式中的全部程式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure></p>
-<p>實行結果，在a函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/NuOwXaL.png" alt><br>下述另一個案例，使用函式表示式來設定一個物件函式，再將之assign給變數b。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，在b函式中的this，同樣指向全域物件的Window。<br><img src="https://i.imgur.com/wTE9q2F.png" alt></p>
-<h3 id="函式中創建全域物件"><a href="#函式中創建全域物件" class="headerlink" title="函式中創建全域物件"></a>函式中創建全域物件</h3><p>下述程式碼統整目前的案例，有三個執行環境被產生：</p>
-<ol>
-<li>全域環境</li>
-<li>呼叫函式a，產生的區域環境</li>
-<li>呼叫函式b，產生的區域環境</li>
-</ol>
-<p>在每個執行環境中，分別產生三個不同的this變數，可是三個this都指向同一個位址(同一個全域物件window)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
-<p>小結，在函式中呼叫this，會指向全域變數，而非函式本身。</p>
-<p>在下述程式碼中，在a函式中的this代表全域物件Window，所以宣告this.newVar代表宣告一個全域變數。<br>也因此，直接在全域log出變數newVar不會出錯，因為它確實在執行a函式時，就已經被宣告出來了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.newVar = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(newVar);</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，會將newVar印出值為’hello’，且若點開Window物件中，也可以看到確實有一個變數為newVar。<br><img src="https://i.imgur.com/5rRjEzJ.png" alt></p>
-<h3 id="物件中的this"><a href="#物件中的this" class="headerlink" title="物件中的this"></a>物件中的this</h3><p>宣告一個物件c，在其中有屬性name，也有方法log，接著用c.log()執行物件c中的方法log。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，在物件c的方法log中的this，代表物件c。<br><img src="https://i.imgur.com/mzbz5Tu.png" alt></p>
-<p>小結，當函式是物件的方法時，在其中呼叫的this變數會指向該物件本身。換句話說，this變數會指向包含它的物件。</p>
-<h3 id="在物件方法中修改物件的屬性"><a href="#在物件方法中修改物件的屬性" class="headerlink" title="在物件方法中修改物件的屬性"></a>在物件方法中修改物件的屬性</h3><p>物件c的log方法中，因為this代表物件c本身，所以用this.name代表物件c的屬性，藉此更改其值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:<span class="string">'The c obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update c obj'</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
-<p>執行結果，可以看到物件c的屬性name確實被修改了。<br><img src="https://i.imgur.com/P84OH5Y.png" alt></p>
-<h3 id="self宣告模式，解決JS的不完美"><a href="#self宣告模式，解決JS的不完美" class="headerlink" title="self宣告模式，解決JS的不完美"></a>self宣告模式，解決JS的不完美</h3><p>在物件d的方法log中，宣告一個函式物件setName，在其中的this變數並不會指向物件d，而是指向全域物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = &#123;</span><br><span class="line">    name: <span class="string">'The d obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'update d obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/UbQJURB.png" alt></p>
-<p><img src="https://i.imgur.com/YRJBgrT.png" alt></p>
-<p>許多人會認為這是JavaScript本身的bug，但是事實上他就是這麼運作，因此若要避免產生錯誤，業界有一套常用的模式來應付這種狀況。</p>
-<p>通常會在物件方法的第一行，宣告一個新的變數self，並且讓this指派給他，因為物件的assign是call by reference，因此self會指向this同一個位置，確保兩者指向同一物件e。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = &#123;</span><br><span class="line">    name: <span class="string">'The e obj'</span>,</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        self.name = <span class="string">'update e obj'</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> setName = <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;</span><br><span class="line">            self.name = newName;<span class="comment">//這裡的this會設置到全域物件window中</span></span><br><span class="line">            <span class="built_in">console</span>.log(self.name);</span><br><span class="line">        &#125;</span><br><span class="line">        setName(<span class="string">'update e again!'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(self.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">e.log();</span><br></pre></td></tr></table></figure></p>
-<p>當有了一個變數self，之後修改或呼叫，就直接用self以確保是指向物件e。<br><img src="https://i.imgur.com/gDjk5HV.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-傳值與傳參考" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-傳值與傳參考/">JavaScript-傳值與傳參考</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-傳值與傳參考/" class="article-date">
-	  <time datetime="2019-05-13T10:07:36.885Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="傳值-by-value"><a href="#傳值-by-value" class="headerlink" title="傳值(by value)"></a>傳值(by value)</h3><p>首先宣告一個變數a，並且assign一個純值(primitive)給a，則在記憶體中會有以個0x001位置存有該值，等著被a參照。<br>接著，宣告一個變數b，並且將a指派給b (b = a)，實際上的執行狀況，會將a參照到的記憶體位置中的值複製到一個新的記憶體位置0x002，再讓b可以參照到它。<br><img src="https://i.imgur.com/XBn7gaT.png" alt></p>
-<p>以下方程式碼為例，當執行到第6行，若重新assign一個值給a，並不會影響到b的值，因為a跟b是指向不同的記憶體位置，兩者的值不會互相被影響。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//call by value(primitives)</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="傳參考-by-reference"><a href="#傳參考-by-reference" class="headerlink" title="傳參考(by reference)"></a>傳參考(by reference)</h3><p>首先有一個變數a，將一個物件(包含函式)指派給該變數，則在記憶體中會有一個位置0x001存有該物件，並透過記憶體位置被a參照到。<br>接著，宣告一個變數b，並且將a指派給b (b = a)，此時並不會得到一個新的物件以及新的記憶體位置，而是會讓b也參照到跟a同個物件所在記憶體中的位置，也就是同樣指向0x001。<br>這也代表，如果a的值被改變，b的值也同樣會被改變，因為它們兩者指向的物件就是同一個物件。</p>
-<p><img src="https://i.imgur.com/D2BcuKn.png" alt></p>
-<p>以下方程式碼為例，當執行到第6行，執行mutate，改變a物件中的值，接著再分別印出a、b的值，會發現兩者的結果皆被改變為mutate後的值了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// call by reference(all objects, including functions)</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line">a.greeting = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="傳參考-用於參數）"><a href="#傳參考-用於參數）" class="headerlink" title="傳參考(用於參數）"></a>傳參考(用於參數）</h3><p>在第5行，b已經指向a同個物件的記憶體，而當第9行將b作為傳入參數作為函式中obj物件，在第7行被mutate之後，最終a跟b所印出的值皆相同，因為兩者皆是指向同個記憶體位置中的同個物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//call by reference (even as parameters)</span></span><br><span class="line"><span class="keyword">var</span> a =&#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeGreeting</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    obj.greeting = <span class="string">'hola'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeGreeting(b);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="使用等號運算子，創建一個新的記憶體空間"><a href="#使用等號運算子，創建一個新的記憶體空間" class="headerlink" title="使用等號運算子，創建一個新的記憶體空間"></a>使用等號運算子，創建一個新的記憶體空間</h3><p>透過”=”運算子創建物件，藉由這個物件實體語法，因為不知道<code>{ greeting:&#39;hola&#39;}</code>是否已經存在於記憶體，所以會另外創建一個記憶體空間給新的物件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//equals operator sets up a new memory space(new address)</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">greeting</span>:<span class="string">'hi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line"></span><br><span class="line">a.greting = <span class="string">'hello'</span>;</span><br><span class="line">a = &#123; <span class="attr">greeting</span>:<span class="string">'hola'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//&#123; greeting:'hola'&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//&#123; greeting:'hello'&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/Z9ul7iY.png" alt></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-函數陳述式與函數表示式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-函數陳述式與函數表示式/">JavaScript-函數陳述式與函數表示式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-函數陳述式與函數表示式/" class="article-date">
-	  <time datetime="2019-05-13T10:07:31.804Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="陳述式vs-表示式"><a href="#陳述式vs-表示式" class="headerlink" title="陳述式vs.表示式"></a>陳述式vs.表示式</h3><ul>
-<li>陳述式(Statement)只是去做某件事。</li>
-<li>表示式(Expression)是程式碼的單位，位，會形成一個值，但不一定要存於一個變數中。<h3 id="陳述式"><a href="#陳述式" class="headerlink" title="陳述式"></a>陳述式</h3>if本身只是一個陳述句，它會去做其他事，但是不會回傳任何值。而在if的()中的條件是表示式，因為他會回傳一個值，true或false。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">if</span> (a === <span class="number">3</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="表示式"><a href="#表示式" class="headerlink" title="表示式"></a>表示式</h3><p>以下三行分別的程式碼，都是一個表示式，因為他們執行完之後，都會回傳一個值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span>;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span>;<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="attr">language</span>:<span class="string">'english'</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>以下執行結果可證，程式碼會回傳一個值，這個值可以是數值、字串或物件，無論是什麼型態都可以。<br><img src="https://i.imgur.com/GLFpmPO.png" alt></p>
-<h3 id="函數陳述式"><a href="#函數陳述式" class="headerlink" title="函數陳述式"></a>函數陳述式</h3><p>當它被呼叫執行，它不會回傳值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line">greet();</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/5fk468r.png" alt></p>
-<h3 id="函數表示式"><a href="#函數表示式" class="headerlink" title="函數表示式"></a>函數表示式</h3><p>先宣告一個變數，並將一個函式assigm給該變數。因為函式在JavaScript中是一個物件，所以當該函式被指派給anonymousGreet變數時，在記憶體中的，anonymousGreet變數就會指向函式物件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> anonymousGreet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line">anonymousGreet();</span><br></pre></td></tr></table></figure></p>
-<p>在這個例子中，該函式中並沒有name，是一個匿名函式，不過因為被assign給變數，所以可以透過該變數名去參照它。<br><img src="https://i.imgur.com/tVSRT8d.png" alt></p>
-<p>所以在下圖中特別被標記出的這段程式碼為函數表示式，當整段程式碼執行時，會叫出函式物件並作回傳。<br><img src="https://i.imgur.com/Rw1VT8e.png" alt></p>
-<h3 id="函數表示式並不會被hositing"><a href="#函數表示式並不會被hositing" class="headerlink" title="函數表示式並不會被hositing"></a>函數表示式並不會被hositing</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">anonymousGreet();<span class="comment">//Uncaught TypeError: undefined is not a function.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anonymousGreet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">anonymousGreet();<span class="comment">//hi</span></span><br></pre></td></tr></table></figure>
-<p>在程式碼的創建階段，會在記憶體中創建變數anonymousGreet，預設值為undefined。<br>開始執行，第1行呼叫函式，卻發現anonymousGreet為undefined值，而非一個函式，因此就會被出錯。<br>因此正確寫法，應該是要在執行完第3行，assign一個函式給變數之後，才能如第7行呼叫。</p>
-<h3 id="將函數表示式作為傳入參數"><a href="#將函數表示式作為傳入參數" class="headerlink" title="將函數表示式作為傳入參數"></a>將函數表示式作為傳入參數</h3><p>在JavaScript中，函式為一級函式，也就是函式可以視為物件，因此也可以作為將函式表示式作為另外一個函式的傳入參數。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    a();</span><br><span class="line">&#125;</span><br><span class="line">log(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-JavaScript-函式就是物件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/JavaScript-函式就是物件/">JavaScript-函式就是物件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/05/13/JavaScript-函式就是物件/" class="article-date">
-	  <time datetime="2019-05-13T10:07:26.114Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一級函式-First-class-function"><a href="#一級函式-First-class-function" class="headerlink" title="一級函式(First class function)"></a>一級函式(First class function)</h3><p>在JavaScript中，函式可以被視作一級值。<br><strong>一級函式(First class function)</strong>，指的是可以處理程式語言中對其他任何型別(物件、字串、布林值、純值)的方式來處理它；換句話說，我們也可以對一級函式做出任何其他型別能做得到的事，包含以下：</p>
-<ul>
-<li>將函式賦值給一個變數</li>
-<li>將函式當成傳入參數，成為另外一個函式的引數</li>
-<li>函式可以作為回傳值(在一個函式中，回傳另一個函式)</li>
-</ul>
-<h3 id="函式是特殊型態的物件"><a href="#函式是特殊型態的物件" class="headerlink" title="函式是特殊型態的物件"></a>函式是特殊型態的物件</h3><p>在JavaScript中的函式有物件的特色，是一種特殊型態的物件。<br><img src="https://i.imgur.com/w5YvQUO.png" alt></p>
-<ul>
-<li>函式中可以附屬有純值(primitive)(用name/value pair表示)</li>
-<li>函式中可以附屬有物件</li>
-<li>函式中可以附屬有其他函式</li>
-</ul>
-<p>另外，函式包含兩個特別的屬性，一個是名稱(name)，一個是執行的程式內容(code)。</p>
-<ul>
-<li>在name的部分，函式可以是匿名的(anonymous)，也就是可以不一定要有name。</li>
-<li>而code的部分，也就是我們撰寫的程式碼內容。換句話說，我們撰寫的程式碼並非函式，而只是函式這個特殊物件中的一個屬性而已。而這個屬性可以透過”()”方法被呼叫、執行。</li>
-</ul>
-<h3 id="程式碼說明"><a href="#程式碼說明" class="headerlink" title="程式碼說明"></a>程式碼說明</h3><p>首先宣告一個函式為greet，因為在JavaScript中的函式同等於物件，因此我們用”.”為greet創造language屬性的值。在其他程式語言中，這樣會出錯，但是在JavaScript中是可行的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet.language = <span class="string">'english'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(greet);</span><br><span class="line"><span class="built_in">console</span>.log(greet.language);</span><br></pre></td></tr></table></figure></p>
-<p>執行印出結果<br><img src="https://i.imgur.com/Nx8Xzuq.png" alt></p>
-<p>以下解釋整個創建、執行的過程。</p>
-<p><img src="https://i.imgur.com/fsURtx7.png" alt><br>首先在創建階段會在全域記憶體中先創建一個全域物件，他的名稱是greet。而他的程式屬性，包含所寫的程式碼內容。而用”()”呼叫，即可執行該函式。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -952,68 +1075,68 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/">React-(五-2)組件進階：組件的父子溝通</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/【Debug筆記】利用pointer-events_none解決點擊事件失效/">【Debug筆記】利用pointer-events:none解決點擊事件失效</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-4)三種組件/">React-(五-4)三種組件</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-3)組建進階：動態控制樣式className跟style/">React-(五-3)組建進階：動態控制樣式className跟style</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/06/18/React-(五-1)組件進階：ref屬性找到DOM/">React-(五-1)組件進階：ref屬性找到DOM</a></h6>
+              <span>June 18, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/05/13/React-(四)組件進階/">React-(四)組件進階</a></h6>
               <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(三)組件基本/">React-(三)組件基本</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(二)JSX與render/">React-(二)JSX與render</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/React-(一)創建一個React專案(懶人包)/">React-(一)創建一個React專案(懶人包)</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/05/13/Vue-EventBus組件溝通/">Vue-EventBus組件溝通</a></h6>
-              <span>May 13, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/28/ES6-其他好用的特色/">ES6-其他好用的特色</a></h6>
-              <span>April 28, 2020</span>
             </div>
 
           </li>
@@ -1027,7 +1150,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sketch/">Sketch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebSocket/">WebSocket</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Webpack/">Webpack</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaScript/">javaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/library/">library</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -1037,7 +1160,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Babel/">Babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NVM/">NVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-js/">React.js</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sketch/">Sketch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slick/">Slick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack.</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awesomefont/">awesomefont</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boiler/">boiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousal/">carousal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/carousel/">carousel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layuot/">layuot</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/library/">library</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/margin/">margin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navbar/">navbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/偽元素/">偽元素</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/切版/">切版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/實作/">實作</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -1047,7 +1170,7 @@ var themeMenus = {};
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 11.82px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15.45px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.27px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.64px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.73px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.91px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.55px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.82px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.64px;">Node.js</a> <a href="/tags/React/" style="font-size: 12.73px;">React</a> <a href="/tags/React-js/" style="font-size: 12.73px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.18px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.09px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.82px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.73px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.82px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.64px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.91px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/github/" style="font-size: 11.82px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.36px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.91px;">layuot</a> <a href="/tags/library/" style="font-size: 10.91px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.91px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.55px;">實作</a>
+      <a href="/tags/API/" style="font-size: 11.67px;">API</a> <a href="/tags/Babel/" style="font-size: 10px;">Babel</a> <a href="/tags/Bootstrap/" style="font-size: 15px;">Bootstrap</a> <a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/ES6/" style="font-size: 13.33px;">ES6</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10.83px;">GitHub</a> <a href="/tags/HTML/" style="font-size: 14.17px;">HTML</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NVM/" style="font-size: 10px;">NVM</a> <a href="/tags/Node-js/" style="font-size: 13.33px;">Node.js</a> <a href="/tags/React/" style="font-size: 15.83px;">React</a> <a href="/tags/React-js/" style="font-size: 15.83px;">React.js</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Sketch/" style="font-size: 10px;">Sketch</a> <a href="/tags/Slick/" style="font-size: 10px;">Slick</a> <a href="/tags/Vue/" style="font-size: 18.33px;">Vue</a> <a href="/tags/Vue-js/" style="font-size: 19.17px;">Vue.js</a> <a href="/tags/WebSocket/" style="font-size: 11.67px;">WebSocket</a> <a href="/tags/Webpack/" style="font-size: 12.5px;">Webpack</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack.</a> <a href="/tags/awesomefont/" style="font-size: 11.67px;">awesomefont</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/boiler/" style="font-size: 10.83px;">boiler</a> <a href="/tags/carousal/" style="font-size: 10px;">carousal</a> <a href="/tags/carousel/" style="font-size: 10px;">carousel</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/github/" style="font-size: 11.67px;">github</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/jQuery/" style="font-size: 10.83px;">jQuery</a> <a href="/tags/layout/" style="font-size: 16.67px;">layout</a> <a href="/tags/layuot/" style="font-size: 10.83px;">layuot</a> <a href="/tags/library/" style="font-size: 10.83px;">library</a> <a href="/tags/margin/" style="font-size: 10px;">margin</a> <a href="/tags/navbar/" style="font-size: 10px;">navbar</a> <a href="/tags/padding/" style="font-size: 10px;">padding</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/vue/" style="font-size: 10.83px;">vue</a> <a href="/tags/偽元素/" style="font-size: 10px;">偽元素</a> <a href="/tags/切版/" style="font-size: 10px;">切版</a> <a href="/tags/實作/" style="font-size: 14.17px;">實作</a>
     </div>
   </div>
 
@@ -1057,7 +1180,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
