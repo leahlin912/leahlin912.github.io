@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>typescript-(三)函數 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TypeScript">
+  
+  
+  
+  
+  <meta name="description" content="函數的定義方式指定型態TypeScript 跟 JavaScript 的函數的宣告語法很相似，但是 TypeScript 可以指定「傳入參數的型別」以及「回傳值型別」。123function 函數名稱(參數名稱:型別,...):回傳值型別&amp;#123;    ...處理內容...&amp;#125; 在小括號中一樣可以傳入多個參數並以逗點分割，但是每個參數都可以使用分號指定型別；接著後面用分號指定回傳值型別">
+<meta name="keywords" content="TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript-(三)函數">
+<meta property="og:url" content="http://yoursite.com/2020/07/07/TypeScript-(三)函數/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="函數的定義方式指定型態TypeScript 跟 JavaScript 的函數的宣告語法很相似，但是 TypeScript 可以指定「傳入參數的型別」以及「回傳值型別」。123function 函數名稱(參數名稱:型別,...):回傳值型別&amp;#123;    ...處理內容...&amp;#125; 在小括號中一樣可以傳入多個參數並以逗點分割，但是每個參數都可以使用分號指定型別；接著後面用分號指定回傳值型別">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-07-07T11:23:21.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript-(三)函數">
+<meta name="twitter:description" content="函數的定義方式指定型態TypeScript 跟 JavaScript 的函數的宣告語法很相似，但是 TypeScript 可以指定「傳入參數的型別」以及「回傳值型別」。123function 函數名稱(參數名稱:型別,...):回傳值型別&amp;#123;    ...處理內容...&amp;#125; 在小括號中一樣可以傳入多個參數並以逗點分割，但是每個參數都可以使用分號指定型別；接著後面用分號指定回傳值型別">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-TypeScript-(三)函數" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      TypeScript-(三)函數
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/07/07/TypeScript-(三)函數/" class="article-date">
+	  <time datetime="2020-07-07T11:20:25.138Z" itemprop="datePublished">July 7, 2020</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函數的定義方式"><a href="#函數的定義方式" class="headerlink" title="函數的定義方式"></a>函數的定義方式</h2><h3 id="指定型態"><a href="#指定型態" class="headerlink" title="指定型態"></a>指定型態</h3><p>TypeScript 跟 JavaScript 的函數的宣告語法很相似，但是 TypeScript 可以指定「傳入參數的型別」以及「回傳值型別」。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函數名稱(<span class="params">參數名稱:型別,...</span>):回傳值型別</span>&#123;</span><br><span class="line">    ...處理內容...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在小括號中一樣可以傳入多個參數並以逗點分割，但是每個參數都可以使用分號指定型別；接著後面用分號指定回傳值型別。</p>
+<p>以下範例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">price:number,count:number</span>):<span class="title">string</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Total:"</span>+price*count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果函數沒有回傳值，則可以指定回傳值為「void」，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params"></span>):<span class="title">void</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="選擇性參數"><a href="#選擇性參數" class="headerlink" title="選擇性參數"></a>選擇性參數</h3><p>有些情況，函數中的部分參數並非必傳值，而是開放性的 option，因此可以用「?」符號來代表它是可以忽略的參數，而當沒有傳入該參數時，在函數中其會以賦予「undefined」值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">price:number,tax?:number</span>):<span class="title">number</span></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> tx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(tax)&#123;</span><br><span class="line">        tx = tax;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        tx = <span class="number">0.05</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(price*(<span class="number">1</span>+tx));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(calc(<span class="number">100</span>));<span class="comment">//印出105</span></span><br><span class="line"><span class="built_in">console</span>.log(calc(<span class="number">100</span>,<span class="number">0.1</span>));<span class="comment">//印出110</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="多載-Overload"><a href="#多載-Overload" class="headerlink" title="多載(Overload)"></a>多載(Overload)</h3><p>在撰寫一個函數功能時，可能會發生該函數在不同情況會有「相異型別的傳入參數」或「相異型別的回傳值」，可是在 JavaScript 中，「函數名稱」就不能重複宣告，如下方的情況：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span>(<span class="params">name,index</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span>(<span class="params">age,index</span>)</span>&#123;<span class="comment">//merge重複宣告，覆蓋前一個merge函數</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而透過 TypeScript，當參數或回傳值的型別不同時，則可以同時接受多個同名函數。</p>
+<p>不過並非直接寫入多個同名函數，而是鮮血函數的宣告敘述，在彙整函數的處理內容，如下語法範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span>(<span class="params">info:number</span>):<span class="title">boolean</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">convert</span>(<span class="params">info:string</span>):<span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">convert</span>(<span class="params">info:string,note:string</span>):<span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">convert</span>(<span class="params">info:boolean</span>):<span class="title">string</span>;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">convert</span>(<span class="params">info:any,note?:string</span>):<span class="title">any</span></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(<span class="keyword">typeof</span> info)&#123;</span><br><span class="line">        <span class="keyword">case</span> number:</span><br><span class="line">            <span class="keyword">return</span> info&gt;<span class="number">18</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">case</span> string:</span><br><span class="line">            <span class="keyword">return</span> info+(note?(<span class="string">"-"</span>+note):<span class="string">""</span>);</span><br><span class="line">        <span class="keyword">case</span> boolean:</span><br><span class="line">            <span class="keyword">return</span> info?<span class="string">"yes"</span>:<span class="string">"no"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型-Generics"><a href="#泛型-Generics" class="headerlink" title="泛型(Generics)"></a>泛型(Generics)</h3><p>當函數可以接受各種狀況的參數及回傳值時，我們可以使用any作為型別，不過有個問題是我們無法確認傳入與回傳的型別為何。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>(<span class="params">arg: any</span>): <span class="title">any</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>假設我需要確保傳入跟傳出的型別相同，就可以使用泛型。使用&lt;&gt;符號自定義一個「型別變數」，作為取得的參數的型別，如下範例:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg:T</span>):<span class="title">T</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述的 T 為型別變數名稱，用來儲存參數的型別。在函數執行時，辨識傳入參數 arg 的型別並賦予值給 T。</p>
+<p>在呼叫使用函數時，可以如一般情況只傳入參數，編譯器會自動辨識傳入參數的型別用以定義型別變數 T ；或者也可以同時使用&lt;&gt;傳入型別變數。兩種情況如下範例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只傳入參數</span></span><br><span class="line"><span class="built_in">console</span>.log(identity(<span class="number">123</span>));<span class="comment">//印出 number 型別的123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//傳入參數、型別變數</span></span><br><span class="line"><span class="built_in">console</span>.log(identity&lt;string&gt;(<span class="string">"hello"</span>));<span class="comment">//印出 string 型別的hello</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="可變數量參數"><a href="#可變數量參數" class="headerlink" title="可變數量參數"></a>可變數量參數</h3><p>函數中的參數量若不固定，TypeScript 支援「可變量參數」，讓函數可以接受型別相同但數量不定的資料。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函數名稱(<span class="params">...參數:型別</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在參數前方加上「…」，則這個參數變數就會被視為可變量的，不論傳入多少個參數，只要是同型別，都能被函數處理。如下範例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...item:number[]</span>):<span class="title">number</span></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> total:number = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i:number=<span class="number">0</span> ; i&lt;item.length ; i++)&#123;</span><br><span class="line">        total = total + item[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)); <span class="comment">//印出 15</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>)); <span class="comment">//印出 55</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到 <code>...item:number[]</code>，這邊就適當所有參數傳入函數中，會被當作一個number型別的陣列做處理，並且存為一個名為 item 的變數中。</p>
+<h3 id="箭頭函式-Arrow-Function"><a href="#箭頭函式-Arrow-Function" class="headerlink" title="箭頭函式(Arrow Function)"></a>箭頭函式(Arrow Function)</h3><p>除了使用 function 關鍵語法定義函式，TypeScript 也提供更簡易的箭頭函式，目前也已經被ES6所採用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(參數<span class="number">1</span>,參數<span class="number">2</span>,...)=&gt;&#123;</span><br><span class="line">    ...執行內容...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>箭頭函式最主要的優點是「方便把整段函式當作一個資料值來使用」，而如果最終執行結果只有一行，且是一個回傳值，可以省去執行內容的大括號，以下舉例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(n)=&gt;&#123;</span><br><span class="line">    <span class="keyword">return</span> n*n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//更簡化</span></span><br><span class="line">(n)=&gt;n*n;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定參數型別</span></span><br><span class="line">(n:number)=&gt;n*n;</span><br></pre></td></tr></table></figure></p>
+<p>如果想宣告一個變數，定且存入整段函數，同時去指定參數的型別及回傳值的型別，寫法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> func:<span class="function">(<span class="params">number</span>) =&gt;</span> number = <span class="function">(<span class="params">n:number</span>)=&gt;</span> n*n;</span><br></pre></td></tr></table></figure></p>
+<p>上方案例中，先宣告一個變數 func，冒號後方指定其型別為<code>(number)=&gt;number</code>，意思是指定參數的型別為numebr、回傳值的型別指定為number；最後使等號存入值為 <code>(n:number)=&gt;n*n</code> 這樣僅有一行的內容。</p>
+<p>也因為箭頭函式簡略的特性，最常被使用的地方就是「將箭頭函式當作函式中的參數」，如下範例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">n:number,func:(number</span>)=&gt;<span class="title">string</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> re:number =  func(n);</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aFunc:<span class="function">(<span class="params">number</span>)=&gt;</span>string = <span class="function">(<span class="params">n:number</span>)=&gt;</span><span class="string">"&lt;面積&gt;"</span>+(n*n);</span><br><span class="line"><span class="keyword">let</span> bFunc:<span class="function">(<span class="params">number</span>)=&gt;</span>string = <span class="function">(<span class="params">n:number</span>)=&gt;</span><span class="string">"&lt;體積&gt;"</span>+(n*n*n);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(print(<span class="number">5</span>,aFunc));</span><br><span class="line"><span class="built_in">console</span>.log(print(<span class="number">5</span>,bFunc));</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/TypeScript/">TypeScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">TypeScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/07/TypeScript-(二)基本語法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TypeScript-(二)基本語法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/07/TypeScript-(四)類別形式的物件導向/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TypeScript-(四)類別形式的物件導向</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函數的定義方式"><span class="nav-number">1.</span> <span class="nav-text">函數的定義方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定型態"><span class="nav-number">1.1.</span> <span class="nav-text">指定型態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇性參數"><span class="nav-number">1.2.</span> <span class="nav-text">選擇性參數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多載-Overload"><span class="nav-number">1.3.</span> <span class="nav-text">多載(Overload)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型-Generics"><span class="nav-number">1.4.</span> <span class="nav-text">泛型(Generics)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可變數量參數"><span class="nav-number">1.5.</span> <span class="nav-text">可變數量參數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭頭函式-Arrow-Function"><span class="nav-number">1.6.</span> <span class="nav-text">箭頭函式(Arrow Function)</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

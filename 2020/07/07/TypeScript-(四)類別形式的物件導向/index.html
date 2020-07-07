@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>typescript-(四)類別形式的物件導向 | Leah&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TypeScript">
+  
+  
+  
+  
+  <meta name="description" content="在 TypeScript 中採用了「類別形式的物件導向」，需要先定義「類別(Class)」，再根據類別產生實體(Instance)，建立出實體的物件才能夠被操作使用。1234567//定義類別class 類別名稱&amp;#123;    ...類別內容...&amp;#125;//產生實體var 變數名稱:類別名稱 = new 類別名稱(參數); 類別的內容在定義類別的時候，就可以先規劃其包含的內容，主要分為三">
+<meta name="keywords" content="TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript-(四)類別形式的物件導向">
+<meta property="og:url" content="http://yoursite.com/2020/07/07/TypeScript-(四)類別形式的物件導向/index.html">
+<meta property="og:site_name" content="Leah&#39;s Blog">
+<meta property="og:description" content="在 TypeScript 中採用了「類別形式的物件導向」，需要先定義「類別(Class)」，再根據類別產生實體(Instance)，建立出實體的物件才能夠被操作使用。1234567//定義類別class 類別名稱&amp;#123;    ...類別內容...&amp;#125;//產生實體var 變數名稱:類別名稱 = new 類別名稱(參數); 類別的內容在定義類別的時候，就可以先規劃其包含的內容，主要分為三">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/srG4kr1.png">
+<meta property="og:updated_time" content="2020-07-07T11:23:36.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript-(四)類別形式的物件導向">
+<meta name="twitter:description" content="在 TypeScript 中採用了「類別形式的物件導向」，需要先定義「類別(Class)」，再根據類別產生實體(Instance)，建立出實體的物件才能夠被操作使用。1234567//定義類別class 類別名稱&amp;#123;    ...類別內容...&amp;#125;//產生實體var 變數名稱:類別名稱 = new 類別名稱(參數); 類別的內容在定義類別的時候，就可以先規劃其包含的內容，主要分為三">
+<meta name="twitter:image" content="https://i.imgur.com/srG4kr1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Leah&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Leah&#39;s Blog" rel="home"> Leah&#39;s Blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-TypeScript-(四)類別形式的物件導向" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      TypeScript-(四)類別形式的物件導向
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/07/07/TypeScript-(四)類別形式的物件導向/" class="article-date">
+	  <time datetime="2020-07-07T11:20:03.163Z" itemprop="datePublished">July 7, 2020</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 TypeScript 中採用了「類別形式的物件導向」，需要先定義「類別(Class)」，再根據類別產生實體(Instance)，建立出實體的物件才能夠被操作使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定義類別</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> 類別名稱</span>&#123;</span><br><span class="line">    ...類別內容...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//產生實體</span></span><br><span class="line"><span class="keyword">var</span> 變數名稱:類別名稱 = <span class="keyword">new</span> 類別名稱(參數);</span><br></pre></td></tr></table></figure></p>
+<h3 id="類別的內容"><a href="#類別的內容" class="headerlink" title="類別的內容"></a>類別的內容</h3><p>在定義類別的時候，就可以先規劃其包含的內容，主要分為三大項：</p>
+<ol>
+<li>建構子(Constructor)：用來做初始化的動作的特出方法，在建立實體物件時，會執行這個方法</li>
+<li>屬性(Attribute)：物件內用來儲存資料值的變數</li>
+<li>方法(Method)：物件中的函式功能</li>
+</ol>
+<p>以下範例：</p>
+<ul>
+<li>首先定義一個名為 Person 的類別</li>
+<li>Person 類別中有兩個屬性：name、age</li>
+<li>Person 類別中有一個建構子(Constructor)，當這個類別被 new 出來的時候，會傳入兩個參數：n、a，並執行建構子方法中的初始化的動作</li>
+<li>Person 類別中有一個方法：say</li>
+<li>使用 「new」 關鍵字建立出實體，並且指派給 member 這個變數</li>
+<li>member 可以被稱作實體物件，就可以去操作其中的屬性、方法。例如用 <code>member.print()</code> 呼叫 print 方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="comment">//屬性</span></span><br><span class="line">    name:string;</span><br><span class="line">    age:numebr;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//建構子</span></span><br><span class="line">    <span class="keyword">constructor</span>(n:string,a:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = n;</span><br><span class="line">        <span class="keyword">this</span>.age = a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    say():string&#123;</span><br><span class="line">        <span class="keyword">let</span> msg:string = <span class="string">"Hi! I'm "</span> + <span class="keyword">this</span>.name;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//new 出實體</span></span><br><span class="line"><span class="keyword">let</span> member:Person = <span class="keyword">new</span> Person(<span class="string">"Amy"</span>,<span class="number">20</span>);</span><br><span class="line"><span class="built_in">console</span>.log(member.print());<span class="comment">//印出 Hi! I'm Amy</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以看到在建構子中或是方法中要拿取類別中的屬性，會使用「this.xxx」的格式來取用，例如：<code>this.name</code>跟<code>this.age</code></p>
+<h3 id="存取修飾詞-Access-Modifier"><a href="#存取修飾詞-Access-Modifier" class="headerlink" title="存取修飾詞(Access Modifier)"></a>存取修飾詞(Access Modifier)</h3><p>類別中的屬性或方法，基本上都可以從外部進行存取，而產生實體物件之後，也可以對於它的屬性跟方法進行改寫。</p>
+<p>然而，如果沒有去限制存取權限，就可能會從不恰當的地方進行存取，導致錯誤而無法正常執行程式碼。</p>
+<p>因此，TypeScript 中使用「存取修飾詞」，用來「限制屬性或方法可以接受從哪些範圍進行存、取的動作」。</p>
+<p><img src="https://i.imgur.com/srG4kr1.png" alt></p>
+<p>簡單來說，<strong>public</strong> 修飾詞級即代表可以從外部取用該資源；而 <strong>private</strong> 只能接受內部的存取。</p>
+<p>存取修飾詞的使用方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    private age:number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,y:number)&#123;</span><br><span class="line">        <span class="comment">// ...略</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    print():string&#123;</span><br><span class="line">        <span class="comment">// ...略</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="存取子-Accessor"><a href="#存取子-Accessor" class="headerlink" title="存取子(Accessor)"></a>存取子(Accessor)</h3><p>當類別中的屬性為敏感資料時，不適合隨意從外部直接存取，因此會將該屬性設定為 private，當我們需要去存取這個屬性時，就需要使用「存取子」的功能，透過它去控制屬性的存取動作。</p>
+<p>存取子基本上是以方法的形式來進行定義，不過他跟一般的方法又有些不同Ｍ在開頭需要冠上「get」跟「set」關鍵字。</p>
+<blockquote>
+<p> get：純粹用來「取得」屬性值，因此不能傳入參數<br> set：存粹用來「設定」屬性值，因此不能有回傳值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    private age:number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">get</span> ageGetter():number&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">set</span> ageSetter(year:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = year&lt;<span class="number">0</span> ? <span class="number">0</span> : year;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,year:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = n;</span><br><span class="line">        <span class="keyword">this</span>.age = year;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    print():string&#123;</span><br><span class="line">        <span class="comment">// ...略</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="類別的繼承-extends"><a href="#類別的繼承-extends" class="headerlink" title="類別的繼承(extends)"></a>類別的繼承(extends)</h3><p>繼承正如其名稱，讓新建立的類別可以直接去繼承既有類別中的所有屬性跟方法，透過「繼承」就可以不用重複賺些多個類似的類別功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 新類別名稱 <span class="keyword">extends</span> 既有類別名稱</span>&#123;</span><br><span class="line">    <span class="comment">// ...略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>透過這種「繼承」機制所創建出來的新類別會被稱作既有類別的「子類別(Sub-class)」，而反過來說，作為繼承來源的既有類別則會稱作新類別的「超類別(Super-class)或稱作父類別」。</p>
+<p>在子類別中要呼叫執行父類別的建構子，可以使用 <code>super</code> 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    private age:number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,year:numebr)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = n;</span><br><span class="line">        <span class="keyword">this</span>.age = year;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    print():string&#123;</span><br><span class="line">        <span class="keyword">let</span> msg:string = <span class="string">"My name is "</span>+<span class="keyword">this</span>.name;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    public grade:number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,year:number,g:number)&#123;</span><br><span class="line">        <span class="keyword">super</span>(n,year);</span><br><span class="line">        <span class="keyword">this</span>.grade = g;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    printAll():string&#123;</span><br><span class="line">        <span class="keyword">let</span> msg:string = <span class="string">"My name is "</span>+<span class="keyword">this</span>.name+<span class="string">". And, I'm in "</span>+<span class="keyword">this</span>.grade+<span class="string">" grade."</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法覆寫-Override"><a href="#方法覆寫-Override" class="headerlink" title="方法覆寫(Override)"></a>方法覆寫(Override)</h3><p>假設子類別中想要使用跟父類別中同名的方法，這稱作「覆寫(override)」，當子類別的實體呼叫該方法時，程式會優先執行子類別中的方法，而不會去執行父類別中的同名方法，因為父類別中的方法已經被子類別的方法所取代。</p>
+<h3 id="類別屬性與類別方法"><a href="#類別屬性與類別方法" class="headerlink" title="類別屬性與類別方法"></a>類別屬性與類別方法</h3><p>上述內容中，都強調在類別中的屬性跟方法，都必須要「先宣告出實體物件，才能透過實體物件去呼叫」。不過，其實也可以寫成「非隸屬於實體物件的資源」。</p>
+<p>想要指定這些資源並非放在個別的實體，而是隸屬於類別身，就需要用「static」修飾詞。如果在屬性或方法宣告時加上 static，那麼該屬性或方法就會被配置在類別的層級，這稱作為「類別屬性」跟「類別方法」，他們無法從個別實體中被呼叫，需要直接從類別別呼叫，也就是使用「<code>類別名稱.屬性名稱</code>」這樣的語法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    public age:numebr;</span><br><span class="line">    public <span class="keyword">static</span> checked = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,y:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = m;</span><br><span class="line">        <span class="keyword">this</span>.age = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doClick</span>(<span class="params"></span>):<span class="title">void</span></span>&#123;</span><br><span class="line">    Person.checked = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="介面-Interface"><a href="#介面-Interface" class="headerlink" title="介面(Interface)"></a>介面(Interface)</h3><p>有時候在分工開發時，首位開發者創造了多個類別，而後續接手的開發者無法確定各個類別中的必要屬性跟方法為何，因此可以透過 「介面」來提醒其他開發者，該個類別中必定具備哪些屬性跟方法。</p>
+<p>介面可以預先彙整類別中所需要的屬性跟方法，但是不一定要先撰寫完畢其中的內容。</p>
+<p>定義介面的語法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface 介面名稱&#123;</span><br><span class="line">    <span class="comment">// ...屬性...;</span></span><br><span class="line">    <span class="comment">//...方法...;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用介面的語法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 類別名 <span class="title">implements</span> 介面</span>&#123;</span><br><span class="line">    <span class="comment">// ...略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這樣參考某個介面的類別，就必須以覆寫的方式去宣告這些介面中的屬性跟方法，如果漏掉了某些項目，就無法被成功編譯。</p>
+<p>簡而言之，介面的用意在於「強制要求類別中必須要實作介面中的屬性跟方法」。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">interface Man&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    age:number;</span><br><span class="line">    </span><br><span class="line">    print():string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="title">inplements</span> <span class="title">Man</span></span>&#123;</span><br><span class="line">    public name :string;</span><br><span class="line">    public age :number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,y:number)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = n;</span><br><span class="line">        <span class="keyword">this</span>.age = y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    print():string&#123;</span><br><span class="line">        <span class="keyword">let</span> msg = <span class="string">"My name is "</span>+ <span class="keyword">this</span>.name;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="title">implements</span> <span class="title">man</span></span>&#123;</span><br><span class="line">    public name :string;</span><br><span class="line">    public age :number;</span><br><span class="line">    public grade:number;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(n:string,y:number,g:numebr)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = n;</span><br><span class="line">        <span class="keyword">this</span>.age = y;</span><br><span class="line">        <span class="keyword">this</span>.grade = g;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    print():string&#123;</span><br><span class="line">        <span class="keyword">let</span> msg:string = <span class="string">"My name is "</span>+<span class="keyword">this</span>.name+<span class="string">". And, I'm in "</span>+<span class="keyword">this</span>.grade+<span class="string">" grade."</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list:Man[] = [];</span><br><span class="line">list.push(<span class="keyword">new</span> Person(<span class="string">"Amy"</span>,<span class="number">30</span>));</span><br><span class="line">list.push(<span class="keyword">new</span> Student(<span class="string">"Peter"</span>,<span class="number">20</span>,<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<p>上述程式碼中，使用「<code>list:Man[]</code>」的方式指定此陣列中的型別需要是 Man 型別，而 Person 跟 Student 都是透過 Man 介面所時做出來的類別，因此在 list 陣列中放入 Person 跟 Student 時做出來的實體物件是被接受的。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/TypeScript/">TypeScript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">TypeScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/07/TypeScript-(三)函數/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TypeScript-(三)函數
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/18/React-(五-2)組件進階：組件的父子溝通/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React-(五-2)組件進階：組件的父子溝通</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#類別的內容"><span class="nav-number">1.</span> <span class="nav-text">類別的內容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取修飾詞-Access-Modifier"><span class="nav-number">2.</span> <span class="nav-text">存取修飾詞(Access Modifier)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取子-Accessor"><span class="nav-number">3.</span> <span class="nav-text">存取子(Accessor)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類別的繼承-extends"><span class="nav-number">4.</span> <span class="nav-text">類別的繼承(extends)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法覆寫-Override"><span class="nav-number">5.</span> <span class="nav-text">方法覆寫(Override)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類別屬性與類別方法"><span class="nav-number">6.</span> <span class="nav-text">類別屬性與類別方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介面-Interface"><span class="nav-number">7.</span> <span class="nav-text">介面(Interface)</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Leah&#39;s Blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
